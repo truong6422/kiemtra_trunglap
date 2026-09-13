@@ -5,16 +5,21 @@ const NguoiDung = require('../models/nguoi_dung');
 const SinhVien = require('../models/sinh_vien');
 const GiangVien = require('../models/giang_vien');
 const BaoCao = require('../models/bao_cao');
+const LopHoc = require('../models/lop_hoc');
 
 // =========================================================================
 // API GET /api/thong-ke/tai-khoan?vai_tro=giang_vien|sinh_vien
 //
 // Danh sách tài khoản theo vai trò, kèm thông tin hồ sơ tương ứng và số bài
 // đã nộp để màn thống kê tài khoản khỏi phải gọi thêm lần nữa.
+//
+// Truyền thêm ?giang_vien=<id_nguoi_dung> thì chỉ trả thành viên các lớp do
+// người đó phụ trách — giảng viên không được xem tài khoản ngoài lớp mình.
 // =========================================================================
 router.get('/tai-khoan', async (req, res) => {
     try {
         const vaiTro = (req.query.vai_tro || "").trim();
+        const giangVienPhuTrach = (req.query.giang_vien || "").trim();
 
         const dieuKien = {};
         if (vaiTro) {
@@ -22,6 +27,31 @@ router.get('/tai-khoan', async (req, res) => {
             dieuKien.vai_tro = vaiTro === "giang_vien"
                 ? { $in: ["giang_vien", "giaovien"] }
                 : vaiTro;
+        }
+
+        // Giới hạn trong phạm vi lớp của một giảng viên
+        let tenLopTheoNguoiDung = null;
+
+        if (giangVienPhuTrach) {
+
+            const dsLop = await LopHoc.find({ id_nguoi_dung: giangVienPhuTrach })
+                .select('ma_lop tieu_de danh_sach_thanh_vien').lean();
+
+            tenLopTheoNguoiDung = new Map();
+
+            for (const lop of dsLop) {
+                for (const tv of (lop.danh_sach_thanh_vien || [])) {
+                    const cu = tenLopTheoNguoiDung.get(tv.id_nguoi_dung) || [];
+                    cu.push(lop.ma_lop);
+                    tenLopTheoNguoiDung.set(tv.id_nguoi_dung, cu);
+                }
+            }
+
+            // Chính giảng viên đó không nằm trong danh sách thành viên mình dạy
+            dieuKien.id_nguoi_dung = {
+                $in: [...tenLopTheoNguoiDung.keys()]
+                    .filter(id => id !== giangVienPhuTrach)
+            };
         }
 
         const dsNguoiDung = await NguoiDung.find(dieuKien)
@@ -81,7 +111,13 @@ router.get('/tai-khoan', async (req, res) => {
 
                 ma_ho_so: sv ? sv.id_sinh_vien : (gv ? gv.id_giang_vien : ""),
                 ma_dinh_danh: sv ? sv.ma_sinh_vien : (gv ? gv.ma_giang_vien : ""),
-                lop: sv ? sv.lop : "",
+
+                // Lớp lấy từ hồ sơ sinh viên; nếu đang xem theo phạm vi một
+                // giảng viên thì ưu tiên mã lớp mà người đó đang theo học.
+                lop: tenLopTheoNguoiDung
+                    ? (tenLopTheoNguoiDung.get(nd.id_nguoi_dung) || []).join(", ")
+                    : (sv ? sv.lop : ""),
+
                 bo_mon: gv ? gv.bo_mon : "",
 
                 so_bai_da_nop: soBai

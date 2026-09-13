@@ -4,6 +4,9 @@
  *
  * Bấm "Giảng viên" hoặc "Sinh viên" trên thẻ Thống kê tài khoản thì hiện danh
  * sách tài khoản của vai trò đó, kèm số bài đã nộp.
+ *
+ * Giảng viên chỉ được xem sinh viên trong lớp mình phụ trách, và không được
+ * xem danh sách giảng viên — nút đó bị khoá.
  * ============================================================================
  */
 
@@ -12,14 +15,40 @@ window.TkTaiKhoan = (() => {
     const API = "http://localhost:5000/api";
     const $ = id => document.getElementById(id);
 
+    const vaiTroNguoiXem = (localStorage.getItem("vai_tro") ||
+        localStorage.getItem("userRole") || "").trim();
+    const idNguoiXem = localStorage.getItem("id_nguoi_dung") || "";
+
+    const laGiangVien = vaiTroNguoiXem === "giang_vien" ||
+        vaiTroNguoiXem === "giaovien";
+
     let dangHien = [];
+    let vaiTroDangXem = "";
+
+    /** Giảng viên không được xem danh sách giảng viên nên khoá nút đó lại. */
+    function apDungQuyen() {
+
+        if (!laGiangVien) return;
+
+        document.querySelectorAll('[data-vai-tro="giang_vien"]').forEach(n => {
+            n.disabled = true;
+            n.classList.add("tk-bi-khoa");
+            n.title = "Giảng viên chỉ xem được danh sách sinh viên trong lớp mình";
+        });
+    }
 
     async function mo(vaiTro) {
 
+        // Chặn cả khi bị gọi bằng đường khác ngoài nút bấm
+        if (laGiangVien && vaiTro === "giang_vien") return;
+
+        vaiTroDangXem = vaiTro;
+
         const ten = vaiTro === "giang_vien" ? "giảng viên" : "sinh viên";
 
-        $("tkTieuDeTaiKhoan").textContent =
-            `Danh sách tài khoản ${ten}`;
+        $("tkTieuDeTaiKhoan").textContent = laGiangVien
+            ? `Danh sách ${ten} trong lớp của tôi`
+            : `Danh sách tài khoản ${ten}`;
 
         // Cột thứ năm đổi nghĩa theo vai trò
         $("tkCotRieng").textContent =
@@ -33,8 +62,12 @@ window.TkTaiKhoan = (() => {
             '<tr><td colspan="8" class="no-data">Đang tải dữ liệu...</td></tr>';
 
         try {
+            // Giảng viên chỉ lấy thành viên các lớp mình phụ trách
+            const gioiHan = (laGiangVien && idNguoiXem)
+                ? `&giang_vien=${encodeURIComponent(idNguoiXem)}` : "";
+
             const res = await fetch(
-                `${API}/thong-ke/tai-khoan?vai_tro=${encodeURIComponent(vaiTro)}`);
+                `${API}/thong-ke/tai-khoan?vai_tro=${encodeURIComponent(vaiTro)}${gioiHan}`);
             const kq = await res.json();
 
             if (!kq.success) throw new Error(kq.message || "Máy chủ báo lỗi");
@@ -76,5 +109,10 @@ window.TkTaiKhoan = (() => {
             </tr>`).join("");
     }
 
-    return { mo };
+    /** Tải danh sách đang xem về máy dưới dạng bảng tính. */
+    function xuat() {
+        window.TkTienIch.xuatTaiKhoanExcel(dangHien, vaiTroDangXem);
+    }
+
+    return { mo, xuat, apDungQuyen, laGiangVien };
 })();

@@ -73,84 +73,60 @@ window.TkTienIch = (() => {
         return soLieu.reduce((s, v) => s + v, 0) / soLieu.length;
     }
 
-    const COT_XUAT = [
-        { ten: "Mã báo cáo", rong: 90 },
-        { ten: "Tiêu đề", rong: 320 },
-        { ten: "Người nộp", rong: 150 },
-        { ten: "Mã người nộp", rong: 100 },
-        { ten: "Ngày tải lên", rong: 130 },
-        { ten: "Độ trùng lặp (%)", rong: 120 },
-        { ten: "Số câu trùng", rong: 95 },
-        { ten: "Tổng số câu", rong: 95 },
-        { ten: "Tỉ lệ câu trùng (%)", rong: 130 },
-        { ten: "Số từ trùng", rong: 95 },
-        { ten: "Tổng số từ", rong: 95 },
-        { ten: "Tỉ lệ từ trùng (%)", rong: 130 },
-        { ten: "Trạng thái", rong: 100 }
-    ];
+
+    // ========================================================================
+    // XUẤT BẢNG TÍNH
+    // ========================================================================
 
     /**
-     * Tải danh sách đang hiển thị về máy dưới dạng bảng tính Excel.
+     * Xuất một bảng bất kỳ ra tệp Excel.
      *
      * Dùng định dạng SpreadsheetML 2003 (.xls dạng XML) thay vì gọi thư viện
      * ngoài: Excel, LibreOffice và Google Sheets đều mở được, giữ nguyên kiểu
      * số nên cột tỉ lệ vẫn sắp xếp và tính toán được, tiếng Việt không lỗi font.
+     *
+     * @param {object} thamSo
+     *   tenTep   tên tệp tải về, không cần đuôi
+     *   tenTrang tên trang tính bên trong tệp
+     *   cot      [{ten, rong}] — tiêu đề và bề rộng từng cột
+     *   dong     [[giaTri | {v, so, kieu}]] — mỗi phần tử là một dòng.
+     *            Ô ghi thẳng giá trị thì để nguyên; cần đánh dấu kiểu số hoặc
+     *            tô màu thì truyền {v, so: true, kieu: "muc_cao"}.
      */
-    function xuatExcel(danhSach) {
+    function xuatBangExcel({ tenTep, tenTrang, cot, dong }) {
 
-        if (!danhSach || danhSach.length === 0) return;
+        if (!dong || dong.length === 0) return false;
 
         const xmlThoat = v => String(v ?? "")
             .replace(/&/g, "&amp;").replace(/</g, "&lt;")
             .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-        /** Một ô: để trống nếu chưa có số liệu, còn lại giữ đúng kiểu dữ liệu. */
-        const o = (giaTri, kieuSo, kieuO) => {
+        function veO(oDuLieu, kieuMacDinh) {
 
-            const thuocTinh = kieuO ? ` ss:StyleID="${kieuO}"` : "";
+            const { v, so, kieu } =
+                (oDuLieu && typeof oDuLieu === "object" && "v" in oDuLieu)
+                    ? oDuLieu : { v: oDuLieu, so: false, kieu: null };
 
-            if (giaTri === null || giaTri === undefined || giaTri === "") {
+            const thuocTinh = (kieu || kieuMacDinh)
+                ? ` ss:StyleID="${kieu || kieuMacDinh}"` : "";
+
+            if (v === null || v === undefined || v === "") {
                 return `<Cell${thuocTinh}/>`;
             }
 
-            const kieu = kieuSo ? "Number" : "String";
-            const noiDung = kieuSo ? Number(giaTri) : xmlThoat(giaTri);
+            return `<Cell${thuocTinh}><Data ss:Type="${so ? "Number" : "String"}">`
+                + (so ? Number(v) : xmlThoat(v)) + `</Data></Cell>`;
+        }
 
-            return `<Cell${thuocTinh}><Data ss:Type="${kieu}">${noiDung}</Data></Cell>`;
-        };
+        const dongTieuDe = `<Row ss:StyleID="dau">` +
+            cot.map(c => veO(c.ten, "dau")).join("") + `</Row>`;
 
-        const lamTron = v =>
-            (v === null || v === undefined) ? null : Math.round(v * 100) / 100;
+        const cacDong = dong
+            .map(d => `<Row>` + d.map(o => veO(o, null)).join("") + `</Row>`)
+            .join("");
 
-        const dongTieuDe =
-            `<Row ss:StyleID="dau">` +
-            COT_XUAT.map(c => o(c.ten, false, "dau")).join("") +
-            `</Row>`;
-
-        const cacDong = danhSach.map(b => {
-
-            const tiLe = layTiLe(b);
-            const kieuMuc = "muc_" + (xepMuc(tiLe) || "trong");
-
-            return `<Row>` +
-                o(b.id_bao_cao, false) +
-                o(b.tieu_de, false) +
-                o(b.ten_nguoi_nop, false) +
-                o(b.id_sinh_vien, false) +
-                o(dinhDangNgay(b.ngay_tai_len), false) +
-                o(lamTron(tiLe), true, kieuMuc) +
-                o(b.tong_so_cau_trung, true) +
-                o(b.tong_so_cau, true) +
-                o(lamTron(tiLeCau(b)), true) +
-                o(b.tong_so_tu_trung, true) +
-                o(b.tong_so_tu, true) +
-                o(lamTron(tiLeTu(b)), true) +
-                o(b.trang_thai, false) +
-                `</Row>`;
-        }).join("");
-
-        const cot = COT_XUAT
-            .map(c => `<Column ss:Width="${c.rong}"/>`).join("");
+        const khaiBaoCot = cot
+            .map(c => `<Column ss:Width="${c.rong || 120}"/>`).join("");
 
         const noiDung =
             `<?xml version="1.0" encoding="UTF-8"?>
@@ -167,8 +143,8 @@ window.TkTienIch = (() => {
   <Style ss:ID="muc_thap"><Font ss:Bold="1" ss:Color="#16A34A"/></Style>
   <Style ss:ID="muc_trong"><Font ss:Color="#94A3B8"/></Style>
  </Styles>
- <Worksheet ss:Name="Thong ke bao cao">
-  <Table>${cot}${dongTieuDe}${cacDong}</Table>
+ <Worksheet ss:Name="${xmlThoat(tenTrang)}">
+  <Table>${khaiBaoCot}${dongTieuDe}${cacDong}</Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
    <FreezePanes/><FrozenNoSplit/>
    <SplitHorizontal>1</SplitHorizontal><TopRowBottomPane>1</TopRowBottomPane>
@@ -183,14 +159,97 @@ window.TkTienIch = (() => {
 
         const a = document.createElement("a");
         a.href = URL.createObjectURL(blob);
-        a.download = `thong-ke-bao-cao-${Date.now()}.xls`;
+        a.download = `${tenTep}-${Date.now()}.xls`;
         a.click();
         URL.revokeObjectURL(a.href);
+
+        return true;
+    }
+
+    const lamTron = v =>
+        (v === null || v === undefined) ? null : Math.round(v * 100) / 100;
+
+    /** Bảng kết quả kiểm tra trùng lặp của các báo cáo. */
+    function xuatExcel(danhSach) {
+
+        return xuatBangExcel({
+            tenTep: "thong-ke-bao-cao",
+            tenTrang: "Thong ke bao cao",
+            cot: [
+                { ten: "Mã báo cáo", rong: 90 },
+                { ten: "Tiêu đề", rong: 320 },
+                { ten: "Người nộp", rong: 150 },
+                { ten: "Mã người nộp", rong: 100 },
+                { ten: "Ngày tải lên", rong: 130 },
+                { ten: "Độ trùng lặp (%)", rong: 120 },
+                { ten: "Số câu trùng", rong: 95 },
+                { ten: "Tổng số câu", rong: 95 },
+                { ten: "Tỉ lệ câu trùng (%)", rong: 130 },
+                { ten: "Số từ trùng", rong: 95 },
+                { ten: "Tổng số từ", rong: 95 },
+                { ten: "Tỉ lệ từ trùng (%)", rong: 130 },
+                { ten: "Số nguồn phát hiện", rong: 120 },
+                { ten: "Trạng thái", rong: 100 }
+            ],
+            dong: danhSach.map(b => {
+
+                const tiLe = layTiLe(b);
+
+                return [
+                    b.id_bao_cao,
+                    b.tieu_de,
+                    b.ten_nguoi_nop,
+                    b.id_sinh_vien,
+                    dinhDangNgay(b.ngay_tai_len),
+                    { v: lamTron(tiLe), so: true, kieu: "muc_" + (xepMuc(tiLe) || "trong") },
+                    { v: b.tong_so_cau_trung, so: true },
+                    { v: b.tong_so_cau, so: true },
+                    { v: lamTron(tiLeCau(b)), so: true },
+                    { v: b.tong_so_tu_trung, so: true },
+                    { v: b.tong_so_tu, so: true },
+                    { v: lamTron(tiLeTu(b)), so: true },
+                    { v: b.so_nguon_phat_hien, so: true },
+                    b.trang_thai
+                ];
+            })
+        });
+    }
+
+    /** Danh sách tài khoản — dùng cho cả giảng viên lẫn sinh viên. */
+    function xuatTaiKhoanExcel(danhSach, vaiTro) {
+
+        const laGiangVien = vaiTro === "giang_vien";
+
+        return xuatBangExcel({
+            tenTep: laGiangVien ? "danh-sach-giang-vien" : "danh-sach-sinh-vien",
+            tenTrang: laGiangVien ? "Giang vien" : "Sinh vien",
+            cot: [
+                { ten: "Mã người dùng", rong: 110 },
+                { ten: "Họ tên", rong: 180 },
+                { ten: "Email", rong: 200 },
+                { ten: "Mã hồ sơ", rong: 100 },
+                { ten: laGiangVien ? "Bộ môn" : "Lớp", rong: 150 },
+                { ten: "Số bài đã nộp", rong: 110 },
+                { ten: "Trạng thái", rong: 120 },
+                { ten: "Ngày tạo", rong: 130 }
+            ],
+            dong: danhSach.map(u => [
+                u.id_nguoi_dung,
+                u.ho_ten,
+                u.email,
+                u.ma_ho_so,
+                laGiangVien ? u.bo_mon : u.lop,
+                { v: u.so_bai_da_nop, so: true },
+                u.trang_thai ? "Đang hoạt động" : "Đã khoá",
+                dinhDangNgay(u.ngay_tao)
+            ])
+        });
     }
 
     return {
         NGUONG_CAO, NGUONG_VUA,
         layTiLe, tiLeCau, tiLeTu, xepMuc,
-        dinhDangNgay, thoat, trungBinh, xuatExcel
+        dinhDangNgay, thoat, trungBinh, lamTron,
+        xuatBangExcel, xuatExcel, xuatTaiKhoanExcel
     };
 })();

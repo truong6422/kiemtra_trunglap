@@ -422,14 +422,24 @@ document.addEventListener("DOMContentLoaded", () => {
     // Thẻ tài khoản có hai nút riêng cho hai vai trò
     document.querySelectorAll("#theTaiKhoan .tk-lien-ket-nho").forEach(nut => {
         nut.addEventListener("click", () => {
+            if (nut.disabled) return;
             moKhung("tai-khoan");
             window.TkTaiKhoan.mo(nut.dataset.vaiTro);
         });
     });
 
     document.querySelectorAll("#khungTaiKhoan .tk-tab__nut").forEach(nut => {
-        nut.addEventListener("click", () => window.TkTaiKhoan.mo(nut.dataset.vaiTro));
+        nut.addEventListener("click", () => {
+            if (nut.disabled) return;
+            window.TkTaiKhoan.mo(nut.dataset.vaiTro);
+        });
     });
+
+    // Giảng viên không được xem danh sách giảng viên — khoá nút lại
+    window.TkTaiKhoan.apDungQuyen();
+
+    $("btnXuatTaiKhoan").addEventListener("click", () => window.TkTaiKhoan.xuat());
+    $("btnXuatKetQua").addEventListener("click", () => window.TkKetQua.xuat());
 
     document.querySelectorAll(".tk-nut-quay-lai").forEach(nut => {
         nut.addEventListener("click", () => moKhung(nut.dataset.ve));

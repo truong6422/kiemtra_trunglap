@@ -214,6 +214,21 @@
     color: #fff;
 }
 
+/* Nút bị khoá: con trỏ hình cấm cho người dùng biết ngay là không bấm được */
+.tk-bi-khoa,
+.tk-bi-khoa:hover {
+    cursor: not-allowed;
+    opacity: .45;
+    background: #f1f5f9;
+    color: #94a3b8;
+    text-decoration: none;
+}
+
+/* Nút xuất tệp nằm bên phải đường dẫn của các khung phụ */
+.tk-nut-xuat {
+    margin-left: auto;
+}
+
 /* Nút "Xem chi tiết" trong bảng dùng chung dáng với liên kết */
 button.tk-lien-ket {
     border: none;

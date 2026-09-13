@@ -18,8 +18,65 @@ window.TkKetQua = (() => {
     // Dữ liệu do màn tổng quan nạp sẵn, khỏi gọi lại máy chủ
     let nguonDuLieu = [];
 
+    // Đang xem chi tiết báo cáo nào, và danh sách mẫu trùng của nó
+    let baoCaoDangXem = null;
+    let mauDangXem = [];
+
     function nhanDuLieu(ds) {
         nguonDuLieu = ds || [];
+    }
+
+    /**
+     * Xuất bảng tính: đang ở danh sách thì xuất toàn bộ báo cáo, đang xem chi
+     * tiết một bài thì xuất tỉ lệ của bài đó với từng tài liệu mẫu.
+     */
+    function xuat() {
+
+        if (!baoCaoDangXem) {
+            window.TkTienIch.xuatExcel(nguonDuLieu);
+            return;
+        }
+
+        const b = baoCaoDangXem;
+        const T = window.TkTienIch;
+
+        window.TkTienIch.xuatBangExcel({
+            tenTep: `bao-cao-${b.id_bao_cao}`,
+            tenTrang: `Chi tiet ${b.id_bao_cao}`,
+            cot: [
+                { ten: "Mã báo cáo mẫu", rong: 120 },
+                { ten: "Tên tài liệu mẫu", rong: 240 },
+                { ten: "Tỉ lệ trùng (%)", rong: 120 },
+                { ten: "Số câu trùng", rong: 100 },
+                { ten: "Số từ trùng", rong: 100 },
+                { ten: "Số đoạn trùng", rong: 110 }
+            ],
+            dong: [
+                // Dòng đầu là chính bài đang xem, để người đọc có mốc so sánh
+                [
+                    b.id_bao_cao,
+                    `${b.tieu_de || ""} — người nộp: ${b.ten_nguoi_nop || "--"}`,
+                    {
+                        v: T.lamTron(T.layTiLe(b)), so: true,
+                        kieu: "muc_" + (T.xepMuc(T.layTiLe(b)) || "trong")
+                    },
+                    { v: b.tong_so_cau_trung, so: true },
+                    { v: b.tong_so_tu_trung, so: true },
+                    { v: b.tong_so_doan_trung, so: true }
+                ],
+                ...mauDangXem.map(m => [
+                    m.id_bao_cao,
+                    m.ten_bao_cao,
+                    {
+                        v: T.lamTron(Number(m.ti_le_trung_lap || 0)), so: true,
+                        kieu: "muc_" + (T.xepMuc(Number(m.ti_le_trung_lap || 0)) || "trong")
+                    },
+                    { v: m.so_cau_trung || 0, so: true },
+                    { v: m.so_tu_trung || 0, so: true },
+                    { v: m.so_doan_trung || 0, so: true }
+                ])
+            ]
+        });
     }
 
     function veDuongDan(cacMuc) {
@@ -39,6 +96,9 @@ window.TkKetQua = (() => {
     // ========================================================================
 
     function moDanhSach() {
+
+        baoCaoDangXem = null;
+        mauDangXem = [];
 
         veDuongDan([{ ten: "Toàn bộ báo cáo" }]);
 
@@ -118,6 +178,9 @@ window.TkKetQua = (() => {
                 `${API}/thong-ke/nguon/${encodeURIComponent(idBaoCao)}`)).json();
 
             if (!kq.success) throw new Error(kq.message);
+
+            baoCaoDangXem = baoCao;
+            mauDangXem = kq.data;
 
             const tiLe = T().layTiLe(baoCao);
             const muc = T().xepMuc(tiLe);
@@ -217,5 +280,5 @@ window.TkKetQua = (() => {
         }
     }
 
-    return { mo: moDanhSach, nhanDuLieu };
+    return { mo: moDanhSach, nhanDuLieu, xuat };
 })();
