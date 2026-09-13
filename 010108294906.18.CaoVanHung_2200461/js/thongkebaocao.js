@@ -15,6 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const API = "http://localhost:5000/api";
     const T = window.TkTienIch;
 
+    const vaiTro = (localStorage.getItem("vai_tro") ||
+        localStorage.getItem("userRole") || "").trim();
+    const idNguoiDung = localStorage.getItem("id_nguoi_dung") || "";
+
     let toanBo = [];        // dữ liệu gốc lấy từ máy chủ
     let dangHien = [];      // sau khi lọc và sắp xếp
     let trangHienTai = 1;
@@ -35,7 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
             '<tr><td colspan="9" class="no-data">Đang tải dữ liệu...</td></tr>';
 
         try {
-            const res = await fetch(`${API}/thong-ke/danh-sach`);
+            // Giảng viên chỉ xem bài của lớp mình, quản trị viên xem tất cả
+            const thamSo = (vaiTro === "giang_vien" && idNguoiDung)
+                ? `?giang_vien=${encodeURIComponent(idNguoiDung)}` : "";
+
+            const res = await fetch(`${API}/thong-ke/danh-sach${thamSo}`);
             const kq = await res.json();
 
             if (!kq.success || !Array.isArray(kq.data)) {
@@ -45,7 +53,10 @@ document.addEventListener("DOMContentLoaded", () => {
             // Máy chủ đã loại tài liệu kho mẫu, ở đây nhận thẳng.
             toanBo = kq.data;
 
+            if (window.TkKetQua) window.TkKetQua.nhanDuLieu(toanBo);
+
             veTheSo();
+            suaSoBaiChoGiangVien();
             veBieuDo();
             locVaVe();
 
@@ -62,42 +73,96 @@ document.addEventListener("DOMContentLoaded", () => {
     // CÁC THẺ CHỈ SỐ
     // ========================================================================
 
-    function veTheSo() {
+    async function veTheSo() {
 
         const daCham = toanBo.filter(b => T.layTiLe(b) !== null);
         const chuaCham = toanBo.length - daCham.length;
 
-        const tbTiLe = T.trungBinh(daCham, T.layTiLe);
-        const tbCau = T.trungBinh(daCham, T.tiLeCau);
-        const tbTu = T.trungBinh(daCham, T.tiLeTu);
-
-        const tongCau = daCham.reduce((s, b) => s + (b.tong_so_cau || 0), 0);
-        const tongCauTrung = daCham.reduce((s, b) => s + (b.tong_so_cau_trung || 0), 0);
-        const tongTu = daCham.reduce((s, b) => s + (b.tong_so_tu || 0), 0);
-        const tongTuTrung = daCham.reduce((s, b) => s + (b.tong_so_tu_trung || 0), 0);
-
         const vuotNguong =
             daCham.filter(b => T.layTiLe(b) >= T.NGUONG_CAO).length;
-
-        const phanTram = v => v === null ? "--" : v.toFixed(2) + "%";
 
         $("soTongBai").textContent = toanBo.length;
         $("phuTongBai").textContent = `${daCham.length} bài đã có kết quả`;
 
-        $("soTiLeTB").textContent = phanTram(tbTiLe);
-        $("phuTiLeTB").textContent =
-            daCham.length ? `Tính trên ${daCham.length} bài` : "Chưa có bài nào được chấm";
-
-        $("soCauTrung").textContent = phanTram(tbCau);
-        $("phuCauTrung").textContent =
-            tongCau ? `${tongCauTrung.toLocaleString("vi-VN")} / ${tongCau.toLocaleString("vi-VN")} câu` : "Chưa có số liệu";
-
-        $("soTuTrung").textContent = phanTram(tbTu);
-        $("phuTuTrung").textContent =
-            tongTu ? `${tongTuTrung.toLocaleString("vi-VN")} / ${tongTu.toLocaleString("vi-VN")} từ` : "Chưa có số liệu";
+        $("soKetQua").textContent = daCham.length;
+        $("phuKetQua").textContent = "Bấm để xem chi tiết từng bài";
 
         $("soVuotNguong").textContent = vuotNguong;
         $("soDangXuLy").textContent = chuaCham;
+
+        demLopHoc();
+        demTaiKhoan();
+    }
+
+    /** Giảng viên chỉ đếm bài của thành viên lớp mình phụ trách. */
+    async function suaSoBaiChoGiangVien() {
+
+        if (vaiTro !== "giang_vien" || !idNguoiDung) return;
+
+        try {
+            const kq = await (await fetch(
+                `${API}/thong-ke/bai-nop-cua-lop?id_nguoi_dung=${encodeURIComponent(idNguoiDung)}`)).json();
+
+            if (!kq.success) return;
+
+            $("soTongBai").textContent = kq.so_bai_da_nop;
+            $("phuTongBai").textContent =
+                `${kq.so_thanh_vien} thành viên trong ${kq.so_lop} lớp`;
+
+        } catch (err) {
+            console.error("Không lấy được số bài của lớp:", err);
+        }
+    }
+
+    async function demLopHoc() {
+        try {
+            const thamSo = (vaiTro === "giang_vien" && idNguoiDung)
+                ? `?id_nguoi_dung=${encodeURIComponent(idNguoiDung)}` : "";
+
+            const kq = await (await fetch(`${API}/thong-ke/lop-hoc${thamSo}`)).json();
+            if (!kq.success) return;
+
+            const tongBaiTap = kq.data.reduce((s, l) => s + l.so_bai_tap, 0);
+
+            $("soLopHoc").textContent = kq.data.length;
+            $("phuLopHoc").textContent = `${tongBaiTap} bài tập — bấm để xem`;
+
+        } catch (err) {
+            console.error("Không đếm được lớp học:", err);
+        }
+    }
+
+    async function demTaiKhoan() {
+        try {
+            const kq = await (await fetch(`${API}/thong-ke/tai-khoan`)).json();
+            if (!kq.success) return;
+            $("soTaiKhoan").textContent = kq.data.length;
+        } catch (err) {
+            console.error("Không đếm được tài khoản:", err);
+        }
+    }
+
+    // ========================================================================
+    // CHUYỂN GIỮA CÁC KHUNG MÀN
+    // ========================================================================
+
+    const CAC_KHUNG = {
+        "tong-quan": "khungTongQuan",
+        "tai-khoan": "khungTaiKhoan",
+        "lop-hoc": "khungLopHoc",
+        "ket-qua": "khungKetQua"
+    };
+
+    function moKhung(ten) {
+
+        for (const [k, id] of Object.entries(CAC_KHUNG)) {
+            $(id).hidden = k !== ten;
+        }
+
+        // Chỉ khung tổng quan mới có gì để xuất ra tệp
+        $("btnXuatExcel").style.display = ten === "tong-quan" ? "" : "none";
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     // ========================================================================
@@ -341,6 +406,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     $("btnLamMoi").addEventListener("click", taiDuLieu);
     $("btnXuatExcel").addEventListener("click", () => T.xuatExcel(dangHien));
+
+    // --- Bấm thẻ để mở màn thống kê tương ứng ---
+
+    $("theLopHoc").addEventListener("click", () => {
+        moKhung("lop-hoc");
+        window.TkLopHoc.mo();
+    });
+
+    $("theKetQua").addEventListener("click", () => {
+        moKhung("ket-qua");
+        window.TkKetQua.mo();
+    });
+
+    // Thẻ tài khoản có hai nút riêng cho hai vai trò
+    document.querySelectorAll("#theTaiKhoan .tk-lien-ket-nho").forEach(nut => {
+        nut.addEventListener("click", () => {
+            moKhung("tai-khoan");
+            window.TkTaiKhoan.mo(nut.dataset.vaiTro);
+        });
+    });
+
+    document.querySelectorAll("#khungTaiKhoan .tk-tab__nut").forEach(nut => {
+        nut.addEventListener("click", () => window.TkTaiKhoan.mo(nut.dataset.vaiTro));
+    });
+
+    document.querySelectorAll(".tk-nut-quay-lai").forEach(nut => {
+        nut.addEventListener("click", () => moKhung(nut.dataset.ve));
+    });
 
     $("btnTrangTruoc").addEventListener("click", () => {
         if (trangHienTai > 1) { trangHienTai--; veBang(); }

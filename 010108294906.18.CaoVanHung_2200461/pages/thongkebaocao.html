@@ -95,30 +95,34 @@
                 </div>
             </article>
 
-            <article class="tk-the tk-the--xanh">
-                <div class="tk-the__bieu-tuong"><i class="fa-solid fa-percent"></i></div>
+            <article class="tk-the tk-the--xanh tk-the--bam-duoc" id="theLopHoc">
+                <div class="tk-the__bieu-tuong"><i class="fa-solid fa-chalkboard-user"></i></div>
                 <div class="tk-the__noi-dung">
-                    <div class="tk-the__nhan">Tỉ lệ trùng trung bình</div>
-                    <div class="tk-the__so" id="soTiLeTB">--</div>
-                    <div class="tk-the__phu" id="phuTiLeTB">&nbsp;</div>
+                    <div class="tk-the__nhan">Thống kê lớp học</div>
+                    <div class="tk-the__so" id="soLopHoc">--</div>
+                    <div class="tk-the__phu" id="phuLopHoc">&nbsp;</div>
                 </div>
             </article>
 
-            <article class="tk-the tk-the--tim">
-                <div class="tk-the__bieu-tuong"><i class="fa-solid fa-align-left"></i></div>
+            <article class="tk-the tk-the--tim tk-the--bam-duoc" id="theKetQua">
+                <div class="tk-the__bieu-tuong"><i class="fa-solid fa-file-circle-check"></i></div>
                 <div class="tk-the__noi-dung">
-                    <div class="tk-the__nhan">Tỉ lệ câu trùng</div>
-                    <div class="tk-the__so" id="soCauTrung">--</div>
-                    <div class="tk-the__phu" id="phuCauTrung">&nbsp;</div>
+                    <div class="tk-the__nhan">Thống kê kết quả</div>
+                    <div class="tk-the__so" id="soKetQua">--</div>
+                    <div class="tk-the__phu" id="phuKetQua">&nbsp;</div>
                 </div>
             </article>
 
-            <article class="tk-the tk-the--luc">
-                <div class="tk-the__bieu-tuong"><i class="fa-solid fa-font"></i></div>
+            <article class="tk-the tk-the--luc" id="theTaiKhoan">
+                <div class="tk-the__bieu-tuong"><i class="fa-solid fa-users"></i></div>
                 <div class="tk-the__noi-dung">
-                    <div class="tk-the__nhan">Tỉ lệ từ trùng</div>
-                    <div class="tk-the__so" id="soTuTrung">--</div>
-                    <div class="tk-the__phu" id="phuTuTrung">&nbsp;</div>
+                    <div class="tk-the__nhan">Thống kê tài khoản</div>
+                    <div class="tk-the__so" id="soTaiKhoan">--</div>
+                    <div class="tk-the__phu">
+                        <button type="button" class="tk-lien-ket-nho" data-vai-tro="giang_vien">Giảng viên</button>
+                        <span class="tk-gach-ngan">|</span>
+                        <button type="button" class="tk-lien-ket-nho" data-vai-tro="sinh_vien">Sinh viên</button>
+                    </div>
                 </div>
             </article>
 
@@ -140,6 +144,9 @@
                 </div>
             </article>
         </section>
+
+        <!-- ================= KHUNG TỔNG QUAN (mặc định) ================= -->
+        <div id="khungTongQuan">
 
         <!-- Phân bố tỉ lệ -->
         <section class="tk-khoi">
@@ -210,10 +217,76 @@
             <span id="tkSoTrang">1 / 1</span>
             <button type="button" class="page-btn" id="btnTrangSau">&rsaquo;</button>
         </div>
+
+        </div><!-- /khungTongQuan -->
+
+        <!-- ================= KHUNG THỐNG KÊ TÀI KHOẢN ================= -->
+        <div id="khungTaiKhoan" class="tk-khung-phu" hidden>
+
+            <div class="tk-duong-dan">
+                <button type="button" class="tk-nut-quay-lai" data-ve="tong-quan">
+                    <i class="fa-solid fa-arrow-left"></i> Quay lại tổng quan
+                </button>
+                <h3 id="tkTieuDeTaiKhoan">Danh sách tài khoản</h3>
+            </div>
+
+            <div class="tk-tab">
+                <button type="button" class="tk-tab__nut" data-vai-tro="giang_vien">Giảng viên</button>
+                <button type="button" class="tk-tab__nut" data-vai-tro="sinh_vien">Sinh viên</button>
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Mã người dùng</th>
+                        <th>Họ tên</th>
+                        <th>Email</th>
+                        <th>Mã hồ sơ</th>
+                        <th id="tkCotRieng">Lớp</th>
+                        <th>Số bài đã nộp</th>
+                        <th>Trạng thái</th>
+                        <th>Ngày tạo</th>
+                    </tr>
+                </thead>
+                <tbody id="tkBangTaiKhoan">
+                    <tr><td colspan="8" class="no-data">Chọn vai trò để xem</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ================= KHUNG THỐNG KÊ LỚP HỌC ================= -->
+        <div id="khungLopHoc" class="tk-khung-phu" hidden>
+
+            <div class="tk-duong-dan">
+                <button type="button" class="tk-nut-quay-lai" data-ve="tong-quan">
+                    <i class="fa-solid fa-arrow-left"></i> Quay lại tổng quan
+                </button>
+                <span class="tk-duong-dan__chuoi" id="tkDuongDanLop"></span>
+            </div>
+
+            <div id="tkNoiDungLopHoc"></div>
+        </div>
+
+        <!-- ================= KHUNG THỐNG KÊ KẾT QUẢ ================= -->
+        <div id="khungKetQua" class="tk-khung-phu" hidden>
+
+            <div class="tk-duong-dan">
+                <button type="button" class="tk-nut-quay-lai" data-ve="tong-quan">
+                    <i class="fa-solid fa-arrow-left"></i> Quay lại tổng quan
+                </button>
+                <span class="tk-duong-dan__chuoi" id="tkDuongDanKetQua"></span>
+            </div>
+
+            <div id="tkNoiDungKetQua"></div>
+        </div>
     </main>
 
+    <script src="../js/menu-theo-vai-tro.js"></script>
     <script src="../js/trangchu_saudn.js"></script>
     <script src="../js/thongkebaocao-tien-ich.js"></script>
+    <script src="../js/thongke-tai-khoan.js"></script>
+    <script src="../js/thongke-lop-hoc.js"></script>
+    <script src="../js/thongke-ket-qua.js"></script>
     <script src="../js/thongkebaocao.js"></script>
 
 </body>

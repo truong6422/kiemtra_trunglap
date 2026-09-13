@@ -86,6 +86,144 @@
     margin-top: 3px;
 }
 
+/* Thẻ bấm được thì phải cho người dùng thấy là bấm được */
+.tk-the--bam-duoc {
+    cursor: pointer;
+}
+
+.tk-the--bam-duoc:hover {
+    border-color: #0655FF;
+}
+
+/* Hai nút nhỏ "Giảng viên | Sinh viên" nằm trong thẻ tài khoản */
+.tk-lien-ket-nho {
+    border: none;
+    background: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0655FF;
+    cursor: pointer;
+}
+
+.tk-lien-ket-nho:hover {
+    text-decoration: underline;
+}
+
+.tk-gach-ngan {
+    color: #cbd5e1;
+    margin: 0 6px;
+}
+
+/* ---------- Các khung màn phụ ---------- */
+
+.tk-khung-phu[hidden] {
+    display: none;
+}
+
+.tk-duong-dan {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.tk-duong-dan h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #0655FF;
+}
+
+.tk-nut-quay-lai {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 14px;
+    border: 1px solid #cce0ff;
+    border-radius: 6px;
+    background: #f0f7ff;
+    color: #2b8cff;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.tk-nut-quay-lai:hover {
+    background: #e0efff;
+}
+
+.tk-duong-dan__chuoi {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.tk-duong-dan__muc {
+    border: none;
+    background: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 700;
+    color: #0655FF;
+    cursor: pointer;
+}
+
+.tk-duong-dan__muc:hover {
+    text-decoration: underline;
+}
+
+.tk-duong-dan__mui {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+/* ---------- Thẻ chọn vai trò ---------- */
+
+.tk-tab {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.tk-tab__nut {
+    padding: 9px 20px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+}
+
+.tk-tab__nut:hover {
+    background: #f1f5f9;
+}
+
+.tk-tab__nut--chon {
+    background: #0655FF;
+    border-color: #0655FF;
+    color: #fff;
+}
+
+/* Nút "Xem chi tiết" trong bảng dùng chung dáng với liên kết */
+button.tk-lien-ket {
+    border: none;
+    background: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: 13.5px;
+    cursor: pointer;
+}
+
 /* ---------- Khối biểu đồ ---------- */
 
 .tk-khoi {

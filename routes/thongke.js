@@ -5,6 +5,11 @@ const BaoCao = require('../models/bao_cao');
 const ThongKe = require('../models/thong_ke');
 const SinhVien = require('../models/sinh_vien');
 const NguoiDung = require('../models/nguoi_dung');
+const LopHoc = require('../models/lop_hoc');
+
+// Các nhánh thống kê khác dùng chung tiền tố /api/thong-ke
+router.use(require('./thongke-tai-khoan'));
+router.use(require('./thongke-lop-hoc'));
 
 /**
  * Bảng tra tên người nộp.
@@ -57,7 +62,7 @@ async function layBangTenNguoiNop(dsMa) {
 // =========================================================================
 router.get('/danh-sach', async (req, res) => {
     try {
-        const { id_sinh_vien } = req.query;
+        const { id_sinh_vien, giang_vien } = req.query;
 
         const dieuKien = {
             mau_kiem_tra: { $ne: true },
@@ -66,6 +71,27 @@ router.get('/danh-sach', async (req, res) => {
 
         if (id_sinh_vien) {
             dieuKien.id_sinh_vien = id_sinh_vien;
+        }
+
+        // Giảng viên chỉ được xem bài của thành viên trong lớp mình phụ trách
+        if (giang_vien) {
+
+            const dsLop = await LopHoc.find({ id_nguoi_dung: giang_vien })
+                .select('danh_sach_thanh_vien').lean();
+
+            const idThanhVien = [...new Set(
+                dsLop.flatMap(l => (l.danh_sach_thanh_vien || [])
+                    .map(t => t.id_nguoi_dung))
+            )];
+
+            const dsSinhVien = await SinhVien.find({
+                id_nguoi_dung: { $in: idThanhVien }
+            }).select('id_sinh_vien').lean();
+
+            dieuKien.id_sinh_vien = {
+                $in: idThanhVien.concat(dsSinhVien.map(s => s.id_sinh_vien))
+                    .filter(Boolean)
+            };
         }
 
         const danhSachBaoCao = await BaoCao.find(dieuKien)
