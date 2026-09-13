@@ -1,0 +1,2741 @@
+[0] TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP VIỆT – HUNG
+
+[1] KHOA: CÔNG NGHỆ THÔNG TIN
+
+[2] ----------o0o----------
+
+[3] CAO VĂN HƯNG
+
+[4] BÁO CÁO THỰC TẬP KỸ THUẬT
+
+[5] ĐƠN VỊ THỰC TẬP: CÔNG TY CỔ PHẦN CÔNG NGHỆ
+
+[6] CÔNG NGHIỆP BƯU CHÍNH VIỄN THÔNG – VNPT TECH
+
+[7] HÀ NỘI, NĂM 2025
+
+[8] TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP VIỆT – HUNG
+
+[9] KHOA: CÔNG NGHỆ THÔNG TIN
+
+[10] ----------o0o----------
+
+[11] BÁO CÁO THỰC TẬP KỸ THUẬT
+
+[12] ĐƠN VỊ THỰC TẬP: CÔNG TY CỔ PHẦN CÔNG NGHỆ
+
+[13] CÔNG NGHIỆP BƯU CHÍNH VIỄN THÔNG – VNPT TECH
+
+[14] Họ tên sinh viên: Cao Văn Hưng
+
+[15] Mã sinh viên: 2200461
+
+[16] Lớp: K4618-CNTT1
+
+[17] Giảng viên hướng dẫn: __THS__Nguyễn Thị Thu Thủy
+
+[18] HÀ NỘI, NĂM 2025
+
+[19] TRƯỜNG ĐHCN VIỆT – HUNG
+
+[20] KHOA CÔNG NGHỆ THÔNG TIN
+
+[21] CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM
+
+[22] Mẫu DA02
+
+[23] Mẫu DA02
+
+[24] Độc lập - Tự do – Hạnh phúc
+
+[25] NHẬN XÉT QUÁ TRÌNH THỰC TẬP
+
+[26] (Dành cho GV hướng dẫn)
+
+[27] Họ tên sinh viên: Cao Văn Hưng
+
+[28] Mã sinh viên: 2200461
+
+[29] Lớp: K4618-CNTT1
+
+[30] Đơn vị thực tập: Công ty Cổ phần Công nghệ Công nghiệp Bưu chính viễn thông VNPT Technology
+
+[31] Người nhận xét (họ tên, học hàm, học vị): __THS__Nguyễn Thị Thu Thủy
+
+[32] Đơn vị công tác: Khoa Công nghệ thông tin
+
+[33] Ý KIẾN NHẬN XÉT
+
+[34] 1. Về nội dung thực tập:
+
+[35] 2. Về kết quả của đợt thực tập:
+
+[36] 3. Những thiếu sót và vấn đề cần làm rõ (nếu có):
+
+[37] 5. Ý kiến khác:
+
+[38] 🖎 Đánh giá điểm:
+
+[39] Ngày………tháng……..năm……..
+
+[40] NGƯỜI NHẬN XÉT
+
+[41] THÔNG TIN CHUNG
+
+[42] Thông tin sinh viên
+
+[43] Họ và tên: Cao Văn Hưng
+
+[44] Mã sinh viên: 2200461
+
+[45] Lớp: K4618-CNTT1
+
+[46] Chuyên ngành: Công nghệ thông tin
+
+[47] Điện thoại di động: 0866334162
+
+[48] Email:
+
+[49] Thông tin đơn vị thực tập
+
+[50] Tên đơn vị thực tập: NHÀ MÁY CÔNG TY CỔ PHẦN CÔNG NGHỆ CÔNG NGHIỆP BƯU CHÍNH VIỄN THÔNG VNPT Technology.
+
+[51] Vị trí thực tập: Công nhân thời vụ DIP/ ASM/ PKG.
+
+[52] Địa chỉ: Khu công nghiệp cao Hòa Lạc, xã Hạ Bằng, huyện Thạch Thất, Hà Nội.
+
+[53] Người hướng dẫn tại nơi thực tập
+
+[54] Họ và tên: Bùi Thị Hiện
+
+[55] Điện thoại: 0366736583
+
+[56] Email:
+
+[57] Giảng viên hướng dẫn
+
+[58] Họ và tên: __THS__Nguyễn Thị Thu Thủy
+
+[59] ĐIện thoại đi động: 0984083308
+
+[60] Email:
+
+[61] __HEADING__LỜI MỞ ĐẦU__ENDHEADING__
+
+[62] Sau ba năm học tập tại khoa Công nghệ thông tin trường Đại học Công nghiệp Việt-Hung, bản thân em đã tích lũy cho bản thân được những kiến thức cơ bản nền tảng cần thiết. Quá trình thực tập là một trong những điều vô cùng cần thiết cho sinh viên nói chung và chính bản thân em-sinh viên khối kỹ thuật nói riêng. Đây chính là giai đoạn hết sức ý nghĩa giúp cho em củng cố lại được những kiến thức lý thuyết đã học, có cơ hội tiếp cận với những công nghệ mới, những lĩnh vực mới của ngành Công nghệ thông tin. Đây còn là cơ hội để em có cái nhìn rõ ràng hơn về công việc thực tế và có cho mình những dự định phù hợp trong tương lai.
+
+[63] Thực hiện nhiệm vụ học tập của nhà trường đối với học phần thực tập kỹ thuật, được sự đồng ý của ban lãnh đạo Khoa Công nghệ thông tin và Công ty Cổ phần Công nghệ Công nghiệp Bưu chính Viễn thông VNPT Technology. Bám sát theo chủ trương của Khoa đưa ra, những lý luận và kiến thức đã học, trong quá trình thực tập em đã được trau dồi thêm kiến thức về Công nghệ truyền dẫn quang, Công nghệ mạng IP, hạ tầng mạng Viễn thông và hiểu hơn về các ứng dụng cũng như cơ cấu và tình hình hoạt động của công ty.
+
+[64] Được sự tận tình giúp đỡ hướng dẫn của cô Nguyễn Thị Thu Thủy và Công ty Cổ phần Công nghệ Công nghiệp Bưu chính Viễn thông VNPT Technology cùng với sự giúp đỡ của Đốc công Nguyễn Anh Tuấn; trưởng chuyền Bùi Thị Hiện và nỗ lực trong suốt quá trình học tập, tìm tòi học hỏi, em đã hoàn thành báo cáo học phần thực tập kỹ thuật của mình.
+
+[65] Báo cáo thực tập này gồm 3 phần chính:
+
+[66] __HEADING__Phần I: Giới thiệu về đơn vị thực tập__ENDHEADING__
+
+[67] __HEADING__Phần II: Nội dung thực tập__ENDHEADING__
+
+[68] __HEADING__Phần III: Kết luận __ENDHEADING__
+
+[69] Trong quá trình thực hiện báo cáo, tuy đã cố gắng nhưng em vẫn còn những hạn chế về thời gian tìm hiểu, kiến thức cũng như là kinh nghiệm và vẫn còn nhiều sai sót. Em rất mong được nhận những ý kiến đóng góp và nhận xét của tập thể các thầy cô để em có thể hoàn thiện hơn.
+
+[70] __HEADING__LỜI CẢM ƠN__ENDHEADING__
+
+[71] Để hoàn thành được báo cáo thực tập kỹ thuật này em xin gửi lời cảm ơn sâu sắc tới phía Ban lãnh đạo Công ty Cổ phần Công nghệ Công nghiệp Bưu chính Viễn thông VNPT Technology đã tạo điều kiện cho em được thực tập tại đây. Ngoài ra, em xin cảm ơn trưởng chuyền Bùi Thị Hiện đã luôn nhiệt tình chỉ dẫn, giảng dạy cho em những kiến thức cả lý thuyết và thực tế tại công ty để em có thể hoàn thiện hơn. Những kiến thức và kinh nghiệm mà em tiếp thu được từ quý công ty sẽ là hành trang quý báu để em bước vào con đường sự nghiệp sau này.
+
+[72] Em xin gửi lời cảm ơn đến các thầy cô Khoa Công nghệ thông tin đã tận tình giảng dạy, truyền đạt kiến thức quý báu và tạo điều khiện thuận lợi nhất cho em trong suốt quá trình học tập và thực tậ__P__ Khoa đào tạo đã thiết lập khung chương trình có học phần “Thực tập kỹ thuật” để em có thể vận dụng những kiến thức học được trên giảng đường áp dụng vào công việc và được tham quan, tìm hiểu về môi trường doanh nghiệ__P__
+
+[73] Em xin cảm ơn cô Nguyễn Thị Thu Thủy đã luôn đồng hành cùng em trong suốt quá em thực hiện học phần “Thực tập kỹ thuật”. Cô đã chia sẻ những kiến thức và kinh nghiệm của mình để giúp em có thể hoàn thành tốt bài báo cáo lần này.
+
+[74] Em xin chân thành cảm ơn!
+
+[75] Hà Nội, ngày .... tháng .... năm .....
+
+[76] Sinh viên thực hiện
+
+[77] Cao Văn Hưng
+
+[78] MỤC LỤC
+
+[79] __HEADING__PHẦN 1 GIỚI THIỆU VỀ ĐƠN VỊ THỰC TẬP 1__ENDHEADING__
+
+[80] 1.1. Thông tin chung 1
+
+[81] 1.2. Cơ cấu tổ chức 4
+
+[82] 1.2.1. Phòng giám đốc 4
+
+[83] 1.2.2. Phòng nhân sự 5
+
+[84] 1.2.3. Phong chăm sóc khách hàng 5
+
+[85] 1.2.4. Khối chức năng 5
+
+[86] 1.2.5. Khối kinh doanh - dịch vụ kỹ thuật 6
+
+[87] 1.2.6. Khối nghiên cứu phát triển (R&D) 7
+
+[88] 1.2.7. Khối sản xuất 8
+
+[89] 1.3. Vị trí thực tập 15
+
+[90] __HEADING__PHẦN 2 NỘI DUNG THỰC TẬP 17__ENDHEADING__
+
+[91] 2.1. Nội dung được đào tạo 17
+
+[92] 2.1.1. Git và Quản lý Mã nguồn chuyên nghiệp 17
+
+[93] 2.1.2. Tìm hiểu về Docker 23
+
+[94] 2.1.3. Unit Testing và kỹ thuật debugging 42
+
+[95] 2.2. Dự án và vị trí công việc 51
+
+[96] 2.3. Nhật ký thực tập 52
+
+[97] 2.3.1. Tuần thứ 1(từ ngày 07 tháng 11 đến ngày 09 tháng 11) 52
+
+[98] 2.3.2. Tuần thứ 2( từ ngày 10 tháng 11 đến ngày 16 tháng 11) 53
+
+[99] 2.3.3. Tuần thứ 3(từ ngày 17 tháng 11 đến ngày 23 tháng 11) 54
+
+[100] 2.3.4. Tuần thứ 4(từ ngày 24 tháng 11 đến ngày 30 tháng 11) 56
+
+[101] 2.3.5. Tuần thứ 5(từ ngày 01 tháng 12 đến ngày 07 tháng 12) 58
+
+[102] 2.3.6. Tuần thứ 6(từ ngày 08 tháng 12 đến ngày 14 tháng 12) 58
+
+[103] 2.3.7. Tuần thứ 7(từ ngày 15 tháng 12 đến ngày 21 tháng 12) 59
+
+[104] 2.3.8. Tuần thứ 8(từ ngày 22 tháng 12 đến ngày 28 tháng 12) 60
+
+[105] __HEADING__PHẦN 3 KẾT LUẬN 61__ENDHEADING__
+
+[106] TÀI LIỆU THAM KHẢO 63
+
+[107] DANH MỤC CÁC KÝ HIỆU, CHỮ VIẾT TẮT
+
+[108] Từ viết tắt
+
+[109] Viết đầy đủ
+
+[110] Giải thích nghĩa
+
+[111] AWS
+
+[112] Amazon Web Services
+
+[113] Điện toán đám mây
+
+[114] CD
+
+[115] Continuous Deployment
+
+[116] Triển khai liên tục
+
+[117] CI
+
+[118] Continuous Integration
+
+[119] Tích hợp liên tục
+
+[120] CVCS
+
+[121] Centralized Version Control System
+
+[122] Hệ thống kiểm soát bản tập trung
+
+[123] DVCS
+
+[124] Distributed Version Control System
+
+[125] Hệ thống kiểm soát bản phân tán
+
+[126] ECR
+
+[127] Elastic Container Registry
+
+[128] Đăng ký container linh hoạt
+
+[129] GCR
+
+[130] Google Container Registry
+
+[131] Đăng ký container của Google
+
+[132] GHCR
+
+[133] GitHub Container Registry
+
+[134] Đăng ký container của GitHub
+
+[135] ICT
+
+[136] Information and Communication Technology
+
+[137] Công nghệ Thông tin và Truyền thông
+
+[138] IoT
+
+[139] Internet of Things
+
+[140] Internet vạn vật
+
+[141] IPQC
+
+[142] In-Process Quality Control
+
+[143] Kiểm soát chất lượng trong quá trình
+
+[144] SCP
+
+[145] Smart Connected Platform
+
+[146] Nền tảng kết nối thông minh
+
+[147] SME
+
+[148] Subject Matter Expert
+
+[149] Chuyên gia về lĩnh vực
+
+[150] SOP
+
+[151] Standard Operating Procedure
+
+[152] Quy trình thao tác chuẩn
+
+[153] V
+
+[154] Volt
+
+[155] Đơn vị đo điện áp
+
+[156] DANH MỤC CÁC BẢNG
+
+[157] __CAPTION__Bảng So Sánh Cốt Lõi: CVCS (SVN) __VS__ DVCS (Git 19
+
+[158] __CAPTION__Bảng so sánh 3 kiểu triển khai docker 27
+
+[159] __CAPTION__Bảng mô phỏng cách hoạt động của xây dựng nhiều giai đoạn 36
+
+[160] __CAPTION__Bảng ví dụ triển khai ứng dụng với Docker Swarm 39
+
+[161] __CAPTION__Bảng ưu điểm và Giới hạn của Docker Swarm 39
+
+[162] __CAPTION__Bảng ưu, nhược điểm của Jenkins 43
+
+[163] __CAPTION__Ưu điểm và Giới hạn của GitHub Actions 45
+
+[164] __CAPTION__Bảng ưu, nhược điểm của TDD 46
+
+[165] __CAPTION__Bảng ưu, nhược điểm của BDD 46
+
+[166] __CAPTION__Bảng phân biệt Unit test, Integration test và End-to-End test 47
+
+[167] __CAPTION__Bảng phân biệt Mock và Stub 49
+
+[168] __CAPTION__So sánh API Testing và GUI Testing 52
+
+[169] DANH MỤC HÌNH VẼ
+
+[170] __CAPTION__Hình ảnh vi mạch điện tử trên dây chuyền sản xuất hiện đại 11
+
+[171] __CAPTION__Hình ảnh vi mạch điện tử trên dây chuyền sản xuất tự động tại nhà máy công nghệ cao 11
+
+[172] __CAPTION__Hình ảnh vi mạch điện tử trên dây chuyền sản xuất tự động của hệ thống Fuji 12
+
+[173] __CAPTION__Công nhân thao tác trên dây chuyền lắp ráp bảng mạch tự động 12
+
+[174] __CAPTION__Công nhân thao tác trên dây chuyền công đoạn test bảng 13
+
+[175] __CAPTION__Công nhân thao tác lắp ráp bắn vít sản phẩn wifi mesh 6 13
+
+[176] __CAPTION__Công nhân thao tác test sản phẩn wifi mesh 6 14
+
+[177] __CAPTION__Vòng đời của một file trong git 20
+
+[178] __CAPTION__Hình ảnh triển khai truyền thống 25
+
+[179] __CAPTION__Hình ảnh triển khai ảo hóa 26
+
+[180] __CAPTION__Hình ảnh cách docker hoạt động 26
+
+[181] __CAPTION__Kiến trúc của Docker 27
+
+[182] __CAPTION__Kiến trúc của Docker Engine 27
+
+[183] __CAPTION__Luồng chạy của Docker 29
+
+[184] __CAPTION__Kiến trúc Swarm Architecture 41
+
+[185] __CAPTION__Kiến trúc Swarm Manager 41
+
+[186] __CAPTION__SOP của trạm TURN ON WI-FI của mesh6 56
+
+[187] __CAPTION__SOP của trạm Wi-Fi của mesh6 58
+
+[188] __CAPTION__SOP của trạm Function của mesh6 61
+
+[189] __CAPTION__SOP của trạm Check của mesh6 64
+
+[190] __HEADING__PHẦN 1GIỚI THIỆU VỀ ĐƠN VỊ THỰC TẬP__ENDHEADING__
+
+[191] Thông tin chung
+
+[192] Tên đơn vị: Công ty Cổ phần Công nghệ Công nghiệp Bưu chính viễn thông VNPT Technology.
+
+[193] Tên quốc tế: VIETNAM POST AND TELECOMMUNICATION INDUSTRY TECHNOLOGY JOINT STOCK COMPANY.
+
+[194] Tên viết tắt: VNPT TECHNOLOGY.
+
+[195] Mã số thuế: 0105140413.
+
+[196] Địa chỉ: Khu Công nghiệp Công nghệ cao I, Khu Công nghệ cao Hòa Lạc, Xã Hòa Lạc, Thành phố Hà Nội.
+
+[197] Trụ sở chính: 124 Hoàng Quốc Việt, quận Cầu Giấy, Hà Nội.
+
+[198] Số điện thoại: 024374800922.
+
+[199] Website: http://vnpt-technology__URLDOT__vn/
+
+[200] VNPT Technology được thành lập ngày 06 tháng 01 năm 2011 với vốn điều lệ 500 tỷ đồng, được tổ chức và hoạt động theo hình thức công ty cổ phần. Kế thừa nguồn lực và kinh nghiệm tích lũy sau gần 20 năm của các liên doanh Alcatel Network Systems Vietnam-ANSV(giữa VNPT và Alcatel CIT của Cộng hòa Pháp từ năm 1993) và Telecommunications Equipment-Teleq(giữa VNPT và Siemens AG của Cộng hòa liên bang Đức từ năm 1995), sở hữu và tiếp tục phát triển đội ngũ chuyên gia trưởng thành từ những ngày đầu của thời kỳ số hóa mạng Viễn thông, cùng với hạ tầng kỹ thuật được tích lũy và tiếp tục phát triển từ các liên doanh. Công ty đã dần khẳng định vị thế và vai trò của một đơn vị tiên phong trong nghiên cứu phát triển và sản xuất các thiết bị Điện tử, Viễn thông và Công nghệ thông tin, xứng đáng là một trong bốn công ty con trụ cột của VNPT, là đơn vị chủ lực của VNPT trong lĩnh vực sản xuất Công nghệ, Công nghiệp Bưu chính, Viễn thông, Công nghệ thông tin, Truyền thông và Công nghiệp Nội dung số.
+
+[201] Sản phẩm dịch vụ do VNPT Technology cung cấp bao gồm các thiết bị phần cứng và giải pháp phần mềm ứng dụng công nghệ tiên tiến nhất và thiết thực trong đời sống. Ứng dụng công nghệ 4.0 trong nghiên cứu, phát triển sản phẩm công nghệ, các sản phẩm dịch vụ của VNPT Teclnology được chia thành 3 phân lớp: lớp kết nối; lớp hạ tầng mạng; lớp nền tảng ứng dụng đáp ứng nhu cầu doanh nghiệp viễn thông và người tiêu dùng.
+
+[202] Đặc biệt nền tảng Iot Smart Connected Platform(SCP) của VNPT Technology đã đoạt giải Vàng Stevie Awards Châu Á-Thái Bình Dương năm 2018 cho hạng mục đổi mới sáng tạo trong phát triển công nghệ thuộc lĩnh vực Công nghiệp viễn thông. Hiện nay, giải pháp SCP của VNPT Technology đã có nhiều ứng dụng thực tiễn mang lại hiệu quả trong lĩnh vực phát triển nông nghiệp thông minh, giao thông thông minh, điện lực… VNPT Technology hoạt động trong các lĩnh vực: Nghiên cứu phát triển, Sản xuất Công nghệ Công nghiệp; Kinh doanh quốc tế; Thương mại & Dịch vụ kỹ thuật; phát triển và kinh doanh các nền tảng
+
+[203] Nghiên cứu phát triển sản phẩm công nghệ & ODM: Là hoạt động cốt lõi của Công ty nhằm tạo ra những giá trị từ tri thức, tạo ra tài sản trí tuệ và hàng hóa dịch vụ với hàm lượng công nghệ cao. Nghiên cứu và phát triển các công nghệ lõi trong 5 lĩnh vực: Băng rộng cố định, băng rộng không dây, IoT, công nghệ 5G và Chuyển đổi số nhằm tạo ra những sản phẩm toàn diện từ Phần cứng/Thiết bị, các nền tảng cho tới các ứng dụng người dùng. Đồng thời công ty đang đẩy mạnh mảng kinh doanh các sản phẩm thiết kế từ kết quả R&D.
+
+[204] Sản xuất thiết bị công nghệ công nghiệp & EMS: Các sản phẩm tạo ra từ quá trình nghiên cứu và phát triển, được sản xuất hàng loạt qua hoạt động sản xuất công nghiệp điện tử đáp ứng nhu cầu thị trường trong và ngoài nước. Bên cạnh đó dịch vụ sản xuất điện tử - EMS được mở rộng giúp Công ty tận dụng được năng lực và hạ tầng sẵn có đồng thời tham gia sâu rộng hơn vào chuỗi cung ứng toàn cầu.
+
+[205] Tích hợp hệ thống mạng viễn thông, Công nghệ thông tin: Với gần 30 năm kinh nghiệm tích hợp các hệ thống lớn như mạng Viễn thông, Công ty xác định trở thành đơn vị dẫn đầu trong lĩnh vực tích hợp hệ thống mạng Viễn thông và Công nghệ thông tin. Hoạt động tích hợp hệ thống toàn diện từ Phân tích, Xây dựng giải pháp tổng thể, Thiết kế, Triển khai và Đào tạo chuyển giao.
+
+[206] Thương mại, dịch vụ kỹ thuật ICT trong nước và quốc tế: Hoạt động kinh doanh phát triển thị trường nhằm cung cấp các sản phẩm phẩm công nghệ, các giải pháp tích hợp, dịch vụ kỹ thuật ICT trong nước và quốc tế với các mảng thị trường bao gồm: Kinh doanh phát triển thị trường truyền thống/các nhà mạng; Kinh doanh phát triển thị trường Doanh nghiệp và khách hàng cá nhân; và Kinh doanh phát triển thị trường quốc tế.
+
+[207] Chuyển đổi số doanh nghiệp SME: Đây là một lĩnh vực mới được xác định tập trung nghiên cứu và phát triển trong giai đoạn 2020 – 2025, song hành cùng chiến lược Quốc gia số tới năm 2030. Giúp các doanh nghiệp vừa và nhỏ thay đổi các phương thức hoạt động nhằm tạo ra các sản phẩm mới, giá trị mới thông qua việc ứng dụng các bộ giải pháp công nghệ và chuyển dịch vận hành trên không gian số.
+
+[208] Nghiên cứu phát triển sản phẩm công nghệ & ODM: Là hoạt động cốt lõi của Công ty nhằm tạo ra những giá trị từ tri thức, tạo ra tài sản trí tuệ và hàng hóa dịch vụ với hàm lượng công nghệ cao. Nghiên cứu và phát triển các công nghệ lõi trong 5 lĩnh vực: Băng rộng cố định, băng rộng không dây, IoT, công nghệ 5G và Chuyển đổi số nhằm tạo ra những sản phẩm toàn diện từ Phần cứng/Thiết bị, nền tảng cho tới các ứng dụng người dùng. Mục tiêu 2025, trở thành nhà nghiên cứu phát triển thiết kế gốc.
+
+[209] + Sản xuất thiết bị công nghệ công nghiệp & EMS: Các sản phẩm tạo ra từ quá trình nghiên cứu và phát triển, được sản xuất hàng loạt qua hoạt động sản xuất công nghiệp điện tử đáp ứng nhu cầu thị trường trong và ngoài nước. Bên cạnh đó dịch vụ sản xuất điện tử - EMS được mở rộng giúp Công ty tận dụng được năng lực và hạ tầng sẵn có đồng thời tham gia sâu rộng hơn vào chuỗi cung ứng toàn cầu.
+
+[210] + Tích hợp hệ thống mạng viễn thông, Công nghệ thông tin: Với gần 30 năm kinh nghiệm tích hợp các hệ thống lớn như mạng Viễn thông, Công ty xác định trở thành đơn vị dẫn đầu trong lĩnh vực tích hợp hệ thống mạng Viễn thông và Công nghệ thông tin. Hoạt động tích hợp hệ thống toàn diện từ Phân tich, Xây dựng giải pháp tổng thể, Thiết kế, Triển khai và Đào tạo chuyển giao.
+
+[211] + Thương mại, dịch vụ kỹ thuật ICT trong nước và quốc tế: Hoạt động kinh doanh phát triển thị trường nhằm cung cấp các sản phẩm phẩm công nghệ, các giải pháp tích hợp, dịch vụ kỹ thuật ICT trong nước và quốc tế với các mảng thị trường bao gồm: Kinh doanh phát triển thị trường truyền thống/các nhà mạng; Kinh doanh phát triển thị trường Doanh nghiệp và khách hàng cá nhân; và Kinh doanh phát triển thị trường quốc tế.
+
+[212] + Chuyển đổi số doanh nghiệp SME: Đây là một lĩnh vực mới được xác định tập trung nghiên cứu và phát triển trong giai đoạn 2020 – 2025, song hành cùng chiến lược Quốc gia số tới năm 2030. Giúp các doanh nghiệp vừa và nhỏ thay đổi các phương thức hoạt động nhằm tạo ra các sản phẩm mới, giá trị mới thông qua việc ứng dụng các bộ giải pháp công nghệ và chuyển dịch vận hành trên không gian số.
+
+[213] Tầm nhìn: VNPT Technology với vai trò doanh nghiệp chủ lực của Tập đoàn VNPT trong lĩnh vực công nghệ, công nghiệp điện tử viễn thông, công nghệ thông tin, truyền thông và công nghiệp nội dung số có tầm nhìn trở thành doanh nghiệp công nghệ cao hàng đầu tại Việt Nam và tiến tới trở thành một trong những công ty công nghệ hàng đầu khu vực.
+
+[214] Sứ mệnh: Sứ mệnh của VNPT Technology là tạo ra các sản phẩm công nghệ chất lượng cao mang thương hiệu Việt phục vụ mạng viễn thông CNTT cũng như đông đảo cộng đồng.
+
+[215] Giá trị cốt lõi:
+
+[216] + Nghiên cứu phát triển và cung ứng các sản phẩm công nghệ chất lượng cao mang thương hiệu Việt trên thị trường, đưa sản phẩm công nghệ thương hiệu Việt có khả năng cạnh tranh và bắt kịp với xu hướng phát triển công nghệ thông tin trên thế giới.
+
+[217] + Xây dựng văn hóa doanh nghiệp trên cơ sở nền tảng khuyến khích tinh thần làm việc nhóm (teamworking và cross-teamworking), tích cực chia sẻ thông tin, hỗ trợ nhau trong công việc, phát huy tinh thần và thế mạnh của VNPT Technology.
+
+[218] + Phát triển môi trường làm việc có giá trị nhân văn, minh bạch là cơ sở tạo động lực, tìm tòi sáng tạo, không ngừng học hỏi trong hoạt động nghiên cứu, phát triển công nghệ.
+
+[219] + Lấy con người làm nòng cốt, tập trung phát triển và đào tạo nhân lực, tạo điều kiện phát triển đội ngũ CBNV nhiệt huyết, giỏi chuyên môn nghiệp vụ, có năng lực sáng tạo, tác phong làm việc chuyên nghiệp, có tình thần trách nhiệm cao trong công việc, xây dựng tập thể đoàn kết nhằm đưa VNPT Technology phát triển bền vững.
+
+[220] Triết lý kinh doanh:
+
+[221] + VNPT Technology luôn lấy khách hàng làm trung tâm trong mọi hoạt động sản xuất kinh doanh của mình, trên cơ sở đảm bảo lợi ích và chia sẻ những khó khăn cùng với đối tác nhằm mang đến cho khách hàng các sản phẩm, dịch vụ chất lượng và ngày càng phong phú đáp ứng nhu cầu ngày càng gia tăng của khách hàng.
+
+[222] + VNPT Technology luôn xác định đi tiên phong về công nghệ trên cơ sở hợp tác với các đối tác công nghệ nguồn hàng đầu thế giới nhằm đảm bảo luôn mang đến cho khách hàng các sản phẩm công nghệ tiên tiến, cập nhật kịp thời các xu hướng phát triển công nghệ toàn cầu.
+
+[223] Cơ cấu tổ chức
+
+[224] __CAPTION__Sơ đồ tổ chức hoạt động của công ty
+
+[225] Phòng giám đốc
+
+[226] Phòng Giám đốc của công ty VNPT Technology là trung tâm điều hành, nơi các quyết định chiến lược được đưa ra để định hình sự phát triển của công ty. Đây là nơi tập trung những nhà lãnh đạo có tầm nhìn xa, khả năng quản lý xuất sắc và trách nhiệm cao, đóng vai trò quan trọng trong việc định hướng và giám sát các hoạt động của toàn công ty.
+
+[227] Một trong những nhiệm vụ chính của phòng Giám đốc là xây dựng và triển khai các chiến lược kinh doanh dài hạn. Các giám đốc không ngừng nghiên cứu thị trường, đánh giá xu hướng công nghệ và xác định các cơ hội kinh doanh mới để công ty luôn đứng đầu trong lĩnh vực viễn thông và công nghệ thông tin.
+
+[228] Phòng nhân sự
+
+[229] Phòng Nhân sự của công ty đóng vai trò then chốt trong việc xây dựng và duy trì một đội ngũ nhân sự chất lượng cao, đảm bảo công ty hoạt động hiệu quả và đạt được các mục tiêu chiến lược. Tại đây, các chuyên gia nhân sự không chỉ thực hiện công tác tuyển dụng mà còn quản lý, phát triển và chăm sóc nhân sự một cách toàn diện.
+
+[230] Phong chăm sóc khách hàng
+
+[231] Phòng chăm sóc khách hàng của công ty VNPT Technology là nơi hội tụ những chuyên gia tận tâm và giàu kinh nghiệm, luôn đặt mục tiêu mang đến sự hài lòng cao nhất cho khách hàng. Tại đây, đội ngũ nhân sự không chỉ giải đáp thắc mắc mà còn tạo dựng mối quan hệ bền chặt với khách hàng, giúp công ty hiểu rõ hơn về nhu cầu và mong muốn của họ.
+
+[232] Khối chức năng
+
+[233] Văn phòng tổng hợp
+
+[234] Văn phòng tổng hợp có chức năng tham mưu, giúp việc cho Đảng ủy, hội đồng quản trị, Tổng Giám đốc Công ty VNPT Technology trong công tác Đảng, kế hoạch tổng hợp, hành chính, mua sắm văn phòng và các nhiệm vụ khác do Lãnh đạo Công ty và Đảng ủy giao.
+
+[235] Văn phòng tổng hợp là đơn vị đầu mối tổ chức phối hợp hoạt động giữa các đơn vị trong Công ty, giữa Công ty mẹ và các đơn vị thanh niên, nhằm thực hiện các quyết định của Lãnh đạo Công ty.
+
+[236] Ban tài chính kế toán
+
+[237] Ban Tài chính Kế toán có chức năng tham mưu, giúp việc cho Tổng Giám đốc trong công tác quản lý tài chính, kế toán, kiểm toán nội bộ và các hoạt động liên quan đến ngân sách, chi phí, doanh thu của Công ty.
+
+[238] Ban là đơn vị đầu mối thực hiện công tác hạch toán kế toán, lập báo cáo tài chính, báo cáo thuế, kiểm soát chi phí và đảm bảo tính minh bạch, tuân thủ pháp luật trong hoạt động tài chính của Công ty.
+
+[239] Đồng thời, Ban Tài chính Kế toán phối hợp với các đơn vị liên quan trong việc xây dựng kế hoạch tài chính, phân tích hiệu quả đầu tư, và tham mưu các giải pháp tài chính phục vụ chiến lược phát triển của Công ty.
+
+[240] Ban nhân lực
+
+[241] Ban nhân lực có chức năng tham mưu, giúp việc cho Tổng Giám đốc về hoạt động tổ chức doanh nghiệp, quản trị nguồn nhân lực, văn hóa doanh nghiệp của Công ty.
+
+[242] Ban nhân lực là đơn vị tham mưu công tác xây dựng đảng về tố chức, cán bộ, đảng viên, bảo vệ chính trị nội bộ của Đảng ủy Công ty.
+
+[243] Ban quản lý các dự án đầu tư
+
+[244] Ban Quản lý các Dự án Đầu tư có chức năng tham mưu, giúp việc cho Tổng Giám đốc trong công tác quản lý, triển khai và giám sát các dự án đầu tư của Công ty.
+
+[245] Ban là đơn vị đầu mối tổ chức thực hiện các dự án đầu tư xây dựng cơ bản, mua sắm tài sản cố định, đầu tư phát triển sản phẩm, dịch vụ và các dự án chiến lược theo định hướng của Lãnh đạo Công ty.
+
+[246] Đồng thời, Ban phối hợp với các đơn vị liên quan trong việc lập kế hoạch, theo dõi tiến độ, kiểm soát chất lượng, chi phí và hiệu quả đầu tư, đảm bảo các dự án được thực hiện đúng quy định, đúng mục tiêu và đạt hiệu quả cao.
+
+[247] Ban pháp chế và kiểm soát nội bộ
+
+[248] Ban Pháp chế và kiểm soát nội bộ có chức năng tham mưu cho Ban lãnh đạo công ty xây dựng hệ thống quản trị doanh nghiệp, đảm bảo các hoạt động của Công ty và các đơn vị trực thuộc tuân thủ các quy định của pháp luật; Quản lý, hỗ trợ, giám sát và đánh giá hoạt động của các Đại diện theo ủy quyền, các Kiểm soát viên/thành viên Ban kiểm soát do Công ty cử tại các doanh nghiệp mà Công ty có vốn góp; Thẩm định tính pháp lý của các hồ sơ tài liệu, kiểm tra đánh giá một cách độc lập đối với tất cả các đơn vị, bộ phận, các hoạt động của VNPT Technology và các đơn vị thành viên và đưa ra những khuyến nghị nhằm ngăn ngừa, hạn chế hoặc khắc phục rủi ro.
+
+[249] Ban chất lượng
+
+[250] Ban Chất lượng có chức năng tham mưu, giúp việc cho Tổng Giám đốc trong công tác xây dựng, duy trì và cải tiến hệ thống quản lý chất lượng theo các tiêu chuẩn quốc tế và quy định của pháp luật.
+
+[251] Ban là đơn vị đầu mối kiểm soát chất lượng sản phẩm, dịch vụ, quy trình sản xuất và vận hành trong toàn Công ty; thực hiện công tác đánh giá nội bộ, kiểm tra chất lượng đầu ra và xử lý các vấn đề liên quan đến khiếu nại, phản hồi của khách hàng.
+
+[252] Đồng thời, Ban phối hợp với các đơn vị chuyên môn để triển khai các chương trình cải tiến chất lượng, nâng cao hiệu quả hoạt động và gia tăng giá trị cho khách hàng.
+
+[253] Khối kinh doanh - dịch vụ kỹ thuật
+
+[254] Trung tâm kinh doanh
+
+[255] Trung tâm Kinh doanh có chức năng tham mưu cho Lãnh đạo Công ty trong công tác hoạch định chiến lược kinh doanh, phát triển thị trường và mở rộng hệ sinh thái khách hàng.
+
+[256] Trung tâm tổ chức triển khai các hoạt động bán hàng, tiếp thị, chăm sóc khách hàng và quản lý hợp đồng; phối hợp với các đơn vị liên quan để xây dựng chính sách giá, chương trình khuyến mãi và giải pháp kinh doanh phù hợp với từng nhóm sản phẩm, dịch vụ.
+
+[257] Đồng thời, Trung tâm chịu trách nhiệm theo dõi, đánh giá hiệu quả kinh doanh, đề xuất các giải pháp cải tiến nhằm nâng cao năng lực cạnh tranh và gia tăng giá trị cho khách hàng.
+
+[258] Trung tâm dịch vụ kỹ thuật
+
+[259] Trung tâm dịch vụ kỹ thuật có chức năng tham mưu cho Lãnh đạo Công ty về hoạt động dịch vụ kỹ thuật và chịu trách nhiệm triển khai các hoạt động đó đảm bảo các yêu cầu về tiến độ, chất lượng của các dự án theo chỉ đạo của Lãnh đạo Công ty.
+
+[260] Trung tâm vận hành hệ thống
+
+[261] Trung tâm vận hành hệ thống có chức năng triển khai, quản lý hạ tầng kỹ thuật chung và các hệ thống cung cấp dịch vụ của Công ty; tổ chức xây dựng, quản lý và vận hành các hệ thống thông tin phục vụ công tác quản lý điều hành hoạt động sản xuất kinh doanh ; tham gia công tác chăm sóc khách hàng, kiểm định các sản phẩm dịch vụ của Công ty.
+
+[262] Ban kinh doanh sản phẩm Smart home và IoT (BSI)
+
+[263] Ban Kinh doanh sản phẩm Smart Home và IoT (BSI) có chức năng xây dựng chiến lược phát triển, kinh doanh các sản phẩm và giải pháp thuộc lĩnh vực nhà thông minh và Internet vạn vật (IoT).
+
+[264] Ban là đầu mối nghiên cứu thị trường, đề xuất danh mục sản phẩm, phối hợp với các đơn vị kỹ thuật để hoàn thiện giải pháp, triển khai hoạt động bán hàng, tiếp thị và chăm sóc khách hàng.
+
+[265] Đồng thời, Ban chịu trách nhiệm xây dựng hệ sinh thái đối tác, phát triển kênh phân phối và thúc đẩy ứng dụng các sản phẩm công nghệ mới vào đời sống, góp phần khẳng định vị thế của Công ty trong lĩnh vực công nghệ số.
+
+[266] Khối nghiên cứu phát triển (R&D)
+
+[267] Trung tâm sản phẩm và giải pháp
+
+[268] Trung tâm Sản phẩm và Giải pháp có chức năng nghiên cứu, phát triển và hoàn thiện các sản phẩm, giải pháp công nghệ phục vụ chiến lược kinh doanh của Công ty.
+
+[269] Trung tâm là đầu mối phối hợp với các đơn vị liên quan trong việc khảo sát nhu cầu thị trường, xây dựng định hướng sản phẩm, thiết kế kiến trúc giải pháp và triển khai thử nghiệm.
+
+[270] Đồng thời, Trung tâm chịu trách nhiệm quản lý vòng đời sản phẩm, đảm bảo tính khả thi, hiệu quả và khả năng thương mại hóa của các sản phẩm, giải pháp công nghệ do Công ty phát triển.
+
+[271] Trung tâm công nghệ điện tử
+
+[272] Trung tâm Công nghệ Điện tử có chức năng nghiên cứu, thiết kế, phát triển và kiểm thử các sản phẩm phần cứng, vi mạch, thiết bị điện tử phục vụ cho các giải pháp công nghệ của Công ty.
+
+[273] Trung tâm tổ chức triển khai các hoạt động phát triển bo mạch, hệ thống nhúng, tích hợp phần cứng với phần mềm, đảm bảo đáp ứng các tiêu chuẩn kỹ thuật và yêu cầu thị trường.
+
+[274] Đồng thời, Trung tâm phối hợp với các đơn vị sản xuất và kinh doanh để chuyển giao công nghệ, hỗ trợ kỹ thuật và cải tiến sản phẩm nhằm nâng cao chất lượng và hiệu quả sử dụng.
+
+[275] Trung tâm công nghệ phần mềm
+
+[276] Trung tâm Công nghệ Phần mềm là đơn vị thuộc khối Nghiên cứu phát triển, có chức năng nghiên cứu phát triển và tích hợp các giải pháp, nền tảng và sản phẩm phần mềm đóng gói.
+
+[277] Khối sản xuất
+
+[278] Văn phòng điều phối hoạt động sản xuất
+
+[279] Văn phòng điều phối hoạt động sản xuất có chức năng quản lý, triển khai các hoạt động xây dựng kế hoạch sản xuất kinh doanh, kế hoạch sửa chữa bảo hành, kế hoạch cung ứng nguyên vật liệu đồng thời điều phối, đánh giá, giám sát sử dụng hiệu quả các nguồn lực sản xuất theo định mức kỹ thuật nhằm tối ưu sản xuất phục vụ kế hoạch kinh doanh của công ty; Tổ chức xây dựng, quản lý và triển khai các quy trình công nghệ sản xuất, các định mức kỹ thuật, các dây chuyền máy móc, trang thiết bị và hạ tầng sản xuất tại các đơn vị sản xuất sản phẩm công nghệ của công ty.
+
+[280] Trung tâm cung ứng vật tư linh kiện
+
+[281] Trung tâm Cung ứng Vật tư Linh kiện có chức năng tham mưu, tổ chức và triển khai công tác cung ứng, mua sắm vật tư, linh kiện, thiết bị phục vụ hoạt động sản xuất, sửa chữa, bảo hành và phát triển sản phẩm của Công ty.
+
+[282] Trung tâm là đầu mối phối hợp với các đơn vị liên quan trong việc xây dựng kế hoạch cung ứng, lựa chọn nhà cung cấp, kiểm soát chất lượng đầu vào và đảm bảo tiến độ giao hàng theo yêu cầu sản xuất.
+
+[283] Đồng thời, Trung tâm thực hiện công tác quản lý tồn kho vật tư, tối ưu hóa chuỗi cung ứng và đề xuất các giải pháp nhằm nâng cao hiệu quả sử dụng nguồn lực vật tư trong toàn hệ thống.
+
+[284] Trung tâm điều hành tổ hợp Hòa Lạc
+
+[285] Trung tâm Điều hành Tổ hợp Hòa Lạc có chức năng tổ chức, quản lý và vận hành toàn bộ hoạt động sản xuất, hành chính, hậu cần và kỹ thuật tại khu tổ hợp sản xuất Hòa Lạc của Công ty.
+
+[286] Trung tâm đảm bảo sự phối hợp nhịp nhàng giữa các đơn vị sản xuất, kho vận, bảo trì, an ninh và môi trường nhằm duy trì hoạt động ổn định, an toàn và hiệu quả.
+
+[287] Đồng thời, Trung tâm chịu trách nhiệm giám sát việc thực hiện các quy trình sản xuất, tiêu chuẩn chất lượng, an toàn lao động và phòng cháy chữa cháy tại khu vực tổ hợp, góp phần nâng cao năng lực sản xuất và hình ảnh chuyên nghiệp của Công ty.
+
+[288] Tổng kho Hòa Lạc
+
+[289] Tổng kho Hòa Lạc là đơn vị có chức năng quản lý, lưu trữ và bảo quản toàn bộ vật tư, hàng hóa đảm bảo tuân thủ theo các quy định và tiêu chuẩn hệ thống chất lượng phục vụ hoạt động sản xuất, kinh doanh của Công ty.
+
+[290] Nhà máy sản xuất điện tử
+
+[291] Tổ chức hoạt động sản xuất và sửa chữa bảo hành các sản phẩm tuân thủ theo các quy định, quy trình, tiêu chuẩn của Công ty và đảm bảo kế hoạch được giao; Quản lý và sử dụng hiệu quả các nguồn lực phục vụ các hoạt động của Nhà máy.
+
+[292] Một vài hình ảnh dây chuyền sản xuất bên trong nhà máy sản xuất:
+
+[293] __CAPTION__Hình ảnh vi mạch điện tử trên dây chuyền sản xuất hiện đại
+
+[294] __CAPTION__Hình ảnh vi mạch điện tử trên dây chuyền sản xuất tự động tại nhà máy công nghệ cao
+
+[295] __CAPTION__Hình ảnh vi mạch điện tử trên dây chuyền sản xuất tự động của hệ thống Fuji
+
+[296] __CAPTION__Công nhân thao tác trên dây chuyền lắp ráp bảng mạch tự động
+
+[297] __CAPTION__Công nhân thao tác trên dây chuyền công đoạn test bảng
+
+[298] __CAPTION__Công nhân thao tác lắp ráp bắn vít sản phẩn wifi mesh 6
+
+[299] __CAPTION__Công nhân thao tác test sản phẩn wifi mesh 6
+
+[300] Một vài hình ảnh sản phẩm được sản xuất bên trong nhà máy:
+
+[301] XGS-PON ONT IGATE XSW050-NS
+
+[302] IGATE XSW050-Q XGS-PON ONT WIFI 7
+
+[303] IGATE XSW240 XGS-PON ONT WIFI 5
+
+[304] MESH WIFI 5 - W520CE
+
+[305] GPON ONT IGATE GW 120-H
+
+[306] : FIBERONE OLT168-G08E
+
+[307] IGATE GW040 OUTDOOR
+
+[308] IGATE G010
+
+[309] GPON ONT IGATE GW240
+
+[310] : GPON ONT IGATE GW041
+
+[311] GPON ONT IGATE GW040
+
+[312] GPON ONT IGATE GW020
+
+[313] GPON ONT IGATE GW020-H
+
+[314] GPON ONT IGATE GW240-H
+
+[315] GPON ONT IGATE GW040-H
+
+[316] GPON ONT IGATE GW040-HS
+
+[317] GPON ONT IGATE GW040-NS
+
+[318] MESH WIFI 7 - IGATE EW364S
+
+[319] MESH WIFI 6 - IGATE EW304S
+
+[320] MESH WIFI 5 - IGATE EW12S/SG
+
+[321] MESH WIFI 5 - IGATE EW12C/CG
+
+[322] MESH WIFI 5 - IGATE EW12SX
+
+[323] MESH WIFI 5 - IGATE EW12ST
+
+[324] MESH WIFI 5 - W520CE
+
+[325] MESH WIFI 6 - IGATE EW30SX
+
+[326] MESH WIFI 6 - IGATE EW302S
+
+[327] : IGATE AP2IH
+
+[328] VNPT SMART CAMERA IS310P
+
+[329] SMARTBOX PC
+
+[330] SMARTBOX 3
+
+[331] SMARTBOX MYTV
+
+[332] Đầu thu kỹ thuật số DVB-T2/IGATE T202/03HD
+
+[333] SMARTPHONE VIVAS LOTUS S3 LTE
+
+[334] Điều khiển SMARTBOX REMOTE
+
+[335] Điều khiển MYTV REMOTE
+
+[336] Vị trí thực tập
+
+[337] Sau khi được đào tạo về nội quy, quy định của công ty tôi đã được phân công làm việc sản xuất tại bộ phận ASM.
+
+[338] Số lượng thành viện: 30.
+
+[339] Đốc công bộ phận: Nguyễn Anh Tuấn.
+
+[340] Trưởng chuyền bộ phận: Bùi Thị Hiện.
+
+[341] Kỹ thuật bộ phận: Trần Văn Huy.
+
+[342] IPQC: Bùi Thị Nội.
+
+[343] Tên vị trí làm việc: Làm ra thành phẩm, sản phẩm wi-fi 6.
+
+[344] Dưới đây là những công việc mà tôi đã được làm và vai trò của chúng:
+
+[345] - Lắp ráp: Đây là bước đầu tiên trong quá trình sản xuất sản phẩm Wi-Fi 6. Công việc lắp ráp bao gồm việc kết nối các linh kiện và bộ phận của thiết bị lại với nhau để tạo ra sản phẩm hoàn chỉnh. Vai trò của bước này là đảm bảo rằng mọi thành phần của thiết bị được lắp ráp đúng vị trí và hoạt động bình thường.
+
+[346] - Trạm test
+
+[347] + Trạm test “Turn on Wi-Fi”: Công việc này nhằm mục đích kiểm tra xem đèn 2.4G và đèn 5G có phát sáng khi cắm dây LAN vào sản phẩm hay không. Việc này giúp đảm bảo rằng chức năng Wi-Fi của sản phẩm hoạt động ổn định và có thể kết nối với các thiết bị khác.
+
+[348] + Trạm Test chức năng “Test Wi-Fi”: Kiểm tra Ăng-ten để đảm bảo rằng Ăng-ten hoạt động tốt, giúp tín hiệu Wi-Fi được phát đi một cách mạnh mẽ và ổn định. Đây là bước quan trọng để đảm bảo chất lượng tín hiệu và khả năng phủ sóng của sản phẩm.
+
+[349] + Trạm Test Function “TOOL TEST FUNCTION ASM ONT - GW040NS”: Nạp HARDWARE, HARDWEAR TM, FIRMWARE, FIRMWARE TM và kiểm tra đèn LAN 1, LAN 2, PON và ENET để xác nhận rằng các cổng mạng và kết nối quang hoạt động đúng cách. Việc này đảm bảo rằng tất cả các chức năng kết nối của sản phẩm đều hoạt động bình thường.
+
+[350] - Check: Kiểm tra xem đèn LAN 3 và LAN 4 có hoạt động hay không. Đây là bước kiểm tra bổ sung để chắc chắn rằng tất cả các cổng mạng trên sản phẩm đều hoạt động tốt, giúp khách hàng có trải nghiệm sử dụng ổn định.
+
+[351] - Bao gói: Bước cuối cùng là đóng gói sản phẩm. Công việc bao gói giúp hoàn thiện sản phẩm trước khi chuyển đến bộ phận kiểm tra chất lượng và sau đó là ra thị trường. Bao gói cẩn thận cũng giúp bảo vệ sản phẩm trong quá trình vận chuyển, tránh hư hỏng và giữ cho sản phẩm đến tay khách hàng trong tình trạng tốt nhất.
+
+[352] Những công việc này giúp đảm bảo rằng sản phẩm Wi-Fi 6 của VNPT Technology không chỉ đạt chất lượng cao mà còn đáp ứng được các tiêu chuẩn kỹ thuật và nhu cầu của khách hàng.
+
+[353] __HEADING__PHẦN 2NỘI DUNG THỰC TẬP__ENDHEADING__
+
+[354] Nội dung được đào tạo
+
+[355] Git và Quản lý Mã nguồn chuyên nghiệp
+
+[356] __HEADING__Phần 01: Giới Thiệu - Lịch Sử Hình Thành Git__ENDHEADING__
+
+[357] Là hệ thống quản lý phiên bản phân tán (version control system vcs) được tạo ra bởi Linus Torvalds năm 2005 để quản lý mã nguồn dự án Linux.
+
+[358] Dùng để làm:
+
+[359] Theo dõi thay đổi trong mã nguồn, lịch sử của thay đổi (ai sửa gì, khi nào tại sao).
+
+[360] Hợp tác nhóm: nhiều người làm việc chung trên cùng dự án mà không bị xung đột
+
+[361] Phục hồi: Dễ quay lại phiên bản cũ khi có lỗi
+
+[362] Phân nhánh: Tạo các nhánh riêng phát triển mà không ảnh hưởng đến nhánh chính.
+
+[363] Lịch Sử Hình Thành Git
+
+[364] Người sáng lập: Linus Torvalds (2005), cha đẻ của Linux Kernel.
+
+[365] Bối cảnh: Dự án Linux cần một Hệ thống Quản lý Phiên bản (VCS) thay thế khi không còn sử dụng công cụ độc quyền BitKeeper.
+
+[366] Mục tiêu thiết kế cốt lõi:
+
+[367] Tốc độ: Phải cực kỳ nhanh, không phụ thuộc mạng.
+
+[368] Phân tán hoàn toàn: Mỗi dev có một bản sao đầy đủ lịch sử.
+
+[369] Hỗ trợ phát triển phi tuyến (hàng ngàn nhánh).
+
+[370] So Sánh Cốt Lõi: CVCS (SVN) __VS__ DVCS (Git)
+
+[371] Kiến trúc Phân Tán (DVCS) của Git mang lại những lợi thế vượt trội về tốc độ, an toàn và tính linh hoạt trong làm việc nhóm.
+
+[372] __CAPTION__Bảng So Sánh Cốt Lõi: CVCS (SVN) __VS__ DVCS (Git)
+
+[373] Tính năng
+
+[374] SVN (Tập trung - CVCS)
+
+[375] Git (Phân tán - DVCS)
+
+[376] Kiến trúc
+
+[377] Client-Server. Phải kết nối máy chủ trung tâm.
+
+[378] Peer-to-Peer. Mỗi lập trình viên có bản sao đầy đủ repository.
+
+[379] Làm việc Ofline
+
+[380] Hạn chế. Không thể commit, xem lịch sử nếu không có mạng.
+
+[381] Thoải mái. Commit, tạo nhánh, merge đều diễn ra trên máy local.
+
+[382] Tốc độ
+
+[383] Chậm. Hầu hết các thao tác yêu cầu giao tiếp mạng.
+
+[384] Cực nhanh. Cac thao tác cốt lõi diễn ra tức thì trên máy local.
+
+[385] Phân nhánh
+
+[386] Khó khăn. Thao tác “nặng” (sao chép thư mục).
+
+[387] Dễ dàng & nhẹ. Chỉ là tạo một con trỏ (pointer) mới.
+
+[388] An toàn dữ liệu
+
+[389] Rủi ro cao. Phụ thuộc vào máy chủ trung tâm và backu__P__
+
+[390] An toàn cao. Mỗi bản clone là một bản backup đẩy đủ.
+
+[391] __HEADING__Phần 02: Cấu Hình và Cơ Chế Hoạt Động Của Git__ENDHEADING__
+
+[392] Cấu hình (git config)
+
+[393] Thiết lập thông tin tác giả (user.name, user.email) cho từng dự án (local) hoặc toàn cục (global).
+
+[394] .gitignore
+
+[395] File ra lệnh cho Git bỏ qua các tập tin không cần thiết (file build, log, môi trường) để giữ repository luôn sạch sẽ.
+
+[396] Cơ chế Objects
+
+[397] Git lưu trữ các "ảnh chụp" (snapshots) dưới dạng các đối tượng được định danh bằng mã SHA-1 (Blob, Tree, Commit).
+
+[398] Cơ Chế Lưu Trữ Dữ Liệu: Hashing và Objects
+
+[399] Không giống như SVN lưu trữ "sự thay đổi", Git lưu trữ toàn bộ trạng thái dự án tại mỗi commit. Đây là nền tảng cho sự mạnh mẽ của Git.
+
+[400] SHA-1 Hashing: Mọi nội dung đều được định danh bằng chuỗi hash 40 ký tự. Nếu nội dung thay đổi, hash thay đổi.
+
+[401] Git Objects:
+
+[402] Blob: Lưu nội dung file.
+
+[403] Tree: Lưu cấu trúc thư mục (trỏ đến Blobs và Trees khác).
+
+[404] Commit: Ảnh chụp (trỏ đến Tree), liên kết đến Commit cha, thông tin tác giả và message.
+
+[405] Cài đặt git
+
+[406] Cài đặt theo hướng dẫn: https://git-scm__URLDOT__com/install/windows
+
+[407] Kiểm tra cài đặt thành công:
+
+[408] git --version
+
+[409] git version 2.39.1.windows.1
+
+[410] Vòng đời file trong git
+
+[411] __CAPTION__Vòng đời của một file trong git
+
+[412] Các lệnh cơ bản trong git
+
+[413] Git init
+
+[414] git add
+
+[415] git commit –m “commit message”
+
+[416] git push
+
+[417] git pull
+
+[418] git clone
+
+[419] Git reset
+
+[420] Thực Hành 1: Cấu Hình và Khởi Tạo Dự Án
+
+[421] Các bước cơ bản để chuẩn bị một dự án chuyên nghiệp, đảm bảo thông tin commit chính xác và loại bỏ các file rác.
+
+[422] Cấu Hình Global: Chạy lệnh git config --global user.name và user.email để thiết lập thông tin mặc định.
+
+[423] Khởi Tạo Dự Án: Tạo thư mục dự án (my-pro-project) và khởi tạo Git bằng git init.
+
+[424] Thiết Lập .gitignore: Tạo file .gitignore và thêm các thư mục, file cần bỏ qua (ví dụ: node_modules/, .env).
+
+[425] Thực Hiện Commits: Tạo các file và thực hiện 3 commit riêng biệt, sử dụng git log --oneline để kiểm tra lịch sử hash.
+
+[426] __HEADING__Phần 03: Chiến Lược Phân Nhánh Chuyên Nghiệp__ENDHEADING__
+
+[427] Lựa chọn mô hình phân nhánh phù hợp với chu kỳ phát triển và triển khai (deployment) của dự án.
+
+[428] Git Flow: Mô Hình Phát Hành Có Cấu Trúc
+
+[429] Phù hợp cho các dự án có chu kỳ release phiên bản rõ ràng (phần mềm desktop, ứng dụng di động) và cần sự tách biệt nghiêm ngặt giữa các môi trường.
+
+[430] main/master: Code đã release, chỉ chứa code Production ổn định.
+
+[431] release/*: Tách từ develop, merge về main và develo__P__ Chuẩn bị cho bản release mới.
+
+[432] Develop: Nhánh tổng hợp, chứa các tính năng đã hoàn thành, sẵn sàng cho release tiếp theo.
+
+[433] feature/*: Tách từ develop, merge về develo__P__ Dành cho phát triển tính năng mới.
+
+[434] hotfix/*: Tách từ main, merge về main và develo__P__ Vá lỗi khẩn cấp trên Production.
+
+[435] GitHub Flow: Đơn Giản và Liên Tục
+
+[436] Đây là mô hình ưa thích cho dự án Web/CI/CD, nơi việc triển khai lên Production diễn ra liên tục, tập trung vào Pull Request.
+
+[437] Main Deployable:
+
+[438] Nhánh main luôn ổn định và sẵn sàng để triển khai bất cứ lúc nào.
+
+[439] Tạo Nhánh Feature:
+
+[440] Mọi công việc mới (tính năng/fix bug) đều bắt đầu bằng một nhánh mới tách từ main.
+
+[441] Mở Pull Request (PR):
+
+[442] Gửi PR để yêu cầu Code Review, thảo luận và chạy test tự động (CI/CD).
+
+[443] Merge và Deploy:
+
+[444] Sau khi được phê duyệt, merge vào main và triển khai lên môi trường Production ngay lập tức.
+
+[445] __HEADING__Phần 04: Xử Lý Xung Đột (Conflict Resolution)__ENDHEADING__
+
+[446] Lý Thuyết: Xử Lý Xung Đột 3 Chiều (Three-way Merge)
+
+[447] Xung đột xảy ra khi Git không thể tự động hợp nhất các thay đổi. Điều này thường xảy ra khi hai nhánh khác nhau cùng chỉnh sửa cùng một dòng code trong cùng một tệ__P__
+
+[448] Tình Huống Xung Đột
+
+[449] Bạn và đồng đội cùng sửa dòng 5 của config.txt trên hai nhánh riêng biệt và cùng cố gắng hợp nhất vào main.
+
+[450] Thông Báo CONFLICT
+
+[451] Khi bạn chạy git merge (hoặc git pull), Git sẽ báo lỗi "CONFLICT" và quá trình hợp nhất bị tạm dừng.
+
+[452] Quy Trình Giải Quyết Xung Đột
+
+[453] Bước 1: Xác định và Kiểm tra: Chạy git status để xem file nào đang ở trạng thái unmerged. Sau đó, mở file bị xung đột để xem các điểm đánh dấu.
+
+[454] Bước 2: Chỉnh sửa Thủ công: Tìm các đánh dấu như <<< HEAD, =======, và >>> feature/branch. Bạn phải thủ công xóa các dấu này và chọn nội dung cuối cùng mong muốn.
+
+[455] Bước 3: Đánh dấu Đã Giải Quyết: Sau khi sửa file, chạy git add để thông báo với Git rằng xung đột đã được giải quyết.
+
+[456] Bước 4: Hoàn tất Quá trình: Chạy git commit (đối với merge) hoặc git rebase --continue (đối với rebase) để hoàn tất quá trình hợp nhất.
+
+[457] -> Các công cụ GUI (như VS Code) giúp việc này dễ dàng hơn với các nút "Accept Current", "Accept Incoming", hoặc "Accept Both".
+
+[458] __HEADING__Phần 05: Các Lệnh Git Nâng Cao__ENDHEADING__
+
+[459] . git rebase: Giúp tạo ra lịch sử commit thẳng hàng (linear) và sạch sẽ hơn merge. Cảnh báo: Không bao giờ rebase một nhánh đã được chia sẻ công khai.
+
+[460] . git rebase -i: Công cụ dọn dẹp lịch sử cực mạnh: cho phép squash (gộp), fixup (gộp và bỏ message), reword (sửa message), hoặc drop (xóa) các commit.
+
+[461] . git stash: "Cất tạm" các thay đổi chưa commit vào một ngăn kéo khi bạn cần chuyển nhánh gấp (fix bug). Sử dụng git stash pop để áp dụng lại sau.
+
+[462] . git cherry-pick: Cho phép bạn "nhặt" một commit cụ thể (hash) từ một nhánh khác và áp dụng nó lên nhánh hiện tại, mà không cần merge toàn bộ nhánh.
+
+[463] . git reflog: Nhật Ký Cứu Hộ
+
+[464] Lệnh git reflog là công cụ cứu cánh khi bạn mắc lỗi. Nó ghi lại mọi hành động làm thay đổi HEAD (thậm chí cả git reset --hard).
+
+[465] Mục Đích: Theo dõi vị trí HEAD trong kho lưu trữ cục bộ theo thời gian. Mọi lần bạn checkout, commit, rebase, hoặc reset đều được ghi lạ.
+
+[466] Tình Huống Cấp Bách: ếu bạn lỡ tay xóa mất 5 commit bằng git reset --hard HEAD~5, git log sẽ không hiển thị chúng nữa.
+
+[467] Giải Pháp Khôi Phục: Chạy git reflog để tìm hash của commit trước khi reset, sau đó dùng git reset --hard để quay lại trạng thái an toàn.
+
+[468] __HEADING__Phần 6: Quy Trình Pull/Merge Request (PR/MR)__ENDHEADING__
+
+[469] Code Review và Phê Duyệt - Quy Trình Hợp Tác Cốt Lõi
+
+[470] Pull Request (GitHub) hay Merge Request (GitLab) là cơ chế chuẩn hóa để tích hợp code mới vào nhánh chính, đảm bảo chất lượng code và sự đồng thuận của nhóm.
+
+[471] Các Bước Trong Quy Trình Pull Request (PR)
+
+[472] Bước 1. Mở PR (Developer A): Developer A hoàn thành feature/login và push lên remote, sau đó mở PR yêu cầu merge vào develo__P__
+
+[473] Bước 2. Code Review (Reviewers): Reviewer B và C xem xét code, để lại inline comment nếu thấy lỗi hoặc cần cải thiện. Họ có thể chọn "Request changes".
+
+[474] Bước 3. Sửa Lỗi và Cập Nhật: Developer A sửa lỗi trên local (có thể dùng commit --amend và push --force), PR sẽ tự động cập nhật với các thay đổi mới.
+
+[475] Bước 4. Phê Duyệt và Merge: Khi Reviewers thấy code ổn, họ "Approve". Đủ số lượng phê duyệt, PR được Merge (Sử dụng Squash and merge rất phổ biến để giữ lịch sử sạch).
+
+[476] __HEADING__Phần 07: Chiến Lược Git Cho Dự Án Lớn: Sống Sót Giữa 30+ Developers__ENDHEADING__
+
+[477] Khi quy mô dự án vượt quá 30, 50, hoặc 100 lập trình viên, việc quản lý xung đột, lịch sử commit và các nhánh (branch) trở nên cực kỳ phức tạ__P__ Đây là những chiến lược then chốt để duy trì hiệu suất và sự đồng bộ.
+
+[478] __HEADING__Phần 1: Nền Tảng Sống Còn__ENDHEADING__
+
+[479] Quy Ước Đặt Tên Nhánh Rõ Ràng
+
+[480] Bắt buộc phải có quy tắc đặt tên nhánh thống nhất. Điều này giúp mọi người nhanh chóng xác định mục đích và người phụ trách của mỗi nhánh.
+
+[481] Ví dụ: feature/TICKET-123-ten-tinh-nang, bugfix/TICKET-456-sua-loi-login.
+
+[482] Thông Báo Thay Đổi Lớn (Big Changes)
+
+[483] Trước khi hợp nhất (merge) bất kỳ thay đổi lõi nào (ví dụ: nâng cấp framework, refactor sâu), hãy thông báo rộng rãi qua kênh chat chung (Slack/Teams). Điều này giúp các lập trình viên chuẩn bị tinh thần và kịp thời cập nhật mã nguồn.
+
+[484] Giữ Lịch Sử Commit Sạch Sẽ Với "Squash and Rebase"
+
+[485] Cấm "Merge Commit" Vào Nhánh Chính
+
+[486] Trong dự án lớn, chỉ nên cho phép sử dụng "Squash and Merge" hoặc "Rebase and Merge" khi hợp nhất Pull Request (PR) vào nhánh develop hoặc main.
+
+[487] -> Vấn đề của "Create a merge commit": Nếu 30 dev tạo 5-10 commit cá nhân, nhánh chính sẽ bị ngập trong hàng trăm "Merge branch 'feature/abc' into 'develop'" vô nghĩa, khiến git log không còn hữu ích.
+
+[488] Lợi Ích của Squash and Merge
+
+[489] Mỗi feature hoàn chỉnh chỉ là một commit duy nhất trên nhánh chính.
+
+[490] Lịch sử git log dễ đọc, dễ rollback (quay lại).
+
+[491] Chiến Thuật Cập Nhật Nhánh Feature (Sử Dụng Rebase)
+
+[492] Cập Nhật Thường Xuyên: Đừng để nhánh feature của bạn lạc hậu quá 2-3 ngày so với develo__P__ Thời gian càng lâu, xung đột (conflict) càng nghiêm trọng khi merge.
+
+[493] Ưu Tiên Sử Dụng git rebase: Thay vì git merge develop (tạo ra merge commit rác trên nhánh feature), hãy dùng git rebase để đưa các commit của bạn lên trên đỉnh của lịch sử develop mới nhất.
+
+[494] Giải Quyết Xung Đột Sớm
+
+[495] Rebase cho phép bạn giải quyết xung đột ngay trên máy cục bộ, trong ngữ cảnh của mình, trước khi gửi PR, giúp quá trình merge cuối cùng diễn ra mượt mà hơn.
+
+[496] Lệnh: git fetch origin sau đó git rebase origin/develop
+
+[497] Kích Thước Pull Request: Nhỏ và Tập Trung
+
+[498] PR Lớn = Thảm Họa Review: Không ai muốn review một PR có 2000 dòng code thay đổi. PR khổng lồ dễ bị "ngâm" lâu, hoặc được review hời hợt, dẫn đến lọt bug nghiêm trọng vào môi trường sản phẩm.
+
+[499] Nguyên Tắc Vàng: Mỗi PR chỉ nên thực hiện một việc duy nhất và hoàn thành tốt việc đó. Kích thước lý tưởng: dưới 300-400 dòng thay đổi.
+
+[500] -> Nếu tính năng quá phức tạp, hãy chia nhỏ thành chuỗi PR liên tiếp (ví dụ: PR1: Cấu hình Backend; PR2: Logic Business; PR3: Giao diện người dùng).
+
+[501] Công Cụ Cứu Hộ: Stash và Reflog
+
+[502] Trong môi trường nhiều nhà phát triển, bạn sẽ thường xuyên phải chuyển đổi bối cảnh công việc. Hai lệnh này là người bạn thân thiết của bạn.
+
+[503] git stash: Cất Tạm Công Việc
+
+[504] Khi bạn đang code dở dang (chưa commit) và cần khẩn cấp chuyển sang nhánh khác để fix bug nóng, git stash sẽ lưu tạm thời các thay đổi đó, làm sạch thư mục làm việc của bạn.
+
+[505] git reflog: Lịch Sử Hoạt Động (Cứu Mạng)
+
+[506] Nếu bạn vô tình git rebase bị lỗi, hoặc tệ hơn là git reset --hard nhầm, git reflog sẽ cho bạn thấy lịch sử chi tiết mọi hành động của HEAD, giúp bạn tìm lại commit đã mất và khôi phục lại trạng thái mong muốn.
+
+[507] Tăng Tốc Với Git Alias (Lệnh Tắt)
+
+[508] Việc gõ các lệnh Git dài lặp đi lặp lại không chỉ tốn thời gian mà còn dễ gây lỗi. Thiết lập lệnh tắt (alias) sẽ cải thiện đáng kể năng suất làm việc nhóm.
+
+[509] Cập Nhật Nhánh Hiện Tại
+
+[510] git config --global alias.up "pull --rebase"
+
+[511] Sử dụng: git up (thay vì git pull --rebase)
+
+[512] Xem Log Đẹp Hơn
+
+[513] git config --global alias.lg "log --oneline --graph --decorate --all"
+
+[514] Sử dụng: git lg (Xem lịch sử commit dưới dạng cây trực quan)
+
+[515] Lệnh Thường Dùng Khác
+
+[516] Hãy tạo alias cho các lệnh phức tạp như git add . && git commit -m 'WIP' hoặc các lệnh cherry-pick thường xuyên.
+
+[517] Tìm hiểu về Docker
+
+[518] Docker là gì?
+
+[519] Docker là một công cụ giúp chạy ứng dụng trong những “hộp riêng biệt” gọi là container (tức là “thùng chứa”). Mỗi container có đầy đủ mọi thứ mà ứng dụng cần để chạy. Ví dụ: mã nguồn chương trình, thư viện, môi trường (như Python, Node.js, v.v.). Nhờ đó, ứng dụng trong container chạy giống nhau ở mọi máy tính, dù là máy của bạn, máy đồng nghiệp hay máy chủ thật.
+
+[520] Triển khai ứng dụng trước khi có docker
+
+[521] Ứng dụng cài trực tiếp lên hệ điều hành.
+
+[522] Các ứng dụng chia sẻ chung môi trường → dễ xung đột.
+
+[523] Khó quản lý, khó mở rộng, dễ lỗi khi triển khai.
+
+[524] __CAPTION__Hình ảnh triển khai truyền thống
+
+[525] Mỗi ứng dụng chạy trong máy ảo riêng có hệ điều hành riêng biệt.
+
+[526] Lớp Hypervisor giúp tạo và quản lý các máy ảo.
+
+[527] Ứng dụng tách biệt tốt hơn, nhưng máy ảo nặng, tốn tài nguyên.
+
+[528] __CAPTION__Hình ảnh triển khai ảo hóa
+
+[529] Tại sao lại cần docker
+
+[530] Docker ra đời để giải quyết vấn đề khác biệt môi trường giữa các máy. Trước đây, ứng dụng thường gặp phải vấn đề dạng như “chạy được trên máy tôi nhưng không chạy trên máy anh” do khác hệ điều hành, thư viện, hoặc cấu hình. Docker cho phép đóng gói toàn bộ ứng dụng cùng môi trường của nó vào container, giúp triển khai dễ dàng, nhất quán, nhanh chóng và dễ mở rộng trên mọi hệ thống.
+
+[531] Cách docker hoạt động
+
+[532] Docker chạy trên hệ điều hành chủ (Host OS), sử dụng chung kernel với các container.
+
+[533] Docker Engine (Container Runtime) tạo và quản lý các container, tách biệt tài nguyên, mạng và file system.
+
+[534] Mỗi container chứa ứng dụng và thư viện riêng, đảm bảo chạy đồng nhất trên mọi môi trường.
+
+[535] Các container chia sẻ cùng OS, nhưng hoạt động độc lập và nhẹ hơn nhiều so với máy ảo.
+
+[536] __CAPTION__Hình ảnh cách docker hoạt động
+
+[537] So sánh kiến trúc cơ bản của 3 kiểu triển khai ứng dụng cơ bản
+
+[538] __CAPTION__Bảng so sánh 3 kiểu triển khai docker
+
+[539] Traditional Deployment
+
+[540] Virtualization Deployment
+
+[541] Containerization Deployment
+
+[542] + Mỗi ứng dụng được cài trực tiếp trên hệ điều hành.
+
+[543] + Mỗi ứng dụng chạy trong một máy ảo riêng, có hệ điều hành riêng biệt.
+
+[544] + Thay vì ảo hoá cả hệ điều hành, container chỉ đóng gói ứng dụng + thư viện cần thiết.
+
+[545] + Các ứng dụng chia sẻ cùng môi trường, nên dễ bị xung đột thư viện, phụ thuộc hoặc phiên bản.
+
+[546] + Lớp Hypervisor nằm giữa hệ điều hành thật và các máy ảo, giúp tách biệt hoàn toàn.
+
+[547] + Tất cả container chia sẻ chung kernel của hệ điều hành chủ, nên nhẹ, khởi động nhanh, dễ triển khai hàng loạt.
+
+[548] + Nếu một ứng dụng lỗi hoặc chiếm tài nguyên, nó có thể ảnh hưởng đến toàn hệ thống.
+
+[549] + Ứng dụng trong VM không ảnh hưởng nhau, dễ quản lý hơn.
+
+[550] + Lớp Container Runtime (như Docker Engine) giúp quản lý và chạy các container.
+
+[551] __CAPTION__Kiến trúc của Docker
+
+[552] __CAPTION__Kiến trúc của Docker Engine
+
+[553] Docker Daemon: Chạy trên máy chủ (host machine) và chịu trách nhiệm quản lý các đối tượng Docker như image, container, network và volume.
+
+[554] Docker Client: Là công cụ giao diện dòng lệnh (CLI) cho phép người dùng tương tác với Docker daemon thông qua các lệnh. Người dùng có thể build, run, stop và quản lý các container Docker bằng Docker CLI.
+
+[555] Docker Images: Docker image là nền tảng xây dựng của các container. Chúng là các mẫu chỉ đọc (read-only templates) chứa mã nguồn ứng dụng, môi trường chạy (runtime), công cụ hệ thống, thư viện và các phần phụ thuộc khác.
+
+[556] Docker Containers: Docker container là phiên bản có thể chạy được của Docker image. Chúng bao bọc ứng dụng và các phần phụ thuộc của nó, cung cấp môi trường cách ly để thực thi. Container có thể được tạo, khởi động, dừng, di chuyển và xóa bằng các lệnh Docker.
+
+[557] Docker Networking: Docker cung cấp khả năng kết nối mạng cho các container để chúng có thể giao tiếp với nhau và với mạng bên ngoài. Nó sử dụng mạng được định nghĩa bằng phần mềm (SDN) để tạo ra các mạng ảo, hỗ trợ kết nối và cô lậ__P__ Người dùng có thể tạo mạng tùy chỉnh, kết nối container vào mạng, và định nghĩa các chính sách mạng bằng lệnh Docker hoặc Docker Compose.
+
+[558] Docker Volumes: Docker volume được dùng để lưu trữ dữ liệu được tạo ra và sử dụng bởi container. Chúng cho phép container lưu và chia sẻ dữ liệu độc lập với vòng đời của container, giúp đảm bảo tính bền vững và khả năng di chuyển của dữ liệu.
+
+[559] Docker Registry: Là kho lưu trữ trung tâm của các Docker Images. Cho phép tải (pull) hoặc đăng tải (push) images giữa máy cục bộ và registry. Docker Hub là registry công khai mặc định của Docker. Doanh nghiệp có thể tạo Private Registry để lưu image nội bộ.
+
+[560] __CAPTION__Luồng chạy của Docker
+
+[561] Tìm hiểu về Docker File
+
+[562] Dockerfile là gì?
+
+[563] Dockerfile là một tập tin văn bản mô tả các bước để xây dựng một ảnh (image) Docker. Nó định nghĩa môi trường, các lệnh cài đặt, sao chép mã nguồn và lệnh chạy ứng dụng - khi chạy docker build Docker sẽ thực hiện tuần tự các lệnh trong Dockerfile để tạo image.
+
+[564] Cấu trúc cơ bản của Dockerfile
+
+[565] Một Dockerfile là một danh sách tuần tự các chỉ thị (instructions)
+
+[566] FROM — bắt buộc; chỉ định base image (ví dụ ubuntu, node:18-alpine).
+
+[567] LABEL — metadata (tác giả, phiên bản).
+
+[568] ARG — biến tham số dùng trong thời gian build.
+
+[569] ENV — thiết lập biến môi trường cho image/container.
+
+[570] WORKDIR — đặt thư mục làm việc (tương tự cd).
+
+[571] COPY / ADD — sao chép file từ build context vào image. (ADD thêm khả năng giải nén/URL`)
+
+[572] RUN — chạy lệnh tại thời điểm build (cài đặt gói, biên dịch).
+
+[573] EXPOSE — khai báo cổng (tài liệu; không mở cổng tự động).
+
+[574] VOLUME — khai báo điểm mount cho dữ liệu.
+
+[575] USER — đổi user để chạy container (không nên chạy root nếu có thể).
+
+[576] HEALTHCHECK — lệnh kiểm tra sức khỏe container.
+
+[577] ENTRYPOINT — lệnh cố định khi container chạy (thường dùng exec form).
+
+[578] CMD — lệnh mặc định (có thể bị ghi đè khi docker run).
+
+[579] Ví dụ:
+
+[580] # Chọn base image
+
+[581] FROM node:18-alpine
+
+[582] # Metadata
+
+[583] LABEL maintainer=""
+
+[584] # Biến build-time và môi trường
+
+[585] ARG NODE_ENV=production
+
+[586] ENV NODE_ENV=${NODE_ENV}
+
+[587] # Thư mục làm việc
+
+[588] WORKDIR /app
+
+[589] # Copy package trước để tận dụng cache khi source thay đổi
+
+[590] COPY package*.json ./
+
+[591] RUN npm install --production
+
+[592] # Copy phần còn lại của mã
+
+[593] COPY . .
+
+[594] # Khai báo cổng
+
+[595] EXPOSE 3000
+
+[596] # Lệnh mặc định (exec form khuyến nghị)
+
+[597] CMD ["node", "index.js"]
+
+[598] FROM
+
+[599] Chức năng: FROM dùng để chỉ định image nền tảng (base image) mà Docker sẽ kế thừa để xây dựng image mới.
+
+[600] Best practices:
+
+[601] Chỉ định tag rõ rang
+
+[602] Dùng image nhỏ (slim/alpine)
+
+[603] Khi cần root system khác, chọn base phù hợp
+
+[604] Ví dụ cơ bản:
+
+[605] FROM node:18 AS build.
+
+[606] LABEL
+
+[607] Chức năng:
+
+[608] LABEL dùng để thêm thông tin mô tả cho image, như:
+
+[609] Tác giả (maintainer),Phiên bản (version),Mô tả (description),Liên hệ (email, url), v.v.
+
+[610] Nó không ảnh hưởng đến cách image chạy, chỉ giúp quản lý và tra cứu dễ hơn.
+
+[611] Best practices:
+
+[612] Dùng định dạng chuẩn của OCI (Open Container Initiative)
+
+[613] LABEL org.opencontainers.image.title="My App"
+
+[614] org.opencontainers.image.version="1.0.0“
+
+[615] org.opencontainers.image.authors=“"
+
+[616] org.opencontainers.image.source="https://github__URLDOT__com/username/myapp"
+
+[617] Cú pháp:
+
+[618] LABEL key="value"
+
+[619] ARG
+
+[620] Chức năng: ARG cho phép định nghĩa biến có thể truyền giá trị khi chạy lệnh docker build.
+
+[621] Best practices:
+
+[622] Đặt giá trị mặc định (ARG VAR=value) để build không lỗi.
+
+[623] Không dùng ARG cho dữ liệu nhạy cảm (password, token...) — vì chúng vẫn xuất hiện trong history image
+
+[624] Có thể kết hợp với ENV nếu muốn truyền từ build → runtime"
+
+[625] Ví dụ cơ bản:
+
+[626] # Khai báo biến ARG với giá trị mặc định
+
+[627] ARG APP_VERSION=1.0.0
+
+[628] # Dùng biến này trong lệnh RUN
+
+[629] RUN echo "Building version ${APP_VERSION}"
+
+[630] ENV
+
+[631] Chức năng: ENV dùng để thiết lập biến môi trường (environment variable) bên trong image và container.
+
+[632] Best practices:
+
+[633] Dùng ENV cho cấu hình runtime (port, mode, path, API URL, v.v.)
+
+[634] Tránh dùng cho dữ liệu nhạy cảm (token, mật khẩu).
+
+[635] Viết chữ hoa (ENV PORT=3000) để dễ đọc.
+
+[636] Đặt gần phần đầu Dockerfile nếu các bước sau phụ thuộc biến đó.
+
+[637] Cú pháp:
+
+[638] ENV <key> <value>
+
+[639] # hoặc
+
+[640] ENV <key1>=<value1> <key2>=<value2> ...
+
+[641] Ví dụ:
+
+[642] ENV NODE_ENV=production
+
+[643] ENV PORT=3000
+
+[644] WORKDIR
+
+[645] Chức năng: WORKDIR dùng để chỉ định thư mục làm việc mặc định cho các lệnh tiếp theo trong Dockerfile (RUN, COPY, CMD, v.v.) và cả khi container khởi động.
+
+[646] Best practices:
+
+[647] Dùng đường dẫn tuyệt đối (/app, /src)
+
+[648] Chỉ định WORKDIR sớm trong Dockerfile để các lệnh sau rõ ràng.
+
+[649] Không cần RUN mkdir – Docker tự tạo thư mục.
+
+[650] Ví dụ cơ bản:
+
+[651] FROM node:18-alpine
+
+[652] WORKDIR /app
+
+[653] COPY . .
+
+[654] RUN npm install
+
+[655] CMD ["node", "index.js"]
+
+[656] COPY & ADD
+
+[657] Chức năng: Cả hai lệnh này đều dùng để đưa file hoặc thư mục từ máy host (máy build) vào image Docker trong quá trình build.
+
+[658] Best practices:
+
+[659] Dùng COPY thay vì ADD (trừ khi cần giải nén).
+
+[660] Sử dụng .dockerignore để giảm kích thước build context.
+
+[661] Copy từng phần để tận dụng cache build tốt hơn.
+
+[662] Tránh copy file chứa bí mật (API key, token, v.v.).
+
+[663] Cú pháp cơ bản:
+
+[664] COPY <source> <destination>
+
+[665] ADD <source> <destination>
+
+[666] Ví dụ:
+
+[667] FROM node:18-alpine
+
+[668] WORKDIR /app
+
+[669] # Sao chép file dependency trước (để tận dụng cache)
+
+[670] COPY package*.json ./
+
+[671] RUN npm install
+
+[672] # Sao chép toàn bộ mã nguồn
+
+[673] COPY . .
+
+[674] CMD ["node", "index.js"]
+
+[675] RUN
+
+[676] Chức năng:
+
+[677] RUN dùng để chạy một lệnh bên trong image khi đang build, ví dụ như cài gói, biên dịch code, hoặc thiết lập hệ thống.
+
+[678] Mỗi lệnh RUN tạo ra một layer mới trong image.
+
+[679] Best practices:
+
+[680] Gộp nhiều lệnh vào 1 RUN (dùng && \) để giảm số layer.
+
+[681] Xóa cache sau khi cài đặt (như ví dụ trên).
+
+[682] Không dùng RUN apt-get upgrade — có thể làm image khó tái lậ__P__
+
+[683] Dùng RUN sớm cho phần ít thay đổi để tận dụng cache build.
+
+[684] Cú pháp cơ bản:
+
+[685] Có 2 kiểu chính:
+
+[686] - Shell form (dạng chuỗi):
+
+[687] RUN apt-get update && apt-get install -y python3
+
+[688] - Exec form (dạng mảng JSON)
+
+[689] RUN ["npm", "install"]
+
+[690] Ví dụ:
+
+[691] FROM ubuntu:22.04
+
+[692] RUN apt-get update && \
+
+[693] apt-get install -y python3 python3-pip && \
+
+[694] rm -rf /var/lib/apt/lists/*
+
+[695] RUN apt-get update && \
+
+[696] apt-get install -y python3 python3-pip && \
+
+[697] rm -rf /var/lib/apt/lists/*
+
+[698] EXPOSE
+
+[699] Chức năng:
+
+[700] EXPOSE cho Docker (và người dùng khác) biết ứng dụng bên trong container đang lắng nghe ở cổng nào.
+
+[701] Nó không thực sự mở cổng ra ngoài, mà chỉ ghi chú / tài liệu cho người dùng.
+
+[702] Best practices:
+
+[703] Dùng EXPOSE để ghi rõ cổng ứng dụng — giúp người khác dễ hiểu khi đọc Dockerfile.
+
+[704] Có thể khai báo nhiều cổng nếu app dùng nhiều dịch vụ (HTTP, gRPC, metrics...).
+
+[705] Ghi rõ tcp hoặc udp nếu không phải mặc định.
+
+[706] Ví dụ:
+
+[707] FROM node:18-alpine
+
+[708] WORKDIR /app
+
+[709] COPY . .
+
+[710] RUN npm install
+
+[711] EXPOSE 3000
+
+[712] CMD ["npm", "start"]
+
+[713] VOLUME
+
+[714] Chức năng: VOLUME dùng để khai báo thư mục trong container mà dữ liệu của nó sẽ được lưu trữ bên ngoài container (tức là không bị mất khi container bị xóa).
+
+[715] Best practices:
+
+[716] Dùng VOLUME cho nơi chứa dữ liệu hoặc log.
+
+[717] Không lưu dữ liệu quan trọng trong hệ thống file tạm (/tmp).
+
+[718] Không nên quá lạm dụng VOLUME — chỉ tạo nếu thật sự cần.
+
+[719] Nếu dữ liệu nên version-control (ví dụ code), không cần VOLUME.
+
+[720] Cú pháp cơ bản:
+
+[721] VOLUME ["/path/in/container"]
+
+[722] Ví dụ:
+
+[723] VOLUME ["/data"]
+
+[724] USER
+
+[725] Chức năng:
+
+[726] USER dùng để chỉ định tài khoản người dùng mà các lệnh sau trong Dockerfile (và cả container khi chạy) sẽ được thực thi dưới quyền của người đó.
+
+[727] Mặc định, container chạy bằng user root — điều này không an toàn.
+
+[728] Best practices:
+
+[729] Luôn chuyển sang non-root user nếu ứng dụng không cần quyền admin.
+
+[730] Nếu image base đã có sẵn user, hãy tận dụng (node, nginx, v.v.).
+
+[731] Giúp tăng tính bảo mật khi deploy lên production.
+
+[732] Cú pháp cơ bản: USER <username>[:<group>]
+
+[733] Ví dụ:
+
+[734] RUN adduser -D appuser
+
+[735] USER appuser
+
+[736] HEALTHCHECK
+
+[737] Chức năng: HEALTHCHECK định nghĩa lệnh kiểm tra định kỳ để Docker biết container của ta còn hoạt động ổn định không.
+
+[738] Best practices:
+
+[739] Dùng /health, /status endpoint để kiểm tra ứng dụng.
+
+[740] Giữ thời gian kiểm tra hợp lý (không quá thường xuyên).
+
+[741] Dùng HEALTHCHECK NONE nếu không cần chức năng này.
+
+[742] Cú pháp cơ bản:
+
+[743] HEALTHCHECK [OPTIONS] CMD <command>
+
+[744] Ví dụ:
+
+[745] HEALTHCHECK --interval=30s --timeout=3s \
+
+[746] CMD curl -f http://localhost:3000/health || exit 1
+
+[747] ENTRYPOINT
+
+[748] Chức năng:
+
+[749] ENTRYPOINT định nghĩa lệnh chính mà container sẽ luôn thực thi khi chạy.
+
+[750] Khác với CMD, nó không bị ghi đè khi thêm đối số lúc docker run.
+
+[751] Best practices:
+
+[752] Dùng exec form (mảng JSON)
+
+[753] Dùng ENTRYPOINT cho lệnh chính cố định
+
+[754] Dễ debug bằng script entrypoint.sh
+
+[755] Có thể bỏ qua entrypoint khi chạy container
+
+[756] Không dùng ENTRYPOINT cho nhiều ứng dụng
+
+[757] Cú pháp cơ bản:
+
+[758] ENTRYPOINT ["executable", "param1", "param2"]
+
+[759] Ví dụ:
+
+[760] ENTRYPOINT ["python", "ap__P__py"]
+
+[761] # hoặc dùng với CMD
+
+[762] ENTRYPOINT ["python", "ap__P__py"]
+
+[763] CMD ["--port=5000"]
+
+[764] CMD
+
+[765] Chức năng:
+
+[766] CMD định nghĩa lệnh mặc định được chạy khi không có gì khác được chỉ định.
+
+[767] Nếu có truyền lệnh khác khi docker run, lệnh đó ghi đè CMD.
+
+[768] Best practices:
+
+[769] Dùng exec form (mảng JSON) → An toàn hơn, tránh lỗi với shell.
+
+[770] Dùng CMD để đặt tham số mặc định
+
+[771] Nếu chỉ có 1 lệnh duy nhất → có thể dùng CMD một mình
+
+[772] Cú pháp cơ bản:
+
+[773] CMD ["executable", "param1", "param2"] # dạng exec
+
+[774] CMD command param1 param2 # dạng shell
+
+[775] Ví dụ:
+
+[776] CMD ["node", "index.js"]
+
+[777] .dockerignore
+
+[778] Định nghĩa:
+
+[779] .dockerignore là tập tin đặc biệt (giống như .gitignore) dùng để loại trừ các file và thư mục không cần thiết khi Docker build image.
+
+[780] Khi chạy docker build, Docker sẽ “đóng gói” toàn bộ thư mục hiện tại (build context) để gửi cho Docker daemon.
+
+[781] .dockerignore giúp bỏ qua những thứ không cần gửi — để build nhanh hơn, image nhỏ hơn và an toàn hơn.
+
+[782] Cách hoạt động:
+
+[783] Docker đọc .dockerignore ngay khi bắt đầu build.
+
+[784] Bất kỳ file hoặc thư mục nào khớp với mẫu trong .dockerignore sẽ không được copy vào image.
+
+[785] Nó chỉ ảnh hưởng tới bước COPY và ADD trong Dockerfile.
+
+[786] Lợi ích chính:
+
+[787] Giảm kích thước build context
+
+[788] Tăng bảo mật
+
+[789] Tận dụng cache hiệu quả hơn
+
+[790] Multi-stage build
+
+[791] Khái niệm:
+
+[792] Multi-stage build (xây dựng nhiều giai đoạn) là kỹ thuật cho phép xây dựng image qua nhiều “stage”, và chỉ giữ lại phần cần thiết trong image cuối cùng.
+
+[793] Cú pháp tổng quát:
+
+[794] FROM <image1> AS <name1>
+
+[795] ...
+
+[796] FROM <image2> AS <name2>
+
+[797] ...
+
+[798] COPY --from=<name1> <src> <dest>
+
+[799] Ví dụ:
+
+[800] __CAPTION__Bảng mô phỏng cách hoạt động của xây dựng nhiều giai đoạn
+
+[801] Cách 1
+
+[802] Cách 2
+
+[803] FROM node:18-alpine
+
+[804] WORKDIR /app
+
+[805] COPY . .
+
+[806] RUN npm install && npm run build
+
+[807] CMD ["node", "dist/server.js"]
+
+[808] # -------- Stage 1: Build --------
+
+[809] FROM node:18-alpine AS build
+
+[810] WORKDIR /app
+
+[811] COPY package*.json ./
+
+[812] RUN npm install
+
+[813] COPY . .
+
+[814] RUN npm run build
+
+[815] # -------- Stage 2: Runtime --------
+
+[816] FROM node:18-alpine
+
+[817] WORKDIR /app
+
+[818] COPY --from=build /app/dist ./dist
+
+[819] COPY package*.json ./
+
+[820] RUN npm install --production
+
+[821] EXPOSE 3000
+
+[822] CMD ["node", "dist/server.js"]
+
+[823] Tìm hiều về Docker Compose
+
+[824] Docker compose là gì?
+
+[825] Docker Compose là một công cụ để định nghĩa và chạy ứng dụng gồm nhiều container Docker bằng một file cấu hình (thường là docker-compose.yml).
+
+[826] Thay vì phải khởi tạo từng container, network, volume bằng nhiều lệnh riêng lẻ thì chỉ cần mô tả toàn bộ “stack” — các service, volume, network, biến môi trường, phụ thuộc - trong một file rồi khởi chạy/ dừng/ mở rộng cả cụm chỉ với vài lệnh.
+
+[827] Tại sao cần docker compose
+
+[828] Dễ cấu hình và khởi động toàn bộ “stack”: Thay vì gõ chục lệnh docker run với nhiều cờ khác nhau, bạn mô tả toàn bộ hệ thống trong 1 file (docker-compose.yml) và chạy.
+
+[829] Tính nhất quán & có thể lặp lại: Mọi người trong team dùng cùng một file cấu hình => môi trường dev/test giống nhau, dễ reproduce bug và dễ onboard thành viên mới.
+
+[830] Quản lý phụ thuộc và thứ tự khởi động: Compose cho phép biểu diễn phụ thuộc (depends_on) và bạn có thể thêm healthcheck để kiểm tra service đã sẵn sàng — tránh chạy service trước khi database sẵn sàng.
+
+[831] Mạng nội bộ và tên service tiện lợi: Compose tự tạo network cho project, các container có thể kết nối nhau bằng tên service (ví dụ db), không cần nhớ IP hay port host.
+
+[832] Quản lý volume/ứng dụng state dễ dàng: Có thể khai báo volume cho DB hay persistent data trong file, dễ backup/di chuyển.
+
+[833] Scale nhanh khi cần thử nghiệm:
+
+[834] Muốn thử scale web lên 3 instance: docker compose up --scale web=3
+
+[835] Rất tiện cho test tải nhẹ hoặc xem behaviour khi có nhiều instance.
+
+[836] Tốt cho CI/CD và local development: Compose dễ tích hợp vào pipeline (build, test, run integration tests). Developer có thể mô phỏng môi trường production ngay trên máy local.
+
+[837] Dễ đọc, dễ bảo trì, đóng vai “documentation”: File docker-compose.yml tự thân là tài liệu cho cách thiết lập hệ thống — rõ ràng hơn nhiều so với một loạt script shell.
+
+[838] Tiết kiệm thời gian lặp lại (dev velocity): Một lệnh để up/down, logs, shell vào container (docker compose exec) giúp dev nhanh chóng debug.
+
+[839] Cấu trúc docker-compose.yml
+
+[840] Định nghĩa:
+
+[841] Docker-compose.yml là một file YAML mô tả toàn bộ stack (các service, volumes, networks, secrets, ...) để Docker Compose tạo và chạy. Cấu trúc chung gồm vài khối cấp cao và trong mỗi service có nhiều thuộc tính.
+
+[842] Các phần top-level hay gặp:
+
+[843] services — bắt buộc: định nghĩa các container (service) (ví dụ: web, db, redis).
+
+[844] volumes — định nghĩa volume được chia sẻ/persistent.
+
+[845] networks — định nghĩa mạng tùy chỉnh (cần ít khi, Compose tự tạo network mặc định).
+
+[846] configs, secrets — dùng để quản lý cấu hình/secret (thường cho môi trường production hoặc Swarm).
+
+[847] x- (extension) — khối reusable (anchor/template) để tái dùng cấu hình.
+
+[848] Các thành phần chính trong Compose
+
+[849] Services:
+
+[850] Đây là thành phần cốt lõi nhất — mỗi service tương ứng với một container hoặc nhóm container chạy cùng cấu hình.
+
+[851] Networks:
+
+[852] Compose tạo mạng ảo để các container giao tiếp với nhau bằng tên service thay vì I__P__
+
+[853] Mặc định Compose đã tạo 1 network chung, nhưng bạn có thể định nghĩa riêng nếu muốn.
+
+[854] Volumes:
+
+[855] Là vùng lưu trữ dữ liệu được chia sẻ hoặc giữ lại dù container bị xóa.
+
+[856] Thường dùng cho database, logs, uploads,...
+
+[857] Các lệnh cơ bản của Docker Compose
+
+[858] docker compose up
+
+[859] docker compose down
+
+[860] docker compose ps
+
+[861] docker compose logs
+
+[862] docker compose exec
+
+[863] docker compose build
+
+[864] docker compose restart
+
+[865] docker compose stop / docker compose start
+
+[866] docker compose rm
+
+[867] docker compose up –scale
+
+[868] docker compose config
+
+[869] docker compose images
+
+[870] docker compose top
+
+[871] docker compose cp
+
+[872] docker compose events
+
+[873] Tìm hiểu về Docker Swarm
+
+[874] Docker Swarm là gì?
+
+[875] Docker Swarm là công cụ native clustering cho Docker. Cho phép ta có thể gom một số Docker host lại với nhau thành dạng cụm (cluster) và ta có xem nó như một máy chủ Docker.
+
+[876] Docker Swarm là công cụ **orchestration** tích hợp sẵn của Docker.
+
+[877] Cho phép triển khai và quản lý nhiều container như một cụm (cluster).
+
+[878] Các khái niệm chính:
+
+[879] Node: máy chủ (manager/worker) trong cluster.
+
+[880] Service: ứng dụng được triển khai (gồm nhiều replica).
+
+[881] Task: container chạy cụ thể của một service.
+
+[882] Overlay Network: mạng ảo kết nối các container trên nhiều node.
+
+[883] Secret: lưu trữ thông tin nhạy cảm (mật khẩu, token).
+
+[884] Swarm phù hợp cho hệ thống nhỏ và trung bình, dễ thiết lập hơn Kubernetes.
+
+[885] Ví dụ: Triển khai ứng dụng với Docker Swarm
+
+[886] __CAPTION__Bảng ví dụ triển khai ứng dụng với Docker Swarm
+
+[887] Khởi tạo cluster:
+
+[888] docker swarm init
+
+[889] Triển khai service với 3 replicas:
+
+[890] docker service create --name web --replicas 3 myapp:1.0
+
+[891] Cập nhật rolling update:
+
+[892] docker service update --image myapp:1.1 web
+
+[893] Triển khai bằng stack (Compose file):
+
+[894] docker stack deploy -c docker-stack.yml mystack
+
+[895] name: CI Pipeline
+
+[896] on: [push]
+
+[897] jobs:
+
+[898] build:
+
+[899] runs-on: ubuntu-latest
+
+[900] steps:
+
+[901] - uses: actions/checkout@v3
+
+[902] - name: Build Docker Image
+
+[903] run: docker build -t ghcr.io/user/app:${{ github.sha }} .
+
+[904] - name: Run Unit Tests
+
+[905] run: docker run --rm ghcr.io/user/app:${{ github.sha }} pytest
+
+[906] - name: Push to GHCR
+
+[907] run: |
+
+[908] echo ${{ secre__TS__GHCR_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+[909] docker push ghcr.io/user/app:${{ github.sha }}
+
+[910] __CAPTION__Bảng ưu điểm và Giới hạn của Docker Swarm
+
+[911] Ưu điểm
+
+[912] Giới hạn
+
+[913] Cấu hình đơn giản, dễ học.
+
+[914] Tích hợp sẵn trong Docker, không cần cài thêm công cụ.
+
+[915] Hỗ trợ rolling update, secret, load balancing, scaling.
+
+[916] Phù hợp cho môi trường dev/test hoặc dự án nhỏ.
+
+[917] Không mạnh bằng Kubernetes về autoscaling, scheduling, ecosystem.
+
+[918] Cộng đồng nhỏ hơn, ít công cụ quản trị.
+
+[919] Không hỗ trợ advanced networking như Ingress Controller, HPA.
+
+[920] Tại sao lại cần Docker Swarm
+
+[921] Trong quá trình phát triển, quản lý, scale cũng như deploy project của bạn với việc dùng lệnh của Docker để deploy thì ban đầu project nhỏ chỉ cần chạy một host(vps) nên không có vấn đề gì cả. Tuy nhiên khi project đó vì một số yêu cầu hoặc lý do gì đó phải cần thêm nhiều host hoặc rất nhiều host(vps). Lúc này bạn khó có thể quản lý, scale và cũng không thể nào dùng lệnh để đi deploy lên từng con host(vps) điều đó rất vật vã. Do đó Docker đã phát triển thêm cho ta cái gọi là Docker Swarm.
+
+[922] Các tính năng nổi bật của Docker Swarm
+
+[923] Cluster management integrated with Docker Engine
+
+[924] Declarative service model
+
+[925] Desired state reconciliation
+
+[926] Secure by default
+
+[927] Decentralized design
+
+[928] Scaling
+
+[929] Load balancing
+
+[930] Rolling updates
+
+[931] __CAPTION__Kiến trúc Swarm Architecture
+
+[932] __CAPTION__Kiến trúc Swarm Manager
+
+[933] CI/CD và triển khai thực tế
+
+[934] CI/CD là gì?
+
+[935] CI (Continuous Integration): Tự động build, test và tạo artifact mỗi khi code thay đổi.
+
+[936] CD (Continuous Deployment/Delivery): Tự động deploy artifact lên staging hoặc production.
+
+[937] Mục tiêu:
+
+[938] Phát hiện lỗi sớm.
+
+[939] Giảm thao tác thủ công.
+
+[940] Tăng tốc độ phát hành phần mềm.
+
+[941] Vai trò của Docker trong CI/CD
+
+[942] Docker giúp tạo môi trường build/test đồng nhất và dễ đóng gói ứng dụng.
+
+[943] Hỗ trợ build image, test trong container, push image lên registry và deploy.
+
+[944] Ví dụ: docker build -t myapp:sha-abc123 . ; docker push ghcr.io/team/myapp:sha-abc123
+
+[945] Quy trình CI/CD trong thực tế
+
+[946] Developer push code → trigger pipeline CI.
+
+[947] CI build image, chạy test (unit/integration), scan bảo mật.
+
+[948] CI push image lên registry (Docker Hub / ECR / GCR / GHCR).
+
+[949] CD deploy image lên môi trường (staging → smoke test → production).
+
+[950] Giám sát và rollback nếu có lỗi.
+
+[951] Các yếu tố cần chú ý trong CI/CD thực tế
+
+[952] Secrets & Credentials: Không commit vào code, dùng secrets manager.
+
+[953] Image Registry: Dùng private registry, quản lý quyền truy cậ__P__
+
+[954] Tagging: Dùng commit SHA thay vì 'latest'.
+
+[955] Rollback: Giữ version cũ có thể phục hồi nhanh.
+
+[956] Monitoring: Theo dõi healthcheck, alerting, lo__GS__
+
+[957] Các công cụ phổ biến trong CI/CD
+
+[958] CI: Jenkins, GitHub Actions, GitLab CI – tự động build & test.
+
+[959] CD: ArgoCD, Spinnaker, Jenkins X – tự động deploy và rollback.
+
+[960] Image Registry: Docker Hub, AWS, ECR, GCR, GHCR – lưu trữ Docker image.
+
+[961] Monitoring: Prometheus, Grafana, ELK – giám sát & logging.
+
+[962] Tìm hiểu về Jenkins
+
+[963] Jenkins là một automation server mã nguồn mở, được dùng rộng rãi trong CI/CD.
+
+[964] Cho phép tự động hóa quy trình: build, test, deploy, monitor.
+
+[965] Hỗ trợ pipeline dưới dạng code (Jenkinsfile).
+
+[966] Có thể mở rộng qua hơn 1,800 plugin (Git, Docker, Slack, AWS...).
+
+[967] Chạy job trên agent (slave) giúp tách biệt môi trường.
+
+[968] Tích hợp với Docker để build image, test, và deploy container tự động.
+
+[969] Kiến trúc của Jenkins
+
+[970] Thành phần chính:
+
+[971] Master (Controller): quản lý job, trigger build, phân phối task.
+
+[972] Agent (Slave): thực thi job trên môi trường riêng (local hoặc remote).
+
+[973] Pipeline (Jenkinsfile): định nghĩa chuỗi bước CI/CD bằng code.
+
+[974] Plugin: mở rộng chức năng (SCM, Docker, Notification, Cloud...).
+
+[975] Credential Store: lưu secrets (token, password, SSH key).
+
+[976] Jenkins có thể cài đặt local, hoặc chạy dưới dạng container (dockerized Jenkins).
+
+[977] Ví dụ: CI pipeline trên Jenkins
+
+[978] pipeline {
+
+[979] agent any
+
+[980] stages {
+
+[981] stage('Build') {
+
+[982] steps {
+
+[983] sh 'docker build -t myapp:${GIT_COMMIT} .'
+
+[984] }
+
+[985] }
+
+[986] stage('Test') {
+
+[987] steps {
+
+[988] sh 'docker run --rm myapp:${GIT_COMMIT} pytest'
+
+[989] }
+
+[990] }
+
+[991] stage('Push') {
+
+[992] steps {
+
+[993] withCredentials([string(credentialsId: 'docker-pass', variable: 'DOCKER_PASS')]) {
+
+[994] sh 'echo $DOCKER_PASS | docker login -u user --password-stdin'
+
+[995] sh 'docker push myapp:${GIT_COMMIT}'
+
+[996] }
+
+[997] }
+
+[998] }
+
+[999] }
+
+[1000] }
+
+[1001] Ưu, nhược điểm của Jenkins
+
+[1002] __CAPTION__Bảng ưu, nhược điểm của Jenkins
+
+[1003] Ưu điểm
+
+[1004] Nhược điểm
+
+[1005] Mã nguồn mở, miễn phí, cộng đồng lớn.
+
+[1006] Cấu hình phức tạp, cần bảo trì định kỳ.
+
+[1007] Linh hoạt, tùy biến cao nhờ plugin.
+
+[1008] UI truyền thống, không hiện đại như GitHub Actions.
+
+[1009] Hỗ trợ tất cả ngôn ngữ và môi trường build.
+
+[1010] Cần server riêng hoặc container hóa để chạy an toàn.
+
+[1011] Tích hợp tốt với Docker, GitHub, AWS, Slack.
+
+[1012] Dễ gặp lỗi plugin nếu không quản lý cẩn thận.
+
+[1013] Tìm hiểu về GitHub Actions
+
+[1014] GitHub Actions là nền tảng CI/CD tích hợp sẵn trong GitHub.
+
+[1015] Cho phép tự động hóa các tác vụ như build, test, deploy khi có sự kiện (push, pull request, release...).
+
+[1016] Các workflow được định nghĩa bằng file YAML trong thư mục `.github/workflows/`.
+
+[1017] Mỗi workflow gồm các jobs, và mỗi job chứa nhiều steps.
+
+[1018] Mỗi step có thể dùng action có sẵn hoặc chạy lệnh tùy chỉnh.
+
+[1019] Tích hợp trực tiếp với GitHub Secrets, Container Registry (GHCR), và các repo khác.
+
+[1020] Tích hợp và bảo mật trong GitHub Actions
+
+[1021] Secrets & Credentials:
+
+[1022] Dùng GitHub Secrets để lưu token, password, API keys.
+
+[1023] Có thể truy cập bằng cú pháp `${{ secre__TS__VARIABLE_NAME }}`.
+
+[1024] Marketplace Actions: Sử dụng action có sẵn như `actions/checkout`, `docker/login-action`, `aws-actions/ecs-deploy`
+
+[1025] Tích hợp dịch vụ ngoài: AWS, Azure, Google Cloud, Slack, Discord...
+
+[1026] Caching & Artifacts:
+
+[1027] Dùng `actions/cache` để lưu dependencies, tăng tốc build.
+
+[1028] Dùng `actions/upload-artifact` để lưu logs hoặc build output.
+
+[1029] Ví dụ: GitHub Actions Workflow
+
+[1030] name: CI Pipeline
+
+[1031] on: [push]
+
+[1032] jobs:
+
+[1033] build:
+
+[1034] runs-on: ubuntu-latest
+
+[1035] steps:
+
+[1036] - uses: actions/checkout@v3
+
+[1037] - name: Build Docker Image
+
+[1038] run: docker build -t ghcr.io/user/app:${{ github.sha }} .
+
+[1039] - name: Run Unit Tests
+
+[1040] run: docker run --rm ghcr.io/user/app:${{ github.sha }} pytest
+
+[1041] - name: Push to GHCR
+
+[1042] run: |
+
+[1043] echo ${{ secre__TS__GHCR_TOKEN }} |
+
+[1044] docker login ghcr.io -u ${
+
+[1045] { github.actor }
+
+[1046] } --password-stdin
+
+[1047] docker push ghcr.io/user/app:${{ github.sha }}
+
+[1048] Ưu điểm & Giới hạn của GitHub Actions
+
+[1049] __CAPTION__Ưu điểm và Giới hạn của GitHub Actions
+
+[1050] Ưu điểm
+
+[1051] Giới hạn
+
+[1052] Tích hợp sẵn trong GitHub, dễ thiết lậ__P__
+
+[1053] Không cần server riêng, dùng runner miễn phí.
+
+[1054] Hỗ trợ Docker, Node, Python, Java, Go...
+
+[1055] Workflow linh hoạt, có thể chia nhánh build/test/deploy.
+
+[1056] Giao diện trực quan, logs chi tiết.
+
+[1057] Miễn phí có giới hạn phút chạy (đặc biệt với private repo).
+
+[1058] Không mạnh bằng Jenkins trong job orchestration phức tạ__P__
+
+[1059] Bị ràng buộc trong hệ sinh thái GitHub.
+
+[1060] Unit Testing và kỹ thuật debugging
+
+[1061] Unit Testing là gì?
+
+[1062] Unit Test (Kiểm thử đơn vị) là một loại kiểm thử phần mềm trong đó các đơn vị hoặc thành phần riêng lẻ của một phần mềm được kiểm tra. Mục đích là để xác nhận rằng mỗi đơn vị của mã nguồn hoạt động như mong đợi. Kiểm thử đơn vị được thực hiện trong quá trình phát triển (giai đoạn coding) của một ứng dụng bởi các lập trình viên.
+
+[1063] Bài Kiểm thử đơn vị (Unit Test) tách một phần mã nguồn và xác minh tính đúng đắn của nó. Một đơn vị có thể là một chức năng (function), phương pháp (method), thủ tục (procedure), mô-đun (module) hoặc đối tượng (class) riêng lẻ.
+
+[1064] Mã nguồn độc lập được "định hướng theo chức năng" thông qua việc sử dụng các phương pháp như DDD (thiết kế theo hướng miền), BDD (phát triển theo hướng hành vi) hoặc TDD (phát triển theo hướng thử nghiệm).
+
+[1065] Tìm hiểu về TDD(Test-Driven Development)
+
+[1066] TDD(Test-Driven Development) có thể được tạm hiểu là mô hình phát triển với trọng tâm hướng về việc kiểm thử. TDD được xây dựng theo hai tiêu chí: Test-First (Kiểm thử trước) và Refactoring (Điều chỉnh mã nguồn). Trong đó, khi một yêu cầu phần mềm (requirement) được đặt ra:
+
+[1067] Người developer soạn thảo kịch bản kiểm thử (test case) cho yêu cầu đó trước tiên và chạy thử kịch bản đó lần đầu tiên. Hiển nhiên, việc chạy thử sẽ đưa ra 1 kết quả thất bại vì hiện tại chức năng đó chưa được xây dựng (và thông qua kết quả đó, ta cũng kiểm tra được là kịch bản kiểm thử đó được viết đúng).
+
+[1068] Theo đó, dựa vào mong muốn (expectation) của kịch bản kia, người developer sẽ xây dựng một lượng mã nguồn (source code) vừa đủ để lần chạy thứ 2 của kịch bản đó thành công.
+
+[1069] Nếu trong lần chạy thứ 2 vẫn đưa ra 1 kết quả thất bại, điều đó có nghĩa là thiết kế chưa ổn và người developer lại chỉnh sửa mã nguồn và chạy lại kịch bản đến khi thành công.
+
+[1070] Khi kịch bản kiểm thử được chạy thành công, người developer tiến hành chuẩn hóa đoạn mã nguồn (base-line code) và tiếp tục hồi quy với kịch bản kiểm thử tiếp theo. Việc chuẩn hóa bao gồm thêm các comment, loại bỏ các dư thừa, tối ưu các biến…
+
+[1071] Ưu và nhược điểm của TDD
+
+[1072] __CAPTION__Bảng ưu, nhược điểm của TDD
+
+[1073] Ưu điểm
+
+[1074] Nhược điểm
+
+[1075] Hiểu rõ về logic hoạt động của code
+
+[1076] Tăng chất lượng code, do developer có thể cấu trúc lại code bất kỳ lúc nào và kiểm tra tính chính xác của code
+
+[1077] Giảm thiểu các tickets do QA trả về cho dev
+
+[1078] Giảm sự xuất hiện của các lỗi tương tự
+
+[1079] Một số developers vẫn còn tư duy Testing là một sự lãng phí thời gian
+
+[1080] Việc tạo thêm Test code làm tăng thời gian phát triển sản phẩm
+
+[1081] Việc thực thi test có thể dễ dàng thực hiện sai cách, chỉ test các methods, class cụ thể riêng biệt, nhưng chưa test hệ thống nói chung
+
+[1082] Tìm hiều về BDD(Behavior Driven Development)
+
+[1083] BDD (Behavior Driven Development) là một quá trình phát triển phần mềm dựa trên phương pháp Agile(phát triển phần mềm linh hoạt). Dựa vào requirement các kịch bản test (Scenarios) sẽ được viết trước dưới dạng ngôn ngữ tự nhiên và dễ hiểu nhất sau đó mới thực hiện cài đặt source code đễ pass qua tất cả các stories đó. Những kịch bản test này được viết dưới dạng các feature file và đòi hỏi sự cộng tác từ tất cả các thành viên tham gia dự án hay stakeholder.
+
+[1084] Ưu và nhược điểm của BDD
+
+[1085] __CAPTION__Bảng ưu, nhược điểm của BDD
+
+[1086] Ưu điểm
+
+[1087] Nhược điểm
+
+[1088] Giúp xác định đúng yêu cầu của khách hàng: do tài liệu dựa theo hướng ngôn ngữ tự nhiên nên bất kì đối tượng nào cũng hiểu được, nên khi đọc tài liệu này khách hàng có thể dễ dàng biết được lập trình viên có đang đi đúng hướng họ mong muốn không.
+
+[1089] Là tài liệu sống của dự án: tài liệu luôn được cập nhật khi có bất kì thay đổi nào, nên tất cả thành viên không bị miss thông tin trong quá trình phát triển dự án.
+
+[1090] Giảm bớt những case không hợp lý, hoặc không thể làm được tại thời điểm hiện tại: khi viết tài liệu cần ít nhất 1 developer, 1 QA, 1 BA do đó có thể thảo luận case nào không hợp lý, case nào không thể thực hiện tại thời điểm hiển tại trước khi bắt đầu code chức năng.
+
+[1091] Yêu cầu hiểu sâu về số lượng lớn các khái niệm, vì vậy muốn tiếp cận với BDD thì yêu cầu developers cần hoàn toàn hiểu rõ về TDD.
+
+[1092] Vì nó là một khái niệm, biến nó thành một kỹ thuật thực hành hoặc kết nối nó với một bộ công cụ có nghĩa là hủy hoại nó.
+
+[1093] Tìm hiều về DDD (Domain-driven design)
+
+[1094] DDD là một tập hợp các thực hành, pattern (kiểu mẫu) và triết lý về phát triển phần mềm cho các hệ thống kinh doanh phức tạp hơn, mặc dù nó không chỉ giới hạn ở các hệ thống kinh doanh. Nó bao gồm cả khía cạnh kỹ thuật của việc phát triển phần mềm, nhưng cũng bao gồm các khía cạnh khác như sự hợp tác và giao tiếp giữa developer (nhà phát triển) và doanh nghiệ__P__ Vì lý do đó, không có một chuẩn mực duy nhất nào để xác định xem ai đó đang "làm" DDD hay không. Có những phần nhỏ có thể được mượn thành công từ DDD và sử dụng trong các dự án không phải DDD. Nếu được hỏi liệt kê các nguyên tắc cốt lõi của DDD, những điều này sẽ được xuất hiện đầu tiên (không theo thứ tự cụ thể):
+
+[1095] Bounded contexts (Bối cảnh giới hạn)
+
+[1096] Ubiquitous language (Ngôn ngữ phổ biến)
+
+[1097] Aggregates and aggregate roots (Tập hợp và gốc tập hợp)
+
+[1098] Event storming and modelling (Bão não sự kiện và mô hình hóa)
+
+[1099] Dễ hiểu hơn nếu bắt đầu bằng những thứ nó không phải:
+
+[1100] Nó không phải là một design pattern (kiểu mẫu thiết kế)
+
+[1101] Nó không phải là một phương pháp luận SDLC (chu kỳ phát triển phần mềm)
+
+[1102] Chắc chắn nó không phải là một project .Net tên là "Domain"
+
+[1103] Phân biệt Unit test, Integration test và End-to-End test
+
+[1104] __CAPTION__Bảng phân biệt Unit test, Integration test và End-to-End test
+
+[1105] Loại kiểm thử
+
+[1106] Mục tiêu chính
+
+[1107] Công cụ
+
+[1108] Đặc điểm nổi bật
+
+[1109] Người viết
+
+[1110] Unit test
+
+[1111] Kiểm tra đơn vị nhỏ nhất
+
+[1112] JUnit, PyTest, Jest, Vitest, PHPUnit
+
+[1113] Nhanh, phát hiện lỗi sớm
+
+[1114] Developer
+
+[1115] Integration test
+
+[1116] Kiểm tra tích hợp module
+
+[1117] TestNG, Supertest, PHPUnit
+
+[1118] Kiểm tra luồng dữ liệu
+
+[1119] Tester
+
+[1120] End-to-End test
+
+[1121] Kiểm tra toàn bộ luồng nghiệp vụ
+
+[1122] Playwright, Cypress, Selenium
+
+[1123] Mô phỏng người dùng thực tế
+
+[1124] QA Automation
+
+[1125] Ví dụ hàm tính thuế theo nghề nghiệp với Unit Test:
+
+[1126] Tìm hiểu về Mock/Stub
+
+[1127] Mock là gì?
+
+[1128] Mock object (MO) là một đối tượng ảo mô phỏng các tính chất và hành vi giống hệt như đối tượng thực được truyền vào bên trong khối mã đang vận hành nhằm kiểm tra tính đúng đắn của các hoạt động bên trong. Mock object có các đặc điểm sau:
+
+[1129] Đơn giản hơn đối tượng thực nhưng vẫn giữ được sự tương tác với các đối tượng khác.
+
+[1130] Không lặp lại nội dung đối tượng thực.
+
+[1131] Cho phép thiết lập các trạng thái riêng trợ giúp cho việc thực hiện unit test.
+
+[1132] Stub là gì?
+
+[1133] Stub là một chương trình hoặc thành phần giả lập (thay thế cho chương trình hoặc thành phần chưa code xong để kiểm thử) nó dùng để kiểm thử... ví dụ, trong một dự án có 4 modules, nhưng đến lúc test mà còn một module chưa code xong, để test được thì cần phải có 4 modules này, vậy thì cần phải có một chương trình giả lập module này để thực hiện test. Chương trình giả lập cho module này được gọi là STUB.
+
+[1134] Ví dụ về Mock trong Unit Test:
+
+[1135] Ví dụ về Stub trong Unit Test:
+
+[1136] Phân biệt giữa Mock và Stub
+
+[1137] __CAPTION__Bảng phân biệt Mock và Stub
+
+[1138] Tiêu chí
+
+[1139] Stub
+
+[1140] Mock
+
+[1141] Mục đích chính
+
+[1142] Cung cấp dữ liệu giả định
+
+[1143] Giả lập + kiểm tra hành vi
+
+[1144] Kiểm tra hành vi
+
+[1145] Không
+
+[1146] Có (số lần gọi, tham số gọi))
+
+[1147] Độ phức tạp
+
+[1148] Đơn giản, dễ viết
+
+[1149] Phức tạp hơn, nhiều tính năng
+
+[1150] Khi cần dùng
+
+[1151] Khi chỉ cần dữ liệu giả để test logic
+
+[1152] Khi cần đảm bảo code gọi đúng API/service
+
+[1153] Ví dụ về Stub:
+
+[1154] Ví dụ về Mock:
+
+[1155] Tìm hiểu về Debug
+
+[1156] Bug là gì?
+
+[1157] Bug là một thuật ngữ phổ biến trong lĩnh vực phần mềm và công nghệ thông tin. Cụm từ thường được sử dụng để mô tả một lỗi, vấn đề hoặc hành vi không mong muốn trong phần mềm, ứng dụng hoặc hệ thống máy tính. Cụ thể, Bug có thể là kết quả của lỗi lập trình, điều kiện không xác định hoặc các trường hợp không được dự đoán trong quá trình phát triển phần mềm.
+
+[1158] Bug có thể gây ra các vấn đề từ nhỏ như hiển thị sai thông tin trên giao diện đến những vấn đề nghiêm trọng như gây lỗi phần mềm hoặc làm suy giảm tính ổn định, an toàn của hệ thống. Việc phát hiện và sửa Bug là một phần quan trọng của quá trình phát triển và duy trì phần mềm.
+
+[1159] Debug là gì?
+
+[1160] Debug là quá trình tìm và sửa lỗi trong phần mềm hoặc phần cứng để đảm bảo chúng hoạt động đúng cách. Quá trình này bao gồm việc xác định, phân tích và sửa chữa các lỗi, vấn đề hoặc sai sót mà phần mềm hoặc phần cứng có thể gặp phải.
+
+[1161] Ví dụ về cách sử dụng điểm dừng(breakpoint):
+
+[1162] Tìm hiểu API Testing là gì?
+
+[1163] API (Application Programming Interface) Testing là quá trình kiểm tra các giao diện lập trình ứng dụng (API) để xác nhận rằng chúng hoạt động đúng như mong đợi. API là các giao diện cho phép các hệ thống, ứng dụng khác nhau giao tiếp với nhau. Kiểm thử API thường tập trung vào việc gửi yêu cầu đến API và kiểm tra phản hồi mà API trả về để đảm bảo tính chính xác, hiệu suất, bảo mật và tuân thủ các quy tắc.
+
+[1164] Lý do nên thực hiện kiểm thử API
+
+[1165] Kiểm thử ứng dụng sớm và không cần giao diện người dùng
+
+[1166] Phát hiện lỗi sớm: Việc tìm ra lỗi sớm trong quá trình phát triển giúp giảm thiểu chi phí và công sức để sửa chữa sau này. Các lỗi phát hiện muộn thường khó sửa chữa và tốn kém hơn nhiều.
+
+[1167] Không phụ thuộc vào giao diện người dùng: Kiểm thử API cho phép người kiểm thử bắt đầu kiểm thử ứng dụng ngay cả khi giao diện người dùng chưa hoàn thiện. Điều này giúp xác định và khắc phục sớm các vấn đề trong vòng đời phát triển.
+
+[1168] Kiểm tra logic ứng dụng: API testing cho phép kiểm tra các logic kinh doanh và các chức năng của ứng dụng mà không cần phải có giao diện người dùng. Điều này rất hữu ích trong việc xác minh tính đúng đắn của hệ thống trước khi triển khai giao diện người dùng.
+
+[1169] Để có được một chiến lược kiểm thử tự động tuyệt vời và giảm chi phí
+
+[1170] Chiến lược tự động hóa hiệu quả: Dựa trên “Kim tự tháp Tự động hoá” của Mike Cohn, việc kiểm thử nên bắt đầu từ tầng dưới cùng của kim tự tháp, nơi mà unit test và API test nằm. Điều này giúp giảm chi phí và công sức so với việc kiểm thử dựa trên GUI.
+
+[1171] Unit Test: Là tầng thứ nhất của kim tự tháp, kiểm tra các đơn vị nhỏ nhất của mã nguồn.
+
+[1172] API Test: Là tầng thứ hai, kiểm tra các chức năng và logic của ứng dụng mà không cần giao diện người dùng.
+
+[1173] GUI Test: Là tầng cao nhất, kiểm tra giao diện người dùng, tốn kém và phức tạp hơn.
+
+[1174] Giảm chi phí: Kiểm thử API giúp giảm chi phí phát triển và duy trì kiểm thử. Kiểm thử GUI tốn kém hơn vì yêu cầu nhiều công sức để phát triển và bảo trì, và một thay đổi nhỏ trong giao diện người dùng có thể dẫn đến việc phải kiểm thử lại rất nhiều.
+
+[1175] Phản hồi nhanh chóng: Kiểm thử API cung cấp phản hồi nhanh hơn về chất lượng ứng dụng, giúp phát triển nhanh chóng và liên tục.
+
+[1176] Phát triển phần mềm theo phương pháp Agile và giảm việc thực hiện kiểm thử hồi quy bằng tay
+
+[1177] Thích ứng nhanh chóng: Theo phương pháp Agile, việc phát triển phần mềm cần phải nhanh chóng và linh hoạt. Kiểm thử API hỗ trợ điều này bằng cách cung cấp phản hồi nhanh và chính xác về chất lượng ứng dụng.
+
+[1178] Tăng tần suất phát hành: Agile yêu cầu tần suất phát hành cao, do đó kiểm thử tự động API giúp giảm thiểu thời gian và công sức cần thiết cho kiểm thử hồi quy.
+
+[1179] Giảm áp lực lên QA: Kiểm thử tự động API giúp giảm áp lực lên nhóm QA bằng cách tự động hóa các kiểm thử hồi quy và cung cấp phản hồi nhanh chóng.
+
+[1180] Đánh giá nhanh: API testing cho phép đánh giá nhanh chóng chất lượng hệ thống trước khi thực hiện kiểm thử GUI, giúp đảm bảo chất lượng ngay từ các giai đoạn đầu.
+
+[1181] Ổn định: API thường ổn định sớm hơn và ít thay đổi hơn so với giao diện người dùng, do đó việc kiểm thử API có thể thực hiện sớm và đảm bảo độ tin cậy cao.
+
+[1182] Tầm quan trọng của kiểm thử API
+
+[1183] Chất lượng sản phẩm: Kiểm thử API đảm bảo rằng sản phẩm phần mềm có chất lượng cao, hoạt động ổn định và đáng tin cậy.
+
+[1184] Trải nghiệm khách hàng: Kiểm thử API giúp đảm bảo rằng sản phẩm sẽ đáp ứng tốt nhu cầu của khách hàng, nâng cao trải nghiệm người dùng.
+
+[1185] Thành công của doanh nghiệp: Một sản phẩm chất lượng cao sẽ giúp doanh nghiệp thu hút và giữ chân khách hàng, từ đó tăng cường sự thành công trên thị trường.
+
+[1186] So sánh API Testing và GUI Testing
+
+[1187] __CAPTION__So sánh API Testing và GUI Testing
+
+[1188] Tiêu chí
+
+[1189] API Testing
+
+[1190] GUI Testing
+
+[1191] Phạm vi kiểm thử
+
+[1192] Kiểm thử logic kinh doanh và dịch vụ nền tảng
+
+[1193] Kiểm thử giao diện người dùng và luồng ứng dụng
+
+[1194] Thời điểm thực hiện
+
+[1195] Trước khi hoàn thiện GUI
+
+[1196] Sau khi GUI hoàn thiện
+
+[1197] Tốc độ
+
+[1198] Nhanh chóng và dễ dàng tự động hóa
+
+[1199] Chậm hơn và khó tự động hóa hơn
+
+[1200] Phát hiện lỗi
+
+[1201] Phát hiện lỗi sớm, ngay cả trước khi có GUI
+
+[1202] Phát hiện lỗi giao diện và luồng người dùng
+
+[1203] Độ phụ thuộc
+
+[1204] Ít phụ thuộc vào GUI
+
+[1205] Phụ thuộc nhiều vào giao diện và trình duyệt
+
+[1206] Các Test Case được sử dụng trong kiểm thử API
+
+[1207] Kiểm tra tính hợp lệ của dữ liệu (Validation Testing)
+
+[1208] Giá trị đầu vào hợp lệ: Gửi các yêu cầu với dữ liệu đầu vào hợp lệ và xác minh rằng API trả về phản hồi mong đợi.
+
+[1209] Giá trị đầu vào không hợp lệ: Gửi các yêu cầu với dữ liệu đầu vào không hợp lệ và kiểm tra rằng API trả về lỗi thích hợp, ví dụ như mã trạng thái 400 Bad Request.
+
+[1210] Giới hạn dữ liệu: Kiểm tra các giới hạn trên và dưới của dữ liệu, chẳng hạn như độ dài chuỗi hoặc giá trị số học tối đa và tối thiểu.
+
+[1211] Kiểm tra trạng thái HTTP (HTTP Status Code Testing)
+
+[1212] Trạng thái thành công: Đảm bảo rằng API trả về mã trạng thái 200 OK khi yêu cầu thành công.
+
+[1213] Lỗi không tìm thấy: Kiểm tra rằng API trả về mã trạng thái 404 Not Found khi yêu cầu một tài nguyên không tồn tại.
+
+[1214] Lỗi máy chủ: Đảm bảo rằng API trả về mã trạng thái 500 Internal Server Error khi xảy ra lỗi máy chủ.
+
+[1215] Xác thực thất bại: Kiểm tra rằng API trả về mã trạng thái 401 Unauthorized hoặc 403 Forbidden khi xác thực không thành công.
+
+[1216] Kiểm tra bảo mật (Security Testing)
+
+[1217] Xác thực và ủy quyền: Đảm bảo rằng các yêu cầu API yêu cầu xác thực đúng cách và chỉ cho phép truy cập các tài nguyên theo đúng quyền hạn của người dùng.
+
+[1218] Kiểm tra các lỗ hổng bảo mật: Kiểm tra các lỗ hổng bảo mật như Injection, Cross-site scripting (XSS), và Cross-Site Request Forgery (CSRF).
+
+[1219] Dữ liệu nhạy cảm: Đảm bảo rằng dữ liệu nhạy cảm được bảo vệ và không bị lộ ra trong phản hồi API.
+
+[1220] Kiểm tra hiệu suất (Performance Testing)
+
+[1221] Kiểm tra tải (Load Testing): Đánh giá hiệu suất của API dưới điều kiện tải bình thường.
+
+[1222] Kiểm tra sức chịu đựng (Stress Testing): Kiểm tra cách API xử lý tải cao hơn mức bình thường và xác định ngưỡng giới hạn.
+
+[1223] Kiểm tra khả năng mở rộng (Scalability Testing): Đánh giá khả năng của API để mở rộng và xử lý số lượng yêu cầu tăng cao.
+
+[1224] Kiểm tra chức năng (Functional Testing)
+
+[1225] Kiểm tra từng chức năng riêng lẻ: Xác minh rằng từng chức năng của API hoạt động đúng như mô tả.
+
+[1226] Kiểm tra các trường hợp ngoại lệ: Đảm bảo rằng API xử lý đúng các trường hợp ngoại lệ, chẳng hạn như các lỗi hoặc điều kiện đặc biệt.
+
+[1227] Kiểm tra luồng công việc (Workflow Testing)
+
+[1228] Kiểm tra các luồng công việc nhiều bước: Xác minh rằng các API hoạt động đúng trong một chuỗi các thao tác liên tiế__P__
+
+[1229] Kiểm tra tính logic của luồng công việc: Đảm bảo rằng các API hoạt động đúng khi được sử dụng trong các kịch bản sử dụng thực tế.
+
+[1230] Kiểm tra tính idempotent
+
+[1231] Idempotent Methods: Đảm bảo rằng các phương thức idempotent (như GET, PUT) không thay đổi trạng thái của tài nguyên nếu được gọi nhiều lần với cùng một đầu vào.
+
+[1232] Kiểm tra tích hợp (Integration Testing)
+
+[1233] Tích hợp với các hệ thống khác: Đảm bảo rằng API hoạt động đúng khi tích hợp với các hệ thống hoặc dịch vụ bên ngoài.
+
+[1234] Kiểm tra liên hệ giữa các API: Xác minh rằng các API liên quan hoạt động đúng khi được sử dụng cùng nhau.
+
+[1235] Kiểm tra lỗi và hồi phục (Error and Recovery Testing)
+
+[1236] Mô phỏng lỗi: Kiểm tra cách API xử lý khi gặp phải lỗi bất ngờ, chẳng hạn như mất kết nối hoặc lỗi hệ thống.
+
+[1237] Khả năng hồi phục: Đảm bảo rằng API có thể hồi phục sau khi gặp lỗi và tiếp tục hoạt động bình thường.
+
+[1238] Môi trường kiểm thử API
+
+[1239] Môi trường phát triển: Được sử dụng để kiểm thử API trong giai đoạn phát triển.
+
+[1240] Môi trường tích hợp: Kiểm thử API khi được tích hợp với các hệ thống khác.
+
+[1241] Môi trường sản xuất: Môi trường thật, nơi API được triển khai để kiểm thử các tình huống thực tế.
+
+[1242] Công cụ kiểm thử: Các công cụ như Postman, SoapUI, JMeter, hoặc các khung kiểm thử tự động như Rest Assured (Java), HTTPClient (Python).
+
+[1243] Mock Servers: Được sử dụng để kiểm thử các API chưa hoàn thiện hoặc chưa sẵn sàng cho môi trường kiểm thử.
+
+[1244] Postman là một công cụ mạnh mẽ giúp tạo, lưu, gửi yêu cầu HTTP và kiểm tra phản hồi API. Ngoài kiểm tra phản hồi, Postman cung cấp các tính năng như Collections để tổ chức và lưu trữ yêu cầu, Tests để kiểm tra tự động phản hồi API, và Pre-request scripts để thực hiện các thao tác trước khi gửi yêu cầu. Những tính năng này giúp tự động hóa và tối ưu hóa quy trình làm việc, nâng cao hiệu suất và độ chính xác trong kiểm thử API.
+
+[1245] Dự án và vị trí công việc
+
+[1246] Công việc tôi đã được giao là làm ra sản phẩm Wi-Fi 6 hoàn chỉnh.
+
+[1247] Vị trí làm việc: từ lắp ráp đến bao gói sản phẩm Wi-Fi 6. Khi mới đến công ty, nhiệm vụ đầu tiên của tôi là chấm công bằng máy chấm vân tay(chấm công trước 7h30 với ca sáng và trước 19h30 với ca đêm), tiếp theo tôi thay quần áo được công ty phát, đội mũ, đeo dây tĩnh điện ESD và dép chống tĩnh điện. Sau đó tôi phải ra chỗ máy kiểm tra ESD để kiểm tra xem dây tĩnh điện với dép chống tĩnh điện còn hoạt động tốt không. Khi bước vào khu vực sản xuất tôi phải đeo khẩu trang (không được mang bất kỳ dụng cụ nào từ bên ngoài vào trong dây chuyền sản xuất). Từ 11 giờ đối với ca sáng và 23 giờ đối với ca đêm các chuyền sẽ lần lượt đi ăn bữa chính; thời gian để ăn uống nghỉ ngơi ở bữa chính là 50 phút. Từ 17 giờ đối với ca sáng và 5 giờ đối với ca đêm các chuyền cũng sẽ lần lượt đi ăn bữa ăn phụ; thời gian để ăn uống nghỉ ngơi ở bữa phụ là 20 phút. Trong khi đang làm việc thì tôi được giải lao giữa giờ 2 lần 9 giờ 40 phút và 15 giờ đối với ca sáng, 22 giờ và 3 giờ đối với ca đêm; thời gian nghỉ giải lao giữa giờ là 10 phút. Một dây chuyền để chạy được bắt buộc phải có một trưởng chuyền, một kỹ thuật, một IPQC(In Process Quality Control - kiểm soát chất lượng quá trình sản xuất), còn công nhân trực tiếp tùy theo kế hoạch sản lượng từng ngày. Trước khi vào chuyền phải tuân thủ đúng SO__P__ Để đụng vào mạch ta cần: găng tay, vòng tĩnh điện, mũ, quần áo, dép chống tĩnh điện. DIP là công đoạn mạch trấn để cắm linh kiện đầy đủ cho một bản mạch, sau khi cắm ok chuyển qua hàn thiếc, cuối sẽ có người kiểm tra thiếu linh kiện hoặc thiếc chưa ăn chân cắm thì sửa lại, sau khi kiểm tra mạch ok ta sẽ chuyển đến trạm test “Turn on Wi-Fi” -> trạm test “Wi-Fi” -> trạm test “FUNCTION”: test TX và RX -> trạm test “CHECK” -> dán tản nhiệt cắm Bơr(thờigian đủ -> ok) -> chuyển lên ASM. Sản phẩm em được đào tạo 040NS(Wi-Fi 6), với sản lượng 3,000; công nhân trực tiếp trên truyền là 30 công nhân + 1 trưởng chuyền(leader). Để chạy được 1 dây chuyền từ ASM -> test -> PKG phải có 1 kỹ thuật, 1 trưởng chuyền và 1 IPQC. ASM: Khi được phân công vào vị trí làm việc phải luôn luôn tuân thủ ESD. Làm đúng theo hướng dẫn thao tác của SO__P__ Trước khi chuyển mạch cùng với vật tư vào dây chuyền, IPQC sẽ đi check mạch với vật tư. Nếu mã vật tư khớp với mã sản phẩm mình đang chạy thì chạy truyền làm việc. IPQC cùng với kỹ thuật sẽ đi check tất cả các trạm và xác nhận cùng trưởng chuyền, các trạm ok mới được làm. Ngoại quan vật tư với mạch xem có vỡ đèn, sứt mẻ, xước vỏ, lồi lõm; cắm Ăng-ten vào vỏ dưới. Khớp mạch vào vỏ dưới, bắn tem đáy, dán SIP cùng tản nhiệt, đậy nắp trên, bắn vít ok rồi chuyển đến công đoạn test. Các công đoạn test ASM: test Wi-Fi -> test chức năng(Function): nạp FirmWare, FirmWare TM( FirmWare thương mại) -> công đoạn cuối cùng của trạm test: Check. Ok thì chuyển xuống PKG. PKG hay còn gọi là đóng gói sản phẩm: Ngoại quan sản phẩm bẩn, bụi, xước vỏ -> loại bỏ. Vệ sinh sản phẩm sạch sẽ tiến hành dán tem khách hàng, tem HardWare và tem bảo hành -> cho sản phẩm vào túi bóng -> bắn tem xuất xứ ok -> ta bao gói(đặt đúng chiều quy định của sản phẩm) -> bắn tem thùng đã ok -> chuyển sang công đoạn sau (FQC).
+
+[1248] Nhật ký thực tập
+
+[1249] Tuần thứ 1(từ ngày 07 tháng 11 đến ngày 09 tháng 11)
+
+[1250] Ngày
+
+[1251] Công việc
+
+[1252] 07/11 - 09/11
+
+[1253] Tôi được cô Bùi Thị Hiện-trưởng chuyền đào tạo công việc được gọi là ở trạm test mở của dây chuyền sản xuất sản phẩm Wi-Fi 6, trạm kiểm test có tên là “TURN ON WI-FI”.
+
+[1254] Khi làm ở trạm gồm 4 bước như sau:
+
+[1255] Bước 1: Ta lấy khay sản phẩm wi-fi 6 vừa được lắp ráp xong, ta vuốt râu lên thẳng đứng để dễ cắm dây nguồn. Một khay sản phẩm sẽ dao động từ 10 đến 12 sản phẩm wi-fi 6.
+
+[1256] Bước 2: Ta lấy dây nguồn cắm vào sản phẩm lần lượt theo thứ tự từ bên trên xuống hoặc từ bên dưới lên, lúc này đèn nguồn và đèn los sẽ sáng.
+
+[1257] Bước 3: Sau khi cắm dây nguồn tầm 10 giây ta sẽ cắm dây lan vào sản phẩm (cắm vào bất kỳ lan nào từ lan 1 đến lan 4 cũng đều được). Lúc này chương trình sẽ bắt đầu chạy: - Sau khi cắm dây lan vào khoảng 3 đến 5 giây, màn hình chương trình sẽ xuất hiện chữ “NONE” và địa chỉ “MAC” của sản phẩm mình đang cắm. - Sau khi chạy xong chương trình thì kết quả sẽ được trả ra là chữ “PASS”, lúc này ta sẽ chuyển sang sản phẩm tiếp theo cho đến khi ta cắm dây lan vào hết tất cả các sản phẩm trong khay. Nếu giá trị kết quả trả về là “FAIL” thì ta sẽ cắm vào sản phẩm ngay sau nó trong khay đợi kết quả “PASS” rồi quay lại cắm nó.
+
+[1258] Bước 4: Kiểm tra xem đèn 2.4G và đèn 5G có sáng hết không. Nếu sáng đầy đủ ta thả ra chuyền để đến chạm tiếp theo, còn nếu đèn không sáng thì ta cắm lại từ đầu cho đến khi đèn sáng thì dừng. Trong trường hợp bị ùn hàng trạm sẽ bỏ qua bước 4 và thả thẳng ra dây chuyền sản xuất.
+
+[1259] Lưu ý: Thời gian chạy chương trình ở trạm “TURN ON Wi-Fi” của một sản phẩm dao động từ 3.60 giây đến 3.62 giây.
+
+[1260] __CAPTION__SOP của trạm TURN ON WI-FI của mesh6
+
+[1261] Tuần thứ 2( từ ngày 10 tháng 11 đến ngày 16 tháng 11)
+
+[1262] Ngày
+
+[1263] Công việc
+
+[1264] 10/11 - 16/11
+
+[1265] Tôi được cô Kiều Thị Thịnh-trưởng chuyền đưa vào phòng sạch để làm điều khiển. Công việc của em là bóc vỏ điều khiển, gắn cơm và bao gói điều khiển.
+
+[1266] Quy trình bóc vỏ điều khiển gồm 2 bước:
+
+[1267] Bước 1: Ta đi lấy khay có giấy bóng xốp màu đỏ để đựng vỏ ở mặt trước điều khiển, một thùng to để đựng vỏ ở mặt sau của điều kiển, giấy bóng xốp màu trắng và một thùng to để đựng túi của vỏ điều khiển.
+
+[1268] Bước 2: Khay có giấy bóng xốp màu đỏ gồm 2 hàng và 5 cột, ta lấy vỏ điều khiển từ túi đựng vỏ điều khiển rồi đặt vào trong khay. Túi vỏ điều khiển gồm có 2 phần là vỏ ở mặt trước để nắp các nút bấm và vỏ ở mặt sau để che pin. Mặt trước của vỏ điều khiển sẽ được úp trực tiếp vào khay còn mặt sau của vỏ điều kiển được xếp vào thùng to. Sau mỗi lớp mặt sau của vỏ điều khiển ta sẽ lót vào một lớp giấy bóng xốp màu trắng vào. Túi đúng vỏ điều khiển ta sẽ xếp theo một chiều vào chiếc thùng to còn lại.
+
+[1269] * Công dụng của lớp giấy bóng xốp: giúp cho sản phẩm của chúng ta không bị xước vỏ. Khi nào ta thấy khay vỏ mặt trước của điều khiển đầy thì ta sẽ gắn cơm cùng với mọi người. Sau đó, em đã được làm công việc bao gói điều khiển cụ thể là dán băng dính vào túi đựng một sản phẩm điều khiển đã hoàn thành xong. Khi dán ta sẽ phải kiểm tra xem túi có hình ảnh đúng không, kiểm tra sem có sách hướng dẫn không. Nếu có đầy đủ thì ta sẽ dán băng dính để đưa đến phân đoạn tiếp theo, còn không thì ta đưa trả lại cho bên trên để họ sửa lại.
+
+[1270] Một số lỗi khi làm việc ở công đoạn:
+
+[1271] + Vỏ điều khiển bị xước
+
+[1272] + Mất lò xo
+
+[1273] Tuần thứ 3(từ ngày 17 tháng 11 đến ngày 23 tháng 11)
+
+[1274] Ngày
+
+[1275] Công việc
+
+[1276] 17/11 - 23/11
+
+[1277] Tôi được cô Nguyễn Thị Hà-công nhân công ty đào tạo công việc tiếp theo được gọi là trạm test Ăng-ten, trạm test có tên là “WI-FI”.
+
+[1278] Công việc của trạm gồm 3 bước:
+
+[1279] Bước 1: Ta cắm dây nguồn vào 3 đến 4 sản phẩm tùy thuộc vào trạm đó có bao nhiêu dây nguồn. Ta đợi đèn nguồn, đèn los, đèn 2.4G và đèn 5G sáng thời gian đợi đèn sáng đủ sẽ mất 40 giây.
+
+[1280] Bước 2: Sau khi lên đủ 4 đèn ta đặt sản phẩm vào khung để chương trình chạy. Sau khoảng 3 đến 5 chương trình bắt đầu chạy, chương trình sẽ đưa ra kết quả “PASS” hoặc “FAIL”. Nếu kết quả chương trình “FAIL” ta sẽ tắt nguồn đi và bật lại đợi lên đủ 4 đèn thì ta test lại 1 lần nữa. Nếu kết quả test lại vẫn báo “FAIL” thì ta chuyển sang trạm Wi-Fi khác.
+
+[1281] Bước 3: Những sản phẩm “PASS” ta sẽ đặt 3 sản phẩm thành 1 trồng, giữa mỗi sản phẩm ta phải lót một lớp giấy bóng xốp màu đỏ ở giữa để chống bị xước vỏ rồi thả ra dây truyền để sản phẩm đến với trạm test tiếp theo.
+
+[1282] Lưu ý: Thời gian chạy chương trình ở trạm “TURN ON Wi-Fi” của một sản phẩm dao động từ 19 giây đến 38 giây.
+
+[1283] Một số lỗi ở công đoạn này:
+
+[1284] + Đèn nguồn không sáng, sáng mờ
+
+[1285] + Đèn 2.4G không sáng, sáng mờ
+
+[1286] + Đèn 5G không sáng, sáng mờ
+
+[1287] + Đèn Lan 1, Lan 2, Lan 3, Lan 4 không sáng, sáng mờ
+
+[1288] + Lỗi Ang-ten 1-2.4GHz
+
+[1289] + Lỗi Ang-ten 1-5GHz
+
+[1290] + Lỗi David Connected
+
+[1291] __CAPTION__SOP của trạm Wi-Fi của mesh6
+
+[1292] Tuần thứ 4(từ ngày 24 tháng 11 đến ngày 30 tháng 11)
+
+[1293] Ngày
+
+[1294] Công việc
+
+[1295] 24/11 - 30/11
+
+[1296] Công việc mà em được thực hiện cũng là công việc test thứ 2 của dây chuyền sản xuất được gọi là “FUNCTION”, trạm có tên là “TOOL TEST FUNCTION ASM FOR ONT - GW040NS”.
+
+[1297] Công việc ở trạm gồm có 5 bước:
+
+[1298] Bước 1: Ta cắm dây nguồn vào 3 đến 4 sản phẩm tùy thuộc vào trạm đó có bao nhiêu dây nguồn. Ta đợi đèn nguồn, đèn los, đèn 2.4G và đèn 5G sáng thời gian đợi đèn sáng đủ sẽ mất 40 giây.
+
+[1299] Bước 2: Sau khi 4 đèn lên đủ ta bắt đầu cắm dây lan vào. Ở trạm test “FUNCTION” ta sẽ cắm dây lan vào đúng lan 1 và lan 2 của sản phẩm. Lúc này đèn LAN 1 và LAN 2 sẽ sáng. Khi sản phẩm của chúng ta đã lên đủ 6 đèn, ta sử dụng máy quét để quét mã của sản phẩm; ta quét lần lượt từ chỗ có biểu tượng logo của công ty sau đó ta cắm dây quang vào sản phẩm. Lúc này chương trình sẽ nạp “FirmWare”, ”FirmWare TM”(FirmWare thương mại), “HardWare”, “HardWare TM”(HardWare thương mại), “Cổng xuất quang TX”, “Cổng xuất quang RX”.
+
+[1300] Bước 3: Khi chương trình chạy đến LED đồng thời bảng kiểm tra đèn sẽ xuất hiện, lúc này ta phải kiểm tra 8 đèn của sản phẩm(đèn nguồn, đèn PON, đèn LOS, đèn ENET, đèn LAN 1, đèn LAN 2, đèn 2.4G và đèn 5G) có sáng không rồi mới nhấn vào nút “đồng ý”.
+
+[1301] Bước 4: Sau khi kích chuột vào nút đồng ý ta sẽ thấy bảng kiểm tra nút “WPS” xuất hiện, ta nhấn giữ nút “WPS” khoảng 1 giây rồi thả ra; lúc này bảng kiểm tra nút “WLAN” sẽ xuất hiện, ta tiếp tục nhấn giữ nút “WLAN” khoảng 1 giây rồi thả ra; bảng cuối cùng cũng là bảng kiểm tra nút “RESET” xuất hiện, ta dùng cây chọc reset để chọc vào nút “RESET”, ta cũng giữ khoảng 1 giây rồi thả ra.
+
+[1302] Bước 5: Chương trình sẽ chạy và trả về kết quả “PASS”cho sản phẩm mà chúng ta đang test, sau đó ta dóng cổng quang vào là xong. Ta làm được 3 sản phẩm rồi để thành 1 chồng, giữa các sản phẩm sẽ có một lớp lót bằng giấy bóng xốp màu đỏ giúp sản phẩm không bị xước và thả ra truyền để sản phẩm xuống trạm tiếp theo. Nếu chương trình đưa ra kết quả “FAIL” thì ta sẽ quét lại sản phẩm thêm một lần nữa để thực hiện lại từ đầu. Một số lưu ý nếu test lại lần thứ 2 ở bước 5 mà kết quả vẫn báo “FAIL” và cách ghi lỗi ở trạm “FUNCTION”:
+
+[1303] - Giá trị nhỏ nhất của công suất quang TX là: 1.5
+
+[1304] - Giá trị lớn nhất của công suất quang TX là: 3.5
+
+[1305] - Giá trị nhỏ nhất của công suất quang RX là: -30
+
+[1306] - Giá trị lớn nhất của công suất quang RX là: -25
+
+[1307] - Khi cắm dây nguồn vào đèn 2.4G và 5G không sáng ta mang lên cho trạm “TURN ON WI-FI” test lại. - Khi đèn 5G lên mà 2.4G không lên thì ta ghi lỗi là “2.4G không sáng” và khi đèn 2.4G lên mà đèn 5G mãi không lên thì ta ghi “5G không sáng”.
+
+[1308] - Khi đèn LOS không lên đèn thì ta ghi lỗi là “LOS không sáng” và lâu lâu sẽ có những con đèn LOS sáng nhưng không phải màu đỏ thì ta cũng sẽ phải bắt lỗi. Ví dụ như trong lúc em làm thì có gặp một con đèn LOS có màu xanh lá cây (như các đèn khác của sản phẩm) chứ không phải màu đỏ như bình thường của sản phẩm. Lúc này ta sẽ ghi lỗi là “LOS sai màu đèn”. - Khi đèn nguồn không sáng thì ta ghi lỗi là “nguồn không sáng”.
+
+[1309] - Khi ta cắm dây lan vào LAN 1 và LAN 2; nếu đèn LAN 1 không sáng thì ta sẽ ghi lỗi là “LAN 1 không sáng”; nếu đèn LAN 2 không sáng thì ta sẽ ghi lỗi là “LAN 2 không sáng”.
+
+[1310] - Khi cắm dây quang vào sản phẩm mà đèn los không mất (đèn los vẫn còn màu đỏ) thì ta ghi lỗi là “LOS không tắt”; nếu cắm dây quang vào đèn los tắt mà đèn PON không lên thì ta ghi lỗi là “PON không sáng”; nếu cắm dây quang vào đèn los mà đèn PON sáng xanh, đèn los cũng sáng xanh thì ta ghi lỗi “LOS không tắt” hoặc “LOS sáng xanh”. Lưu ý: Thời gian chạy chương trình ở trạm “TURN ON Wi-Fi” của một sản phẩm dao động từ 38 giây đến 98 giây.
+
+[1311] __CAPTION__SOP của trạm Function của mesh6
+
+[1312] Tuần thứ 5(từ ngày 01 tháng 12 đến ngày 07 tháng 12)
+
+[1313] Ngày
+
+[1314] Công việc
+
+[1315] 01/12 - 07/12
+
+[1316] Tôi vẫn thực hiện công việc test của mình ở trạm “Tool Test Function ASM For ONT - GW040NS”. Nhưng lúc này em được cô Nguyễn Thị Nội dạy cách test những sản phẩm bị “FAIL” ở “FIRMWARE” hoặc ở “SWITCH BANK”.
+
+[1317] Để làm những sản phẩm này ta thực hiện theo 2 bước:
+
+[1318] Bước 1: Ta lấy dây nguồn cắm vào sản phẩm bị “FAIL” đó, lưu ý ta chỉ được cắm dây nguồn cho một mình nó.
+
+[1319] Bước 2: Sau khoảng 10 giây đèn nguồn và đèn LOS sẽ lên đầy đủ ta cắm dây lan vào LAN 1 và LAN 2. Lúc này cả 4 đèn(đèn nguồn, đèn LOS, đèn LAN 1 và đèn LAN 2) sẽ sáng. Ta vào “TEST ONE” sau đó ta tìm “SWITCH BANK” chọn “SWITCH BANK 0” chương trình sẽ chạy và cho ra 2 kết quả:
+
+[1320] + Nếu kết quả báo không phải lỗi ở basic{0} thì ta chọn sang “FIRMWARE”, chọn “kiểm tra FIRMWARE”. Nếu kết quả của chương trình cho ra “PASS” thì ta đợi nốt đèn 2.4G và đèn 5G lên đủ rồi test “FUNCTION” lại từ đầu. Nếu kết quả cho ra “FAIL” thì ta nhấn 1 lần nữa vào “kiểm tra FIRMWARE”, nếu nhấn lại rồi mà kết quả vẫn “FAIL” thì ta tắt nguồn đi và làm lại từ đầu.
+
+[1321] + Nếu kết quả báo basic thành công thì ta nhấn vào chữ “OK” xuất hiện giữa màn hình, sau đó ta lấy cây chọc reset ta chọc vào nút “RESET” và nhìn đèn PON, đèn LOS với đèn ENET. Thời gian giúp ta nhận biết giữ nút “RESET” đến khi nào thả bằng việc ta nhìn 3 đèn(đèn PON, đèn LOS, đèn ENET) nháy lên từ 7 đến 10 lần. Khi nháy đủ thời gian ta sẽ nhấn nút nguồn 2 lần liên tiếp để tắt ngồn đi và bật lại. Sau khoảng 15 giây thì 4 đèn(đèn nguồn, đèn LOS, đèn LAN 1 và đèn LAN 2) sẽ sáng, ta chọn sang “FIRMWARE” và chọn “kiểm tra FIRMWARE”. Nếu kết quả của chương trình cho ra “PASS” thì ta đợi nốt đèn 2.4G và đèn 5G lên đủ rồi test “FUNCTION” lại từ đầu. Nếu kết quả cho ra “FAIL” thì ta nhấn 1 lần nữa vào “kiểm tra FIRMWARE”, nếu nhấn lại rồi mà kết quả vẫn “FAIL” thì ta tắt nguồn đi và làm lại từ đầu.
+
+[1322] Lưu ý: Khi sản phẩm test lại lần thứ 2 mà không được ta sẽ chuyển sang trạm sửa lỗi để xóa dữ liệu của mạch sản phẩm. Sau khi xóa toàn bộ dữ liệu của sản phẩm trên website ta sẽ test lại bắt đầu từ trạm “Wi-Fi”.
+
+[1323] Tuần thứ 6(từ ngày 08 tháng 12 đến ngày 14 tháng 12)
+
+[1324] Ngày
+
+[1325] Công việc
+
+[1326] 08/12 - 11/12
+
+[1327] Tôi được cô Nguyễn Thị Thủy đào tạo làm việc ở trạm test trong Smart Box. Tên của sản phẩm là “MY TV” và em là ở trạm test mạch mạng.
+
+[1328] Công việc làm ở trạm này gồm 2 bước:
+
+[1329] Bước 1: Ta cắm dây nguồn, dây LAN và dây kết nối giữa sản phẩm với màn hình máy tính.
+
+[1330] Bước 2: Đợi tầm 40 giây cho sản phẩm bắt được mạng; ta dùng điều khiển chọn ngôn ngữ “Tiếng Việt”, tiếp theo ta vào cài đặt chung rồi vào ứng dụng hệ thống và vào ứng dụng “YOUTUBE”, sau đó ta nghe một bài hát hay xem một bộ phim bất kỳ; ta xem khoảng 15 giấy/sản phẩm là được. Sau đó ta chuyển sang trạm tiếp theo.
+
+[1331] Lưu ý: Sản phẩm chỉ cần bắt được mạng và cảm nhạc trên youtube là đạt.
+
+[1332] 12/12 - 14/12
+
+[1333] Tôi được chị Lê Thị Thủy Tiên-trưởng chuyền đào tạo làm việc ở dây truyền sản xuất điều khiển, trạm em làm có trên là trạm “NẠP”.
+
+[1334] Trạm em làm gồm 2 bước:
+
+[1335] Bước 1: Ta lấy khay mạch gồm 4 con mạch ta đặt vào máy dập; ta dập máy xuống và kích chuột vào nút “Programing Protected”.
+
+[1336] Bước 2: Lúc này chương trình sẽ chạy khoảng 5 đến 8 giây. Kết quả trả về “màu xanh lá”-được coi là “PASS”; ta sẽ dùng bút dạ ghi chữ “E” lên mạch rồi thả ra truyền, nếu kết quả trả về “màu đỏ”-được coi là “FAIL” thì ta sẽ nạp lại mạch đó rồi thả ra truyền.
+
+[1337] Lưu ý cứ sau 2 giờ đồng hồ ta phải ký tên vào tờ giấy ở trạm nạ__P__
+
+[1338] Tuần thứ 7(từ ngày 15 tháng 12 đến ngày 21 tháng 12)
+
+[1339] Ngày
+
+[1340] Công việc
+
+[1341] 15/12 - 21/12
+
+[1342] Công việc tiếp theo mà em được cô Bùi Thị Mùi đào tạo là test ở trạm thứ 4 cũng là trạm test cuối cùng của dây chuyền, trạm có tên là trạm “CHECK”.
+
+[1343] Công việc ở trạm này gồm 3 bước:
+
+[1344] Bước 1: Ta cắm dây nguồn vào sản phẩm đã được test “FUNCTION”; sau đó ta đợi 4 đèn(đèn nguồn, đèn LOS, đèn 2.4G và đèn 5G) sáng ta cắm dây lan vào LAN 3 và LAN 4.
+
+[1345] Bước 2: Lúc này chương trình sẽ tự chạy, khi chương trình chạy đến LED vào xuất hiện bảng thông báo ta nhìn xem đèn LAN 3 và LAN 4 có sáng không. Nếu nó sáng thì ta nhấn “OK” xong đợi đèn mất hết trừ đèn nguồn là được. Sau đó ta dán team của nó và “HARDWARE” ở mặt sau của sản phẩm Wi-Fi 6 rồi thả ra truyền cho xuống bao gói. Nếu đèn nguồn cũng mất luôn thì ta đánh lỗi là “khởi động chậm”; nếu đèn LAN 3 hoặc LAN 4 không sáng thì ta đánh lỗi “LAN 3 hoặc LAN 4 không sáng”. Nếu chương trình báo “FAIL 3” thì ta chuyển sang trạm check khác, còn nếu báo ở “FAIL 1” hoặc “FAIL2” ta đưa lên cho trạm “FUNCTION” test lại.
+
+[1346] __CAPTION__SOP của trạm Check của mesh6
+
+[1347] Tuần thứ 8(từ ngày 22 tháng 12 đến ngày 28 tháng 12)
+
+[1348] Ngày
+
+[1349] Công việc
+
+[1350] 22/12 - 28/12
+
+[1351] Tuần cuối cùng, cũng là tuần mà tôi cảm thấy bản thân mình rất may mắn khi được các anh/chị trưởng QC đào tạo cách sửa chữa những con hàng lỗi mạch về cả phần cứng và phần mềm.
+
+[1352] Về phần cứng có một vài sản phẩm bị lỗi như LOS không tắt, PON không sáng, lệch quang(cổng quang lắp bị lệch không cắm được dây quang), thụt quang(cổng quang bị thụt hẳn vào bên trong), ngược quang(cổng quang bị lắp ngược), dị vật(khi cầm sản phẩn lên bên trong sản phẩm có một vài tiếng kêu lạ), LOS không sáng, 2.4G không sáng, 5G không sáng, nguồn không sáng ta sẽ tháo vít ra và sửa chúng luôn.
+
+[1353] Về phần mềm, có những con mạch sau khi “SWITCH BANK” và “kiểm tra FIRMWARE” khi test lại từ đâu trạm “FUNCTION” bị treo(tool không chạy nữa, nó đứng im một chỗ). Lúc này ta phải vào bên trong chỗ sửa mạch, lên web để xóa dữ liệu của con mạch đó đi, sau đó ta đem ra test lại từ đầu bình thường.
+
+[1354] __HEADING__PHẦN 3KẾT LUẬN__ENDHEADING__
+
+[1355] Thực tập là một quá trình không thể thiếu đối với mỗi sinh viên. Vì đây chính là lúc đem kiến thức đã học trong nhà trường để đối chiếu với thực tế, từ đó giúp cho em hiểu được nhiều vấn đề thường phát sinh trong thực tế mà lý thuyết không đề cập tới. Ngoài ra, Công nghệ thông tin là một trong những ngành có nhiều lĩnh vực hoạt động và ứng dụng mới nhất, nếu chỉ phụ thuộc vào lý thuyết học được trong sách vở là không đủ, còn phải tìm hiểu trong thực tế để trau dồi kiến thức.
+
+[1356] Trong suốt đợt thực tập tại công ty VNPT Technology, em đã thu nhận được rất nhiều kiến thức, kỹ năng và kinh nghiệm quý báu. Đầu tiên, về mặt kiến thức chuyên môn, em đã hiểu rõ hơn về các khái niệm và quy trình sản xuất Công nghệ thông tin và Viễn thông. Em có cơ hội tiếp xúc với các hệ thống và công nghệ hiện đại, học cách ứng dụng các lý thuyết đã học vào thực tế, từ đó nâng cao hiểu biết và năng lực chuyên môn của mình.
+
+[1357] Ngoài ra, em cũng rèn luyện được nhiều kỹ năng quan trọng. Kỹ năng giải quyết vấn đề đã được cải thiện đáng kể khi em phải tìm ra các giải pháp hiệu quả cho những vấn đề phát sinh trong quá trình làm việc. Em cũng học được cách làm việc nhóm hiệu quả, biết cách phân công công việc, phối hợp với đồng nghiệp để hoàn thành nhiệm vụ chung. Kỹ năng giao tiếp của em cũng được nâng cao khi phải trình bày ý kiến, trao đổi với cấp trên cũng như đồng nghiệ__P__
+
+[1358] Kinh nghiệm thực tế mà em tích lũy được từ đợt thực tập này là rất quan trọng. Em đã học cách quản lý thời gian và công việc một cách hiệu quả, biết ưu tiên những nhiệm vụ quan trọng và hoàn thành chúng đúng hạn. Em cũng rèn luyện tính kỷ luật và trách nhiệm trong công việc, luôn đảm bảo chất lượng công việc cao nhất. Đồng thời, em cũng được tiếp xúc với môi trường làm việc chuyên nghiệp, giúp em tự tin hơn khi bước vào thị trường lao động.
+
+[1359] Qua đợt thực tập tại VNPT Technology không chỉ giúp em củng cố kiến thức chuyên môn mà còn phát triển kỹ năng và kinh nghiệm thực tế, là hành trang quý báu cho sự nghiệp tương lai của em. Những trải nghiệm này sẽ giúp em tự tin hơn trong công việc và định hướng rõ ràng hơn cho con đường sự nghiệp sắp tới.
+
+[1360] Qua quá trình thực tập tại Công ty VNPT Technology em đã học hỏi được rất nhiều kiến thức, kinh nghiệm quý báu nhưng bên cạnh đó em có những ý kiến riêng của bản thân mình:
+
+[1361] Về phía nhà trường: Theo em nhà trường lên để học phần “Thực tập kỹ thuật” kéo dài tối thiểu từ 3 tháng trở lên để sinh viên có thể học hỏi thêm nhiều hơn về kiến thức thực tế tại doanh nghiệp cũng như tích lũy được thêm kinh nghiệm làm việc.
+
+[1362] Do thời gian thực tập có hạn và còn thiếu kinh nghiệm nên báo cáo của em còn nhiều thiếu sót. Vì vậy, em rất mong nhận được sự chỉ bảo, giúp đỡ của các thầy cô để em có thể hoàn thiện tốt hơn.
+
+[1363] Một lần nữa em xin chân thành cảm ơn quý thầy cô trong khoa Công nghệ thông tin của trường Đại học Công nghiệp Việt-Hung, ban Giám đốc, đốc công Nguyễn Anh Tuấn, trưởng chuyền Bùi Thị Hiện và cán bộ, công nhân công ty VNPT Technology đã giúp đỡ chỉ bảo tận tình cho em, giúp em hoàn thành tốt báo cáo này.
+
+[1364] Em xin chân thành cảm ơn!
+
+[1365] TÀI LIỆU THAM KHẢO
+
+[1366] P__TS__ Nguyễn Bá Hào và Hoàng Kiếm, 1975, Tìm hiểu máy tính điện tử, Nhà xuất bản Khoa học và Kỹ thuật.
+
+[1367] __GSTS__ Nguyễn Thúc Hải, 2005, Kiến trúc máy tính, Nhà xuất bản Giáo dục.
+
+[1368] __TS__ Nguyễn Văn Hiệp, 2012, Vi xử lý và ứng dụng, Nhà xuất bản Bách khoa Hà Nội.
+
+[1369] __TS__ Phạm Huy Hoàng, 2019, Thiết kế mạng Intranet, NXB Bách khoa Hà Nội.
+
+[1370] Bộ Công Thương, 2020, Quy chuẩn kỹ thuật quốc gia về an toàn điện tử, NXB Khoa học và Kỹ thuật.

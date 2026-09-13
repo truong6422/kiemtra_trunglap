@@ -1,0 +1,1123 @@
+/*PHần header*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #ffffff;
+    color: white;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    padding: 10px 50px;
+}
+
+.menu-container {
+    display: flex;
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    justify-content: space-between;
+    /* Đẩy chữ sang bên phải */
+    width: 100%;
+    /* Cho khối chiếm toàn chiều ngang */
+}
+
+.logo {
+    display: flex;
+    /* Cho ảnh và chữ nằm ngang */
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    gap: 30px;
+    /* Khoảng cách giữa ảnh và chữ */
+}
+
+.logo p {
+    margin: 0;
+    text-decoration: none;
+    color: #0655FF;
+    font-weight: bold;
+    font-size: 20px !important;
+    /* Cùng kích thước 20px với menu */
+    white-space: nowrap;
+    /* Giữ trên 1 hàng ngang */
+}
+
+.menu img {
+    width: 100px;
+    /* Tăng kích thước ảnh */
+    height: auto;
+    /* Giữ tỷ lệ vuông để không méo */
+    border-radius: 50%;
+    /* Bo tròn ảnh, loại bỏ viền vuông */
+    object-fit: cover;
+    /* Giữ phần trung tâm, cắt viền trắng */
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    /* Căn giữa các mục trong danh sách */
+}
+
+.menu a {
+    text-decoration: none;
+    color: #0655FF;
+    font-weight: bold;
+    font-size: 20px !important;
+    /* Cùng kích thước 20px */
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+.menu a:hover {
+    color: red;
+}
+
+
+/* Container nút Tài khoản */
+.user-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.user-avatar-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: background 0.2s ease;
+}
+
+.user-avatar-btn:hover {
+    background-color: rgba(0, 123, 255, 0.08);
+}
+
+.user-avatar-btn img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #007bff;
+}
+
+.user-avatar-btn span {
+    font-weight: bold;
+    color: #0655FF;
+    font-size: 20px !important;
+    /* Cùng kích thước 20px */
+}
+
+.menu-container,
+.logo,
+.menu ul,
+.menu ul li,
+.user-avatar-btn {
+    display: flex !important;
+    align-items: center !important;
+    /* Căn thẳng trục dọc */
+}
+
+/*.dropdown-arrow {
+    font-size: 12px;
+    color: #666;
+    transition: transform 0.2s ease;
+}*/
+.dropdown-arrow {
+    font-size: 14px;
+    color: #0655FF;
+}
+
+.user-dropdown-container.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* Khung Menu Dropdown */
+.user-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background-color: #ffffff;
+    min-width: 200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 8px 0;
+    z-index: 1000;
+}
+
+.user-dropdown-menu.show {
+    display: block;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Các mục Menu */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 18px;
+    color: #333333 !important;
+    /* Mặc định chữ & icon màu tối */
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+/* Chỉ khi Di chuột (Hover) mới chuyển màu xanh */
+.dropdown-item:hover {
+    background-color: #f0f7ff;
+    color: #007bff !important;
+}
+
+.dropdown-item:hover i {
+    color: #007bff !important;
+}
+
+.dropdown-item i {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+    color: #555555;
+    transition: color 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* Hiển thị dropdown khi HOVER vào container */
+.user-dropdown-container:hover .user-dropdown-menu {
+    display: block;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Xoay mũi tên khi HOVER */
+.user-dropdown-container:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+/* Đổi màu nền nút khi HOVER */
+.user-dropdown-container:hover .user-avatar-btn {
+    background-color: rgba(0, 123, 255, 0.08);
+}
+
+/* Tạo khoảng đệm ẩn giúp chuột di chuyển xuống menu không bị mất hover */
+.user-dropdown-menu::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+}
+
+
+/* Thu hẹp khoảng cách giữa 3 mục */
+.user-dropdown-menu .dropdown-item {
+    padding: 10px 16px !important;
+    /* Giảm chiều cao trên/dưới xuống còn 6px */
+    line-height: 1.2 !important;
+    /* Reset line-height cũ không cho bị giãn dòng */
+    margin: 0 !important;
+    /* Xóa margin thừa nếu có */
+    min-height: unset !important;
+    /* Xóa chiều cao tối thiểu thừa */
+}
+
+/* Khung viền ngoài bao quanh menu */
+.user-dropdown-menu {
+    padding: 10px 0 !important;
+    /* Giảm lề trên/dưới của toàn bộ khung */
+}
+
+
+
+/*Phần main trang chủ*/
+.classroom-main {
+    text-align: center;
+    padding: 60px 80px;
+    background-color: #f9fafc;
+}
+
+.empty-class {
+    margin-bottom: 50px;
+}
+
+.empty-img {
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.empty-class h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.create-btn,
+.join-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.create-btn {
+    background-color: #e8f0ff;
+    color: #0655FF;
+}
+
+.join-btn {
+    background-color: #0655FF;
+    color: white;
+}
+
+/* Phần mô tả Classroom */
+.desc {
+    font-size: 18px;
+    color: #555;
+    max-width: 100%;
+    margin: 0 auto 40px auto;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* Đảm bảo dòng chữ nằm trên cùng một hàng */
+.desc span {
+    display: inline;
+    white-space: nowrap;
+}
+
+/* Phần 4 icon và gạch ngang */
+.steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 40px 100px;
+}
+
+.step {
+    text-align: center;
+    flex: 1;
+    padding: 0 20px;
+}
+
+/* Icon và đường nối */
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.icon-wrapper i {
+    font-size: 24px;
+    color: #0655FF;
+    margin: 0 15px;
+    z-index: 1;
+}
+
+/* Đường nối giữa các icon */
+.icon-wrapper .line {
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 20px);
+    transform: translateY(-50%);
+    width: 250px;
+    height: 1px;
+    background-color: #0655FF;
+    z-index: 0;
+}
+
+/* Tiêu đề màu xanh */
+.step h4 {
+    color: #0655FF;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+/* Mô tả bên dưới */
+.step p {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 260px;
+}
+
+/* Phần “Vì sao nên sử dụng…” */
+.classroom-benefits {
+    margin-top: 50px;
+    text-align: justify;
+    max-width: 1400px;
+    margin-right: auto;
+    line-height: 1.6;
+    margin-left: 450px;
+}
+
+.classroom-benefits h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.classroom-benefits ul {
+    list-style: none;
+    padding: 0;
+}
+
+.classroom-benefits li {
+    font-size: 16px;
+    color: #222;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.classroom-benefits i {
+    color: #0655FF;
+    font-size: 18px;
+}
+
+/*Phần footer trang chủ*/
+footer {
+    background-color: #012541;
+    /* Màu xanh thương hiệu */
+    padding: 30px 60px;
+    display: flex;
+    justify-content: space-between;
+    /* Chia đều hai bên */
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.footer-left {
+    max-width: 60%;
+    margin-left: 150px;
+}
+
+.footer-left h4 {
+    color: #FFD700;
+    /* Màu vàng nổi bật */
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.footer-left p {
+    margin: 5px 0;
+    line-height: 1.6;
+}
+
+.footer-right {
+    text-align: right;
+    margin-top: 10px;
+    margin-right: 150px;
+}
+
+.footer-right a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 15px;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.footer-right a:hover {
+    color: red;
+}
+
+.icons {
+    margin-top: 15px;
+    margin-right: 6px;
+}
+
+.icons i {
+    font-size: 20px;
+    margin-left: 10px;
+    color: #fff;
+    /* Màu biểu tượng trắng */
+    background-color: #0655FF;
+    /* Nền xanh đồng bộ */
+    transition: 0.3s;
+    border-radius: 50%;
+    /* Bo tròn icon */
+    border: none;
+    box-shadow: none;
+    padding: 10px;
+    /* Tạo khoảng cách đều */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icons i:hover {
+    transform: scale(1.3);
+    color: red;
+    background-color: white;
+}
+
+.hotline-one {
+    padding-top: 15px;
+    padding-right: 150px;
+}
+
+.hotline-two {
+    padding-top: 15px;
+    padding-right: 32px;
+}
+
+/* --- HIỆU ỨNG HOVER CHO 2 NÚT --- */
+.empty-class .create-btn {
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.empty-class .create-btn:hover {
+    background-color: #f6fafe;
+    border-color: #c2dbff;
+}
+
+.empty-class .join-btn {
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.empty-class .join-btn:hover {
+    background-color: #1557b0;
+    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.3), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
+}
+
+/* --- GIAO DIỆN MODAL FORM LỚN CHUẨN MẪU --- */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-box-large {
+    background-color: #fff;
+    width: 1200px;
+    max-width: 95%;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modal-header-large {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    position: relative;
+}
+
+.modal-header-large h3 {
+    font-size: 22px;
+    color: #202124;
+    font-weight: 400;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+}
+
+.close-modal-large {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #5f6368;
+    position: absolute;
+    right: 24px;
+}
+
+.modal-body-large {
+    padding: 0 24px 24px 24px;
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+.form-group-large {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group-large label {
+    display: block;
+    font-size: 13px;
+    color: #1a73e8;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-input-large {
+    width: 98%;
+    padding: 12px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-input-large:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+/* Khung soạn thảo văn bản giống ảnh mẫu */
+.editor-container {
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#inputClassCode {
+    width: 94%;
+}
+
+.editor-menu-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    background-color: #fff;
+    border-bottom: 1px solid #dadce0;
+    font-size: 13px;
+    color: #3c4043;
+}
+
+.editor-menu-bar span {
+    padding: 4px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.editor-menu-bar span:hover {
+    background-color: #f1f3f4;
+}
+
+.editor-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background-color: #fff;
+    border-bottom: 1px solid #dadce0;
+}
+
+.editor-toolbar button,
+.editor-toolbar select {
+    background: none;
+    border: 1px solid transparent;
+    padding: 6px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #3c4043;
+    font-size: 13px;
+}
+
+.editor-toolbar button:hover {
+    background-color: #f1f3f4;
+}
+
+.editor-toolbar select {
+    border: 1px solid #dadce0;
+    background-color: #fff;
+}
+
+.editor-divider {
+    width: 1px;
+    height: 20px;
+    background-color: #dadce0;
+    margin: 0 4px;
+}
+
+.editor-textarea {
+    width: 100%;
+    min-height: 200px;
+    padding: 12px;
+    border: none;
+    outline: none;
+    resize: vertical;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+.modal-footer-large {
+    padding: 12px 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-cancel-large {
+    background: none;
+    border: none;
+    color: #1a73e8;
+    font-weight: 500;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #dadce0;
+}
+
+.btn-cancel-large:hover {
+    background-color: rgba(26, 115, 232, 0.04);
+}
+
+.btn-submit-large {
+    background-color: #8ab4f8;
+    color: #ffffff;
+    border: none;
+    padding: 8px 24px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-submit-large:hover {
+    background-color: #1a73e8;
+}
+
+
+
+
+
+/* --- TRẠNG THÁI NÚT TẠO LỚP HỌC (VÔ HIỆU HÓA / KÍCH HOẠT) --- */
+.btn-submit-large:disabled,
+.btn-submit-large.disabled {
+    background-color: #f1f3f4 !important;
+    color: #9aa0a6 !important;
+    cursor: not-allowed !important;
+    opacity: 0.7;
+}
+
+.btn-submit-large:not(:disabled) {
+    background-color: #1a73e8 !important;
+    cursor: pointer !important;
+}
+
+.btn-submit-large:not(:disabled):hover {
+    background-color: #1557b0 !important;
+}
+
+/* --- GIAO DIỆN CHI TIẾT LỚP HỌC SAU KHI TẠO (THAY THẾ MAIN) --- */
+.classroom-detail-container {
+    padding: 20px 40px;
+    background-color: #fff;
+    min-height: 70vh;
+    text-align: left;
+}
+
+.class-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.class-title-area h1 {
+    font-size: 26px;
+    color: #202124;
+    display: inline-block;
+    margin-right: 15px;
+    font-weight: 500;
+}
+
+.edit-info-link {
+    color: #1a73e8;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.edit-info-link:hover {
+    text-decoration: underline;
+}
+
+.class-sub-info {
+    font-size: 13px;
+    color: #5f6368;
+    margin-top: 5px;
+}
+
+.class-code-area {
+    text-align: right;
+}
+
+.class-code-label {
+    font-size: 13px;
+    color: #5f6368;
+}
+
+.class-code-value {
+    font-size: 28px;
+    font-weight: 400;
+    color: #202124;
+    letter-spacing: 1px;
+    margin-top: 2px;
+}
+
+/* Các tab điều hướng trong lớp học */
+.class-tabs {
+    display: flex;
+    gap: 30px;
+    border-bottom: 1px solid #dadce0;
+    margin-bottom: 24px;
+}
+
+.class-tab-item {
+    padding: 10px 0;
+    font-size: 15px;
+    color: #5f6368;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.class-tab-item.active {
+    color: #1a73e8;
+    font-weight: 500;
+}
+
+.class-tab-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #1a73e8;
+}
+
+/* Thanh công cụ trong tab thành viên */
+.tab-action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.tab-action-left {
+    display: flex;
+    gap: 10px;
+}
+
+.role-btn {
+    padding: 6px 16px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid #dadce0;
+}
+
+.role-btn.active {
+    background-color: #1a73e8;
+    color: #fff;
+    border-color: #1a73e8;
+}
+
+.role-btn.inactive {
+    background-color: #fff;
+    color: #3c4043;
+}
+
+.tab-action-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.icon-action-btn {
+    background: #fff;
+    border: 1px solid #dadce0;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #5f6368;
+}
+
+.add-member-btn {
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.empty-member-notice {
+    text-align: center;
+    color: #5f6368;
+    font-size: 15px;
+    margin-top: 60px;
+}
+
+/* --- GIAO DIỆN BẢNG DANH SÁCH LỚP HỌC (SAU KHI ĐÃ CÓ LỚP) --- */
+.class-management-container {
+    padding: 20px 40px;
+    background-color: #fff;
+    min-height: 70vh;
+    text-align: left;
+}
+
+.management-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.management-header-row h2 {
+    font-size: 24px;
+    color: #202124;
+    font-weight: 400;
+    margin: 0;
+}
+
+.management-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-refresh {
+    background: #fff;
+    border: 1px solid #dadce0;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #5f6368;
+}
+
+.btn-join-class {
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-create-class-main {
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.class-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.class-table th {
+    background-color: #f8f9fa;
+    color: #3c4043;
+    font-weight: 500;
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid #dadce0;
+    font-size: 14px;
+}
+
+.class-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    color: #202124;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.class-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.table-class-title {
+    color: #1a73e8;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.table-class-title:hover {
+    text-decoration: underline;
+}
+
+.table-role-sub {
+    font-size: 12px;
+    color: #5f6368;
+    margin-top: 2px;
+}
+
+.action-icon-edit {
+    color: #f29900;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.action-icon-delete {
+    color: #d93025;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+
+/* --- BẢNG DANH SÁCH LỚP HỌC (ĐÃ CÓ ĐỦ VIỀN BAO BỌC 4 CẠNH) --- */
+.class-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    border: 1px solid #dadce0;
+    /* Viền bao bọc toàn bộ bảng */
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.class-table th {
+    background-color: #f8f9fa;
+    color: #3c4043;
+    font-weight: 500;
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid #dadce0;
+    border-right: 1px solid #e0e0e0;
+    /* Đường kẻ dọc giữa các cột tiêu đề */
+    font-size: 14px;
+}
+
+.class-table th:last-child {
+    border-right: none;
+    /* Cột cuối không cần kẻ dọc bên phải vì đã có viền khung bảng */
+}
+
+.class-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #e0e0e0;
+    /* Đường kẻ ngang giữa các hàng */
+    border-right: 1px solid #e0e0e0;
+    /* Đường kẻ dọc giữa các cột dữ liệu */
+    color: #202124;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.class-table td:last-child {
+    border-right: none;
+    /* Cột cuối không cần kẻ dọc */
+}
+
+.class-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+#deleteConfirmModal .btn-cancel:hover {
+    background-color: #e9060a;
+    box-shadow: 0 2px 6px #e9060a;
+}
+
+#deleteConfirmModal .btn-confirm:hover {
+    background-color: #221fc5;
+    box-shadow: 0 2px 6px #221fc5;
+}
+/* Mở rộng kích thước tổng thể của Modal */
+#submitDocumentModal .modal-content, /* Hoặc tên class khung chứa modal của bạn */
+#submitDocumentModal > div {
+    max-width: 1000px !important; /* Tăng chiều rộng tối đa (mặc định thường nhỏ hơn) */
+    width: 100% !important;
+    padding: 24px !important;
+}
+
+/* Tăng khoảng cách (padding) và cỡ chữ cho các ô trong bảng để không bị bon chen */
+#submitDocumentModal table th,
+#submitDocumentModal table td {
+    padding: 14px 16px !important; /* Tăng khoảng đệm cho thoáng */
+    font-size: 16px !important;    /* Tăng cỡ chữ lên một chút cho dễ nhìn */
+}
+
+/* Tăng chiều rộng ô Tiêu đề để tên file dài hiển thị thoải mái */
+#submitDocumentModal table th:nth-child(3),
+#submitDocumentModal table td:nth-child(3) {
+    min-width: 450px !important; 
+}
+/* Hiệu ứng cho ô input tìm kiếm khi rê chuột hoặc focus */
+#searchDocInput:hover {
+    border-color: #b9bcbe !important;
+}
+#searchDocInput:focus {
+    border-color: #1a73e8 !important;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+/* Hiệu ứng cho nút tìm kiếm khi hover và click */
+#searchDocBtn:hover {
+    background: #e4e7e9 !important;
+    border-color: #adb1b5 !important;
+}
+#searchDocBtn:active {
+    background: #d3d7db !important;
+    transform: scale(0.98);
+}
+
+/* Màu nền khi một hàng được tích chọn */
+tr.row-selected {
+    background-color: #e8f0fe !important;
+}

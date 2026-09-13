@@ -1,0 +1,26 @@
+# Thư viện và cấu hình bí mật
+node_modules/
+.env
+
+# Dữ liệu vận hành — nặng vài GB, không đẩy lên GitHub.
+# Bản đầy đủ nằm trong gói nén bàn giao.
+restructuring_data/
+uploads/
+upload2/
+
+# Kết quả gỡ lỗi sinh ra khi chạy
+debug_output/
+debug_text/
+debug_sentences/
+kiem_thu/
+*.log
+debug_plagiarism.txt
+diff.txt
+docx_sentences.txt
+pdf_sentences.txt
+sentence_mapping.json
+output.json
+
+# Tệp tạm của hệ điều hành và trình soạn thảo
+.DS_Store
+Thumbs.db

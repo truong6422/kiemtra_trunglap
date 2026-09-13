@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống kê báo cáo</title>
+    <link rel="stylesheet" href="../css/quanlytailieu.css">
+    <link rel="stylesheet" href="../css/thongkebaocao.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="menu">
+            <div class="menu-container">
+                <div class="logo">
+                    <img src="../images/logo.jpg" alt="Logo">
+                    <p>Phần mềm kiểm tra trùng lặp văn bản</p>
+                </div>
+                <ul>
+                    <li>
+                        <a href="../pages/trangchu_saudn.html">
+                            Trang chủ
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/quanlytailieu.html">
+                            Quản lý tài liệu
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/quanlylophoc.html">
+                            Quản lý lớp học
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/huongdanchitiet.html">
+                            Hướng dẫn chi tiết
+                        </a>
+                    </li>
+                    <li class="user-dropdown-container">
+                        <div class="user-avatar-btn" id="userMenuBtn">
+                            <img src="../images/default-avatar.png" id="userAvatarImg" alt="Avatar">
+                            <span id="navUserName">Tài khoản</span>
+                            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                        </div>
+
+                        <!-- Menu Dropdown -->
+                        <div class="user-dropdown-menu" id="userDropdownMenu">
+                            <a href="../pages/taikhoan.html" class="dropdown-item">
+                                <i class="fa-regular fa-user"></i>
+                                <span>Tài khoản</span>
+                            </a>
+                            <a href="../pages/matkhau.html" class="dropdown-item">
+                                <i class="fa-solid fa-lock"></i>
+                                <span>Đổi mật khẩu</span>
+                            </a>
+                            <a href="../pages/dangnhap.html" class="dropdown-item text-danger" id="logoutBtn">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <span>Đăng xuất</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h2>Thống kê báo cáo</h2>
+
+            <div class="action-bar">
+                <button class="refresh-btn" id="btnLamMoi" title="Đồng bộ lại (Refresh)">
+                    <i class="fa-solid fa-rotate"></i>
+                </button>
+                <button class="upload-btn" id="btnXuatExcel">
+                    <i class="fa-solid fa-file-excel"></i> Xuất Excel
+                </button>
+            </div>
+        </div>
+
+        <!-- Các chỉ số tổng quan -->
+        <section class="tk-the-so">
+
+            <article class="tk-the">
+                <div class="tk-the__bieu-tuong"><i class="fa-solid fa-file-lines"></i></div>
+                <div class="tk-the__noi-dung">
+                    <div class="tk-the__nhan">Tổng số bài đã nộp</div>
+                    <div class="tk-the__so" id="soTongBai">--</div>
+                    <div class="tk-the__phu" id="phuTongBai">&nbsp;</div>
+                </div>
+            </article>
+
+            <article class="tk-the tk-the--xanh">
+                <div class="tk-the__bieu-tuong"><i class="fa-solid fa-percent"></i></div>
+                <div class="tk-the__noi-dung">
+                    <div class="tk-the__nhan">Tỉ lệ trùng trung bình</div>
+                    <div class="tk-the__so" id="soTiLeTB">--</div>
+                    <div class="tk-the__phu" id="phuTiLeTB">&nbsp;</div>
+                </div>
+            </article>
+
+            <article class="tk-the tk-the--tim">
+                <div class="tk-the__bieu-tuong"><i class="fa-solid fa-align-left"></i></div>
+                <div class="tk-the__noi-dung">
+                    <div class="tk-the__nhan">Tỉ lệ câu trùng</div>
+                    <div class="tk-the__so" id="soCauTrung">--</div>
+                    <div class="tk-the__phu" id="phuCauTrung">&nbsp;</div>
+                </div>
+            </article>
+
+            <article class="tk-the tk-the--luc">
+                <div class="tk-the__bieu-tuong"><i class="fa-solid fa-font"></i></div>
+                <div class="tk-the__noi-dung">
+                    <div class="tk-the__nhan">Tỉ lệ từ trùng</div>
+                    <div class="tk-the__so" id="soTuTrung">--</div>
+                    <div class="tk-the__phu" id="phuTuTrung">&nbsp;</div>
+                </div>
+            </article>
+
+            <article class="tk-the tk-the--do">
+                <div class="tk-the__bieu-tuong"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div class="tk-the__noi-dung">
+                    <div class="tk-the__nhan">Vượt ngưỡng cảnh báo</div>
+                    <div class="tk-the__so" id="soVuotNguong">--</div>
+                    <div class="tk-the__phu">Từ 30% trở lên</div>
+                </div>
+            </article>
+
+            <article class="tk-the tk-the--xam">
+                <div class="tk-the__bieu-tuong"><i class="fa-solid fa-hourglass-half"></i></div>
+                <div class="tk-the__noi-dung">
+                    <div class="tk-the__nhan">Đang xử lý</div>
+                    <div class="tk-the__so" id="soDangXuLy">--</div>
+                    <div class="tk-the__phu">Chưa có kết quả</div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Phân bố tỉ lệ -->
+        <section class="tk-khoi">
+            <div class="tk-khoi__dau">
+                <h3>Phân bố tỉ lệ trùng lặp</h3>
+                <span class="tk-ghi-chu">Số bài theo từng mức — bấm vào cột để lọc</span>
+            </div>
+            <div class="tk-bieu-do" id="bieuDo"></div>
+        </section>
+
+        <div class="filter-section">
+            <label for="locMa">ID</label>
+            <input type="text" id="locMa" placeholder="ID">
+
+            <label for="locTieuDe">Tiêu đề</label>
+            <input type="text" id="locTieuDe" placeholder="Tiêu đề">
+
+            <label for="locMuc">Mức tỉ lệ</label>
+            <select id="locMuc">
+                <option value="">Tất cả</option>
+                <option value="cao">Từ 30% trở lên</option>
+                <option value="vua">Từ 15% đến dưới 30%</option>
+                <option value="thap">Dưới 15%</option>
+            </select>
+
+            <label for="locTrangThai">Trạng thái</label>
+            <select id="locTrangThai">
+                <option value="">Tất cả</option>
+                <option value="Đã xử lý">Đã xử lý</option>
+                <option value="Đang xử lý">Đang xử lý</option>
+            </select>
+
+            <button type="button" class="clear-btn" id="btnXoaLoc">Xóa bộ lọc</button>
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th data-sap="id_bao_cao">ID <i class="fa-solid fa-sort"></i></th>
+                    <th data-sap="tieu_de">Tiêu đề <i class="fa-solid fa-sort"></i></th>
+                    <th data-sap="ten_nguoi_nop">Người nộp <i class="fa-solid fa-sort"></i></th>
+                    <th data-sap="ngay_tai_len">Ngày tải lên <i class="fa-solid fa-sort"></i></th>
+                    <th data-sap="ti_le_trung_lap" class="tk-cot-rong">Độ trùng lặp <i class="fa-solid fa-sort"></i></th>
+                    <th data-sap="ti_le_cau" class="tk-cot-rong">Tỉ lệ câu trùng <i class="fa-solid fa-sort"></i></th>
+                    <th data-sap="ti_le_tu" class="tk-cot-rong">Tỉ lệ từ trùng <i class="fa-solid fa-sort"></i></th>
+                    <th data-sap="trang_thai">Trạng thái <i class="fa-solid fa-sort"></i></th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody id="tkThanBang">
+                <tr>
+                    <td colspan="9" class="no-data">Đang tải dữ liệu...</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            <span>Tổng <strong id="tkTongDong">0</strong></span>
+
+            <select id="soDongMoiTrang">
+                <option value="10">10/trang</option>
+                <option value="20">20/trang</option>
+                <option value="50">50/trang</option>
+                <option value="100">100/trang</option>
+            </select>
+
+            <button type="button" class="page-btn" id="btnTrangTruoc">&lsaquo;</button>
+            <span id="tkSoTrang">1 / 1</span>
+            <button type="button" class="page-btn" id="btnTrangSau">&rsaquo;</button>
+        </div>
+    </main>
+
+    <script src="../js/trangchu_saudn.js"></script>
+    <script src="../js/thongkebaocao-tien-ich.js"></script>
+    <script src="../js/thongkebaocao.js"></script>
+
+</body>
+
+</html>

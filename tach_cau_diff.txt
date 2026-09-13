@@ -1,0 +1,1536 @@
+INDEX: 13
+DOCX: Xây dựng CSDL được thiết kế và cập nhật dựa trên SQL Server, xây dựng các model: Login, Logout, Admin, User, Contact, Products, Category… Xây dựng thành công website quản lý bán hàng về giao diện và chức năng.
+PDF : - Xây dựng CSDL được thiết kế và cập nhật dựa trên SQL Server, xây dựng các model: Login, Logout, Admin, User, Contact, Products, Category...
+---------------------
+INDEX: 14
+DOCX: Nâng cao kiến thức về lập trình cho bản thân.
+PDF : - Xây dựng thành công website quản lý bán hàng về giao diện và chức năng.
+---------------------
+INDEX: 15
+DOCX: Đáp ứng được các tiêu chí của đề tài.
+PDF : - Nâng cao kiến thức về lập trình cho bản thân.
+---------------------
+INDEX: 16
+DOCX: Biết cách tạo và sử dụng Code frist, Data frist mô hình nhiều lớP.
+PDF : - Đáp ứng được các tiêu chí của đề tài.
+---------------------
+INDEX: 17
+DOCX: Theo đó, việc xây dựng những website bán hàng hay phát triển lĩnh vực thương mại điện tử là một điều vô cùng cần thiết để doanh nghiệp của bạn được nhiều người biết tới hơn.
+PDF : - Biết cách tạo và sử dụng Code frist, Data frist mô hình nhiều lớP.
+---------------------
+INDEX: 18
+DOCX: Thông qua website bán hàng, doanh nghiệp có thể giới thiệu sản phẩm, quảng bá tính năng và tiếp cận được đến những khách hàng tiềm năng.
+PDF : Theo đó, việc xây dựng những website bán hàng hay phát triển lĩnh vực thương mại điện tử là một điều vô cùng cần thiết để doanh nghiệp của bạn được nhiều người biết tới hơn.
+---------------------
+INDEX: 19
+DOCX: Đứng trước nhu cầu thiết kế website của các cá nhân và doanh nghiệp cũng như việc đam mê lập trình ứng dụng web.
+PDF : Thông qua website bán hàng, doanh nghiệp có thể giới thiệu sản phẩm, quảng bá tính năng và tiếp cận được đến những khách hàng tiềm năng.
+---------------------
+INDEX: 20
+DOCX: Em lựa chọn đề tài: “Xây dựng website bán hàng điện tử”.
+PDF : Đứng trước nhu cầu thiết kế website của các cá nhân và doanh nghiệp cũng như việc đam mê lập trình ứng dụng web.
+---------------------
+INDEX: 21
+DOCX: Khảo sát sơ bộ: tìm hiểu các yếu tố cơ bản (tổ chức, văn hóa, đặc trưng, con người...
+PDF : Em lựa chọn đề tài: “Xây dựng website bán hàng điện tử”.
+---------------------
+INDEX: 22
+DOCX: ) tạo tiền đề để phát triển hệ thống phù hợp với dự án và doanh nghiệP.
+PDF : Khảo sát sơ bộ: tìm hiểu các yếu tố cơ bản (tổ chức, văn hóa, đặc trưng, con người...
+---------------------
+INDEX: 23
+DOCX: Khảo sát chi tiết: Thu thập thông tin chi tiết của hệ thống (chức năng xử lý, thông tin được phép nhập và xuất khỏi hệ thống, ràng buộc, giao diện cơ bản, nghiệp vụ) phục vụ cho việc phân tích và thiết kế.
+PDF : ) tạo tiền đề để phát triển hệ thống phù hợp với dự án và doanh nghiệP.
+---------------------
+INDEX: 24
+DOCX: Xác định yêu cầu của hệ thống gồm: các chức năng chính - phụ; nghiệp vụ cần phải xử lý đảm bảo tính chính xác, tuân thủ đúng các văn bản luật và quy định hiện hành; đảm bảo tốc độ xử lý và khả năng nâng cấp trong tương lai.
+PDF : Khảo sát chi tiết: Thu thập thông tin chi tiết của hệ thống (chức năng xử lý, thông tin được phép nhập và xuất khỏi hệ thống, ràng buộc, giao diện cơ bản, nghiệp vụ) phục vụ cho việc phân tích và thiết kế.
+---------------------
+INDEX: 25
+DOCX: Phân tích và đặc tả mô hình phân cấp chức năng tổng thể thông qua sơ đồ BFD (Business Flow Diagram), từ mô hình BFD sẽ tiếp tục được xây dựng thành mô hình luồng dữ liệu DFD (Data Flow Diagram) thông qua quá trình phân rã chức năng theo các mức 0, 1, 2 ở từng ô xử lý.
+PDF : Xác định yêu cầu của hệ thống gồm: các chức năng chính - phụ; nghiệp vụ cần phải xử lý đảm bảo tính chính xác, tuân thủ đúng các văn bản luật và quy định hiện hành; đảm bảo tốc độ xử lý và khả năng nâng cấp trong tương lai.
+---------------------
+INDEX: 26
+DOCX: Phân tích bảng dữ liệu.
+PDF : Phân tích và đặc tả mô hình phân cấp chức năng tổng thể thông qua sơ đồ BFD (Business Flow Diagram), từ mô hình BFD sẽ tiếp tục được xây dựng thành mô hình luồng dữ liệu DFD (Data Flow Diagram) thông qua quá trình phân rã chức năng theo các mức 0, 1, 2 ở từng ô xử lý.
+---------------------
+INDEX: 27
+DOCX: Cần đưa vào hệ thống những bảng dữ liệu (data table) gồm các trường dữ liệu (data field) nào?
+PDF : Phân tích bảng dữ liệu.
+---------------------
+INDEX: 28
+DOCX: Xác định khóa chính (primary key), khóa ngoại (foreign key) cũng như mối quan hệ giữa các bảng dữ liệu (relationship) và ràng buộc (constraint) dữ liệu cần thiết.
+PDF : Cần đưa vào hệ thống những bảng dữ liệu (data table) gồm các trường dữ liệu (data field) nào?
+---------------------
+INDEX: 29
+DOCX: Bước 1: Thiết kế tổng thể Trên cơ sở các bảng dữ liệu đã phân tích và đặc tả trên giấy sẽ được thiết kế dưới dạng mô hình tổng quát nhất về mối quan hệ giữa các đối tượng trước khi chuyển đổi thành mô hình mức vật lý.
+PDF : Xác định khóa chính (primary key), khóa ngoại (foreign key) cũng như mối quan hệ giữa các bảng dữ liệu (relationship) và ràng buộc (constraint) dữ liệu cần thiết.
+---------------------
+INDEX: 30
+DOCX: Bước 2: Thiết kế chi tiết Thiết kế cơ sở dữ liệu (Database): Với mô hình mức vật lý hoàn chỉnh ở giai đoạn thiết kế đại thể sẽ được kết sinh mã thành file sql.
+PDF : Bước 1: Thiết kế tổng thể Trên cơ sở các bảng dữ liệu đã phân tích và đặc tả trên giấy sẽ được thiết kế dưới dạng mô hình tổng quát nhất về mối quan hệ giữa các đối tượng trước khi chuyển đổi thành mô hình mức vật lý.
+---------------------
+INDEX: 31
+DOCX: Thiết kế truy vấn, thủ tục, hàm: thu thập, xử lý thông tin nhập và đưa ra thông tin chuẩn xác theo đúng nghiệp vụ.
+PDF : Bước 2: Thiết kế chi tiết Thiết kế cơ sở dữ liệu (Database): Với mô hình mức vật lý hoàn chỉnh ở giai đoạn thiết kế đại thể sẽ được kết sinh mã thành file sql.
+---------------------
+INDEX: 32
+DOCX: Thiết kế giao diện chương trình đảm bảo phù hợp với môi trường, văn hóa và yêu cầu của doanh nghiệp thực hiện dự án.
+PDF : Thiết kế truy vấn, thủ tục, hàm: thu thập, xử lý thông tin nhập và đưa ra thông tin chuẩn xác theo đúng nghiệp vụ.
+---------------------
+INDEX: 33
+DOCX: Thiết kế chức năng chương trình đảm bảo tính logic trong quá trình nhập liệu và xử lý cho người dùng.
+PDF : Thiết kế giao diện chương trình đảm bảo phù hợp với môi trường, văn hóa và yêu cầu của doanh nghiệp thực hiện dự án.
+---------------------
+INDEX: 34
+DOCX: Thiết kế các kiểm soát bằng hình thức đưa ra các thông báo, cảnh báo hoặc lỗi cụ thể tạo tiện lợi và kiểm soát chặt chẽ quá trình nhập liệu với mục tiêu tăng độ chính xác cho dữ liệu.
+PDF : Thiết kế chức năng chương trình đảm bảo tính logic trong quá trình nhập liệu và xử lý cho người dùng.
+---------------------
+INDEX: 35
+DOCX: Visual Studio là một phần mềm lập trình hệ thống được sản xuất trực tiếp từ Microsoft.
+PDF : Thiết kế các kiểm soát bằng hình thức đưa ra các thông báo, cảnh báo hoặc lỗi cụ thể tạo tiện lợi và kiểm soát chặt chẽ quá trình nhập liệu với mục tiêu tăng độ chính xác cho dữ liệu.
+---------------------
+INDEX: 36
+DOCX: Từ khi ra đời đến nay, Visual Studio đã có rất nhiều các phiên bản sử dụng khác nhau.
+PDF : Visual Studio được viết bằng 2 ngôn ngữ đó chính là C# và VB+.
+---------------------
+INDEX: 37
+DOCX: Điều đó, giúp cho người dùng có thể lựa chọn được phiên bản tương thích với dòng máy của mình cũng như cấu hình sử dụng phù hợp nhất.
+PDF : Đây là 2 ngôn ngữ lập trình giúp người dùng có thể lập trình được hệ thống một các dễ dàng và nhanh chóng nhất thông qua Visual Studio.
+---------------------
+INDEX: 38
+DOCX: Visual Studio có một trình gỡ lỗi có tính năng vừa lập trình gỡ lỗi cấp máy và gỡ lỗi cấp mã nguồn.
+PDF : Visual Studio là một phần mềm lập trình hệ thống được sản xuất trực tiếp từ Microsoft.
+---------------------
+INDEX: 39
+DOCX: Tính năng này hoạt động với cả hai mã quản lý giống như ngôn ngữ máy và có thể sử dụng để gỡ lỗi các ứng dụng được viết bằng các ngôn ngữ được hỗ trợ bởi Visual Studio.
+PDF : Từ khi ra đời đến nay, Visual Studio đã có rất nhiều các phiên bản sử dụng khác nhau.
+---------------------
+INDEX: 40
+DOCX: Bên cạnh đó, Visual Studio còn cho phép người dùng có thể tự chọn lựa giao diện chính cho máy của mình tùy thuộc vào nhu cầu sử dụng.
+PDF : Điều đó, giúp cho người dùng có thể lựa chọn được phiên bản tương thích với dòng máy của mình cũng như cấu hình sử dụng phù hợp nhất.
+---------------------
+INDEX: 41
+DOCX: Visual Studio còn có tính năng biên dịch nền tức là khi mã đang được viết thì phần mềm này sẽ biên dịch nó trong nền để nhằm cung cấp thông tin phản hồi về cú pháp cũng như biên dịch lỗi và được đánh dấu bằng các gạch gợn sóng màu đỏ
+PDF : Visual Studio có một trình gỡ lỗi có tính năng vừa lập trình gỡ lỗi cấp máy và gỡ lỗi cấp mã nguồn.
+---------------------
+INDEX: 42
+DOCX: Visual Studio hỗ trợ lập trình trên nhiều ngôn ngữ như: C/C++, C#, F#, Visual Basic, HTML, CSS, JavaScript.
+PDF : Tính năng này hoạt động với cả hai mã quản lý giống như ngôn ngữ máy và có thể sử dụng để gỡ lỗi các ứng dụng được viết bằng các ngôn ngữ được hỗ trợ bởi Visual Studio.
+---------------------
+INDEX: 43
+DOCX: Là một công cụ hỗ trợ việc Debug một cách dễ dàng và mạnh mẽ như: Break Point, xem giá trị của biến trong quá trình chạy, hỗ trợ debug từng câu lệnh.
+PDF : Bên cạnh đó, Visual Studio còn cho phép người dùng có thể tự chọn lựa giao diện chính cho máy của mình tùy thuộc vào nhu cầu sử dụng.
+---------------------
+INDEX: 44
+DOCX: Giao diện Visual Studio rất dễ sử dụng đối với người mới bắt đầu lập trình.
+PDF : Visual Studio còn có tính năng biên dịch nền tức là khi mã đang được viết thì
+---------------------
+INDEX: 45
+DOCX: Visual Studio hỗ trợ phát triển các ứng dụng: desktop MFC, Windows Form, Universal App, ứng dụng mobile Windows Phone 8/8.
+PDF : Visual Studio hỗ trợ lập trình trên nhiều ngôn ngữ như: C/C++, C#, F#, Visual Basic, HTML, CSS, JavaScript.
+---------------------
+INDEX: 46
+DOCX: 1, Windows 10 … Visual Studio hỗ trợ xây dựng ứng dụng một cách chuyên nghiệp bằng các công cụ kéo thả.
+PDF : Là một công cụ hỗ trợ việc Debug một cách dễ dàng và mạnh mẽ như: Break Point, xem giá trị của biến trong quá trình chạy, hỗ trợ debug từng câu lệnh.
+---------------------
+INDEX: 47
+DOCX: Ngôn ngữ C# - C# (hay C sharp) là một ngôn ngữ lập trình đơn giản, được phát triển bởi đội ngũ kỹ sư của Microsoft vào năm 2000.
+PDF : Giao diện Visual Studio rất dễ sử dụng đối với người mới bắt đầu lập trình.
+---------------------
+INDEX: 48
+DOCX: C# là ngôn ngữ lập trình hiện đại, hướng đối tượng và được xây dựng trên nền tảng của hai ngôn ngữ mạnh nhất là C++ và Java.
+PDF : Visual Studio hỗ trợ phát triển các ứng dụng: desktop MFC, Windows Form, Universal App, ứng dụng mobile Windows Phone 8/8.
+---------------------
+INDEX: 49
+DOCX: Đặc trưng của ngôn ngữ lập trình C# là gì?
+PDF : 1, Windows 10 ...
+---------------------
+INDEX: 50
+DOCX: C# là ngôn ngữ đơn giản C# loại bỏ một vài sự phức tạp và rối rắm của những ngôn ngữ như Java và c++, bao gồm việc loại bỏ những macro, những template, đa kế thừa, và lớp cơ sở ảo (virtual baseclass).
+PDF : Visual Studio hỗ trợ xây dựng ứng dụng một cách chuyên nghiệp bằng các công cụ kéo thả.
+---------------------
+INDEX: 51
+DOCX: Ngôn ngữ C# đơn giản vì nó dựa trên nền tảng C và C++.
+PDF : Ngôn ngữ C# - C# (hay C sharp) là một ngôn ngữ lập trình đơn giản, được phát triển bởi đội ngũ kỹ sư của Microsoft vào năm 2000.
+---------------------
+INDEX: 52
+DOCX: Nếu chúng ta thân thiện với C và C++ hoặc thậm chí là Java, chúng ta sẽ thấy C# khá giống về diện mạo, cú pháp, biểu thức, toán tử và những chức năng khác được lấy trực tiếp từ ngôn ngữ C và C++, nhưng nó đã được cải tiến để làm cho ngôn ngữ đơn giản hơn.
+PDF : C# là ngôn ngữ lập trình hiện đại, hướng đối tượng và được xây dựng trên nền tảng của hai ngôn ngữ mạnh nhất là C++ và Java.
+---------------------
+INDEX: 53
+DOCX: C# là ngôn ngữ hiện đại Điều gì làm cho một ngôn ngữ hiện đại?
+PDF : Đặc trưng của ngôn ngữ lập trình C# là gì?
+---------------------
+INDEX: 54
+DOCX: Những đặc tính như là xử lý ngoại lệ, thu gom bộ nhớ tự động, những kiểu dữ liệu mở rộng, và bảo mật mã nguồn là những đặc tính được mong đợi trong một ngôn ngữ hiện đại.
+PDF : C# là ngôn ngữ đơn giản C# loại bỏ một vài sự phức tạp và rối rắm của những ngôn ngữ như Java và c++, bao gồm việc loại bỏ những macro, những template, đa kế thừa, và lớp cơ sở ảo (virtual baseclass).
+---------------------
+INDEX: 55
+DOCX: C# chứa tất cả những đặc tính trên.
+PDF : Ngôn ngữ C# đơn giản vì nó dựa trên nền tảng C và C++.
+---------------------
+INDEX: 56
+DOCX: Nếu là người mới học lập trình có thể chúng ta sẽ cảm thấy những đặc tính trên phức tạp và khó hiểu.
+PDF : Nếu chúng ta thân thiện với C và C++ hoặc thậm chí là Java, chúng ta sẽ thấy C# khá giống về diện mạo, cú pháp, biểu thức, toán tử và những chức năng khác được lấy trực tiếp từ ngôn ngữ C và C++, nhưng nó đã được cải tiến để làm cho ngôn ngữ đơn giản hơn.
+---------------------
+INDEX: 57
+DOCX: Tuy nhiên, cũng đừng lo lắng chúng ta sẽ dần dần được tìm hiểu những đặc tính qua các nội dung khoá học này.
+PDF : C# là ngôn ngữ hiện đại Điều gì làm cho một ngôn ngữ hiện đại?
+---------------------
+INDEX: 58
+DOCX: C# là một ngôn ngữ lập trình thuần hướng đối tượng Lập trình hướng đối tượng (OOP: Object-oriented programming) là một phương pháp lập trình có 4 tính chất.
+PDF : Những đặc tính như là xử lý ngoại lệ, thu gom bộ nhớ tự động, những kiểu dữ liệu mở rộng, và bảo mật mã nguồn là những đặc tính được mong đợi trong một ngôn ngữ hiện đại.
+---------------------
+INDEX: 59
+DOCX: Đó là tính trừu tượng (abstraction), tính đóng gói (encapsulation), tính đa hình (polymorphism) và tính kế thừa (inheritance).
+PDF : C# chứa tất cả những đặc tính trên.
+---------------------
+INDEX: 60
+DOCX: C# hỗ trợ cho chúng ta tất cả những đặc tính trên.
+PDF : Nếu là người mới học lập trình có thể chúng ta sẽ cảm thấy những đặc tính trên phức tạp và khó hiểu.
+---------------------
+INDEX: 61
+DOCX: C# là một ngôn ngữ ít từ khóa C# là ngôn ngữ sử dụng giới hạn những từ khóa.
+PDF : Tuy nhiên, cũng đừng lo lắng chúng ta sẽ dần dần được tìm hiểu những đặc tính qua các nội dung khoá học này.
+---------------------
+INDEX: 62
+DOCX: Phần lớn các từ khóa được sử dụng để mô tả thông tin.
+PDF : C# là một ngôn ngữ lập trình thuần hướng đối tượng Lập trình hướng đối tượng (OOP: Object-oriented programming) là một phương pháp lập trình có 4 tính chất.
+---------------------
+INDEX: 63
+DOCX: Chúng ta có thể nghĩ rằng một ngôn ngữ có nhiều từ khóa thì sẽ mạnh hơn.
+PDF : Đó là tính trừu tượng (abstraction), tính đóng gói (encapsulation), tính đa hình (polymorphism) và tính kế thừa (inheritance).
+---------------------
+INDEX: 64
+DOCX: Điều này không phải sự thật, ít nhất là trong trường hợp ngôn ngữ C#, chúng ta có thể tìm thấy rằng ngôn ngữ này có thể được sử dụng để làm bất cứ nhiệm vụ nào.
+PDF : C# hỗ trợ cho chúng ta tất cả những đặc tính trên.
+---------------------
+INDEX: 65
+DOCX: SQL Server SQL server hay còn được gọi là Microsoft SQL Server, nó từ viết tắt của MS SQL Server.
+PDF : C# là một ngôn ngữ ít từ khóa C# là ngôn ngữ sử dụng giới hạn những từ khóa.
+---------------------
+INDEX: 66
+DOCX: Đây chính là một loại phần mềm đã được phát triển bởi Microsoft và nó được sử dụng để có thể dễ dàng lưu trữ cho những dữ liệu dựa theo tiêu chuẩn RDBMS.
+PDF : Phần lớn các từ khóa được sử dụng để mô tả thông tin.
+---------------------
+INDEX: 67
+DOCX: Từ đó, người ta sẽ lưu trữ dữ liệu dựa vào tiêu chuẩn RDBMS và nó cũng là một trong những hệ quản trị cơ sở dữ liệu dạng quan hệ đối tượng.
+PDF : Chúng ta có thể nghĩ rằng một ngôn ngữ có nhiều từ khóa thì sẽ mạnh hơn.
+---------------------
+INDEX: 68
+DOCX: SQL Server có khả năng cung cấp đầy đủ các công cụ cho việc quản lý từ giao diện GUI đến sử dụng ngôn ngữ cho việc truy vấn SQL.
+PDF : Điều này không phải sự thật, ít nhất là trong trường hợp ngôn ngữ C#, chúng ta có thể tìm thấy rằng ngôn ngữ này có thể được sử dụng để làm bất cứ nhiệm vụ nào.
+---------------------
+INDEX: 69
+DOCX: Điểm mạnh của SQL điểm mạnh của nó là có nhiều nền tảng được kết hợp cùng như: ASP.NET, C# để xây dựng Winform cũng chính nó có khả năng hoạt động độc lậP. Tuy nhiên, SQL Server thường đi kèm với việc thực hiện riêng các ngôn ngữ SQL, T-SQL...
+PDF : SQL Server SQL server hay còn được gọi là Microsoft SQL Server, nó từ viết tắt của MS SQL Server.
+---------------------
+INDEX: 70
+DOCX: Các thành phần cơ bản của SQL Server:
+PDF : Đây chính là một loại phần mềm đã được phát triển bởi Microsoft và nó được sử dụng để có thể dễ dàng lưu trữ cho những dữ liệu dựa theo tiêu chuẩn RDBMS.
+---------------------
+INDEX: 71
+DOCX: Database Engine: có khả năng chứa dữ liệu ở quy mô dưới dạng support và table, có thể tự điều chỉnh.
+PDF : Từ đó, người ta sẽ lưu trữ dữ liệu dựa vào tiêu chuẩn RDBMS và nó cũng là một trong những hệ quản trị cơ sở dữ liệu dạng quan hệ đối tượng.
+---------------------
+INDEX: 72
+DOCX: Integration Services: là tập hợp các đối tượng lập trình, các công cụ đồ họa cho việc sao chéo, di chuyển, chuyển đổi dữ liệu.
+PDF : SQL Server có khả năng cung cấp đầy đủ các công cụ cho việc quản lý từ giao diện GUI đến sử dụng ngôn ngữ cho việc truy vấn SQL.
+---------------------
+INDEX: 73
+DOCX: Analysis Services: là dịch vụ phân tích dữ liệu của Microsoft bằng kỹ thuật khai thác dữ liệu và khái niệm hình khối nhiều chiều.
+PDF : Điểm mạnh của SQL điểm mạnh của nó là có nhiều nền tảng được kết hợp cùng như: ASP.NET, C# để xây dựng Winform cũng chính nó có khả năng hoạt động độc lậP. Tuy nhiên, SQL Server thường đi kèm với việc thực hiện riêng các ngôn ngữ SQL, T-SQL...
+---------------------
+INDEX: 74
+DOCX: Notification Services: đây là nền tảng cho sự phát triển và triển khai các ứng dụng soạn và gửi thông báo, có chức năng gửi thông báo theo dịch thời đến hàng ngàn người đăng ký sử dụng trên nhiều loại thiết bị khác nhau.
+PDF : Các thành phần cơ bản của SQL Server:
+---------------------
+INDEX: 75
+DOCX: Reporting Services: là công cụ tạo, quản lý, triển khai báo cáo.
+PDF : Database Engine: có khả năng chứa dữ liệu ở quy mô dưới dạng support và table, có thể tự điều chỉnh.
+---------------------
+INDEX: 76
+DOCX: Full Text Search Services: là thành phần đặc biệt tròn truy vấn và đánh cỉ mục dữ liệu văn bản không cấu trúc được lưu trữ trong các cơ sở dữ liệu của SQL Server.
+PDF : Integration Services: là tập hợp các đối tượng lập trình, các công cụ đồ họa cho việc sao chéo, di chuyển, chuyển đổi dữ liệu.
+---------------------
+INDEX: 77
+DOCX: Service Broker: là môi trường lập trình tạo ra các ứng dụng trong việc nhảy qua các instance.
+PDF : Analysis Services: là dịch vụ phân tích dữ liệu của Microsoft bằng kỹ thuật khai thác dữ liệu và khái niệm hình khối nhiều chiều.
+---------------------
+INDEX: 78
+DOCX: Chức năng cửa SQL Server Nó cho phép người sử dụng có thể dùng để truy cập dữ liệu bên trong hệ thống quản lý cơ sở dữ liệu quan hệ.
+PDF : Notification Services: đây là nền tảng cho sự phát triển và triển khai các ứng dụng soạn và gửi thông báo, có chức năng gửi thông báo theo dịch thời đến hàng ngàn người đăng ký sử dụng trên nhiều loại thiết bị khác nhau.
+---------------------
+INDEX: 79
+DOCX: Người ta cho phép người dùng mô tả dữ liệu.
+PDF : Reporting Services: là công cụ tạo, quản lý, triển khai báo cáo.
+---------------------
+INDEX: 80
+DOCX: Cho phép người dùng thực hiện xác định dữ liệu bên trong cơ sở dữ liệu và thực hiện các thao tác dữ liệu.
+PDF : Full Text Search Services: là thành phần đặc biệt tròn truy vấn và đánh cỉ mục dữ liệu văn bản không cấu trúc được lưu trữ trong các cơ sở dữ liệu của SQL Server.
+---------------------
+INDEX: 81
+DOCX: Nó cho phép nhúng trong các ngôn ngữ khác có thể sử dụng mô-đun SQL, thư viện và thực hiện trình biên dịch trước.
+PDF : Service Broker: là môi trường lập trình tạo ra các ứng dụng trong việc nhảy qua các instance.
+---------------------
+INDEX: 82
+DOCX: Nó sẽ cho phép người dùng tạo và thả cho các cơ sở dữ liệu cũng như bảng.
+PDF : Chức năng cửa SQL Server Nó cho phép người sử dụng có thể dùng để truy cập dữ liệu bên trong hệ thống quản lý cơ sở dữ liệu quan hệ.
+---------------------
+INDEX: 83
+DOCX: SQL cho phép người sử dụng để thực hiện tạo ra các chế độ view, các thủ tục lưu trữ và chức năng trong cơ sở dữ liệu.
+PDF : Người ta cho phép người dùng mô tả dữ liệu.
+---------------------
+INDEX: 84
+DOCX: Nó sẽ cho phép người dùng để thực hiện thiết lập quyền trên các bảng, view và thủ tục.
+PDF : Cho phép người dùng thực hiện xác định dữ liệu bên trong cơ sở dữ liệu và thực hiện các thao tác dữ liệu.
+---------------------
+INDEX: 85
+DOCX: Các hoạt động mua bán sản phẩm, dịch vụ trên các hệ thống, phương tiện điện tử như Internet và các mạng máy tính.
+PDF : Nó cho phép nhúng trong các ngôn ngữ khác có thể sử dụng mô-đun SQL, thư viện và thực hiện trình biên dịch trước.
+---------------------
+INDEX: 86
+DOCX: Website bán hàng là trang thông tin điện tử được thiết lập để phục vụ một phần hoặc toàn bộ quy trình của hoạt động mua bán hàng hóa/dịch vụ.
+PDF : Nó sẽ cho phép người dùng tạo và thả cho các cơ sở dữ liệu cũng như bảng.
+---------------------
+INDEX: 87
+DOCX: Website bán hàng được thiết kế để giới thiệu sản phẩm, cung ứng dịch vụ, bán hàng hóa.
+PDF : SQL cho phép người sử dụng để thực hiện tạo ra các chế độ view, các thủ tục lưu trữ và chức năng trong cơ sở dữ liệu.
+---------------------
+INDEX: 88
+DOCX: Bao gồm các Website có chức năng giỏ hàng, thanh toán trực tuyến và cả.
+PDF : Nó sẽ cho phép người dùng để thực hiện thiết lập quyền trên các bảng, view và thủ tục.
+---------------------
+INDEX: 89
+DOCX: Website bán hàng được thiết kế đơn giản, dễ sử dụng và quản lý.
+PDF : Các hoạt động mua bán sản phẩm, dịch vụ trên các hệ thống, phương tiện điện tử như Internet và các mạng máy tính.
+---------------------
+INDEX: 90
+DOCX: Tính năng Website bán hàng đáp ứng cho nhiều loại mặt hàng và đối tượng khách hàng.
+PDF : Website bán hàng là trang thông tin điện tử được thiết lập để phục vụ một phần hoặc toàn bộ quy trình của hoạt động mua bán hàng hóa/dịch vụ.
+---------------------
+INDEX: 91
+DOCX: Các chức năng này có thể kết nối, phối hợp với nhau mang lại tiện ích tốt nhất cho khách hàng.
+PDF : Website bán hàng được thiết kế để giới thiệu sản phẩm, cung ứng dịch vụ, bán hàng hóa.
+---------------------
+INDEX: 92
+DOCX: Chi phí Website bán hàng: chi phí để tri chả và bảo trì một website bán hàng rất rẻ, thay vào đó nó giúp các cửa hàng tiết kiệm được thời gian, tiền thuê nhân viên, mặt bằng, rất hữu ích cho chủ sở hữu.
+PDF : Bao gồm các Website có chức năng giỏ hàng, thanh toán trực tuyến và cả.
+---------------------
+INDEX: 93
+DOCX: Quy mô Website bán hàng giúp cho quản trị viên và nhân viên bao quát được hết các sản phẩm chỉ cần một vào thao tác bấm chuột đơn giản.
+PDF : Website bán hàng được thiết kế đơn giản, dễ sử dụng và quản lý.
+---------------------
+INDEX: 94
+DOCX: Cửa hàng bán thiết bị điện tử chuyên cung cấp các thiết bị gia dụng phục vụ mục đích sinh hoạt của con người, như Tivi, máy tính, điện thoại,….
+PDF : Tính năng Website bán hàng đáp ứng cho nhiều loại mặt hàng và đối tượng khách hàng.
+---------------------
+INDEX: 95
+DOCX: Các cửa hàng luôn cập nhật các thông tin, mặt hàng mới nhất trên thế giới cũng như ở Việt Nam.
+PDF : Các chức năng này có thể kết nối, phối hợp với nhau mang lại tiện ích tốt nhất cho khách hàng.
+---------------------
+INDEX: 96
+DOCX: Tiêu chí hoạt động của cửa hàng là làm sao mặt hàng đến tay người tiêu dùng giá rẻ nhất thị trường nhưng chất lượng phải được đảm bảo.
+PDF : Chi phí Website bán hàng: chi phí để tri chả và bảo trì một website bán hàng rất rẻ, thay vào đó nó giúp các cửa hàng tiết kiệm được thời gian, tiền thuê nhân viên, mặt bằng, rất hữu ích cho chủ sở hữu.
+---------------------
+INDEX: 97
+DOCX: Việc giữ uy tín với khách hàng là phương châm hoạt động, phát triển thương hiệu của cửa hàng.
+PDF : Quy mô Website bán hàng giúp cho quản trị viên và nhân viên bao quát được hết các sản phẩm chỉ cần một vào thao tác bấm chuột đơn giản.
+---------------------
+INDEX: 98
+DOCX: Hiện tại vẫn còn nhiều cửa hàng chỉ phục vụ cho khách hàng đến mua hàng trực tiếp tại cửa hàng nhưng do sự mở rộng về quy mô bán hàng.
+PDF : Cửa hàng bán thiết bị điện tử chuyên cung cấp các thiết bị gia dụng phục vụ mục đích sinh hoạt của con người, như Tivi, máy tính, điện thoại,....
+---------------------
+INDEX: 99
+DOCX: Nhiều chủ cửa hàng có ý định phục vụ cho khách hàng ở xa, không có điều kiện đến mua trực tiếP.
+PDF : Các cửa hàng luôn cập nhật các thông tin, mặt hàng mới nhất trên thế giới cũng như ở Việt Nam.
+---------------------
+INDEX: 100
+DOCX: Đánh giá hiện trạng:
+PDF : Tiêu chí hoạt động của cửa hàng là làm sao mặt hàng đến tay người tiêu dùng giá rẻ nhất thị trường nhưng chất lượng phải được đảm bảo.
+---------------------
+INDEX: 101
+DOCX: Khảo sát tổng quan: Bán hàng trực tuyến là việc bán hàng hóa và dịch vụ qua internet đến người tiêu dùng.
+PDF : Việc giữ uy tín với khách hàng là phương châm hoạt động, phát triển thương hiệu của cửa hàng.
+---------------------
+INDEX: 102
+DOCX: Ngày nay, các hệ thống bán hàng trực tuyến trên mạng ngày càng mở rộng và có xu hướng cạnh tranh trực tiếp với nhau.
+PDF : Hiện tại vẫn còn nhiều cửa hàng chỉ phục vụ cho khách hàng đến mua hàng trực tiếp tại cửa hàng nhưng do sự mở rộng về quy mô bán hàng.
+---------------------
+INDEX: 103
+DOCX: Hoạt động mua bán hàng trực tuyến đang dần trở nên phổ biến với tất cả mọi người, được các công ty và các cửa hàng lớn trong và ngoài nước sử dụng để đem lại hiệu quả trong việc mua bán.
+PDF : Nhiều chủ cửa hàng có ý định phục vụ cho khách hàng ở xa, không có điều kiện đến mua trực tiếP.
+---------------------
+INDEX: 104
+DOCX: Khoảng cách địa lý: Cửa hàng có ưu điểm là cung cấp cho khách hàng cái nhìn khách quan về sản phẩm, dễ dàng nhận biết, cảm nhận, thậm chí là trải nghiệm sản phẩm.
+PDF : Đánh giá hiện trạng:
+---------------------
+INDEX: 105
+DOCX: Tuy nhiên, đối với khách hàng ở xa thì khó tiếp cận.
+PDF : Khảo sát tổng quan: Bán hàng trực tuyến là việc bán hàng hóa và dịch vụ qua internet đến người tiêu dùng.
+---------------------
+INDEX: 106
+DOCX: nêu có thể thì khách hàng mất nhiều thời gian, chỉ phí đi lại đến của hàng giao dịch.
+PDF : Ngày nay, các hệ thống bán hàng trực tuyến trên mạng ngày càng mở rộng và có xu hướng cạnh tranh trực tiếp với nhau.
+---------------------
+INDEX: 107
+DOCX: Giải pháp khắc phục:
+PDF : Hoạt động mua bán hàng trực tuyến đang dần trở nên phổ biến với tất cả mọi người, được các công ty và các cửa hàng lớn trong và ngoài nước sử dụng để đem lại hiệu quả trong việc mua bán.
+---------------------
+INDEX: 108
+DOCX: Hệ thống bán hàng trực tuyến hỗ trợ, bổ sung cho việc bán hàng trực tiếp, giúp việc bán hàng có hiệu quả hơn, cụ thể:
+PDF : Do phải sử dụng hệ thống mạng để mua bán hàng hóa nên các công ty, đại lý, cửa hàng, shoP...
+---------------------
+INDEX: 109
+DOCX: Tăng cường hoạt động quản lý, dựa trên hệ thống thông tin quản lý tin học.
+PDF : cần phải có một hệ thống website dùng để quảng cáo và mua bán.
+---------------------
+INDEX: 110
+DOCX: Hỗ trợ người chủ cửa hàng thực hiện các nghiệp vụ.
+PDF : Hơn thế nữa, hệ thống còn có thể quản lý số lượng hàng hóa được mua bán trực tuyến và đem lại hiệu quả cao trong việc quản lý.
+---------------------
+INDEX: 111
+DOCX: Tiết kiệm chỉ phí thuê địa điểm, quảng bá đến người tiêu dùng.
+PDF : Khoảng cách địa lý: Cửa hàng có ưu điểm là cung cấp cho khách hàng cái nhìn khách quan về sản phẩm, dễ dàng nhận biết, cảm nhận, thậm chí là trải nghiệm sản phẩm.
+---------------------
+INDEX: 112
+DOCX: Tăng lợi nhuận cho người chủ của hàng.
+PDF : Tuy nhiên, đối với khách hàng ở xa thì khó tiếp cận.
+---------------------
+INDEX: 113
+DOCX: Quy trình mua hàng:
+PDF : nêu có thể thì khách hàng mất nhiều thời gian, chỉ phí đi lại đến của hàng giao dịch.
+---------------------
+INDEX: 114
+DOCX: Khi có yêu cầu đặt hàng từ cửa hàng, nhà cung cấp sẽ cung cấp sản phẩm cho cửa hàng theo đơn đặt hàng.
+PDF : Giải pháp khắc phục:
+---------------------
+INDEX: 115
+DOCX: Khách hàng vào cửa hàng để xem các mặt hàng trong cửa hàng.
+PDF :  Hệ thống bán hàng trực tuyến hỗ trợ, bổ sung cho việc bán hàng trực tiếp, giúp việc bán hàng có hiệu quả hơn, cụ thể:
+---------------------
+INDEX: 116
+DOCX: Sau khi vào cửa hàng, khách hàng chọn các mặt hàng định mua.
+PDF :  Tăng cường hoạt động quản lý, dựa trên hệ thống thông tin quản lý tin học.
+---------------------
+INDEX: 117
+DOCX: Khi quyết định mua hàng, thông tin mặt hàng đó được lưu ở đơn đặt hàng.
+PDF :  Hỗ trợ người chủ cửa hàng thực hiện các nghiệp vụ.
+---------------------
+INDEX: 118
+DOCX: Nhân viên nhận đơn đặt hàng từ khách hàng.
+PDF :  Tiết kiệm chỉ phí thuê địa điểm, quảng bá đến người tiêu dùng.
+---------------------
+INDEX: 119
+DOCX: Đơn đặt hàng được nhân viên xử lý.
+PDF : Tăng lợi nhuận cho người chủ của hàng.
+---------------------
+INDEX: 120
+DOCX: Nếu đơn đặt hàng đó nằm trong tầm phục vụ của cửa hàng thì chuyển đơn đặt hàng đó đến quầy thu tiền, nếu không ( hết hàng, chưa có hàng..
+PDF : Quy trình mua hàng:
+---------------------
+INDEX: 121
+DOCX: ) thì khách hàng có thể quay lại cửa hàng để chọn mua phẩm khác.
+PDF : (1) Khi có yêu cầu đặt hàng từ cửa hàng, nhà cung cấp sẽ cung cấp sản phẩm cho cửa hàng theo đơn đặt hàng.
+---------------------
+INDEX: 122
+DOCX: Nhân viên ở quầy thu tiền tiến hành lập hóa đơn, một bên giao cho khách hàng, hóa đơn đó sẽ được chủ cửa hàng kiểm tra, thống kê cuối tháng.
+PDF : (2) Khách hàng vào cửa hàng để xem các mặt hàng trong cửa hàng.
+---------------------
+INDEX: 123
+DOCX: Sản phẩm sẽ được nhân viên lấy từ kho hàng chuyển cho khách hàng.
+PDF : (3) Sau khi vào cửa hàng, khách hàng chọn các mặt hàng định mua.
+---------------------
+INDEX: 124
+DOCX: Nhóm chức năng:
+PDF : (4) Khi quyết định mua hàng, thông tin mặt hàng đó được lưu ở đơn đặt hàng.
+---------------------
+INDEX: 125
+DOCX: Nhóm chức năng đăng ký: đăng nhập, đăng ký tài khoản.
+PDF : (5) Nhân viên nhận đơn đặt hàng từ khách hàng.
+---------------------
+INDEX: 126
+DOCX: - Nhóm chức năng xem thông tin: xem thông tin sản phẩm, thông tin giỏ hàng, thông tin cá nhân.
+PDF : (6) Đơn đặt hàng được nhân viên xử lý.
+---------------------
+INDEX: 127
+DOCX: - Nhóm chức năng quản lí: quản lí danh mục sản phẩm, thông tin khách hàng, thống kê báo cáo.
+PDF : Nếu đơn đặt hàng đó nằm trong tầm phục vụ của cửa hàng thì chuyển đơn đặt hàng đó đến quầy thu tiền, nếu không ( hết hàng, chưa có hàng..
+---------------------
+INDEX: 128
+DOCX: - Nhóm chức năng mua hàng và tiếp nhận xử lý đơn hàng.
+PDF : ) thì khách hàng có thể quay lại cửa hàng để chọn mua phẩm khác.
+---------------------
+INDEX: 129
+DOCX: Các tác nhân:
+PDF : (7) Nhân viên ở quầy thu tiền tiến hành lập hóa đơn, một bên giao cho khách hàng, hóa đơn đó sẽ được chủ cửa hàng kiểm tra, thống kê cuối tháng.
+---------------------
+INDEX: 130
+DOCX: - Khách hàng: Xem sản phẩm, Tìm kiếm sản phẩm, Mua hàng, Tạo giỏ hàng, Quản lý tài khoản cá nhân.
+PDF : (8) Sản phẩm sẽ được nhân viên lấy từ kho hàng chuyển cho khách hàng.
+---------------------
+INDEX: 131
+DOCX: -Nhân viên:Thêm, cập nhật danh mục sản phẩm, sản phẩm, thống kê sản phẩm, đơn hàng,doanh thu.
+PDF : Nhóm chức năng:
+---------------------
+INDEX: 132
+DOCX: -Quản trị hệ thống: Quản lý tài khoản(all), Quản lý nội dung của website(Quản lý sản phẩm, Giá của sản phẩm,…) 2.
+PDF : Nhóm chức năng đăng ký: đăng nhập, đăng ký tài khoản.
+---------------------
+INDEX: 133
+DOCX: 1.
+PDF : - Nhóm chức năng xem thông tin: xem thông tin sản phẩm, thông tin giỏ hàng, thông tin cá nhân.
+---------------------
+INDEX: 134
+DOCX: 3 Chi tiết chức năng của Website (phía front end) Bảng 2.
+PDF : - Nhóm chức năng quản lí: quản lí danh mục sản phẩm, thông tin khách hàng, thống kê báo cáo.
+---------------------
+INDEX: 135
+DOCX: 1 Chi tiết chức năng của Website (front end) STT Chức năng Mô tả Xem hàng Người dùng bấm vào ảnh của sản phẩm, thông tin của sản phẩm sẽ hiển thị ra, từ đó có thể xem thông tin về các sản phẩm: Tên, giá, hãng sản xuất, tình trạng… Đặt hàng Sau khi tìm kiếm được sản phẩm mình ưng ý người dung sẽ bấm vào nút thêm vào giỏ hàng, ở đây thông tin của sản phẩm sẽ được lưu vào trang giỏ hàng.
+PDF : - Nhóm chức năng mua hàng và tiếp nhận xử lý đơn hàng.
+---------------------
+INDEX: 136
+DOCX: Giỏ hàng Người dùng có thể điều chỉnh mặt hàng mình đã chọn.
+PDF : Các tác nhân:
+---------------------
+INDEX: 137
+DOCX: Gồm tổng giá sản phẩm mà khách hàng mua, nếu người dùng không còn muốn mua sản phẩm mà mình đã thêm vào giỏ hàng nữa họ sẽ bấm vào nút xóa sản phẩm, nếu thêm mới sản phẩm họ sẽ bấm nút cập nhật, nếu muốn tiếp tục mua thêm sản phẩm người dùng sẽ thao tác vào nút tiếp tục mua hàng.
+PDF : - Khách hàng: Xem sản phẩm, Tìm kiếm sản phẩm, Mua hàng, Tạo giỏ hàng, Quản lý tài khoản cá nhân.
+---------------------
+INDEX: 138
+DOCX: Tìm kiếm Người dùng nhập từ khóa vào thanh tìm kiếm, hệ thống sau đó sẽ hiển thị ra thông tin sản phẩm mà người dùng đang tìm kiếm 2.
+PDF : -Nhân viên:Thêm, cập nhật danh mục sản phẩm, sản phẩm, thống kê sản phẩm, đơn hàng,doanh thu.
+---------------------
+INDEX: 139
+DOCX: 1.
+PDF : -Quản trị hệ thống: Quản lý tài khoản(all), Quản lý nội dung của website(Quản lý sản phẩm, Giá của sản phẩm,...
+---------------------
+INDEX: 140
+DOCX: 4 Chi tiết chức năng (phía back end) Xem hàng:
+PDF : ) 2.
+---------------------
+INDEX: 141
+DOCX: Khách hàng truy cập vào địa chỉ của website trên thanh url, dữ liệu sẽ gửi vào hàm tìm kiếm Đầu vào: ID sản phẩm.
+PDF : 1.
+---------------------
+INDEX: 142
+DOCX: Xứ lý: Khi khách hàng chọn một sản phẩm bất kì trên page, ID của sản phẩm sẽ vào tới controller thực hiện các thủ tục rồi sau đó đến các query sau đó truy xuất đến database, hệ thống sẽ lấy dữ liệu từ cơ sở dữ liệu, gửi lên cho người dùng.
+PDF : 3 Chi tiết chức năng của Website (phía front end) Bảng 2.
+---------------------
+INDEX: 143
+DOCX: Đầu ra: ID của sản phẩm, kèm theo các thuộc tính như: Name, Detail, Images..
+PDF : 1 Chi tiết chức năng của Website (front end) STT Chức năng Mô tả 1 Xem hàng Người dùng bấm vào ảnh của sản phẩm, thông tin của sản phẩm sẽ hiển thị ra, từ đó có thể xem thông tin về các sản phẩm: Tên, giá, hãng sản xuất, tình trạng...
+---------------------
+INDEX: 144
+DOCX: Đặt hàng:
+PDF : 2 Đặt hàng Sau khi tìm kiếm được sản phẩm mình ưng ý người dung sẽ bấm vào nút thêm vào giỏ hàng, ở đây thông tin của sản phẩm sẽ được lưu vào trang giỏ hàng.
+---------------------
+INDEX: 145
+DOCX: Khi khách hàng gửi thông tin đặt hàng thì mặt hàng đó sẽ được gửi đến giỏ hàng.
+PDF : 3 Giỏ hàng Người dùng có thể điều chỉnh mặt hàng mình đã chọn.
+---------------------
+INDEX: 146
+DOCX: dữ liệu sẽ gửi vào hàm tìm kiếm và hàm thêm mới sản phẩm vào giỏ hàng Đầu vào: ID sản phẩm, số lượng.
+PDF : Gồm tổng giá sản phẩm mà khách hàng mua, nếu người dùng không còn muốn mua sản phẩm mà mình đã thêm vào giỏ hàng nữa họ sẽ bấm vào nút xóa sản phẩm, nếu thêm mới sản phẩm họ sẽ bấm nút cập nhật, nếu muốn tiếp tục mua thêm sản phẩm người dùng sẽ thao tác vào nút tiếp tục mua hàng.
+---------------------
+INDEX: 147
+DOCX: Xử lý: Khi khách hàng chọn mặt hàng muốn mua, ID của sản phẩm sẽ vào tới controller thực hiện các thủ tục rồi sau đó đến các query nếu ID chọn lần đầu tiên thì ở sản phẩm số lượng sẽ gán bằng 1.
+PDF : 4 Tìm kiếm Người dùng nhập từ khóa vào thanh tìm kiếm, hệ thống sau đó sẽ hiển thị ra thông tin sản phẩm mà người dùng đang tìm kiếm 2.
+---------------------
+INDEX: 148
+DOCX: Nếu đã tồn ID đó rồi thì số lượng sẽ được cộng dồn thêm l.
+PDF : 1.
+---------------------
+INDEX: 149
+DOCX: Đầu ra :ID của sản phẩm, số lượng, thành tiền.
+PDF : 4 Chi tiết chức năng (phía back end) Xem hàng:
+---------------------
+INDEX: 150
+DOCX: Giỏ hàng:
+PDF : Khách hàng truy cập vào địa chỉ của website trên thanh url, dữ liệu sẽ gửi vào hàm tìm kiếm Đầu vào: ID sản phẩm.
+---------------------
+INDEX: 151
+DOCX: Cho phép khách hàng xem, điều chỉnh, thêm, xóa mặt hàng mà khách hàng đã đặt mua.
+PDF : Xứ lý: Khi khách hàng chọn một sản phẩm bất kì trên page, ID của sản phẩm sẽ vào tới controller thực hiện các thủ tục rồi sau đó đến các query sau đó truy xuất đến database, hệ thống sẽ lấy dữ liệu từ cơ sở dữ liệu, gửi lên cho người dùng.
+---------------------
+INDEX: 152
+DOCX: Có chức năng tính tổng giá trị của đơn hàng đó.
+PDF : Đầu ra: ID của sản phẩm, kèm theo các thuộc tính như: Name, Detail, Images..
+---------------------
+INDEX: 153
+DOCX: Đầu vào: ID của sản phẩm, các tên id của các nút: cập nhật, xóa tiếp tục mua hàng...
+PDF : Đặt hàng:
+---------------------
+INDEX: 154
+DOCX: Xứ lý: Nếu khách hàng thay đổi số lượng mặt hàng muốn mua, khi khách hàng chọn lại số lượng và chọn nút cập nhật thì ID của sản phẩm và id của buuton cập nhật vào tới controller thực hiện các thủ tục rồi sau đó đến các query update, count Quantity, cost sẽ được cập nhật lại.
+PDF : Khi khách hàng gửi thông tin đặt hàng thì mặt hàng đó sẽ được gửi đến giỏ hàng.
+---------------------
+INDEX: 155
+DOCX: Khi khách hàng chọn xóa sản phẩm thì sản phẩm thì ID của sản phẩm và id của buuton xóa sẽ gọi tời controoler và query delete xóa ID sản phẩm xóa khỏi table Cart trong database.
+PDF : dữ liệu sẽ gửi vào hàm tìm kiếm và hàm thêm mới sản phẩm vào giỏ hàng Đầu vào: ID sản phẩm, số lượng.
+---------------------
+INDEX: 156
+DOCX: Khách hàng chọn mua tiếp thì id của button quay trở về trang trủ sẽ được gọi tới nút Home,..
+PDF : Xử lý: Khi khách hàng chọn mặt hàng muốn mua, ID của sản phẩm sẽ vào tới controller thực hiện các thủ tục rồi sau đó đến các query nếu ID chọn lần đầu tiên thì ở sản phẩm số lượng sẽ gán bằng 1.
+---------------------
+INDEX: 157
+DOCX: Đầu ra: ID của sản phẩm, số lượng, thành tiền.
+PDF : Nếu đã tồn ID đó rồi thì số lượng sẽ được cộng dồn thêm l.
+---------------------
+INDEX: 158
+DOCX: Tìm kiếm sản phẩm:
+PDF : Đầu ra :ID của sản phẩm, số lượng, thành tiền.
+---------------------
+INDEX: 159
+DOCX: Để không mất thời gian duyệt từng sản phẩm trên website, khách hàng có thể biết thông tin về sản phẩm mình muốn mua bằng cách nhập thông tin vào ô tìm kiếm, ID của sản phẩm sẽ đực gửi vào hàm tìm kiếm.
+PDF : Giỏ hàng:
+---------------------
+INDEX: 160
+DOCX: Đầu vào: ID sản phẩm.
+PDF : Cho phép khách hàng xem, điều chỉnh, thêm, xóa mặt hàng mà khách hàng đã đặt mua.
+---------------------
+INDEX: 161
+DOCX: Xứ lý: ID của sản phẩm sẽ vào tới controller thực hiện các thủ tục rồi sau đó đến các query Search.
+PDF : Có chức năng tính tổng giá trị của đơn hàng đó.
+---------------------
+INDEX: 162
+DOCX: Nếu nhận ID tồn tại khớp với từ khóa tìm kiếm sẽ trả kết quả tìm kiếm về cho người dùng gồm các thuộc tính Images, Name…của sản phẩm, nếu ID không tồn tại trong database file sẽ trả về thông báo: “Không tìm thấy kết quả”.
+PDF : Đầu vào: ID của sản phẩm, các tên id của các nút: cập nhật, xóa tiếp tục mua hàng...
+---------------------
+INDEX: 163
+DOCX: Đầu ra: : ID của sản phẩm, kèm theo các thuộc tính như: Name, Images… Thống kê sản phẩm, doanh thu, đơn hàng:
+PDF : Xứ lý: Nếu khách hàng thay đổi số lượng mặt hàng muốn mua, khi khách hàng chọn lại số lượng và chọn nút cập nhật thì ID của sản phẩm và id của buuton cập nhật vào tới controller thực hiện các thủ tục rồi sau đó đến các query update, count Quantity, cost sẽ được cập nhật lại.
+---------------------
+INDEX: 164
+DOCX: Quản trị viên có nhu cầu thống kê: sản phẩm, doanh thu họ sẽ bấm vào menu thống kê Đầu vào: id của button thống kê, id sản phẩm Xử lý: ID của button thống kê cùng id sản phẩm sẽ vào tới controller thực hiện các thủ tục rồi sau đó đến các query để tính toán rồi gửi lại dữ liệu lên cho quản trị Đầu ra: : Dữ liệu dã được tính toán kèm theo ID sản phẩm… 2.
+PDF : Khi khách hàng chọn xóa sản phẩm thì sản phẩm thì ID của sản phẩm và id của buuton xóa sẽ gọi tời controoler và query delete xóa ID sản phẩm xóa khỏi table Cart trong database.
+---------------------
+INDEX: 165
+DOCX: 2 Sơ đồ chức năng 2.
+PDF : Khách hàng chọn mua tiếp thì id của button quay trở về trang trủ sẽ được gọi tới nút Home,..
+---------------------
+INDEX: 166
+DOCX: 2.
+PDF : Đầu ra: ID của sản phẩm, số lượng, thành tiền.
+---------------------
+INDEX: 167
+DOCX: 1 Sơ đồ phân rã chức năng.
+PDF : Tìm kiếm sản phẩm:
+---------------------
+INDEX: 168
+DOCX: __CAPTION__Sơ đồ phân rã chức năng Sơ đồ phân rã chức năng gồm các chức năng chính:
+PDF : Để không mất thời gian duyệt từng sản phẩm trên website, khách hàng có thể biết thông tin về sản phẩm mình muốn mua bằng cách nhập thông tin vào ô tìm kiếm, ID của sản phẩm sẽ đực gửi vào hàm tìm kiếm.
+---------------------
+INDEX: 169
+DOCX: Quản lý người dùng: Đăng ký, đăng nhập, cập nhật thông tin.
+PDF : Đầu vào: ID sản phẩm.
+---------------------
+INDEX: 170
+DOCX: Quản lí bán hàng: Tìm kiếm sản phẩm, xem thông tin, đặt hàng, thanh toán.
+PDF : Xứ lý: ID của sản phẩm sẽ vào tới controller thực hiện các thủ tục rồi sau đó đến các query Search.
+---------------------
+INDEX: 171
+DOCX: Thống kê: Thống kê số lượng sản phẩm, doanh thu, đơn hàng.
+PDF : Nếu nhận ID tồn tại khớp với từ khóa tìm kiếm sẽ trả kết quả tìm kiếm về cho người dùng gồm các thuộc tính Images, Name...
+---------------------
+INDEX: 172
+DOCX: Quản lí danh mục: Thêm mới loại sản phẩm, cập nhật loại sản phẩm.
+PDF : của sản phẩm, nếu ID không tồn tại trong database file sẽ trả về thông báo: “Không tìm thấy kết quả”.
+---------------------
+INDEX: 173
+DOCX: Quản lí sản phẩm: Thêm sản phẩm mới, cập nhật sản phẩm, xóa sản phẩm.
+PDF : Đầu ra: : ID của sản phẩm, kèm theo các thuộc tính như: Name, Images...
+---------------------
+INDEX: 174
+DOCX: __CAPTION__Biểu đồ dữ liệu mức khung cảnh - Biểu đồ dữ liệu mức khung cảnh có 2 tác nhân chính là: Khách hàng và quản trị viên Khách hàng sẽ gửi thông tin yêu cầu đến cửa hàng, và sau đó sẽ nhận được dữ liệu đáp ứng.
+PDF : Thống kê sản phẩm, doanh thu, đơn hàng:
+---------------------
+INDEX: 175
+DOCX: Quản trị viên nhập dữ liệu thống kê, và sau đó dữ liệu thống kê được gửi đến quản trị.
+PDF : Quản trị viên có nhu cầu thống kê: sản phẩm, doanh thu họ sẽ bấm vào menu thống kê Đầu vào: id của button thống kê, id sản phẩm Xử lý: ID của button thống kê cùng id sản phẩm sẽ vào tới controller thực hiện các thủ tục rồi sau đó đến các query để tính toán rồi gửi lại dữ liệu lên cho quản trị Đầu ra: : Dữ liệu dã được tính toán kèm theo ID sản phẩm...
+---------------------
+INDEX: 176
+DOCX: __CAPTION__Biểu luồng đồ dữ liệu mức khung cảnh Biểu đồ dữ liệu mức khung cảnh có:
+PDF : __CAPTION__Sơ đồ phân rã chức năng - Sơ đồ phân rã chức năng gồm các chức năng chính:
+---------------------
+INDEX: 177
+DOCX: 5 chức năng: Quản lý người dùng, quản lý bán hàng, Quản lý sản phẩm, quản lý danh mục, thống kê.
+PDF :  Quản lý người dùng: Đăng ký, đăng nhập, cập nhật thông tin.
+---------------------
+INDEX: 178
+DOCX: 2 tác nhân: Người dùng (khách hàng), quản trị.
+PDF :  Quản lí bán hàng: Tìm kiếm sản phẩm, xem thông tin, đặt hàng, thanh toán.
+---------------------
+INDEX: 179
+DOCX: 4 kho: Tài khoản, đơn hàng, sản phẩm, danh mục sản phẩm.
+PDF :  Thống kê: Thống kê số lượng sản phẩm, doanh thu, đơn hàng.
+---------------------
+INDEX: 180
+DOCX: __CAPTION__Chức năng quản lý người dùng -Tác nhân khách hàng có thể đăng ký, thông tin cá nhân đó sẽ được lưu vào kho tài khoản, và sau đó khách hàng có thể đăng nhập hoặc cập nhật lại thông tin.
+PDF :  Quản lí danh mục: Thêm mới loại sản phẩm, cập nhật loại sản phẩm.
+---------------------
+INDEX: 181
+DOCX: __CAPTION__Chức năng quản lý bán hàng - Tác nhân ngoài khách hàng có thể xem và tìm kiếm sản phẩm rồi đặt hàng.
+PDF :  Quản lí sản phẩm: Thêm sản phẩm mới, cập nhật sản phẩm, xóa sản phẩm.
+---------------------
+INDEX: 182
+DOCX: - Sau đó điền thông tin cá nhân, thông tin địa chỉ liên hệ để nhận hàng đặt hàng rồi thanh toán, thông tin mà khách hàng đã đăng ký sẽ được lấy để kiểm tra thông tin.
+PDF : __CAPTION__Biểu đồ dữ liệu mức khung cảnh - Biểu đồ dữ liệu mức khung cảnh có 2 tác nhân chính là: Khách hàng và quản trị viên  Khách hàng sẽ gửi thông tin yêu cầu đến cửa hàng, và sau đó sẽ nhận được dữ liệu đáp ứng.
+---------------------
+INDEX: 183
+DOCX: __CAPTION__Chức năng Thống kê Quản trị có thể thống kê:
+PDF :  Quản trị viên nhập dữ liệu thống kê, và sau đó dữ liệu thống kê được gửi đến quản trị.
+---------------------
+INDEX: 184
+DOCX: Thống kê đơn hàng đã được đặt bởi khách hàng.
+PDF : __CAPTION__Biểu luồng đồ dữ liệu mức khung cảnh - Biểu đồ dữ liệu mức khung cảnh có:
+---------------------
+INDEX: 185
+DOCX: Thống kê số lượng của sản phẩm.
+PDF :  5 chức năng: Quản lý người dùng, quản lý bán hàng, Quản lý sản phẩm, quản lý danh mục, thống kê.
+---------------------
+INDEX: 186
+DOCX: Thống kê doanh thu.
+PDF :  2 tác nhân: Người dùng (khách hàng), quản trị.
+---------------------
+INDEX: 187
+DOCX: __CAPTION__Chức năng quản lý Danh mục sản phẩm - Danh mục sản phẩm có thể được cập nhật, và thêm mới bởi quản trị viên.
+PDF :  4 kho: Tài khoản, đơn hàng, sản phẩm, danh mục sản phẩm.
+---------------------
+INDEX: 188
+DOCX: __CAPTION__Chức năng quản lý Sản Phẩm - Sản phẩm có thể được cập nhật, và thêm mới bởi quản trị viên.
+PDF : __CAPTION__Chức năng quản lý người dùng -Tác nhân khách hàng có thể đăng ký, thông tin cá nhân đó sẽ được lưu vào kho tài khoản, và sau đó khách hàng có thể đăng nhập hoặc cập nhật lại thông tin.
+---------------------
+INDEX: 189
+DOCX: Khung giao diện 2.
+PDF : __CAPTION__Chức năng quản lý bán hàng - Tác nhân ngoài khách hàng có thể xem và tìm kiếm sản phẩm rồi đặt hàng.
+---------------------
+INDEX: 190
+DOCX: 4.
+PDF : - Sau đó điền thông tin cá nhân, thông tin địa chỉ liên hệ để nhận hàng đặt hàng rồi thanh toán, thông tin mà khách hàng đã đăng ký sẽ được lấy để kiểm tra thông tin.
+---------------------
+INDEX: 191
+DOCX: 1 Trang giao diện người dùng tổng quát Hình 2.
+PDF : __CAPTION__Chức năng Thống kê - Quản trị có thể thống kê:
+---------------------
+INDEX: 192
+DOCX: 9: Trang giao diện 2.
+PDF :  Thống kê đơn hàng đã được đặt bởi khách hàng.
+---------------------
+INDEX: 193
+DOCX: 4.
+PDF :  Thống kê số lượng của sản phẩm.
+---------------------
+INDEX: 194
+DOCX: 2 Trang giao diện người dùng chi tiết Hình 2.
+PDF :  Thống kê doanh thu.
+---------------------
+INDEX: 195
+DOCX: 10: Trang chủ 2.
+PDF : __CAPTION__Chức năng quản lý Danh mục sản phẩm - Danh mục sản phẩm có thể được cập nhật, và thêm mới bởi quản trị viên.
+---------------------
+INDEX: 196
+DOCX: 4.
+PDF : __CAPTION__Chức năng quản lý Sản Phẩm - Sản phẩm có thể được cập nhật, và thêm mới bởi quản trị viên.
+---------------------
+INDEX: 197
+DOCX: 3 Trang chi tiết sản phẩm Hình 2.
+PDF : __CAPTION__Bảng Category Liên kết Tên trường Kiểu dữ liệu Primery Key CatedID int CateName Nvarchar(50) UpdateBy Nvarchar(50) UpdateAt Datetime CreatAt Datetime CreatBy Nvarchar(50) Bảng Category (Danh mục) có chức năng phân các sản phẩm theo từng danh mục như TV, Tủ lạnh...
+---------------------
+INDEX: 198
+DOCX: 11: Trang Chi Tiết 2.
+PDF : liên kết 1-n với bảng Product (Sản phẩm) => trong một danh mục sản phẩm sẽ có nhiều sản phẩm.
+---------------------
+INDEX: 199
+DOCX: 4.
+PDF : __CAPTION__Bảng Orderdetail Liên kết Tên trường Kiểu dữ liệu Primery Key ID int Foreign key ProdID int Foreign key OrderID int Price Decimal PriceSell Decimal Quantily int Amount Decimal Bảng Orderdetail (Chi tiết đơn hàng) có chức năng lưu sản phẩm vào đơn hàng liên kết 1-n với bảng Product => mỗi đơn hàng sẽ có nhiều sản phẩm.
+---------------------
+INDEX: 200
+DOCX: 4 Giao diện trang quản trị Hình 2.
+PDF : __CAPTION__Bảng Role Liên kết Tên trường Kiểu dữ liệu Primery Key ID int AcesName Varchar(10) Description Nvarchar(50) Bảng Role (Quyền) có chức năng phân quyền cho các tài khoản liên kết 1-n tới bảng User (Người dùng) mỗi người dùng có nhiều quyền.
+---------------------
+INDEX: 201
+DOCX: 12: Giao diện trang quản trị 2.
+PDF : __CAPTION__Bảng Order Liên kết Tên trường Kiểu dữ liệu Primery Key OrderID int UserID int AdressEmail Nvarchar(50) DeliveryPhone int DeliveryPayment int DeliveryName Nvarchar(30) StatusPayment int CreatAt datetime CreatBy Varchar(30) Bảng Order (Đơn hàng) Có chức năng lưu các sản phẩm từ giò hàng liên kết với bảng Orderdetail quan hệ 1-n => trong một chi tiến đơn hàng sẽ có nhiều đơn hàng mỗi đơn hàng tương ứng với 1 sản phẩm, liên kết 1-n với bảng User => lấy thông tin người dùng để đặt hàng mỗi tài khoản người dùng có thể đặt nhiều đơn hàng.
+---------------------
+INDEX: 202
+DOCX: 5 Mô hình thể liên kết Hình 2.
+PDF : Chức năng 2: Quản lý tài khoản Mô tả: Sau khi đăng nhập vào hệ thống thành công, khách hàng có thể quản lý tài khoản của mình: sửa thông tin, đổi mật khẩu...
+---------------------
+INDEX: 203
+DOCX: 13: Mô hình thực thể liên kết Bảng 2.
+PDF : Chức năng 3: Xem sản phẩm Mô tả: Khách hàng click vào trang chủ để xem các sản phẩm hot và các sản phẩm bán chạy.
+---------------------
+INDEX: 204
+DOCX: 2: Bảng Product Liên kết Tên trường Kiểu dữ liệu Primery Key ProdID int Foreign key CatedID int ProducName Nvarchar(50) Price Decimal ProdDesc Text Quantity int PriceSell Decimal UpdateBy Nvarchar(50) UpdateAt Datetime Status int Bảng Product (Sản phẩm) có chức năng để lưu các sản phẩm gồm: ID sản phẩm, giá sản phẩm, số lượng, ngày thêm sản phẩm, trạng thái… liên kết với bảng danh mục hiển thị các sản phẩm trong danh mục và bảng chi tiết đơn hàng để hiển thị sản phẩm đã đặt đơn hàng.
+PDF : Khách hàng cũng có thể xem sản phẩm theo menu danh mục.
+---------------------
+INDEX: 205
+DOCX: __CAPTION__Bảng Category Liên kết Tên trường Kiểu dữ liệu Primery Key CatedID int CateName Nvarchar(50) UpdateBy Nvarchar(50) UpdateAt Datetime CreatAt Datetime CreatBy Nvarchar(50) Bảng Category (Danh mục) có chức năng phân các sản phẩm theo từng danh mục như TV, Tủ lạnh… liên kết 1-n với bảng Product (Sản phẩm) => trong một danh mục sản phẩm sẽ có nhiều sản phẩm.
+PDF : Chức năng 4: Tìm kiếm sản phẩm Mô tả: Khách hàng truy cập vào màn hình trang chủ, nhập tên sản phẩm cần tìm kiếm vào search box sau đó ấn nút tìm kiếm.
+---------------------
+INDEX: 206
+DOCX: __CAPTION__Bảng Orderdetail Liên kết Tên trường Kiểu dữ liệu Primery Key ID int Foreign key ProdID int Foreign key OrderID int Price Decimal PriceSell Decimal Quantily int Amount Decimal Bảng Orderdetail (Chi tiết đơn hàng) có chức năng lưu sản phẩm vào đơn hàng liên kết 1-n với bảng Product => mỗi đơn hàng sẽ có nhiều sản phẩm.
+PDF : Hệ thống sẽ tìm kiếm những sản phẩm có tên tương đương với từ khóa tìm kiếm của khách hàng và trả kết quả ra màn hình.
+---------------------
+INDEX: 207
+DOCX: __CAPTION__Bảng Role Liên kết Tên trường Kiểu dữ liệu Primery Key ID int AcesName Varchar(10) Description Nvarchar(50) Bảng Role (Quyền) có chức năng phân quyền cho các tài khoản liên kết 1-n tới bảng User (Người dùng) mỗi người dùng có nhiều quyền.
+PDF : Chức năng 5: Tạo giỏ hàng Mô tả: Khi khách hàng xem 1 sản phẩm nào đó và muốn thêm sản phẩm đó vào giỏ hàng, khách hàng ấn nút thêm vào giỏ hàng.
+---------------------
+INDEX: 208
+DOCX: __CAPTION__Bảng Order Liên kết Tên trường Kiểu dữ liệu Primery Key OrderID int UserID int AdressEmail Nvarchar(50) DeliveryPhone int DeliveryPayment int DeliveryName Nvarchar(30) StatusPayment int CreatAt datetime CreatBy Varchar(30) Bảng Order (Đơn hàng) Có chức năng lưu các sản phẩm từ giò hàng liên kết với bảng Orderdetail quan hệ 1-n => trong một chi tiến đơn hàng sẽ có nhiều đơn hàng mỗi đơn hàng tương ứng với 1 sản phẩm, liên kết 1-n với bảng User => lấy thông tin người dùng để đặt hàng mỗi tài khoản người dùng có thể đặt nhiều đơn hàng.
+PDF : Ngay lập tức 1 giỏ hàng sẽ được tạo ra và có sản phẩm mà khách hàng đã thêm vào giỏ.
+---------------------
+INDEX: 209
+DOCX: Chức năng 2: Quản lý tài khoản Mô tả: Sau khi đăng nhập vào hệ thống thành công, khách hàng có thể quản lý tài khoản của mình: sửa thông tin, đổi mật khẩu...
+PDF : Chức năng 6: Mua hàng Mô tả: Khi khách hàng muốn mua sản phẩm, khách hàng vào giỏ hàng và ấn vào nút thanh toán.
+---------------------
+INDEX: 210
+DOCX: Chức năng 3: Xem sản phẩm Mô tả: Khách hàng click vào trang chủ để xem các sản phẩm hot và các sản phẩm bán chạy.
+PDF : Hệ thống sẽ đưa ra các phương thức thanh toán để khách hàng thanh toán.
+---------------------
+INDEX: 211
+DOCX: Khách hàng cũng có thể xem sản phẩm theo menu danh mục.
+PDF : Nhân viên Chức năng 1: Quản lý nội dung của website Mô tả: Nhân viên truy cập vào trang quản trị có thể thêm, sửa, xóa sản phẩm, danh mục sản phẩm...
+---------------------
+INDEX: 212
+DOCX: Chức năng 4: Tìm kiếm sản phẩm Mô tả: Khách hàng truy cập vào màn hình trang chủ, nhập tên sản phẩm cần tìm kiếm vào search box sau đó ấn nút tìm kiếm.
+PDF : Chức năng 2: Thống kê theo các tiêu chí Mô tả: Nhân viên đăng nhập vào hệ thống, truy cập vào trang thống kê.
+---------------------
+INDEX: 213
+DOCX: Hệ thống sẽ tìm kiếm những sản phẩm có tên tương đương với từ khóa tìm kiếm của khách hàng và trả kết quả ra màn hình.
+PDF : Nhân viên có thống kê sản phẩm, doanh thu, đơn hàng.
+---------------------
+INDEX: 214
+DOCX: Chức năng 5: Tạo giỏ hàng Mô tả: Khi khách hàng xem 1 sản phẩm nào đó và muốn thêm sản phẩm đó vào giỏ hàng, khách hàng ấn nút thêm vào giỏ hàng.
+PDF : Quản trị hệ thống Chức năng 1: Quản lý tài khoản Mô tả: Quản trị viên đăng nhập vào hệ thống, truy cập vào trang quản lý tài khoản.
+---------------------
+INDEX: 215
+DOCX: Ngay lập tức 1 giỏ hàng sẽ được tạo ra và có sản phẩm mà khách hàng đã thêm vào giỏ.
+PDF : Người quản trị có quyền thêm, sửa, xóa cho tất cả các tài khoản.
+---------------------
+INDEX: 216
+DOCX: Chức năng 6: Mua hàng Mô tả: Khi khách hàng muốn mua sản phẩm, khách hàng vào giỏ hàng và ấn vào nút thanh toán.
+PDF : Chức năng 2: Quản lý nội dung của website Mô tả: Quản trị viên truy cập vào trang quản trị có thể thêm, sửa, xóa sản phẩm, danh mục sản phẩm...
+---------------------
+INDEX: 217
+DOCX: Hệ thống sẽ đưa ra các phương thức thanh toán để khách hàng thanh toán.
+PDF : Chức năng 3: Thống kê theo các tiêu chí Mô tả: Quản trị viên đăng nhập vào hệ thống, truy cập vào trang thống kê.
+---------------------
+INDEX: 218
+DOCX: Nhân viên Chức năng 1: Quản lý nội dung của website Mô tả: Nhân viên truy cập vào trang quản trị có thể thêm, sửa, xóa sản phẩm, danh mục sản phẩm...
+PDF : Người quản trị có thống kê sản phẩm, doanh thu, đơn hàng.
+---------------------
+INDEX: 219
+DOCX: Chức năng 2: Thống kê theo các tiêu chí Mô tả: Nhân viên đăng nhập vào hệ thống, truy cập vào trang thống kê.
+PDF : - 2.
+---------------------
+INDEX: 220
+DOCX: Nhân viên có thống kê sản phẩm, doanh thu, đơn hàng.
+PDF : 6.
+---------------------
+INDEX: 221
+DOCX: Quản trị hệ thống Chức năng 1: Quản lý tài khoản Mô tả: Quản trị viên đăng nhập vào hệ thống, truy cập vào trang quản lý tài khoản.
+PDF : 3 Tìm kiếm Hình 2.
+---------------------
+INDEX: 222
+DOCX: Người quản trị có quyền thêm, sửa, xóa cho tất cả các tài khoản.
+PDF : 16: Tìm kiếm - Mô tả giải thuật: Đầu vào là từ khóa tìm kiếm nếu dữ liệu sai sẽ quay lại bước nhập từ khóa, còn nếu đúng sẽ thực hiện tìm kiếm rồi hiện thị thông tin và kết thúc chương trình.
+---------------------
+INDEX: 223
+DOCX: Chức năng 2: Quản lý nội dung của website Mô tả: Quản trị viên truy cập vào trang quản trị có thể thêm, sửa, xóa sản phẩm, danh mục sản phẩm...
+PDF : Theo đó, chúng ta sẽ có: Website cửa hàng, Website siêu thị, Website trường học, Website tập đoàn, Website công ty, Website bệnh viện, Website bảo tàng, Website cá nhân...
+---------------------
+INDEX: 224
+DOCX: Chức năng 3: Thống kê theo các tiêu chí Mô tả: Quản trị viên đăng nhập vào hệ thống, truy cập vào trang thống kê.
+PDF : và bạn có thể tiếp tục danh sách này thay tôi.
+---------------------
+INDEX: 225
+DOCX: Người quản trị có thống kê sản phẩm, doanh thu, đơn hàng.
+PDF : Thông thường, xét theo đối tượng sử dụng, có thể chia website thành 4 loại:
+---------------------
+INDEX: 226
+DOCX: Thông thường, xét theo đối tượng sử dụng, có thể chia website thành 4 loại:
+PDF : Website dành cho doanh nghiệp Website dành cho cá nhân Website của chính phủ Website của các tổ chức phi lợi nhuận Ngoài ra, xét theo cấu trúc lập trình, website được phân thành 2 loại chính sau:
+---------------------
+INDEX: 227
+DOCX: Website dành cho doanh nghiệp Website dành cho cá nhân Website của chính phủ Website của các tổ chức phi lợi nhuận Ngoài ra, xét theo cấu trúc lập trình, website được phân thành 2 loại chính sau:
+PDF : Web tĩnh Web tĩnh là các website sử dụng các đoạn mã HTML, CSS, audio, video, hình ảnh...
+---------------------
+INDEX: 228
+DOCX: Web tĩnh Web tĩnh là các website sử dụng các đoạn mã HTML, CSS, audio, video, hình ảnh… Để tạo ra một giao diện website.
+PDF : Để tạo ra một giao diện website.
+---------------------
+INDEX: 235
+DOCX: Những ngôn ngữ lập trình website động thường thấy là: Java, PHP, ASP, ASP.NET, Python… Trong đó, PHP và ASP.NET là 2 ngôn ngữ được sử dụng phổ biến nhất hiện nay.
+PDF : Những ngôn ngữ lập trình website động thường thấy là: Java, PHP, ASP, ASP.NET, Python...
+---------------------
+INDEX: 236
+DOCX: Visual Studio là một phần mềm lập trình hệ thống được sản xuất trực tiếp từ Microsoft.
+PDF : Trong đó, PHP và ASP.NET là 2 ngôn ngữ được sử dụng phổ biến nhất hiện nay.
+---------------------
+INDEX: 237
+DOCX: Từ khi ra đời đến nay, Visual Studio đã có rất nhiều các phiên bản sử dụng khác nhau.
+PDF : Visual Studio là một phần mềm lập trình hệ thống được sản xuất trực tiếp từ Microsoft.
+---------------------
+INDEX: 238
+DOCX: Điều đó, giúp cho người dùng có thể lựa chọn được phiên bản tương thích với dòng máy của mình cũng như cấu hình sử dụng phù hợp nhất.
+PDF : Từ khi ra đời đến nay, Visual Studio đã có rất nhiều các phiên bản sử dụng khác nhau.
+---------------------
+INDEX: 239
+DOCX: Visual Studio có một trình gỡ lỗi có tính năng vừa lập trình gỡ lỗi cấp máy và gỡ lỗi cấp mã nguồn.
+PDF : Điều đó, giúp cho người dùng có thể lựa chọn được phiên bản tương thích với dòng máy của mình cũng như cấu hình sử dụng phù hợp nhất.
+---------------------
+INDEX: 240
+DOCX: Tính năng này hoạt động với cả hai mã quản lý giống như ngôn ngữ máy và có thể sử dụng để gỡ lỗi các ứng dụng được viết bằng các ngôn ngữ được hỗ trợ bởi Visual Studio.
+PDF : Visual Studio có một trình gỡ lỗi có tính năng vừa lập trình gỡ lỗi cấp máy và gỡ lỗi cấp mã nguồn.
+---------------------
+INDEX: 241
+DOCX: Bên cạnh đó, Visual Studio còn cho phép người dùng có thể tự chọn lựa giao diện chính cho máy của mình tùy thuộc vào nhu cầu sử dụng.
+PDF : Tính năng này hoạt động với cả hai mã quản lý giống như ngôn ngữ máy và có thể sử dụng để gỡ lỗi các ứng dụng được viết bằng các ngôn ngữ được hỗ trợ bởi Visual Studio.
+---------------------
+INDEX: 242
+DOCX: Visual Studio còn có tính năng biên dịch nền tức là khi mã đang được viết thì phần mềm này sẽ biên dịch nó trong nền để nhằm cung cấp thông tin phản hồi về cú pháp cũng như biên dịch lỗi và được đánh dấu bằng các gạch gợn sóng màu đỏ
+PDF : Bên cạnh đó, Visual Studio còn cho phép người dùng có thể tự chọn lựa giao diện chính cho máy của mình tùy thuộc vào nhu cầu sử dụng.
+---------------------
+INDEX: 243
+DOCX: Visual Studio hỗ trợ lập trình trên nhiều ngôn ngữ như: C/C++, C#, F#, Visual Basic, HTML, CSS, JavaScript.
+PDF : Visual Studio còn có tính năng biên dịch nền tức là khi mã đang được viết thì
+---------------------
+INDEX: 244
+DOCX: Là một công cụ hỗ trợ việc Debug một cách dễ dàng và mạnh mẽ như: Break Point, xem giá trị của biến trong quá trình chạy, hỗ trợ debug từng câu lệnh.
+PDF : Visual Studio hỗ trợ lập trình trên nhiều ngôn ngữ như: C/C++, C#, F#, Visual Basic, HTML, CSS, JavaScript.
+---------------------
+INDEX: 245
+DOCX: Giao diện Visual Studio rất dễ sử dụng đối với người mới bắt đầu lập trình.
+PDF : Là một công cụ hỗ trợ việc Debug một cách dễ dàng và mạnh mẽ như: Break Point, xem giá trị của biến trong quá trình chạy, hỗ trợ debug từng câu lệnh.
+---------------------
+INDEX: 246
+DOCX: Visual Studio hỗ trợ phát triển các ứng dụng: desktop MFC, Windows Form, Universal App, ứng dụng mobile Windows Phone 8/8.
+PDF : Giao diện Visual Studio rất dễ sử dụng đối với người mới bắt đầu lập trình.
+---------------------
+INDEX: 247
+DOCX: 1, Windows 10 … Visual Studio hỗ trợ xây dựng ứng dụng một cách chuyên nghiệp bằng các công cụ kéo thả.
+PDF : Visual Studio hỗ trợ phát triển các ứng dụng: desktop MFC, Windows Form, Universal App, ứng dụng mobile Windows Phone 8/8.
+---------------------
+INDEX: 248
+DOCX: __CAPTION__Cơ chế hoạt động của ASP.NET (Nguồn: Codegym) Cơ chế hoạt động của C# trong ASP.NET được thể hiện qua hình 2.
+PDF : 1, Windows 10 ...
+---------------------
+INDEX: 249
+DOCX: 1 - Đặc trưng của ngôn ngữ lập trình C# là gì?
+PDF : Visual Studio hỗ trợ xây dựng ứng dụng một cách chuyên nghiệp bằng các công cụ kéo thả.
+---------------------
+INDEX: 250
+DOCX: C# là ngôn ngữ đơn giản C# loại bỏ một vài sự phức tạp và rối rắm của những ngôn ngữ như Java và c++, bao gồm việc loại bỏ những macro, những template, đa kế thừa, và lớp cơ sở ảo (virtual baseclass).
+PDF : __CAPTION__Cơ chế hoạt động của ASP.NET (Nguồn: Codegym) - Cơ chế hoạt động của C# trong ASP.NET được thể hiện qua hình 2.
+---------------------
+INDEX: 251
+DOCX: Ngôn ngữ C# đơn giản vì nó dựa trên nền tảng C và C++.
+PDF : 1 - Đặc trưng của ngôn ngữ lập trình C# là gì?
+---------------------
+INDEX: 252
+DOCX: Nếu chúng ta thân thiện với C và C++ hoặc thậm chí là Java, chúng ta sẽ thấy C# khá giống về diện mạo, cú pháp, biểu thức, toán tử và những chức năng khác được lấy trực tiếp từ ngôn ngữ C và C++, nhưng nó đã được cải tiến để làm cho ngôn ngữ đơn giản hơn.
+PDF : C# là ngôn ngữ đơn giản C# loại bỏ một vài sự phức tạp và rối rắm của những ngôn ngữ như Java và c++, bao gồm việc loại bỏ những macro, những template, đa kế thừa, và lớp cơ sở ảo (virtual baseclass).
+---------------------
+INDEX: 253
+DOCX: C# là ngôn ngữ hiện đại Điều gì làm cho một ngôn ngữ hiện đại?
+PDF : Ngôn ngữ C# đơn giản vì nó dựa trên nền tảng C và C++.
+---------------------
+INDEX: 254
+DOCX: Những đặc tính như là xử lý ngoại lệ, thu gom bộ nhớ tự động, những kiểu dữ liệu mở rộng, và bảo mật mã nguồn là những đặc tính được mong đợi trong một ngôn ngữ hiện đại.
+PDF : Nếu chúng ta thân thiện với C và C++ hoặc thậm chí là Java, chúng ta sẽ thấy C# khá giống về diện mạo, cú pháp, biểu thức, toán tử và những chức năng khác được lấy trực tiếp từ ngôn ngữ C và C++, nhưng nó đã được cải tiến để làm cho ngôn ngữ đơn giản hơn.
+---------------------
+INDEX: 255
+DOCX: C# chứa tất cả những đặc tính trên.
+PDF : C# là ngôn ngữ hiện đại Điều gì làm cho một ngôn ngữ hiện đại?
+---------------------
+INDEX: 256
+DOCX: Nếu là người mới học lập trình có thể chúng ta sẽ cảm thấy những đặc tính trên phức tạp và khó hiểu.
+PDF : Những đặc tính như là xử lý ngoại lệ, thu gom bộ nhớ tự động, những kiểu dữ liệu mở rộng, và bảo mật mã nguồn là những đặc tính được mong đợi trong một ngôn ngữ hiện đại.
+---------------------
+INDEX: 257
+DOCX: Tuy nhiên, cũng đừng lo lắng chúng ta sẽ dần dần được tìm hiểu những đặc tính qua các nội dung khoá học này.
+PDF : C# chứa tất cả những đặc tính trên.
+---------------------
+INDEX: 258
+DOCX: C# là một ngôn ngữ lập trình thuần hướng đối tượng Lập trình hướng đối tượng (OOP: Object-oriented programming) là một phương pháp lập trình có 4 tính chất.
+PDF : Nếu là người mới học lập trình có thể chúng ta sẽ cảm thấy những đặc tính trên phức tạp và khó hiểu.
+---------------------
+INDEX: 259
+DOCX: Đó là tính trừu tượng (abstraction), tính đóng gói (encapsulation), tính đa hình (polymorphism) và tính kế thừa (inheritance).
+PDF : Tuy nhiên, cũng đừng lo lắng chúng ta sẽ dần dần được tìm hiểu những đặc tính qua các nội dung khoá học này.
+---------------------
+INDEX: 260
+DOCX: C# hỗ trợ cho chúng ta tất cả những đặc tính trên.
+PDF : C# là một ngôn ngữ lập trình thuần hướng đối tượng Lập trình hướng đối tượng (OOP: Object-oriented programming) là một phương pháp lập trình có 4 tính chất.
+---------------------
+INDEX: 261
+DOCX: C# là một ngôn ngữ ít từ khóa C# là ngôn ngữ sử dụng giới hạn những từ khóa.
+PDF : Đó là tính trừu tượng (abstraction), tính đóng gói (encapsulation), tính đa hình (polymorphism) và tính kế thừa (inheritance).
+---------------------
+INDEX: 262
+DOCX: Phần lớn các từ khóa được sử dụng để mô tả thông tin.
+PDF : C# hỗ trợ cho chúng ta tất cả những đặc tính trên.
+---------------------
+INDEX: 263
+DOCX: Chúng ta có thể nghĩ rằng một ngôn ngữ có nhiều từ khóa thì sẽ mạnh hơn.
+PDF : C# là một ngôn ngữ ít từ khóa C# là ngôn ngữ sử dụng giới hạn những từ khóa.
+---------------------
+INDEX: 264
+DOCX: Điều này không phải sự thật, ít nhất là trong trường hợp ngôn ngữ C#, chúng ta có thể tìm thấy rằng ngôn ngữ này có thể được sử dụng để làm bất cứ nhiệm vụ nào.
+PDF : Phần lớn các từ khóa được sử dụng để mô tả thông tin.
+---------------------
+INDEX: 265
+DOCX: Chức năng của hệ quản trị csdl Bên cạnh việc tìm hiểu hệ quản trị cơ sở dữ liệu là gì thì việc nắm rõ các chức năng của hệ quản trị cơ sở dữ liệu cũng rất quan trọng.
+PDF : Chúng ta có thể nghĩ rằng một ngôn ngữ có nhiều từ khóa thì sẽ mạnh hơn.
+---------------------
+INDEX: 266
+DOCX: Cụ thể, một số chức năng điển hình như:
+PDF : Điều này không phải sự thật, ít nhất là trong trường hợp ngôn ngữ C#, chúng ta có thể tìm thấy rằng ngôn ngữ này có thể được sử dụng để làm bất cứ nhiệm vụ nào.
+---------------------
+INDEX: 267
+DOCX: Chức năng quản lý Data Dictionary Data Dictionary chính là nơi mà hệ quản trị cơ sở dữ liệu thực hiện lưu trữ những định nghĩa của các phần tử dữ liệu.
+PDF : Chức năng của hệ quản trị csdl Bên cạnh việc tìm hiểu hệ quản trị cơ sở dữ liệu là gì thì việc nắm rõ các chức năng của hệ quản trị cơ sở dữ liệu cũng rất quan trọng.
+---------------------
+INDEX: 268
+DOCX: Ngoài ra, chúng còn lưu trữ cả các mối quan hệ của chúng – metadata.
+PDF : Cụ thể, một số chức năng điển hình như:
+---------------------
+INDEX: 269
+DOCX: DBMS sử dụng chức năng này nhằm tra cứu những cấu trúc cũng như mối quan hệ giữa những thành phần dữ liệu được yêu cầu trong khi những chương trình truy cập dữ liệu ở trong hệ quản trị.
+PDF : Chức năng quản lý Data Dictionary Data Dictionary chính là nơi mà hệ quản trị cơ sở dữ liệu thực hiện lưu trữ những định nghĩa của các phần tử dữ liệu.
+---------------------
+INDEX: 270
+DOCX: Về cơ bản thì chúng sẽ đi qua DBMS và hàm này sẽ tiến hành loại bỏ những sự phục thuộc về cấu trúc và cả dữ liệu.
+PDF : Ngoài ra, chúng còn lưu trữ cả các mối quan hệ của chúng – metadata.
+---------------------
+INDEX: 271
+DOCX: Từ đó, hệ quản trị sẽ mang đến cho người dùng tính trừu tượng hóa các dữ liệu.
+PDF : DBMS sử dụng chức năng này nhằm tra cứu những cấu trúc cũng như mối quan hệ giữa những thành phần dữ liệu được yêu cầu trong khi những chương trình truy cập dữ liệu ở trong hệ quản trị.
+---------------------
+INDEX: 272
+DOCX: Và chức năng này thường sẽ bị ẩn khỏi user và sẽ được sử dụng bởi những admin của hệ quản trị cơ sở dữ liệu.
+PDF : Về cơ bản thì chúng sẽ đi qua DBMS và hàm này sẽ tiến hành loại bỏ những sự phục thuộc về cấu trúc và cả dữ liệu.
+---------------------
+INDEX: 273
+DOCX: Kiểm soát truy cập nhiều người dùng Chức năng tiếp theo được nhắc đến chính là khả năng kiểm soát và truy cập nhiều người dùng.
+PDF : Từ đó, hệ quản trị sẽ mang đến cho người dùng tính trừu tượng hóa các dữ liệu.
+---------------------
+INDEX: 274
+DOCX: Tính toàn vẹn cũng như sự nhất quán của dữ liệu.
+PDF : Và chức năng này thường sẽ bị ẩn khỏi user và sẽ được sử dụng bởi những admin của hệ quản trị cơ sở dữ liệu.
+---------------------
+INDEX: 275
+DOCX: Điều này sẽ cho phép nhiều người sử dụng có thể truy cập cơ sở dữ liệu trong cùng một lúc.
+PDF : Kiểm soát truy cập nhiều người dùng Chức năng tiếp theo được nhắc đến chính là khả năng kiểm soát và truy cập nhiều người dùng.
+---------------------
+INDEX: 276
+DOCX: Chúng không làm ảnh hưởng đến tính toàn vẹn của cơ sở dữ liệu.
+PDF : Tính toàn vẹn cũng như sự nhất quán của dữ liệu.
+---------------------
+INDEX: 277
+DOCX: Chức năng chuyển đổi và trình bày dữ liệu Đây là một chức năng có thể chuyển đổi bất cứ dữ liệu nào khi được nhập vào cấu trúc dữ liệu bắt buộc.
+PDF : Điều này sẽ cho phép nhiều người sử dụng có thể truy cập cơ sở dữ liệu trong cùng một lúc.
+---------------------
+INDEX: 278
+DOCX: Thông qua việc sử dụng chức năng trình bày và biến chuyển đổi dữ liệu thì hệ quản trị có thể xác định được sự khác biệt ở giữa những hai loại định dạng là: định dạng dữ liệu logic và physical.
+PDF : Chúng không làm ảnh hưởng đến tính toàn vẹn của cơ sở dữ liệu.
+---------------------
+INDEX: 279
+DOCX: Từ đó, người ta sẽ lưu trữ dữ liệu dựa vào tiêu chuẩn RDBMS và nó cũng là một trong những hệ quản trị cơ sở dữ liệu dạng quan hệ đối tượng.
+PDF : Chức năng chuyển đổi và trình bày dữ liệu Đây là một chức năng có thể chuyển đổi bất cứ dữ liệu nào khi được nhập vào cấu trúc dữ liệu bắt buộc.
+---------------------
+INDEX: 280
+DOCX: SQL Server có khả năng cung cấp đầy đủ các công cụ cho việc quản lý từ giao diện GUI đến sử dụng ngôn ngữ cho việc truy vấn SQL.
+PDF : Thông qua việc sử dụng chức năng trình bày và biến chuyển đổi dữ liệu thì hệ quản trị có thể xác định được sự khác biệt ở giữa những hai loại định dạng là: định dạng dữ liệu logic và physical.
+---------------------
+INDEX: 281
+DOCX: Điểm mạnh của SQL điểm mạnh của nó là có nhiều nền tảng được kết hợp cùng như: ASP.NET, C# để xây dựng Winform cũng chính nó có khả năng hoạt động độc lậP. Tuy nhiên, SQL Server thường đi kèm với việc thực hiện riêng các ngôn ngữ SQL, T-SQL...
+PDF : Từ đó, người ta sẽ lưu trữ dữ liệu dựa vào tiêu chuẩn RDBMS và nó cũng là một trong những hệ quản trị cơ sở dữ liệu dạng quan hệ đối tượng.
+---------------------
+INDEX: 282
+DOCX: Các thành phần cơ bản của SQL Server:
+PDF : SQL Server có khả năng cung cấp đầy đủ các công cụ cho việc quản lý từ giao diện GUI đến sử dụng ngôn ngữ cho việc truy vấn SQL.
+---------------------
+INDEX: 283
+DOCX: Database Engine: có khả năng chứa dữ liệu ở quy mô dưới dạng support và table, có thể tự điều chỉnh.
+PDF : Điểm mạnh của SQL điểm mạnh của nó là có nhiều nền tảng được kết hợp cùng như: ASP.NET, C# để xây dựng Winform cũng chính nó có khả năng hoạt động độc lậP. Tuy nhiên, SQL Server thường đi kèm với việc thực hiện riêng các ngôn ngữ SQL, T-SQL...
+---------------------
+INDEX: 284
+DOCX: Integration Services: là tập hợp các đối tượng lập trình, các công cụ đồ họa cho việc sao chéo, di chuyển, chuyển đổi dữ liệu.
+PDF : Các thành phần cơ bản của SQL Server:
+---------------------
+INDEX: 285
+DOCX: Analysis Services: là dịch vụ phân tích dữ liệu của Microsoft bằng kỹ thuật khai thác dữ liệu và khái niệm hình khối nhiều chiều.
+PDF : Database Engine: có khả năng chứa dữ liệu ở quy mô dưới dạng support và table, có thể tự điều chỉnh.
+---------------------
+INDEX: 286
+DOCX: Notification Services: đây là nền tảng cho sự phát triển và triển khai các ứng dụng soạn và gửi thông báo, có chức năng gửi thông báo theo dịch thời đến hàng ngàn người đăng ký sử dụng trên nhiều loại thiết bị khác nhau.
+PDF : Integration Services: là tập hợp các đối tượng lập trình, các công cụ đồ họa cho việc sao chéo, di chuyển, chuyển đổi dữ liệu.
+---------------------
+INDEX: 287
+DOCX: Reporting Services: là công cụ tạo, quản lý, triển khai báo cáo.
+PDF : Analysis Services: là dịch vụ phân tích dữ liệu của Microsoft bằng kỹ thuật khai thác dữ liệu và khái niệm hình khối nhiều chiều.
+---------------------
+INDEX: 288
+DOCX: Full Text Search Services: là thành phần đặc biệt tròn truy vấn và đánh cỉ mục dữ liệu văn bản không cấu trúc được lưu trữ trong các cơ sở dữ liệu của SQL Server.
+PDF : Notification Services: đây là nền tảng cho sự phát triển và triển khai các ứng dụng soạn và gửi thông báo, có chức năng gửi thông báo theo dịch thời đến hàng ngàn người đăng ký sử dụng trên nhiều loại thiết bị khác nhau.
+---------------------
+INDEX: 289
+DOCX: Service Broker: là môi trường lập trình tạo ra các ứng dụng trong việc nhảy qua các instance.
+PDF : Reporting Services: là công cụ tạo, quản lý, triển khai báo cáo.
+---------------------
+INDEX: 290
+DOCX: Chức năng cửa SQL Server Nó cho phép người sử dụng có thể dùng để truy cập dữ liệu bên trong hệ thống quản lý cơ sở dữ liệu quan hệ.
+PDF : Full Text Search Services: là thành phần đặc biệt tròn truy vấn và đánh cỉ mục dữ liệu văn bản không cấu trúc được lưu trữ trong các cơ sở dữ liệu của SQL Server.
+---------------------
+INDEX: 291
+DOCX: Người ta cho phép người dùng mô tả dữ liệu.
+PDF : Service Broker: là môi trường lập trình tạo ra các ứng dụng trong việc nhảy qua các instance.
+---------------------
+INDEX: 292
+DOCX: Cho phép người dùng thực hiện xác định dữ liệu bên trong cơ sở dữ liệu và thực hiện các thao tác dữ liệu.
+PDF : Chức năng cửa SQL Server Nó cho phép người sử dụng có thể dùng để truy cập dữ liệu bên trong hệ thống quản lý cơ sở dữ liệu quan hệ.
+---------------------
+INDEX: 293
+DOCX: Nó cho phép nhúng trong các ngôn ngữ khác có thể sử dụng mô-đun SQL, thư viện và thực hiện trình biên dịch trước.
+PDF : Người ta cho phép người dùng mô tả dữ liệu.
+---------------------
+INDEX: 294
+DOCX: Nó sẽ cho phép người dùng tạo và thả cho các cơ sở dữ liệu cũng như bảng.
+PDF : Cho phép người dùng thực hiện xác định dữ liệu bên trong cơ sở dữ liệu và thực hiện các thao tác dữ liệu.
+---------------------
+INDEX: 295
+DOCX: SQL cho phép người sử dụng để thực hiện tạo ra các chế độ view, các thủ tục lưu trữ và chức năng trong cơ sở dữ liệu.
+PDF : Nó cho phép nhúng trong các ngôn ngữ khác có thể sử dụng mô-đun SQL, thư viện và thực hiện trình biên dịch trước.
+---------------------
+INDEX: 296
+DOCX: Nó sẽ cho phép người dùng để thực hiện thiết lập quyền trên các bảng, view và thủ tục.
+PDF : Nó sẽ cho phép người dùng tạo và thả cho các cơ sở dữ liệu cũng như bảng.
+---------------------
+INDEX: 297
+DOCX: __CAPTION__SQL Server (Nguồn: toithuthat.
+PDF : SQL cho phép người sử dụng để thực hiện tạo ra các chế độ view, các thủ tục lưu trữ và chức năng trong cơ sở dữ liệu.
+---------------------
+INDEX: 298
+DOCX: com) - Giao diện đăng nhập của SQL Server thể hiên qua hình 2.
+PDF : Nó sẽ cho phép người dùng để thực hiện thiết lập quyền trên các bảng, view và thủ tục.
+---------------------
+INDEX: 299
+DOCX: 2 3.
+PDF : __CAPTION__SQL Server (Nguồn: toithuthat.
+---------------------
+INDEX: 300
+DOCX: 6 Mô hình MVC MVC là viết tắt của cụm từ “Model-View-Controller”.
+PDF : com) - Giao diện đăng nhập của SQL Server thể hiên qua hình 2.
+---------------------
+INDEX: 301
+DOCX: “.
+PDF : 2 3.
+---------------------
+INDEX: 302
+DOCX: Đây là mô hình thiết kế sử dụng trong kỹ thuật phần mềm.
+PDF : 6 Mô hình MVC MVC là viết tắt của cụm từ “Model-View-Controller”.
+---------------------
+INDEX: 303
+DOCX: MVC là một mẫu thiết kế phần mềm để tạo lập giao diện người dùng trên máy tính.
+PDF : “.
+---------------------
+INDEX: 304
+DOCX: MVC chia thành ba phần được kết nối với nhau như tên gọi: Model (dữ liệu), View (giao diện) và Controller (bộ điều khiển).
+PDF : Đây là mô hình thiết kế sử dụng trong kỹ thuật phần mềm.
+---------------------
+INDEX: 305
+DOCX: Đơn giản hơn, là mô hình này được chia thành 3 phần trong soure code.
+PDF : MVC là một mẫu thiết kế phần mềm để tạo lập giao diện người dùng trên máy tính.
+---------------------
+INDEX: 306
+DOCX: Và mỗi phần đảm nhận vai trò và nhiệm vụ riêng biệt nhau và độc lậP.
+PDF : MVC chia thành ba phần được kết nối với nhau như tên gọi: Model (dữ liệu), View (giao diện) và Controller (bộ điều khiển).
+---------------------
+INDEX: 307
+DOCX: __CAPTION__Mô hình MVC (Nguồn: VIETNIX) Cơ chế hoạt động và luồng đi của mô hình MVC được thể hiện qua hình 2.
+PDF : Đơn giản hơn, là mô hình này được chia thành 3 phần trong soure code.
+---------------------
+INDEX: 308
+DOCX: 3 Mô hình MVC gồm 3 loại chính là thành phần bên trong không thể thiếu khi áp dụng mô hình này:
+PDF : Và mỗi phần đảm nhận vai trò và nhiệm vụ riêng biệt nhau và độc lậP.
+---------------------
+INDEX: 309
+DOCX: Model: Là bộ phận có chức năng lưu trữ toàn bộ dữ liệu của ứng dụng và là cầu nối giữa 2 thành phần bên dưới là View và Controller.
+PDF : __CAPTION__Mô hình MVC (Nguồn: VIETNIX) - Cơ chế hoạt động và luồng đi của mô hình MVC được thể hiện qua hình 2.
+---------------------
+INDEX: 310
+DOCX: Một model là dữ liệu được sử dụng bởi chương trình.
+PDF : 3 Mô hình MVC gồm 3 loại chính là thành phần bên trong không thể thiếu khi áp dụng mô hình này:
+---------------------
+INDEX: 311
+DOCX: Đây có thể là cơ sở dữ liệu, hoặc file XML bình thường hay một đối tượng đơn giản.
+PDF : Model: Là bộ phận có chức năng lưu trữ toàn bộ dữ liệu của ứng dụng và là cầu nối giữa 2 thành phần bên dưới là View và Controller.
+---------------------
+INDEX: 312
+DOCX: Chẳng hạn như biểu tượng hay là một nhân tác nhân.
+PDF : Một model là dữ liệu được sử dụng bởi chương trình.
+---------------------
+INDEX: 313
+DOCX: View: Đây là phần giao diện (theme) dành cho người sử dụng.
+PDF : Đây có thể là cơ sở dữ liệu, hoặc file XML bình thường hay một đối tượng đơn giản.
+---------------------
+INDEX: 314
+DOCX: View là phương tiện hiển thị các đối tượng trong một ứng dụng.
+PDF : Chẳng hạn như biểu tượng hay là một nhân tác nhân.
+---------------------
+INDEX: 315
+DOCX: Chẳng hạn như hiển thị một cửa sổ, nút hay văn bản trong một cửa sổ khác.
+PDF : View: Đây là phần giao diện (theme) dành cho người sử dụng.
+---------------------
+INDEX: 316
+DOCX: Nó bao gồm bất cứ thứ gì mà người dùng có thể nhìn thấy được Controller: Là bộ phận có nhiệm vụ xử lý các yêu cầu người dùng đưa đến thông qua View.
+PDF : View là phương tiện hiển thị các đối tượng trong một ứng dụng.
+---------------------
+INDEX: 317
+DOCX: Một controller bao gồm cả Model lẫn View Nó nhận input và thực hiện các update tương ứng.
+PDF : Chẳng hạn như hiển thị một cửa sổ, nút hay văn bản trong một cửa sổ khác.
+---------------------
+INDEX: 318
+DOCX: Ví dụ: Một Controller có thể cập nhật một Model bằng cách thay đổi các thuộc tính của nhân vật trong game.
+PDF : Nó bao gồm bất cứ thứ gì mà người dùng có thể nhìn thấy được Controller: Là bộ phận có nhiệm vụ xử lý các yêu cầu người dùng đưa đến thông qua View.
+---------------------
+INDEX: 319
+DOCX: Và nó có thể sửa đổi view bằng cách hiển thị nhân vật được cập nhật trong game đó.
+PDF : Một controller bao gồm cả Model lẫn View Nó nhận input và thực hiện các update tương ứng.
+---------------------
+INDEX: 320
+DOCX: Mỗi bộ phận thực hiện chức năng nhất định, nhưng chúng có sự thống nhất, liên kết với nhau tạo nên mô hình MVC.
+PDF : Ví dụ: Một Controller có thể cập nhật một Model bằng cách thay đổi các thuộc tính của nhân vật trong game.
+---------------------
+INDEX: 321
+DOCX: Mô hình này tương đối nhẹ.
+PDF : Và nó có thể sửa đổi view bằng cách hiển thị nhân vật được cập nhật trong game đó.
+---------------------
+INDEX: 322
+DOCX: Nó có thể tích hợp được nhiều tính năng có trong ASP.NET hiện giờ.
+PDF : Mỗi bộ phận thực hiện chức năng nhất định, nhưng chúng có sự thống nhất, liên kết với nhau tạo nên mô hình MVC.
+---------------------
+INDEX: 323
+DOCX: Ví dụ như authentication (quá trình xác thực).
+PDF : Mô hình này tương đối nhẹ.
+---------------------
+INDEX: 324
+DOCX: Luồng đi trong mô hình MVC Bạn có thể hình dung, khi một yêu cầu từ máy client gửi tới server, Controller sẽ thực hiện nhiệm vụ của mình đó là tiếp nhận và xử lý yêu cầu.
+PDF : Nó có thể tích hợp được nhiều tính năng có trong ASP.NET hiện giờ.
+---------------------
+INDEX: 325
+DOCX: Trong trường hợp cần thiết, nó có thể liên hệ Model – bộ phận làm việc với database để hỗ trợ.
+PDF : Ví dụ như authentication (quá trình xác thực).
+---------------------
+INDEX: 326
+DOCX: Khi xử lý xong yêu cầu, kết quả sẽ được trả về View.
+PDF : Luồng đi trong mô hình MVC Bạn có thể hình dung, khi một yêu cầu từ máy client gửi tới server, Controller sẽ thực hiện nhiệm vụ của mình đó là tiếp nhận và xử lý yêu cầu.
+---------------------
+INDEX: 327
+DOCX: Tại View sẽ tạo mã HTML thành giao diện và trả về hiển thị trên trình duyệt.
+PDF : Trong trường hợp cần thiết, nó có thể liên hệ Model – bộ phận làm việc với database để hỗ trợ.
+---------------------
+INDEX: 328
+DOCX: Ưu – nhược điểm của mô hình MVC.
+PDF : Khi xử lý xong yêu cầu, kết quả sẽ được trả về View.
+---------------------
+INDEX: 329
+DOCX: Kiểm tra dễ dàng: Với MVC, bạn có thể dễ dàng kiểm tra, rà soát lỗi phần mềm trước khi tới tay người tiêu dùng, đảm bảo chất lượng và độ uy tín cao hơn.
+PDF : Tại View sẽ tạo mã HTML thành giao diện và trả về hiển thị trên trình duyệt.
+---------------------
+INDEX: 330
+DOCX: Chức năng control: Trên các nền website thì ngôn ngữ lập trình như CSS, HTML, Javascript có một vai trò vô cùng quan trọng.
+PDF : Ưu – nhược điểm của mô hình MVC.
+---------------------
+INDEX: 331
+DOCX: Việc sử dụng mô hình MVC sẽ giúp bạn có một bộ control ưu việt trên nền tảng các ngôn ngữ hiện đại với nhiều hình thức khác nhau.
+PDF : Kiểm tra dễ dàng: Với MVC, bạn có thể dễ dàng kiểm tra, rà soát lỗi phần mềm trước khi tới tay người tiêu dùng, đảm bảo chất lượng và độ uy tín cao hơn.
+---------------------
+INDEX: 332
+DOCX: View và size: View sẽ là nơi lưu trữ các dữ liệu.
+PDF : Chức năng control: Trên các nền website thì ngôn ngữ lập trình như CSS, HTML, Javascript có một vai trò vô cùng quan trọng.
+---------------------
+INDEX: 333
+DOCX: Càng nhiều yêu cầu được thực hiện thì kích thước càng tệp càng lớn.
+PDF : Việc sử dụng mô hình MVC sẽ giúp bạn có một bộ control ưu việt trên nền tảng các ngôn ngữ hiện đại với nhiều hình thức khác nhau.
+---------------------
+INDEX: 334
+DOCX: Khi đó, đường truyền mạng cũng giảm tốc độ load.
+PDF : View và size: View sẽ là nơi lưu trữ các dữ liệu.
+---------------------
+INDEX: 335
+DOCX: Việc sử dụng mô hình MVC sẽ giúp bạn tiết kiệm được diện tích băng thông một cách tối ưu.
+PDF : Càng nhiều yêu cầu được thực hiện thì kích thước càng tệp càng lớn.
+---------------------
+INDEX: 336
+DOCX: Chức năng Soc (Separation of Concern): Chức năng này cho phép bạn phân tách rõ ràng các phần như Model, giao diện, data, nghiệp vụ.
+PDF : Khi đó, đường truyền mạng cũng giảm tốc độ load.
+---------------------
+INDEX: 337
+DOCX: Tính kết hợp: Việc tích hợp ở mô hình MVC cho phép bạn thoải mái viết code trên nền tảng website.
+PDF : Việc sử dụng mô hình MVC sẽ giúp bạn tiết kiệm được diện tích băng thông một cách tối ưu.
+---------------------
+INDEX: 338
+DOCX: Khi đó, server của bạn sẽ được giảm tải khá nhiều.
+PDF : Chức năng Soc (Separation of Concern): Chức năng này cho phép bạn phân tách rõ ràng các phần như Model, giao diện, data, nghiệp vụ.
+---------------------
+INDEX: 339
+DOCX: Đơn giản: Đây là một mô hình với kết cấu tương đối đơn giản.
+PDF : Tính kết hợp: Việc tích hợp ở mô hình MVC cho phép bạn thoải mái viết code trên nền tảng website.
+---------------------
+INDEX: 340
+DOCX: Dù bạn không có quá nhiều chuyên môn cũng có thể sử dụng được.
+PDF : Khi đó, server của bạn sẽ được giảm tải khá nhiều.
+---------------------
+INDEX: 341
+DOCX: MVC đang là mô hình được ứng dụng rất nhiều trong lập trình.
+PDF : Đơn giản: Đây là một mô hình với kết cấu tương đối đơn giản.
+---------------------
+INDEX: 342
+DOCX: Hiện nay mô hình MVC được ứng dụng khá phổ biến ở đa dạng các ngôn ngữ lập trình khác nhau, trong đó phổ biến nhất phải kể đến PHP MVC, ASP.NET MVC.
+PDF : Dù bạn không có quá nhiều chuyên môn cũng có thể sử dụng được.
+---------------------
+INDEX: 343
+DOCX: Mô hình MVC đã và đang được ứng dụng nhiều trong lập trình.
+PDF : MVC đang là mô hình được ứng dụng rất nhiều trong lập trình.
+---------------------
+INDEX: 344
+DOCX: Nó thể hiện được tính hữu ích khi phát triển tốt sẽ cho phép phát triển front – end, back – end cùng hệ thống mà không cần sự can thiệp, chia sẻ, chỉnh sửa khi một hoặc cả 2 bên vẫn đang làm việc.
+PDF : Hiện nay mô hình MVC được ứng dụng khá phổ biến ở đa dạng các ngôn ngữ lập trình khác nhau, trong đó phổ biến nhất phải kể đến PHP MVC, ASP.NET MVC.
+---------------------
+INDEX: 345
+DOCX: Việc sử dụng MVC khi thiết kế web cũng tương đối đơn giản.
+PDF : Mô hình MVC đã và đang được ứng dụng nhiều trong lập trình.
+---------------------
+INDEX: 346
+DOCX: Bạn chỉ cần hiểu rõ về quá trình vận hành, chức năng của từng bộ phận là có thể triển khai được.
+PDF : Nó thể hiện được tính hữu ích khi phát triển tốt sẽ cho phép phát triển front – end, back – end cùng hệ thống mà không cần sự can thiệp, chia sẻ, chỉnh sửa khi một hoặc cả 2 bên vẫn đang làm việc.
+---------------------
+INDEX: 347
+DOCX: Sau hàng thập kỷ thì MVC đã được cải tiến dễ hiểu hơn, việc áp dụng cũng rộng rãi hơn.
+PDF : Việc sử dụng MVC khi thiết kế web cũng tương đối đơn giản.
+---------------------
+INDEX: 348
+DOCX: Hầu hết các framework lớn nhỏ đều đang áp dụng mô hình MVC.
+PDF : Bạn chỉ cần hiểu rõ về quá trình vận hành, chức năng của từng bộ phận là có thể triển khai được.
+---------------------
+INDEX: 349
+DOCX: Tuy nhiên, MVC được khuyến cáo sử dụng cho các dự án lớn sẽ giúp giảm tải chi phí, thời gian và tăng năng suất thiết kế web hiệu quả hơn.
+PDF : Sau hàng thập kỷ thì MVC đã được cải tiến dễ hiểu hơn, việc áp dụng cũng rộng rãi hơn.
+---------------------
+INDEX: 350
+DOCX: Hệ thống MVC phát triển tốt sẽ cho phép phát triển front – end, back – end cùng trên hệ thống mà không có sự can thiệp, chia sẻ, chỉnh sửa các tập tin trong khi một hoặc hai bên vẫn đang làm việc.
+PDF : Hầu hết các framework lớn nhỏ đều đang áp dụng mô hình MVC.
+---------------------
+INDEX: 351
+DOCX: Việc sử dụng mô hình tương đối đơn giản.
+PDF : Tuy nhiên, MVC được khuyến cáo sử dụng cho các dự án lớn sẽ giúp giảm tải chi phí, thời gian và tăng năng suất thiết kế web hiệu quả hơn.
+---------------------
+INDEX: 352
+DOCX: Chỉ cần hiểu rõ quy trình vận hành, nắm được các chức năng của từng bộ phận thì việc triển khai mô hình MVC tương đối dễ dàng.
+PDF : Hệ thống MVC phát triển tốt sẽ cho phép phát triển front – end, back – end cùng trên hệ thống mà không có sự can thiệp, chia sẻ, chỉnh sửa các tập tin trong khi một hoặc hai bên vẫn đang làm việc.
+---------------------
+INDEX: 353
+DOCX: Trên đây là một số kiến thức cơ bản về mô hình MVC.
+PDF : Việc sử dụng mô hình tương đối đơn giản.
+---------------------
+INDEX: 354
+DOCX: Hi vọng bài viết trên đây của Mona Media sẽ giúp bạn hiểu rõ hơn về MVC và ứng dụng một cách hiệu quả
+PDF : Chỉ cần hiểu rõ quy trình vận hành, nắm được các chức năng của từng bộ phận thì việc triển khai mô hình MVC tương đối dễ dàng.
+---------------------
+INDEX: 355
+DOCX: Menu ngang: Trang chủ, giới thiệu, tin tức, sản phẩm, liên hệ.
+PDF : Trên đây là một số kiến thức cơ bản về mô hình MVC.
+---------------------
+INDEX: 356
+DOCX: Menu dọc: Các danh mục sản phẩm Ô tìm kiếm: Người dùng gõ từ khóa sảm phẩm Banner: Chứa các ảnh động Content: Chứa các sản phẩm Footer: Thông tin bao quát về địa chỉ, liên hế với trang Web 4.
+PDF : Hi vọng bài viết trên đây của Mona Media sẽ giúp bạn hiểu rõ hơn về MVC và ứng dụng một cách hiệu quả
+---------------------
+INDEX: 357
+DOCX: 1.
+PDF :  Menu ngang: Trang chủ, giới thiệu, tin tức, sản phẩm, liên hệ.
+---------------------
+INDEX: 358
+DOCX: 2 Trang Đăng Nhập thành viên Hình 4.
+PDF :  Menu dọc: Các danh mục sản phẩm  Ô tìm kiếm: Người dùng gõ từ khóa sảm phẩm  Banner: Chứa các ảnh động  Content: Chứa các sản phẩm  Footer: Thông tin bao quát về địa chỉ, liên hế với trang Web 4.
+---------------------
+INDEX: 359
+DOCX: 2: Trang Đăng Nhập thành viên - Tên đăng nhập: Người dùng nhập tên đã đăng ký.
+PDF : 1.
+---------------------
+INDEX: 360
+DOCX: - Mật khẩu: Người dung nhập mật khẩu đã đăng ký.
+PDF : 2 Trang Đăng Nhập thành viên Hình 4.
+---------------------
+INDEX: 361
+DOCX: - Người dùng có thể thêm, cập nhật, xóa sản phẩm trong trang giỏ hàng 4.
+PDF : 2: Trang Đăng Nhập thành viên - Tên đăng nhập: Người dùng nhập tên đã đăng ký.
+---------------------
+INDEX: 362
+DOCX: 1.
+PDF : - Mật khẩu: Người dung nhập mật khẩu đã đăng ký.
+---------------------
+INDEX: 363
+DOCX: 6 Trang Thanh toán Hình 4.
+PDF : - Người dùng có thể thêm, cập nhật, xóa sản phẩm trong trang giỏ hàng 4.
+---------------------
+INDEX: 364
+DOCX: 6: Trang Thanh toán - Người dùng điền thông tin cá nhân, thông tin địa chỉ liên hệ để nhận hàng đặt hàng rồi thanh toán, thông tin mà khách hàng đã đăng ký sẽ được lấy để kiểm tra thông tin.
+PDF : 1.
+---------------------
+INDEX: 365
+DOCX: - Với giao diện này chỉ có quản chị viên mới có quyền vào trang, thông tin tất cả tài khoản sẽ hiện đầy đủ để quản trị viên dễ dàng bao quát và kiểm soát 4.
+PDF : 6 Trang Thanh toán Hình 4.
+---------------------
+INDEX: 366
+DOCX: 2.
+PDF : 6: Trang Thanh toán - Người dùng điền thông tin cá nhân, thông tin địa chỉ liên hệ để nhận hàng đặt hàng rồi thanh toán, thông tin mà khách hàng đã đăng ký sẽ được lấy để kiểm tra thông tin.
+---------------------
+INDEX: 367
+DOCX: 5 Chức năng thêm tài khoản Hình 4.
+PDF : Người dùng, sản phẩm tin tức...
+---------------------
+INDEX: 368
+DOCX: 11: Chức năng thêm tài khoản - Người quản trị nhập đầy đủ thông tin của tài khoản muốn tạo sau đó bấm nút tạo mới, tài khoản sẽ được lưu vào DataBase, sau đó người dùng có thể sử dụng tài khoản luôn để đăng nhậP.
+PDF : - Với giao diện này chỉ có quản chị viên mới có quyền vào trang, thông tin tất cả tài khoản sẽ hiện đầy đủ để quản trị viên dễ dàng bao quát và kiểm soát 4.
+---------------------
+INDEX: 369
+DOCX: - Tại đây quản trị viên có thể phân quyền luôn cho tài khoản: Admin là quản trị, MoD là nhân viên, MEMBER là người dùng.
+PDF : 2.
+---------------------
+INDEX: 370
+DOCX: - Tại đây mật khẩu tài khoản được mã hóa dưới dạng MD5 để đảm bảo tính bảo mật cho người dùng.
+PDF : 5 Chức năng thêm tài khoản Hình 4.
+---------------------
+INDEX: 371
+DOCX: - Tại đây quản trị hay nhân viên sẽ bấm vào nút sửa, sau đó tên danh mục mới sẽ được cập nhật vào Database, rồi hiển thị lên Website.
+PDF : 11: Chức năng thêm tài khoản - Người quản trị nhập đầy đủ thông tin của tài khoản muốn tạo sau đó bấm nút tạo mới, tài khoản sẽ được lưu vào DataBase, sau đó người dùng có thể sử dụng tài khoản luôn để đăng nhậP.
+---------------------
+INDEX: 372
+DOCX: - Tại đây quản trị hay nhân viên có thể bao quát được hết thông tin của sản phẩm tồn kho, từ đó có thể điều chỉnh lại số lượng.
+PDF : - Tại đây quản trị viên có thể phân quyền luôn cho tài khoản: Admin là quản trị, MoD là nhân viên, MEMBER là người dùng.
+---------------------
+INDEX: 373
+DOCX: - Tại đây quản trị hay nhân viên có thể bao quát được hết thông tin của sản phẩm mới.
+PDF : - Tại đây mật khẩu tài khoản được mã hóa dưới dạng MD5 để đảm bảo tính bảo mật cho người dùng.
+---------------------
+INDEX: 374
+DOCX: __CAPTION__Chức năng thống kê đơn hàng - Người quản trị hay nhân viên sẽ có quyền thống kê thông tin của các đơn hàng đã đặt sản phẩm.
+PDF : - Tại đây quản trị hay nhân viên sẽ bấm vào nút thêm mới, sau đó tên danh mục mới sẽ được lưu vào Database, rồi hiển thị lên Website.
+---------------------
+INDEX: 375
+DOCX: - Tại đây quản trị hay nhân viên có thể bao quát được hết thông tin của tất cả các đơn hàng gồm: tên sản phẩm, mô tả, ảnh, giá, số lượng...
+PDF : - Tại đây quản trị hay nhân viên sẽ bấm vào nút sửa, sau đó tên danh mục mới sẽ được cập nhật vào Database, rồi hiển thị lên Website.
+---------------------
+INDEX: 376
+DOCX: __CAPTION__Chức năng thống kê doanh thu - Người quản trị hay nhân viên sẽ có quyền thống kê thông tin của các đơn hàng đã đặt sản phẩm từ đó hệ thống sẽ tính thành tiền, rồi tính ra số tiền lãi.
+PDF : - Tại đây quản trị hay nhân viên có thể bao quát được hết thông tin của sản phẩm tồn kho, từ đó có thể điều chỉnh lại số lượng.
+---------------------
+INDEX: 377
+DOCX: - Tại đây quản trị hay nhân viên có thể bao quát được hết thông tin của tất cả các đơn hàng gồm: tên sản phẩm, mô tả, ảnh, giá, số lượng...
+PDF : - Tại đây quản trị hay nhân viên có thể bao quát được hết thông tin của sản phẩm mới.
+---------------------
+INDEX: 378
+DOCX: - Dự án được xây dựng theo mô hình MVC 4.
+PDF : __CAPTION__Chức năng thống kê đơn hàng - Người quản trị hay nhân viên sẽ có quyền thống kê thông tin của các đơn hàng đã đặt sản phẩm.
+---------------------
+INDEX: 379
+DOCX: 3.
+PDF : - Tại đây quản trị hay nhân viên có thể bao quát được hết thông tin của tất cả các đơn hàng gồm: tên sản phẩm, mô tả, ảnh, giá, số lượng...
+---------------------
+INDEX: 380
+DOCX: 2 File Common Hình 4.
+PDF : __CAPTION__Chức năng thống kê doanh thu - Người quản trị hay nhân viên sẽ có quyền thống kê thông tin của các đơn hàng đã đặt sản phẩm từ đó hệ thống sẽ tính thành tiền, rồi tính ra số tiền lãi.
+---------------------
+INDEX: 381
+DOCX: 11: Thư mục Common - File Common chứa các file dùng chung cho cả solution như: StringHelper...
+PDF : - Tại đây quản trị hay nhân viên có thể bao quát được hết thông tin của tất cả các đơn hàng gồm: tên sản phẩm, mô tả, ảnh, giá, số lượng...
+---------------------
+INDEX: 382
+DOCX: - Có chưc năng như các file Interface 4.
+PDF : Controllers, Views, EF.....
+---------------------
+INDEX: 383
+DOCX: 3.
+PDF : - Dự án được xây dựng theo mô hình MVC 4.
+---------------------
+INDEX: 384
+DOCX: 3 File Model Hình 4.
+PDF : 3.
+---------------------
+INDEX: 385
+DOCX: 11: Thư mục Model - File Model chứa tất cả các mục Entites, câu lệnh truy vấn được gen từ DataBase SQL Server.
+PDF : 2 File Common Hình 4.
+---------------------
+INDEX: 386
+DOCX: - Gồm file DAO: thực hiện các câu lệnh, Query trược tiếp đến DataBase như select, insert into, update, delete, left join, inner join… 4.
+PDF : 11: Thư mục Common - File Common chứa các file dùng chung cho cả solution như: StringHelper...
+---------------------
+INDEX: 387
+DOCX: 3.
+PDF : - Có chưc năng như các file Interface 4.
+---------------------
+INDEX: 388
+DOCX: 5 File DATT Hình 4.
+PDF : 3.
+---------------------
+INDEX: 389
+DOCX: 13: Thư mục DATT Đây là file chính để chạy chương trình tạo theo mô hình MVC, gồm các Models Controller, View, JavaScript, CSS, Images…
+PDF : 3 File Model Hình 4.
+---------------------
+INDEX: 390
+DOCX: KẾT LUẬN 1.
+PDF : 11: Thư mục Model - File Model chứa tất cả các mục Entites, câu lệnh truy vấn được gen từ DataBase SQL Server.
+---------------------
+INDEX: 391
+DOCX: Kết luận về toàn bộ nghiên cứu của đồ án - Vì chưa có nhiều kinh nghiệm về kiến thức với chuyên môn nên không tránh khỏi bỡ ngỡ, khó khăn trong lúc làm đồ án.
+PDF : - Gồm file DAO: thực hiện các câu lệnh, Query trược tiếp đến DataBase như select, insert into, update, delete, left join, inner join...
+---------------------
+INDEX: 392
+DOCX: - Học hỏi được nhiều kiến thức cách viết code mới.
+PDF : KẾT LUẬN 1.
+---------------------
+INDEX: 393
+DOCX: - Áp dụng được kiến thức của các kỳ thực tập trước vào đồ án.
+PDF : Kết luận về toàn bộ nghiên cứu của đồ án - Vì chưa có nhiều kinh nghiệm về kiến thức với chuyên môn nên không tránh khỏi bỡ ngỡ, khó khăn trong lúc làm đồ án.
+---------------------
+INDEX: 394
+DOCX: - Tìm hiểu được nhiều phương pháp, ngôn ngữ lập trình mới.
+PDF : - Học hỏi được nhiều kiến thức cách viết code mới.
+---------------------
+INDEX: 395
+DOCX: TÀI LIỆU THAM KHẢO https://www.w3schools.com/ https://viettuts.vn/sql http://tedu.vn/ http://codegym/ http://VietNix/
+PDF : - Áp dụng được kiến thức của các kỳ thực tập trước vào đồ án.
+---------------------
+INDEX: 396
+DOCX: 
+PDF : - Tìm hiểu được nhiều phương pháp, ngôn ngữ lập trình mới.
+---------------------
+INDEX: 397
+DOCX: 
+PDF : TÀI LIỆU THAM KHẢO 1.
+---------------------
+INDEX: 398
+DOCX: 
+PDF : https://www.w3schools.com/ 2.
+---------------------
+INDEX: 399
+DOCX: 
+PDF : https://viettuts.vn/sql 3.
+---------------------
+INDEX: 400
+DOCX: 
+PDF : http://tedu.vn/ 4.
+---------------------
+INDEX: 401
+DOCX: 
+PDF : http://codegym/ 5.
+---------------------
+INDEX: 402
+DOCX: 
+PDF : http://VietNix/
+---------------------

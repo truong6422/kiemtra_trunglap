@@ -1,0 +1,37 @@
+__HEADING__LỜI MỞ ĐẦU__ENDHEADING__
+
+__CAPTION__Hình ảnh vi mạch điện tử trên dây chuyền sản xuất hiện đại 11
+
+__CAPTION__Hình ảnh vi mạch điện tử trên dây chuyền sản xuất tự động tại nhà máy công nghệ cao 11
+
+__CAPTION__Hình ảnh vi mạch điện tử trên dây chuyền sản xuất tự động của hệ thống Fuji 12
+
+__CAPTION__Hình ảnh triển khai truyền thống 25
+
+__CAPTION__Hình ảnh triển khai ảo hóa 26
+
+__CAPTION__Hình ảnh cách docker hoạt động 26
+
+__CAPTION__Hình ảnh vi mạch điện tử trên dây chuyền sản xuất hiện đại
+
+__CAPTION__Hình ảnh vi mạch điện tử trên dây chuyền sản xuất tự động tại nhà máy công nghệ cao
+
+__CAPTION__Hình ảnh vi mạch điện tử trên dây chuyền sản xuất tự động của hệ thống Fuji
+
+__HEADING__Phần 01: Giới Thiệu - Lịch Sử Hình Thành Git__ENDHEADING__
+
+Lịch Sử Hình Thành Git
+
+__HEADING__Phần 02: Cấu Hình và Cơ Chế Hoạt Động Của Git__ENDHEADING__
+
+Thực Hành 1: Cấu Hình và Khởi Tạo Dự Án
+
+Cấu Hình Global: Chạy lệnh git config --global user.name và user.email để thiết lập thông tin mặc định.
+
+Git Flow: Mô Hình Phát Hành Có Cấu Trúc
+
+__CAPTION__Hình ảnh triển khai truyền thống
+
+__CAPTION__Hình ảnh triển khai ảo hóa
+
+__CAPTION__Hình ảnh cách docker hoạt động

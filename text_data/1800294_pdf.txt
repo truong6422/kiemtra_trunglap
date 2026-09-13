@@ -1,0 +1,414 @@
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+BỘ CÔNG THƯƠNG TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP VIỆT – HUNG KHOA: CÔNG NGHỆ THÔNG TIN ĐỒ ÁN TỐT NGHIỆP Đề tài: “XÂY DỰNG WEBSITE KIỂM ĐỊNH CHẤT LƯỢNG VIUEDU” Giáo viên hướng dẫn :
+An Hồng Sơn Họ tên sinh viên :
+Trần Văn Dũng Mã sinh viên :
+Lớp :
+K4218-CNTT2 Hà Nội, tháng 07/2022 BỘ CÔNG THƯƠNG TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP VIỆT – HUNG KHOA: CÔNG NGHỆ THÔNG TIN ĐỒ ÁN TỐT NGHIỆP Đề tài: “XÂY DỰNG WEBSITE KIỂM ĐỊNH CHẤT LƯỢNG VIUEDU” Giáo viên hướng dẫn :
+An Hồng Sơn Họ tên sinh viên :
+Trần Văn Dũng Mã sinh viên :
+Lớp :
+K4218-CNTT2 Hà Nội, tháng 07/2022 TRƯỜNG ĐHCN VIỆT-HUNG Khoa: Công nghệ thông tin CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM Độc lập - Tự do - Hạnh phúc ĐỀ TÀI ĐỒ ÁN/KHÓA LUẬN TỐT NGHIỆP Họ và tên sinh viên: Trần Văn Dũng Mã số SV:
+Khoá: K42 Lớp: CNTT2 Loại hình đào tạo: Đại Học Ngành: Công nghệ thông tin Chuyên ngành: CNTT Giảng viên hướng dẫn:
+Ngày giao đề tài: 20/02/2022 Ngày nộp quyển: 25/07/2022 NỘI DUNG ĐỀ TÀI:
+“XÂY DỤNG WEBSITE KIỂM ĐỊNH CHÂT LƯỢNG VIUEDU” 1. Yêu cầu về kiến thức, kỹ năng:
+Có kiến thức về Ngôn ngữ lập trình, phân tích hệ thống, CSDL;
+Tìm hiểu và có hiểu biết về Kiểm định chất lượng CSGD đại học;
+Sử dụng thành thạo một trong các ngôn ngữ lập trình/CSDL trên nền tảng Web.
+2. Yêu cầu về chương trình:
+Chương trình phải đáp ứng được 2 yêu cầu chính sau:
+* Về hệ thống:
+ Đảm bảo tính bảo mật (chỉ có người dùng liên quan mới được sử dụng hệ thống);
+ Cập nhật được dữ liệu là văn bản (.doc; .pdf), hình ảnh (.JPG; .BMP);
+ Tổng hợp, tính toán được điểm của từng Tiêu chí, Tiêu chuẩn và tổng điểm của toàn bộ Báo cáo tự đánh giá của Nhà trường;
+* Về chức năng:
+Nhập CSDL: Nhập từ bàn phím - Import từ Files + Nhập thời gian thực hiện;
++ Nhập nhân sự thực hiện:
++ Nhập danh mục tiêu chuẩn, tiêu chí;
++ Nhập CSDL kiểm định: (Nhập văn bản /Import Files) + Nhập danh mục/số liệu minh chứng: (Nhập văn bản /Import Files) Xử lý báo cáo: Nhập – Xử lý – Hiển thị + Cập nhật báo cáo: (Nhập văn bản /Import Files) + Hiển thị báo cáo;
++ Đánh giá kết quả.
+* Phân quyền hệ thống: Xem - Sửa - Xoá + Phân quyền xem: Đoàn Đánh giá ngoài; Hiệu Trưởng; Hội đồng TĐG.
++ Phân quyền sửa: Hội đồng TĐG, các nhóm công tác chuyên trách.
++ Phân quyền xóa: Quản trị hệ thống (Admin).
+3. Đánh giá:
+- Mức đạt: Có đầy đủ chức năng theo yêu cầu, thực hiện được đầy đủ chức năng “Nhập CSDL” và hiển thị được CSDL đã nhập vào.
+- Mức khá: Mức đạt + thực hiện được 1 phần của chức năng “Xử lý báo cáo” như: cập nhật và hiển thị báo cáo dưới dạng ‘cây minh chứng/tiêu chuẩn/tiêu chí’ và hiển thị điểm đánh giá của từng tiêu chuẩn, tiêu chí đó.
+- Mức tốt: Mức khá + thực hiện được phần “Đánh giá kết quả” như: đánh giá tiến độ thực hiện; tổng hợp điểm đánh giá của từng tiêu chuẩn và cả báo cáo tự đánh giá;
+Các yêu cầu khác:
+4. Các yêu cầu khác :
+- Gửi lịch làm việc cho GVHD - Mỗi tuần phải liên hệ với GV hướng dẫn ít nhất 1 lần qua email.
+Hà Nội, ngày 20 tháng 02 năm Giảng viên hướng dẫn P.Trưởng bộ môn TL/Hiệu trưởng Trưởng khoa (Ký, ghi rõ họ tên) (Ký, ghi rõ họ tên) (Ký, ghi rõ họ tên) An Hồng Sơn Ngô Thị Lan Phạm Thị Thu Hiếu LỜI CẢM ƠN Trong suốt quá trình học tập và thực hiện đồ án tốt nghiệp em luôn được sự quan tâm, hướng dẫn và giúp đỡ tận tình của các thầy cô, cô giáo trong Khoa Công nghệ thông tin.
+Lời đầu tiên em xin được bày tỏ lòng biết ơn sâu sắc tới thầy An Hồng Sơn đã giúp đỡ em trong quá trình thực hiện chương trình, sản phẩm của đồ án tốt nghiệp và em cũng xin được cám ơn cô giáo Ngô Thị Lan đã tận tình giúp đỡ em trong quá trình em thực hiện viết báo cáo để em có thể hoàn thiện đồ án này.
+Em cũng xin được bày tỏ lòng biết ơn sâu sắc tới tất cả thầy cô đã dạy cho em những kiến thức quan trọng trong suốt quá trình học đại học giúp em có được một chút kiến thức để em có thể thực hiện được đồ án tốt nghiệp như bây giờ.
+Em xin trân trọng cảm ơn!
+Hà Nội, tháng 04 năm Trần Văn Dũng TRƯỜNG ĐHCN VIỆT-HUNG Khoa: Công nghệ thông tin CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM Độc lập - Tự do - Hạnh phúc PHIẾU ĐÁNH GIÁ ĐỒ ÁN TỐT NGHIỆP CỦA GIẢNG VIÊN HƯỚNG DẪN Giảng viên: An Hồng Sơn Bộ môn: Công nghệ thông tin Khoa:Công nghệ thông tin Tên đề tài: XÂY DỰNG WEBSITE KIỂM ĐỊNH CHẤT LƯỢNG VIUEDU Họ và tên sinh viên: Trần Văn Dũng Mã số SV:
+NỘI DUNG ĐÁNH GIÁ:
+STT NỘI DUNG THANG ĐIỂM ĐIỂM CHẤM Mức độ thời sự của đề tài, mức độ khó của đề tài.
+Tính ứng dụng của đề tài vào thực tiễn Tính đúng đắn và hợp lý của phân tích thiết kế Giải pháp và công nghệ thực hiện Mức độ hoàn thành công việc của sinh viên Tinh thần và thái độ làm việc: chăm chỉ, cần cù, nghiêm túc và tinh thần chủ động trong công việc Khả năng đọc sách ngoại ngữ tham khảo Khả năng tổng hợp kiến thức viết đồ án Bố cục và hình thức trình bày đồ án theo quy định Thời hạn hoàn thành và nộp đồ án TỔNG ĐIỂM Điểm kết luận qui đổi của giáo viên hướng dẫn: …………………… (điểm).
+Đồng ý cho bảo vệ: Không đồng ý cho bảo vệ:
+Hà Nội., ngày 25 tháng 07 năm GIẢNG VIÊN HƯỚNG DẪN (Ký, ghi rõ họ tên) TRƯỜNG ĐHCN VIỆT-HUNG Khoa:Công nghệ thông tin CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM Độc lập - Tự do - Hạnh phúc NHẬN XÉT ĐỒ ÁN TỐT NGHIỆP CỦA GIẢNG VIÊN PHẢN BIỆN Giảng viên:
+.............................................................................................................................
+Bộ môn: Công nghệ thông tin Khoa:Công nghệ thông tin Tên đề tài: XÂY DỰNG WEBSITE KIỂM ĐỊNH CHẤT LƯỢNG VIUEDU Họ và tên sinh viên: Trần Văn Dũng Mã số SV:
+NỘI DUNG NHẬN XÉT:
+I. Nội dung báo cáo - Bố cục, hình thức trình bày: .............................................................................
+............................................................................................................................
+- Đảm bảo tính cấp thiết, hiện đại, không trùng lặp: ..........................................
+............................................................................................................................
+- Khả năng nêu và giải quyết bài toán: ...............................................................
+............................................................................................................................
+- Đảm bảo hàm lượng kiến thức nghiên cứu: .....................................................
+............................................................................................................................
+Hướng phát triển cao hơn của Đề tài: ................................................................
+............................................................................................................................
+II. Sản phẩm: .....................................................................................................
+............................................................................................................................
+III. Ưu nhược điểm ............................................................................................................................
+IV. Kết luận:
+Đồ án/Khoá luận:
+.............................................................................................................................
+.............................................................................................................................
+.......
+Đồng ý cho bảo vệ: Không đồng ý cho bảo vệ:
+…………., ngày ..........tháng ........năm 20…..
+GIẢNG VIÊN PHẢN BIỆN (Ký, ghi rõ họ tên) MỤC LỤC LỜI MỞ ĐẦU CHƯƠNG TỔNG QUAN VỀ ĐỀ TÀI 1.1 Giới thiệu về đề tài 1.1.1 Mục đích của đánh giá 1.1.2. Yêu cầu của giai đoạn đánh giá 1.2 Phân tích yêu cầu của đề tài 1.2.1 Tóm tắt các hoạt động chính của phần mềm 1.2.2 Yêu cầu về phần mềm 1.2.3 Phạm vi tự đánh giá 1.2.4 Trách nhiệm cá nhân của các thành viên Hội đồng 1.2.5 Công cụ và phần mềm hỗ trợ phát triển CHƯƠNG GIỚI THIỆU VỀ NGÔN NGỮ VÀ MÔ HÌNH XÂY DỰNG ĐỀ TÀI 2.1. Môi trường lập trình Visual Studio 2.1.1. Tổng quan về Visual Studio.
+2.1.2. Một số tính năng của Visual Studio.
+2.2. Asp.net 2.2.1. Những ưu điểm của ASP.Net 2.2.2. Quá trình xử lý tập tin ASPX 2.3. Kiến trúc .Net Framework 2.3.1 Mô Hình MVC 2.3.2 Mô hình 3 lớp 2.3.2.1 Khái niệm mô hình 3 lớp 2.3.2.2 Ưu điểm của mô hình 3 lớp 2.3.2.3 Phân loại mô hình 2.3.2.4 Thành phần của từng lớp 2.4 SQL Server 2.4.1. Những thành phần của SQL Server 2.4.2. Mục đích khi sử dụng SQL Server 2.4.3. Kiến trúc của SQL Server 2.5. Phân tích thiết kế hệ thống hướng cấu trúc CHƯƠNG PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG 3.1 Khảo sát tình hình thực tại và đưa ra giải pháp cho chương trình 3.1.1 Mô tả bài toán và giải pháp 3.1.1.1. Mô tả bài toán 3.1.1.2. Phạm vi dự án được ứng dụng 3.1.2 Khảo sát thực tế 3.1.2.1 Thực hiện theo chỉ thị 3.1.2.2 Tài liệu tham khảo 3.1.3 Xác định đối tượng sử dụng 3.1.4 Nhược điểm của hệ thống quản lý hiện nay 3.1.5 Phương hướng giải quyết 3.2. Phân tích các chức năng của hệ thống 3.2.1. Xác định đối tượng người dùng 3.2.2. Biểu đồ phân cấp chức năng 3.2.3. Biểu đồ ngữ cảnh 3.2.4. Sơ đồ luồng dữ liệu mức 3.2.5 Sơ đồ luồng dữ liệu mức 1 – chức năng quản lý đăng nhập 3.2.6. Sơ đồ luồng dữ liệu mức 1- chức năng quản lý thông tin 3.2.8. Sơ đồ luồng dữ liệu mức 1 – Xử lý dữ liệu 3.2.9. Sơ đồ luồng dữ liệu mức 1 – chức năng thống kê, báo cáo 3.2.10. Sơ đồ ER 3.2.11. Chuyển đổi từ mô hình thực thể ER sang mô hình quan hệ 3.2.12. Cơ sở dữ liệu và sơ đồ Diagram CHƯƠNG GIAO DIỆN WEBSITE KIỂM ĐỊNH CHẤT LƯỢNG GIÁO DỤC (VIUEDU) 4.1. Lựa chọn ngôn ngữ và môi trường cài đặt 4.2. Thiết kế giao diện 4.2.1. Giao diện trang chủ 4.2.2. Giao diện Form đăng nhập.
+4.2.3 Giao diện Hồ sơ cá nhân 4.2.4. Giao diện Hồ sơ nhân viên 4.2.5. Giao diện thông tin nhà trường 4.2.6. Giao diện Danh mục Minh chứng 4.2.7. Giao diện Tiêu chuẩn, tiêu chí 4.2.8. Giao diện Kết quả Đánh giá 4.2.9. Giao diện Nhóm công tác 4.2.10. Giao diện Giao nhiệm vụ nhóm 4.2.11. Giao diện Hội đồng đánh giá 4.2.12. Giao diện chi tiết công việc cho thành viên 3.2.13. Giao diện Báo cáo Tiêu chuẩn – Tiêu chí 4.2.14. Giao diện Lịch sử Đánh giá 4.2.15 Giao diện Chức năng 4.2.16 Giao diện Vai trò 4.2.17 Giao diện Vai trò – Chức năng 4.2.18 Minh chứng sử dụng 4.2.19 Giao diện xem nhiệm vụ các nhân 4.2.20 Giao diện lịch sử đánh giá cá nhân KẾT LUẬN TÀI LIỆU THAM KHẢO DANH MỤC BẢNG BIỂU Các phiên bản của phần mềm Visual Studio Thông tin nhân sự Thông tin trường Danh sách hội đồng đánh giá Danh sách nhóm công tác Danh mục minh chứng Danh sách tiêu chí Danh sách tiêu chuẩn Danh sách năng lực – cơ sở công tác Danh sách minh chứng được sử dụng để đánh giá Danh sách chi tiết công việc Danh sách nhiệm vụ đã giao cho nhóm Danh sách giai đoạn đánh giá Danh sách chức năng hệ thống Danh sách vai trò trong hệ thống Lịch sử đánh giá DANH MỤC SƠ ĐỒ HÌNH ẢNH Các phiên bản của phần mềm Visual Studio 2. Quick Actions and Refactorings 3. Rename 4. IntelliSense 5. Snippet 6. Go to Definition Peek Definition ASP.Net Quá trình xử lý tập tin ASPX Kiến trúc .Net Framework Kiến trúc của SQL Server Sơ đồ phân rã chức năng Biểu đồ ngữ cảnh 3. Sơ đồ luồng dữ liệu mức không Sơ đồ luồng dữ liệu mức 1 - quản lý đăng nhập 5. Sơ đồ luồng dữ liệu mức 1 – chức năng quản lý thông tin 6. Sơ đồ luồng dữ liệu mức 1: quản lý nhóm Sơ đồ luồng dữ liệu mức 1: Xử lý dữ liệu Sơ đồ luồng dữ liệu mức 1: thống kê, báo cáo Sơ đồ thực thể ER 10. Cơ Sở Dữ liệu và sơ đồ Diagram 1. Giao diện trang chủ 2. Giao diện Form đăng nhập Giao diện thông tin cá nhân Giao diện Hồ sơ nhân viên Giao diện thông tin trường Giao diện Danh mục Minh chứng Giao diện Tiêu chuẩn Giao diện Tiêu chí Giao diện kết quả đánh giá Giao diện Nhóm công tác Giao nhiệm vụ nhóm công tác Form giao nhiệm vụ nhóm Giao diện Hội đồng đánh giá Giao diện chi tiết công việc cho có thành viên Giao diện Báo cáo Tiêu chuẩn Giao diện báo cáo Tiêu chí Giao diện Lịch sử Đánh giá In báo cáo tiêu chuẩn – tiêu chí Form in báo cáo LỜI MỞ ĐẦU 1. Đặt vấn đề Việc kiểm định chính là khi các yêu cầu pháp lý được so sánh với các cân nhắc về khả năng áp dụng của thiết bị đo đối với các tiêu chuẩn kỹ thuật, kết quả sẽ được cơ quan quốc gia phê duyệt. Theo Quyết định số 13/2017 / QĐ- BKHCN do Bộ Khoa học và Công nghệ ban hành ngày 06/07/2007, đây cũng là biểu mẫu bắt buộc đối với tất cả các phương tiện đo có trong danh mục kiểm định chất lượng. Và đối với mỗi kết quả được kiểm tra và đạt tiêu chuẩn, một con dấu hoặc giấy chứng nhận kiểm định sẽ được hiển thị. Nói một cách dễ hiểu hơn, kiểm định là một biện pháp có thể kiểm soát và đo lường được, được thực hiện bởi tổ chức phê duyệt phương tiện đo dựa trên các chỉ số đánh giá để xác định phương tiện đo tiếp nhận có đủ tiêu chuẩn hay không, đủ để đảm bảo tuân thủ các yêu cầu đo lường? Hiện nay sẽ có 3 hình thức được kiểm định chất lượng, đó là:
+• Kiểm định ban đầu: Là một trong những hình thức đang được sử dụng với lần đầu đối với các phương tiện đo sau khi đã được xuất xưởng hoặc nhập khẩu.
+• Kiểm định định kỳ: Là kiểm định khi dựa theo các chu kỳ đối với phương tiện đo đang sử dụng, mỗi một phương tiện đo cũng sẽ có được những quy định về chu kỳ kiểm định chất lượng khác nhau ( từ 1 – 5 năm ).
+• Kiểm định bất thường: Là hình thức để kiểm định đối với phương tiện đo sau khi đã được bảo trì, sửa chữa theo yêu cầu của mỗi doanh nghiệp, tổ chức, cá nhân sử dụng để được phục vụ được thanh tra giám định tư pháp đo lường hoặc với các hoạt động công cụ khác của Nhà nước.
+2. Mục tiêu nghiên cứu của đề tài • Đáp ứng nhu cầu quản lý, quản trị các thông tin của nhân viên nhà trường, quản lý được việc hoàn thành chỉ tiêu của nhân viên.
+• Hỗ trợ khâu kiểm định, bàn giao và đánh giá từng tiểu chuẩn, tiêu chí theo các mức độ đã được đề ra.
+• Việc quản lý cơ sở dữ liệu, nhân sự, việc tự đánh giá chất lượng của nhân sự dễ dàng hơn, thông minh hơn và chiết xuất dữ liệu tối ưu hơn 3. Nhiệm vụ của đề tài Về giao diện:
++ Giao diện người dùng: Phải có một giao diện thân thiện dễ sử dụng:
++ Màu sắc hài hoà làm nổi bật hình ảnh website, font chữ thống nhất, tiện lợi khi sử dụng.
++ Giới thiệu những chức năng của website: cập nhật, quản lý, đánh giá theo tiêu chuẩn tiêu chí.
+- Giao diện người quản trị  Giao diện đơn giản, dễ quản lý dữ liệu.
+ Phải được bảo vệ bằng User & Password riêng của Admin.
+ Đơn giản, dễ quản lý và không thể thiếu các mục như:
+ Quản lý thông tin nhân sự  Thống kê cơ sở dữ liệu nhà trường  Thống kê người sử dụng  Quản lý các tiêu chuẩn tiêu chí của nhà trường  Quản lý mọi thay đổi của website.
+- Giao diện tổng quan website  Giới thiệu về các thông tin trường.
+ Quản lý thông tin nhân viên.
+ Có biểu mẫu liên hệ.
+ Chức năng tìm kiếm tiêu chuẩn tiêu chí.
+ Mục login của thành viên gồm có: Tên đăng nhập (Username), mật khẩu đăng nhập (password).
+- Về nghiệp vụ Người xây dựng nên hệ thống phải am hiểu về các quy định quản lý nhân sự, văn bản pháp luật, minh chứng, tiêu chuẩn, tiêu chí như việc thêm, sửa, xoá, áp dụng các thông tin của tiêu chuẩn, tiêu chí, minh chứng theo yêu cầu của nhà trường.
+- Về bảo mật:
+Hệ thống cần tính bảo mật cao, đảm bảo nếu không có được username, password và được cho phép hoạt động của Admin thì không có một User nào có thể thay đổi thông tin về nhân sự cũng như toàn bộ Website ngoài việc thay đổi thông tin cá nhân của User vì vậy việc quản lý dữ liệu bằng mật khẩu đăng nhập:
++ Tên đăng nhập + Mật khẩu đăng nhập Người Admin có toàn quyền giữ bảo mật cho website bằng mật khẩu riêng.
+Quản lý User & Password của nhân vi an toàn: các thông tin của nhân viên được bảo mật Hệ thống quản trị tuyệt đối an toàn, không thể bị truy cập do lỗi của hệ thống.
+4. Kết quả đạt được của đề tài Sau khoảng thời gian thực hiện đề tài thì chương trình của em đã hoàn thành một cách khá chỉnh chu. Các chức năng theo yêu cầu của đề tài đã được thực hiện và sử dụng đầy đủ trên chương trình. Việc thực hiện các thao tác đã trở nên dễ dàng và đơn giản hơn so với phần mềm cũ.
+- Các chức năng chính của phần mềm đó là:
+ Nhập xuất dữ liệu đầu vào: Tiêu chuẩn, tiêu chí, minh chứng, hồ sơ nhân sự, thành viên hội đồng, nhóm công tác , ..vv..
+ Thực hiện chức năng: Phân công nhóm, Giao nhiệm vụ nhóm, giao nhiệm vụ thành viên hội đồng.
+ Báo cáo: Thống kê minh chứng, báo cáo tiêu chí, hiển thị kết quả tiêu chuẩn, ...
+ Phân quyền: Trao quyền các chức năng cho thành viên hội đồng.
+ Kết quả TĐG-ĐGN (Căn cứ vào BC, MC theo từng Tiêu chuẩn/tiêu chí để đưa ra nhận định về kết quả đạt được).
+ Phần giao diện người dùng: giao diện thân thiện, cho phép người dùng dễ dàng thực hiện các thao tác.
+ Phần quản trị: Đã xây dựng được hệ thống quản lý dữ liệu của website, giúp cho những người quản trị dễ dàng quản lý thông tin, dữ liệu, xem, thêm, xóa , cập nhật dữ liệu cho website.
+5. Bố cục của đề tài Chương 1: Tổng quan về đề tài Chương 2: Giới thiệu về ngôn ngữ và mô hình xây dựng đề tài Chương 3: Phân tích thiết kế hệ thống Chương 4: XÂY DỰNG WEBSITE KIỂM ĐỊNH CHẤT LƯỢNG GIÁO DỤC (VIUEDU) CHƯƠNG TỔNG QUAN VỀ ĐỀ TÀI 1.1 Giới thiệu về đề tài Trong cuộc sống hiện đại hiện nay thì Giáo dục được xem như một điều tất yếu trong cuộc sống. Việc dạy học và trao dồi kiến thức giúp chúng ta có không bị lạc hậu ở phía sau. Vì vậy việc học là có ở tất cả mọi nơi, nhưng việc dạy dỗi học sinh – sinh viên còn phải đi kèm với nó là cả một hệ thống giáo dục, trường học, ..vv..
+Các hệ thống quản cơ bản mà chúng ta có thể thường thấy đó là hệ thống:
+Quản lý điểm, Quản lý phân công tiết học, Quản lý học phí, Quản lý hồ sơ, Quản lý lịch học sinh viên, ..vv.. đi kèm với nó thì chúng ta còn phải có hệ thống quản lý Kiểm định chất lượng giáo dục. Giúp cho hệ thống quản lý nhà trường được minh bạch, tiến bộ và phát triển hơn ở mọi phương hiện. Giúp nhận được nhiều ý kiến và phản hồi từ nhiều cá nhân hơn khi đó tạo điều kiện hơn trong việc dạy và học của học sinh – sinh viên và của cả giáo viên trong nhà trường.
+Với tầm quan trọng như trên thì một phần mềm để quản lý là không thể thiếu được.
+Một phần mềm kiểm định chất giáo dục được tạo ra có thể có chức năng như sau:
++ Đánh giá được chất lượng giáo dục về tổ chức và quản lý nhà trường.
++ Đánh giá chất lượng giáo dục về cơ sở vật chất và trang thiết bị dạy học.
++ Đánh giá chất lượng giáo dục về quan hệ giữa nhà trường, gia đình và xã hội.
++ ..v.v..
+Nhưng để phần mềm có thể trở nên linh hoạt và được sử dụng ở nhiều mặt hơn thì tại phần mềm Kiểm định chất lượng giáo dục ViuEDU và em đang hướng tới sẽ được tích hợp thành các tiêu chuẩn và sẽ được phân công đánh giá tiêu chí cho các thành viên trong hội đồng. Đồng thời báo cáo ra được tất cả dữ liệu theo yêu cầu mà người dùng cần phải có.
+1.1.1 Mục đích của đánh giá Thực hiện Kế hoạch Đảm bảo chất lượng của Nhà trường, xác định các điều kiện đáp ứng mục tiêu giáo dục trong từng giai đoạn, từ đó lập kế hoạch cải tiến chất lượng, duy trì và nâng cao chất lượng các hoạt động của Nhà trường; thông báo công khai với các cơ quan quản lý nhà nước và xã hội về thực trạng chất lượng của Nhà trường để cơ quan quản lý nhà nước đánh giá và công nhận trường đạt kiểm định chất lượng giáo dục.
+Đánh giá ngoài cấp cơ sở giáo dục và được kiểm định chất lượng giáo dục đại học theo kế hoạch chung của Bộ Giáo dục và Đào tạo và đăng ký kiểm định chất lượng cơ sở giáo dục của Nhà trường vào tháng 06/2022.
+1.1.2. Yêu cầu của giai đoạn đánh giá Quá trình thực hiện phải được tiến hành đúng thời gian, đúng quy trình, tuân thủ nghiêm ngặt tiến độ đã phê duyệt và những quy định của Nhà trường, các quy chế có liên quan của Bộ Giáo dục và Đào tạo.
+Công tác chuẩn bị, hoàn thiện các minh chứng, tổ chức các hội nghị, hội thảo, tập huấn, hướng dẫn và rút kinh nghiêm trong các thời điểm, giai đoạn cần thiết của Kế hoạch phải được thực hiện để đảm bảo triển khai một cách hiệu quả và đúng yêu cầu, tiến độ đề ra 1.2 Phân tích yêu cầu của đề tài 1.2.1 Tóm tắt các hoạt động chính của phần mềm - Là một phần mềm phục vụ cho các nhu cầu đánh giá kiểm định chất lượng tại nhà trường thì trước hết khâu phần quyền là không thể thiếu. Việc phần quyền để quản lý giúp hệ thống rõ ràng hợp.
+- Tiếp theo là các công đoạn thêm dữ liệu vào hệ thống như là: hình thành giai đoạn đánh giá,thêm danh sách nhân sự, thêm dữ liệu về tiêu chuẩn, tiêu chí, minh chứng cần sử dụng, ..vv..
+- Tính năng giao nhiệm vụ cụ thể là tiêu chuẩn, tiêu chí có các nhóm và các thành viên là rất cần thiết và gần như là quan trọng nhất của cả giai đoạn đánh giá.
+- Khi đó thì việc thành viên trong có thể được nhiệm vụ và thực hiện chúng để đưa ra được kết quả cuối cùng cho tiêu chí đánh giá.
+- Đến cuối cùng thì có thể thống kê được kết quả đánh giá cuối cùng.
+1.2.2 Yêu cầu về phần mềm  Về giao diện:
+- Yêu cầu về giao diện dễ sử dụng, dễ thao tác.
+- Giao diện bố trí gọn gàng khoa học, dễ quan sát.
+- Có các đầy đủ các giao diện để quản lý thông tin nhân sự, các tiêu chuẩn tiêu chí cần đánh giá, và các minh chứng cần được sử dụng.
+- Có phần tìm kiếm các thông tin để dễ dàng thống kê và kiểm soát được thông tin trong hệ thống.
+ Về chức năng:
+- Có được đầy đủ các chức năng cập nhật – thêm – sửa – xáo dữ liệu đầu vào cần thiết.
+- Có chức năng quản lý thông tin nhân sự, thông tin nhà trường và thông tin cần thiết có giai đoạn đánh giá.
+- In được báo cáo..
+ Về quy trình nghiệp vụ:
+- Thì phần mềm được thực hiện theo các quy trình như sau:
+ Thêm dữ liệu đầu vào cho hệ thống.
+ Phân công, tạo lập nhóm công tác.
+ Phân công nhiệm vụ có các nhóm công tác.
+ Thêm thành viên cho các nhóm công tác.
+ Giao nhiệm vụ cho các thành viên trong nhóm  Các thành viên trong nhóm sẽ thực hiện đánh giá kết quả  Tổng hợp thống kế dữ liệu đã có  In báo đánh giá  Về yêu cầu khi truy cập thì:
+- Chương trình được sử dụng trên website giúp việc truy cập được truy trở nên linh hoạt hơn. Chúng ta chỉ cần đường link trang website mà quản lý cung cấp đồng thời có tài khoản mật khẩu là đã có thể sử dụng được mà không cần tới phải cài đặt chương trình về máy.
+- Yêu cầu cần thiết nhất là thiết bị chúng ta đăng nhập cần phải có mạng Internet./ 1.2.3 Phạm vi tự đánh giá Đánh giá các hoạt động của Nhà trường trong giai đoạn từ 2016 - (01/2016 - 06/2020) theo tiêu chuẩn đánh giá chất lượng CSGD do Bộ trưởng Bộ GDĐT ban hành tại Thông tư số 12/2017/TT-BGDĐT với 25 tiêu chuẩn và 111 tiêu chí.
+Thời gian Trường tiến hành tự đánh giá: từ ngày 01/01/2020 - 30/06/2022.
+1.2.4 Trách nhiệm cá nhân của các thành viên Hội đồng - Chủ tịch hội đồng: Chịu trách nhiệm chung về hoạt động tự đánh giá và báo cáo tự đánh giá của trường; chịu trách nhiệm tổ chức các hoạt động tự đánh giá, điều động các nguồn lực phục vụ quá trình tự đánh giá.
+- Phó chủ tịch hội đồng: Giúp Chủ tịch hội đồng quản lý công việc khi Chủ tịch vắng mặt, xây dựng và góp ý cho các dự thảo báo cáo tự đánh giá.
+- Các thành viên hội đồng: Chịu trách nhiệm hỗ trợ các nhóm công tác chuyên trách viết báo cáo tự đánh giá, hỗ trợ xử lý minh chứng; phối hợp và thực hiện các nhiệm vụ của các nhóm công tác chuyên trách và ban thư ký nhằm giúp việc tự đánh giá đạt hiệu quả và đúng tiến độ; góp ý và phản biện cho báo cáo tự đánh giá; triển khai chủ trương và các hoạt động tự đánh giá của Trường đến toàn thể cán bộ, giảng viên, sinh viên thuộc đơn vị.
+- Trưởng ban thư ký: Chịu trách nhiệm chung về hoàn thiện báo cáo tự đánh giá.
+- Các thành viên ban thư ký: Chuẩn bị danh mục các minh chứng, thu thập minh chứng đầy đủ và hỗ trợ quá trình viết và hoàn thiện báo cáo.
+- Trưởng nhóm công tác chuyên trách: Điều hành nhóm và chịu trách nhiệm về các Tiêu chuẩn, tiêu chí được giao phụ trách; phân công nhiệm vụ các thành viên; dự thảo mô tả tiêu chí, tiêu chuẩn; phối hợp với ban thư ký hoàn thành báo cáo tự đánh giá.
+- Thường trực nhóm: Giúp trưởng nhóm quản lý công việc khi trưởng nhóm vắng mặt; hoàn thiện các bản mô tả tiêu chuẩn, tiêu chí được phân công; viết báo cáo cho các tiêu chuẩn do nhóm phụ trách.
+- Các thành viên nhóm: Tìm, xử lý thông tin và hoàn thiện các minh chứng, tiêu chí, tiêu chuẩn được giao.
+1.2.5 Công cụ và phần mềm hỗ trợ phát triển Chương trình được phát triển dựa trên ngôn ngữ lập trình C# với bộ công cụ phát triển Visual Studio do Microsoft cung cấp và hệ quản trị cơ sở dữ liệu SQL Server của Microsoft.
+- Các công cụ được sử dụng:
++ SQL Server - hệ quản trị cơ sở dữ liệu.
++ C# - ngôn ngữ lập trình + Visual Studio - công cụ lập trình và thiết kế giao diện chương trình.
++ Sử dụng XML để thực hiện việc tại mẫu và in báo cáo.
++ Kết nối với Excel để Import và Export data.
+- Mô hình được áp dụng + Phần mềm đang được sử Framework: ASP.Net MVC.
++ Kết hợp cùng mô hình 3 lớp (Three Layer(3-Layer)).
+CHƯƠNG GIỚI THIỆU VỀ NGÔN NGỮ VÀ MÔ HÌNH XÂY DỰNG ĐỀ TÀI 2.1. Môi trường lập trình Visual Studio 2.1.1. Tổng quan về Visual Studio.
+Visual Studio là môi trường phát triển tích hợp (IDE) bao gồm biên dịch, viết mã lệnh, thiết kế đồ họa, gỡ lỗi và nhiều tính năng khác để dễ dàng cho quá trình phát triển phần mềm.
+Visual Studio hỗ trợ nhiều ngôn ngữ lập gồm C, C++ và C++/CLI (thông qua Visual C++), VB.NET (thông qua Visual Basic.NET), C# (thông qua Visual C#) và F# (như của Visual Studio 2010). Hỗ trợ cho các ngôn ngữ khác như J++/J#, Python và Ruby thông qua dịch vụ cài đặt riêng rẽ. Visual Studio cũng hỗ trợ XML/XSLT, HTML/XHTML, JavaScript và CSS Các phiên bản của Visual Studio:
+Phiên bản Năm .NET Framework Hệ Điều Hành Visual Studio 04/200 1.1 Windows Server Visual Studio 11/200 2.0 Windows Server 2008 R2 Visual Studio 11/200 3.5 Windows 7, Windows Server 2008 R2 Visual Studio 04/201 Windows 7, Windows Server 2008 R2 Visual Studio 09/201 4.5 Windows 8, Windows Server Visual Studio 09/201 4.5.1 Windows 8, Windows Server Visual Studio 07/201 4.6 Windows 10, Windows Server Visual Studio 4.6.1 Windows 10, Windows Server 2012 R2 Visual Studio 4.7.2 Windows 10, Windows Server Các phiên bản của phần mềm Visual Studio 2.1.2. Một số tính năng của Visual Studio.
+a. Quick Actions and Refactorings:
+Quick Actions and Refactoring là tính năng hỗ trợ người lập trình phát hiện lỗi và sửa lỗi trong quá trình nhập mã lệnh. Những đường gạch sóng sẽ xuất hiện bên dưới mỗi đoạn lệnh bị lỗi.
+2. Quick Actions and Refactorings b. Rename :
+Rename là tính năng hỗ trợ người lập trình đổi tên các biến, trích xuất một hoặc nhiều dòng mã lệnh thành một phương thức mới, thay đổi thứ tự của các tham số của phương thức,… 3. Rename c. IntelliSense IntelliSense là một tập hợp các tính năng hỗ trợ biên tập lệnh, hỗ trợ tô sáng cú pháp và hoàn thiện mã lệnh đối với các biến, hàm và các cấu trúc ngôn ngữ như vòng lặp hoặc truy vấn.
+4. IntelliSense IntelliSense được hỗ trợ theo các ngôn ngữ khác nhau như C # IntelliSense, Visual C ++ IntelliSense, JavaScript IntelliSense và Visual Basic IntelliSense).
+Snippet: Nhắc cấu trúc lệnh hoặc tự động chèn cấu trúc có sẵn khi người dùng gõ phím gợi ý nhất định 5. Snippet d. Go to Definition Tính năng Go to Definition cho phép người lập trình chuyển tới phương thức được chọn để xem đoạn mã lệnh của phương thức đó.
+6. Go to Definition e. Peek Definition Tính năng này cho phép hiển thị phương thức được chọn ngay trong một cửa sổ nhỏ bên dưới mà không phải mở phương thức đó.
+Peek Definition 2.2. Asp.net Từ khoảng cuối thập niên 90, ASP (Active Server Page) đã được nhiều lập trình viên lựa chọn để xây dựng và phát triển ứng dụng web động trên máy chủ sử dụng hệ điều hành Windows. ASP đã thể hiện được những ưu điểm của mình với mô hình lập trình thủ tục đơn giản, sử dụng hiệu quả các đối tượng COM: ADO (ActiveX Data Object) - xử lý dữ liệu, FSO (File System Object) - làm việc với hệ thống tập tin…, đồng thời, ASP cũng hỗ trợ nhiều ngôn ngữ:
+VBScript, JavaScript. Chính những ưu điểm đó, ASP đã được yêu thích trong một thời gian dài. Tuy nhiên, ASP vẫn còn tồn đọng một số khó khăn như Code ASP và HTML lẫn lộn, điều này làm cho quá trình viết code khó khăn, thể hiện và trình bày code không trong sáng, hạn chế khả năng sử dụng lại code. Bên cạnh đó, khi triển khai cài đặt, do không được biên dịch trước nên dễ bị mất source code, hạn chế về mặt tốc độ thực hiện. Quá trình xử lý Postback khó khăn, … Đầu năm 2002, Microsoft giới thiệu một kỹ thuật lập trình Web khá mới mẻ với tên gọi ban đầu là ASP+, tên chính thức sau này là ASP.Net. Với ASP.Net, không những không cần đòi hỏi phải biết các tag HTML, thiết kế web, mà nó còn hỗ trợ mạnh lập trình hướng đối tượng trong quá trình xây dựng và phát triển ứng dụng Web. ASP.Net là kỹ thuật lập trình và phát triển ứng dụng web ở phía Server (Server-side) dựa trên nền tảng của Microsoft .Net Framework. Hầu hết, những người mới đến với lập trình web đều bắt đầu tìm hiểu những kỹ thuật ở phía Client (Client-side) như: HTML, Java Script, CSS (Cascading Style Sheets). Khi Web browser yêu cầu một trang web (trang web sử dụng kỹ thuật client-side), Web server tìm trang web mà Client yêu cầu, sau đó gởi về cho Client. Client nhận kết quả trả về từ Server và hiển thị lên màn hình. ASP.Net sử dụng kỹ thuật lập trình ở phía server thì hoàn toàn khác, mã lệnh ở phía server (ví dụ: mã lệnh trong trang ASP, ASP.NET) sẽ được biên dịch và thi hành tại Web Server. Sau khi được Server đọc, biên dịch và thi hành, kết quả tự động được chuyển sang HTML/ JavaScript/ CSS và trả về cho Client.
+Tất cả các xử lý lệnh ASP, ASP.Net đều được thực hiện tại Server và do đó, gọi là kỹ thuật lập trình ở phía server.
+2.2.1. Những ưu điểm của ASP.Net - ASP.Net cho phép lựa chọn một trong các ngôn ngữ lập trình yêu thích:
+Visual Basic.Net, J#, C#,… - Trang ASP.Net được biên dịch trước thành những tập tin DLL mà Server có thể thi hành nhanh chóng và hiệu quả. Yếu tố này là một bước nhảy vọt đáng kể so với kỹ thuật thông dịch của ASP.
+ASP.Net - ASP.Net hỗ trợ mạnh mẽ bộ thư viện phong phú và đa dạng của .Net Framework, làm việc với XML, Web Service, truy cập cơ sở dữ liệu qua ADO.Net, … - ASPX và ASP có thể cùng hoạt động trong 1 ứng dụng.
+- ASP.Net sử dụng phong cách lập trình mới: Code behide, tách code riêng, giao diện riêng, dễ đọc, dễ quản lý và bảo trì.
+- Kiến trúc lập trình giống ứng dụng trên Windows.
+- Hỗ trợ quản lý trạng thái của các control - Tự động phát sinh mã HTML cho các Server control tương ứng với từng loại Browser - Triển khai cài đặt: không cần lock, không cần đăng ký DLL, cho phép nhiều hình thức cấu hình ứng dụng - Hỗ trợ quản lý ứng dụng ở mức toàn cục, Global.aspx có nhiều sự kiện hơn.
+2.2.2. Quá trình xử lý tập tin ASPX Khi Web server nhận được yêu cầu từ phía client sẽ tìm kiếm tập tin được yêu cầu thông qua chuỗi URL được gởi về, sau đó, tiến hành xử lý theo sơ đồ sau Quá trình xử lý tập tin ASPX 2.3. Kiến trúc .Net Framework Kiến trúc .Net Framework - Hệ điều hành: Cung cấp các chức năng xây dựng ứng dụng với vai trò quản lý việc xây dựng và thi hành ứng dụng, .NET Framework cung cấp các lớp đối tượng (Class) để có thể gọi thi hành các chức năng mà đối tượng đó cung cấp.
+Các chức năng đơn giản như hiển thị một hộp thông báo (Messagebox) sẽ được .NET Framework sử dụng các hàm API của Windows. Chức năng phức tạp hơn như sử dụng các COMponent sẽ yêu cầu Windows phải cài đặt Microsoft Transaction Server (MTS) hay các chức năng trên Web cần Windows phải cài đặt Internet Information Server (IIS). Như vậy, lựa chọn hệ điều hành để cài đặt và sử dụng .NET Framework cũng không kém phần quan trọng. Cài đặt .NET Framework trên các hệ điều hành Windows 2000, 2000 Server, XP, Server, Vista sẽ đơn giản và tiện dụng hơn trong khi lập trình.
+- Common Language Runtime: là thành phần "kết nối" giữa các phần khác trong .NET Framework với hệ điều hành. Common Language Runtime (CLR) giữ vai trò quản lý việc thi hành các ứng dụng viết bằng .NET trên Windows.
+CLR sẽ thông dịch các lời gọi từ chương trình cho Windows thi hành, đảm bảo ứng dụng không chiếm dụng và sử dụng tràn lan tài nguyên của hệ thống. Các chức năng được thực thi bởi các thành phần bên trong CLR như Class loader, Just In Time compiler, Garbage collector, Exception handler, COM marshaller, Security engine,… - Bộ thư viện các lớp đối tượng: giải nghĩa từ "Framework" trong thuật ngữ .NET Framework thì là lúc thích hợp nhất. Framework chính là một tập hợp hay thư viện các lớp đối tượng hỗ trợ người lập trình khi xây dựng ứng dụng.
+Chúng ta đã nghe qua về MFC và JFC. Microsoft Foundation Class là bộ thư viện mà lập trình viên Visual C++ sử dụng trong khi Java Foundation Class là bộ thư viện dành cho các lập trình viên Java.
+- Base class library : thư viện các lớp cơ sở được dùng trong khi lập trình hay bản thân những người xây dựng .NET Framework cũng phải dùng nó để xây dựng các lớp cao hơn. Ví dụ các lớp trong thư viện này là String, Integer, Exception,… - ADO.NET và XML: bộ thư viện này gồm các lớp dùng để xử lý dữ liệu.
+ADO.NET thay thế ADO để trong việc thao tác với các dữ liệu thông thường.
+Các lớp đối tượng XML được cung cấp để xử lý các dữ liệu theo định dạng mới: XML. Các ví dụ cho bộ thư viện này là SqlDataAdapter, SqlCommand, DataSet, XMLReader, XMLWriter,… - ASP.NET: bộ thư viện các lớp đối tượng dùng trong việc xây dựng các ứng dụng Web. ASP.NET không phải là phiên bản mới của ASP 3.0. Ứng dụng web xây dựng bằng ASP.NET tận dụng được toàn bộ khả năng của .NET Framework. Bên cạnh đó là phương pháp lập trình mới: code behind. Đây là cách mà lập trình viên xây dựng các ứng dụng Windows based thường sử dụng – giao diện và lệnh được tách riêng. Sự xuất hiện của ASP.NET làm cân xứng giữa quá trình xây dựng ứng dụng trên Windows và Web. ASP.NET cung cấp một bộ các Server Control để lập trình viên bắt sự kiện và xử lý dữ liệu của ứng dụng như đang làm việc với ứng dụng Windows. Cho phép chúng ta chuyển một ứng dụng trước đây viết chỉ để chạy trên Windows thành một ứng dụng Web khá dễ dàng. Ví dụ cho các lớp trong thư viện này là WebControl, HTMLControl.
+- Web services: các dịch vụ được cung cấp qua Web (hay Internet). Dịch vụ được coi là Web service không nhằm vào người dùng mà nhằm vào người xây dựng phần mềm. Web service có thể dùng để cung cấp các dữ liệu hay một chức năng tính toán.
+2.3.1 Mô Hình MVC a.) Mô hình MVC MVC là gì?
+MVC là viết tắt của Model – View – Controller. Là một kiến trúc phần mềm hay mô hình thiết kế được sử dụng trong kỹ thuật phần mềm. Nói cho dễ hiểu, nó là mô hình phân bố source code thành 3 phần, mỗi thành phần có một nhiệm vụ riêng biệt và độc lập với các thành phần khác.
+Mô hình di chuyển của MVC Các thành phần trong MVC:
+Controller:
+ Giữ nhiệm vụ nhận điều hướng các yêu cầu từ người dùng và gọi đúng những phương thức xử lý chúng… Chẳng hạn thành phần này sẽ nhận request từ url và form để thao tác trực tiếp với Model.
+Model:
+ Đây là thành phần chứa tất cả các nghiệp vụ logic, phương thức xử lý, truy xuất database, đối tượng mô tả dữ liệu như các Class, hàm xử lý… View  Đảm nhận việc hiển thị thông tin, tương tác với người dùng, nơi chứa tất cả các đối tượng GUI như textbox, images… Hiểu một cách đơn giản, nó là tập hợp các form hoặc các file HTML.
+b.) Ưu nhược điểm của mô hình + Ưu điểm:
++ Thể hiện tính chuyên nghiệp trong lập trình, phân tích thiết kế. Do được chia thành các thành phần độc lập nên giúp phát triển ứng dụng nhanh, đơn giản, dễ nâng cấp, bảo trì..
++ Hỗ trợ quá trình phát triển nhanh chóng: Với đặc điểm hoạt động độc lập của từng thành phần, các lập trình viên có thể làm việc đồng thời trên từng bộ phận khác nhau của mô hình này. MVC giúp bạn tiết kiệm rất nhiều thời gian.
++ Khả năng cung cấp đồng thời nhiều khung View: Với mô hình MVC, bạn có thể tạo ra đồng thời nhiều khung View cho Model.
++ Hỗ trợ các kỹ thuật không đồng bộ: MVC có thể hoạt động trên nền tảng JavaScript. Điều này có nghĩa là các ứng dụng MVC có thể hoạt động với các file PDF, các trình duyệt web cụ thể, và cả các widget máy tính.
++ Dễ dàng thao tác chỉnh sửa: Bộ phận Model hoạt động tách biệt với View đồng nghĩa với việc bạn có thể đưa ra các thay đổi, chỉnh sửa hoặc cập nhật dễ dàng ở từng bộ phận.
++ Giữ nguyên trạng thái data: Mô hình MVC truyền lại dữ liệu nhưng không định dạng lại dữ liệu. Do đó, các dữ liệu này có thể được dùng lại cho các thay đổi sau này.
++ Hỗ trợ các nền tảng phát triển SEO: Với mô hình MVC, bạn có thể dễ dàng tạo ra các mã SEO URL để thu hút lượng truy cập đối với ứng dụng bất kỳ.
++ Nhược điểm:
++ Đối với dự án nhỏ việc áp dụng mô hình MC gây cồng kềnh, tốn thời gian trong quá trình phát triển. Tốn thời gian trung chuyển dữ liệu của các thành phần.
++ Khó khăn trong quá trình điều hướng code: Điều hướng khung có thể phức tạp vì mô hình này bao gồm nhiều lớp và yêu cầu người dùng thích ứng với các tiêu chí phân tách của MVC.
++ Không thích hợp việc phát triển các ứng dụng nhỏ vì mô hình này yêu cầu bạn lưu trữ một số lượng lớn các file.
++ Nhiều khung hoạt động đồng thời: Việc phân tách một tính năng thành ba bộ phận khác nhau dễ dẫn đến hiện tượng phân tán. Do đó, đòi hỏi các nhà phát triển phải duy trì tính nhất quán của nhiều bộ phận cùng một lúc.
+b.) Entity Framework + Entity Framework ra đời nhằm hỗ trợ sự tương tác giữa các ứng dụng trên nền tảng .NET với các cơ sở dữ liệu quan hệ. Hay, Entity Frmework chính là công cụ giúp ánh xạ giữa các đối tượng trong ứng dựng, phần mềm của bạn với các bảng của một cơ sở dữ liệu quan hệ.
+Hay có định nghĩa khác đó là:
++ Entity Framework là một khung ORM(Object Relational Mapper) mã nguồn mở cho các ứng dụng .NET được Microsoft hỗ trợ. là 1 phần của .NET Framework. là một Open source ORM Framework.
+Note: ORM là một công cụ tự động tạo ra các Objects trong ứng dụng từ tables,views, store procedures của một Relational Database.
+Hình ảnh minh họa về Entity Framework Sử dụng Entity Framework sẽ đem lại những lợi ích sau:
+ Nếu bạn thực hiện truy vấn dữ liệu. Bạn có thể sử dụng Linq to Entitiesđể thao tác với objects được sinh ra từ Entity Framework, nghĩa là bạn không phải viết code sql.
+ Việc update các classes,commands dễ dàng mỗi khi cơ sở dữ liệu có sự thay đổi, điều này giúp bạn tiết kiệm thời gian đáng kể.
+ Entity Framework sẽ tự động tạo ra các classes, commands tương ứng cho việc select, insert, update,delete dữ liệu từ cơ sở dữ liệu quan hệ.
+ Entity Framework tự động tạo ra các classes cho việc truy suất cơ sở dữ liệu giúp lập trình viên giảm được thời gian viết code thao tác với database. Hỗ trợ bạn không phải mất quá nhiều thời gian cho việc viết code để thao tác với database.
+c.) Thiết kế mô hình trên phần mềm Visual Studio Với mô hình mẫu như hình 2.4 Mô hình Entity Framework 2.3.2 Mô hình 3 lớp Mô hình 3 lớp 2.3.2.1 Khái niệm mô hình 3 lớp Mô hình này thực hiện chức năng quản lý code khi xây dựng một hệ thống lớn. Đồng thời, hỗ trợ xử lý dữ liệu lỗi dễ dàng hơn nhờ chức năng phân chia trách nhiệm cho từng nhóm. Việc này sẽ đảm bảo công việc không bị chồng chéo và ảnh hưởng lẫn nhau.
+Three Layer (3-Layer) hay còn gọi là mô hình quản lý 3 lớp ra đời nhằm phân chia các thành phần trong hệ thống. Mô hình hoạt động dựa trên 2 nguyên tắc:
+ Một là, các thành phần cùng chức năng sẽ được nhóm lại với nhau tạo thành một thể thống nhất.
+ Hai là, phân chia công việc cụ thể và rõ ràng cho từng nhóm. Nó sẽ góp phần thực hiện mục đích hạn chế sự chồng chéo, lộn xộn của file dữ liệu.
+Mô hình 3 lớp sẽ mang tới cấu trúc sáng sủa, dễ dùng lại. Từ đó giúp việc phát triển và bảo trì phần mềm dễ dàng hơn.
+Khi được thực thi mô hình, các layer khác nhau vẫn có thể nằm trong cùng một vùng bộ nhớ của một process. Và vẫn có giao tiếp giữa 2 layer nhưng không cần có sự giao tiếp giữa 2 process.
+2.3.2.2 Ưu điểm của mô hình 3 lớp Đây là mô hình được các nhà lập trình tin học tin dùng bởi sở hữu nhiều ưu điểm như:
+Việc phân chia thành từng lớp với các nhiệm vụ khác nhau sẽ mang lại hiệu quả quản lý tường minh. Khi chúng đảm nhận các chức năng riêng biệt khác nhau sẽ giảm sự kết dính.
+Những người có kinh nghiệm lập trình thường áp dụng trong kiểm soát giao diện, xử lý, truy vấn,... Hạn chế tối đa việc để tất cả lại một chỗ nhằm quản lý và maintain project tối ưu hơn.
+Dễ dàng phân loại các hành động tại Business sẽ góp công lớn trong công tác bảo trì. Khi được phân chia thành từng nhóm, lập trình viên có thể nhanh chóng thay đổi khi cần bảo trì một thành phần của hệ thống.
+Với mô hình 3 lớp , thao tác thay đổi dữ liệu có thể được cô lập trong lớp hoặc chỉ ảnh hưởng đến lớp gần nhất. Điều đó đảm bảo không ảnh hưởng đến cả chương trình, tiết kiệm thời gian công sức.
+Thao tác phân loại các hàm truy xuất tại Database hay phân loại hàm theo table,… Chúng sẽ trở nên dễ dàng vì chúng ta đã có chuẩn để tuân theo.
+Nhờ có mô hình thì việc muốn thêm một chức năng nào đó sẽ dễ dàng hơn.
+Khi có sự thay đổi giữa hai môi trường từ Winform sang Webform. Và bạn mong muốn tái sử dụng thì chỉ việc thay đổi lớp GUI.
+Nếu mọi người đều tuân theo một quy chuẩn đã được định sẵn, thì khi bàn giao công việc trở nê dễ dàng và tiết kiệm thời gian. Các thành viên có thể tương tác tốt với nhau.
+Mô hình quản lý 3 lớp sẽ hỗ trợ phân phối nhiệm vụ, khối lượng công việc rõ ràng. Đồng thời, nó sẽ giúp các lập trình viên kiểm soát công tác.
+Với những ưu điểm tuyệt vời, mô hình cho phéo áp dụng được cho nhiều project lớn ở bên ngoài.
+Mô hình 3 lớp được các nhà lập trình tin học tin dùng bởi sở hữu nhiều ưu điểm 2.3.2.3 Phân loại mô hình Mô hình 3-Layers có tính logic thường được sử dụng trong các dự án lớn. Nó góp phần quản lý các thành phần của hệ thống. Mô hình cho phép lập trình .NET, lập trình ứng dụng, lập trình C#,...
+Mô hình 3-layer được biết đến với 3 phần chính là:
+a) GUI (Presentation Layer) Mô hình thực hiện nhiệm vụ giao tiếp với người dùng trước khi gọi lớp BLL.
+Gồm: các thành phần giao diện ( winform, webform,…) thực hiện nhiệm vụ:
+ Nhập liệu  Hiển thị dữ liệu  Kiểm tra tính đúng đắn dữ liệu b) BLL (Business Logic Layer) Mô hình thực hiên 2 nhiệm vụ chính bao gồm :
+ Một là, đáp ứng và xử lý các yêu cầu thao tác dữ liệu của GUI layer. Nó phải đảm bảo hoàn thành trước truyền xuống DAL và lưu xuống hệ quản trị CSDL.
+ Hai là, kiểm tra các ràng buộc, tính toàn vẹn, tính hợp lệ dữ liệu. Trước khi trả kết quả về GUI, tại BLL sẽ thực hiện tính toán và xử lý các yêu cầu nghiệp vụ.
+c) DAL (Data Access Layer) Ứng dụng thực hiện chức năng giao tiếp với hệ quản trị CSDL. Đồng thời, tham gia lưu trữ và truy vấn dữ liệu ( tìm kiếm, sửa, thêm, xóa,…).
+Như vậy, mô hình quản lý 3 lớp hoạt động theo sơ đồ như sau:
+ GUI liên kết với BLL và Data Transfer Objects ( DTO thành phần thuộc lớp BLL).
+ BLL liên kết tới được DAL và DTO.
+ DAL chỉ liên kết tới DTO.
+Mỗi mô hình sẽ có những cấu tạo riêng tạo nên điểm khác biệt và có những ưu điểm nổi bật. Để hiểu rõ hơn, bạn đọc hãy tham khảo các thông tin được cập nhật chi tiết trong các phần tiếp theo.
+2.3.2.4 Thành phần của từng lớp GUI để thực hiện tốt vai trò của mình thường có hai thành phần chính là:
+ UI Components - Thành phần tạo nên giao diện chịu trách nhiệm thu nhận và hiển thị dữ liệu.
+ UI Process Components - Thành phần quản lý các quá trình chuyển đổi.
+BLL gồm 4 thành phần:
+ Service Interface - Cung cấp cho lớp GUI sử dụng thành phần giao diện lập trình.
+ Business Workflows - Xác định và điều phối các quy trình nghiệp vụ.
+ Business Components - Kiểm tra các quy tắc nghiệp vụ, ràng buộc logic.
+ Business Entities - Sử dụng như Data Transfer Objects ( DTO ) và truyền dữ liệu giữa các lớp.
+DAL có chức năng chính là ghi lại các dữ liệu quan trọng. Vì thế mô hình có phần là:
+ Data Access Logic Components - lưu trữ và truy xuất dữ liệu từ các nguồn dữ liệu (Data Sources). Kết hợp tạo thuận lợi cho cấu hình và bảo trì.
+ Service Agents - Tương tác với các dịch vụ từ bên ngoài.
+Kinh nghiệm khi xây dựng mô hình 3 lớp là bạn cần thành lập một solution riêng cho project. Trong đó có 3 project khác nhau để tạo 3 lớp. Thực hiện đặt tên Project cần có các tiền tố theo mẫu Tên lớp_Tên tệp (Ví dụ: GUI_Quản lý).
+Tuy nhiên, để đảm bảo sự thống nhất bạn nên đặt tên theo nguyên tắc. Dưới đây là một số cách đặt tên cho các thành phần của 3 lớp, Ví dụ:
+ Một là, đặt lần lượt tên GUI - BUS - DAL.
+ Hai là, sử dụng tên có chứa tiền tố GUI - BLL - DAL - DTO.
+ Ba là, áp dụng tên có chứa GUI - BLL - DAL.
+2.4 SQL Server SQL server hay còn được gọi là Microsoft SQL Server, nó từ viết tắt của MS SQL Server. Đây chính là một loại phần mềm đã được phát triển bởi Microsoft và nó được sử dụng để có thể dễ dàng lưu trữ cho những dữ liệu dựa theo tiêu chuẩn RDBMS.
+Từ đó, người ta sẽ lưu trữ dữ liệu dựa vào tiêu chuẩn RDBMS và nó cũng là một trong những hệ quản trị cơ sở dữ liệu dạng quan hệ đối tượng.
+SQL Server có khả năng cung cấp đầy đủ các công cụ cho việc quản lý từ giao diện GUI đến sử dụng ngôn ngữ cho việc truy vấn SQL. Điểm mạnh của SQL điểm mạnh của nó là có nhiều nền tảng được kết hợp cùng như: ASP.NET, C# để xây dựng Winform cũng chính nó có khả năng hoạt động độc lập. Tuy nhiên, SQL Server thường đi kèm với việc thực hiện riêng các ngôn ngữ SQL, T-SQL,...
+Cụ thể như sau:
+T-SQL là một trong những loại ngôn ngữ thuộc quyền sở hữu của Microsoft và được gọi với cái tên Transact-SQL. Nó thường cung cấp thêm rất nhiều cho các khả năng khai báo biến, thủ tục lưu trữ và xử lý ngoại lệ,...
+SQL Server Management Studio là một loại công cụ giao diện chính cho máy chủ cơ sở của chính dữ liệu SQL, thông thường thì nó hỗ trợ cho cả môi trường 64 bit và 32 bit.
+2.4.1. Những thành phần của SQL Server SQL Server đã trải qua hơn 20 năm phát triển và đã đề ra những version cụ thể khác nhau. Các mô hình Client - Server được chia làm 2 thành phần chính bao gồm:
+ Workstation: Nó được cài đặt trên các thiết bị vận hành để trở thành phần mềm tương tác với hệ thống máy chủ Server.
+ Server: Được cài đặt ở trên máy chủ chính, nó có thể là: SQL server, SQL Server Agent, SSIS, SSAS,...
+Ngoài ra, bạn hoàn toàn có thể cài đặt nhiều phiên bản của SQL Server trên cùng một máy chủ và điều này sẽ giúp tiết kiệm được các chi phí mua Server để hoạt động và cần nhiều phiên bản khác nhau. Nó bảo mật và cũng được tách biệt hoàn toàn giúp cho hệ thống được an toàn hơn.
+2.4.2. Mục đích khi sử dụng SQL Server SQL Server thông thường được sử dụng cho mục đích lưu trữ dữ liệu. Ngoài ra, nó còn mang lại những tính năng làm việc giúp người dùng làm việc hiệu quả hơn như sau:
+ Giúp người sử dụng có thể duy trì việc lưu trữ bền vững.
+ Cho phép bạn tạo ra nhiều cơ sở dữ liệu hơn.
+ Có khả năng phân tích dữ liệu bằng SSAS  Nó có khả năng bảo mật cao  Việc tạo ra được các báo cáo bằng SSRS — SQL Server Reporting Services sẽ được dễ dàng hơn.
+ Các quá trình sẽ được thực hiện bằng SSIS — SQL Server Integration Services.
+2.4.3. Kiến trúc của SQL Server Sơ đồ sau minh họa kiến trúc của SQL Server:
+Kiến trúc của SQL Server SQL Server bao gồm hai thành phần chính:
+1. Database Engine 2. SQLOS SQL Server Database Engine, công cụ này kiểm soát việc lưu trữ, xử lý và bảo mật dữ liệu. Thành phần này bao gồm một công cụ quan hệ có chức năng xử lý các lệnh và truy vấn, một công cụ lưu trữ quản lý các tệp, bảng, trang, chỉ mục, bộ đệm dữ liệu và giao dịch cơ sở dữ liệu. Các nhiệm vụ, trigger, trình xem và các đối tượng dữ liệu lưu trữ khác cũng được Database Engine khởi tạo và xử lý.
+Lớp phía dưới Database Engine là Hệ điều hành SQL Server – viết tắt SQLOS. Hệ điều hành xử lý các chức năng ở cấp độ thấp hơn như quản lý bộ nhớ và I/O, lên lịch nhiệm vụ và khóa dữ liệu để tránh các xung đột xảy ra khi update. Một lớp giao diện mạng nằm trên lớp Database Engine và sử dụng một giao thức gọi là Tabular Data Stream của Microsoft để các yêu cầu và phản hồi tương tác với máy chủ cơ sở dữ liệu thuận tiện hơn. Ở cấp độ user, SQL Server DBAs và developers viết các câu lệnh T-SQL để xây dựng và sửa đổi cấu trúc cơ sở dữ liệu, thao tác, thiết lập các bảo vệ, sao lưu cơ sở dữ liệu, cùng với nhiều nhiệm vụ khác.
+2.5. Phân tích thiết kế hệ thống hướng cấu trúc Hệ thống thông tin (HTTT) được xây dựng là sản phẩm của một loạt các hoạt động được gọi là phát triển hệ thống. Quá trình phát triển của một HTTT kể từ lúc nó sinh ra đến khi nó tàn lùi được gọi là vòng đời phát triển hệ thống.
+Vòng đời phát triển hệ thống là một phương pháp luận cho việc phát triển các HTTT. Nó được đặc trưng bằng một số phần chủ yếu phân biệt nhau của quá trình đó là phân tích, thiết kế và triển khai HTTT.
+Quá trình phát triển của một hệ thống qua các giai đoạn: khảo sát dự án, phân tích hệ thống, thiết kế, thực hiện, kiểm thử, vận hành và bảo trì.
+Giai đoạn 1: Khảo sát dự án Khảo sát hiện trạng là giai đoạn đầu tiên của quá trình phát triển một hệ thống thông tin. Nhiệm vụ chính trong giai đoạn này là tìm hiểu, thu nhập thông tin cần thiết để chuẩn bị cho việc giải quyết các yêu cầu được đặt ra của dự án.
+Giai đoạn 2: Phân tích hệ thống Ở giai đoạn này, các chuyên gia sẽ đặc tả sơ bộ các bảng dữ liệu trên giấy để có cái nhìn khách quan. Qua đó, xác định các giải pháp tốt nhất cho hệ thống đảm bảo đúng các yêu cầu đã khảo sát trước khi thực hiện trên các phần mềm chuyên dụng.
+Giai đoạn 3: Thiết kế Thông qua thông tin được thu thập từ quá trình khảo sát và phân tích, các chuyên gia sẽ chuyển hóa vào phần mềm, công cụ chuyên dụng để đặc tả thiết kế hệ thống chi tiết.
+Giai đoạn 4: Thực hiện Đây là giai đoạn nhằm xây dựng hệ thống theo các thiết kế đã xác định.
+Giai đoạn này bao gồm các công việc sau:
+ Lựa chọn hệ quản trị cơ sở dữ liệu (SQL Server, Oracle, MySQL, …) và cài đặt cơ sở dữ liệu cho hệ thống.
+ Lựa chọn công cụ lập trình để xây dựng các modules chương trình của hệ thống (Microsoft Visual Studio, PHP Designer,...).
+ Lựa chọn công cụ để xây dựng giao diện hệ thống (DevExpress, Dot Net Bar,...).
+Giai đoạn 5: Kiểm thử  Trước hết phải lựa chọn công cụ kiểm thử.
+ Kiểm chứng các modules chức năng của hệ thống thông tin, chuyển các thiết kế thành các chương trình (phần mềm).
+ Thử nghiệm hệ thống thông tin.
+ Cuối cùng là khắc phục các lỗi (nếu có).
+ Viết test case theo yêu cầu.
+Giai đoạn 6: Triển khai và bảo trì  Lắp đặt phần cứng để làm cơ sở cho hệ thống.
+ Cài đặt phần mềm.
+ Chuyển đổi hoạt động của hệ thống cũ sang hệ thống mới, gồm có:
+chuyển đổi dữ liệu; bố trí, sắp xếp người làm việc trong hệ thống; tổ chức hệ thống quản lý và bảo trì.
+ Phát hiện các sai sót, khuyết điểm của hệ thống thông tin.
+ Đào tạo và hướng dẫn sử dụng  Cải tiến và chỉnh sửa hệ thống thông tin  Bảo hành.
+ Nâng cấp chương trình khi có phiên bản mới.
+CHƯƠNG PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG 3.1 Khảo sát tình hình thực tại và đưa ra giải pháp cho chương trình 3.1.1 Mô tả bài toán và giải pháp 3.1.1.1. Mô tả bài toán - Bài toán được đưa ra giúp giải quyết các công đoạn rườm rà thủ công trong việc đánh giá chất lượng. Việc quy chuẩn thực đánh giá bằng giấy bút sẽ được công nghệ và thực hiện tất cả trên một trang website.
+- Bài toán được đưa ra với các yêu cầu và chức năng cần thiết như:
+ Giám hiệu, chủ tọa hội đồng đánh giá có thể thực hiện các công việc như:
+phân quyền tài khoản, cập nhật các thông tin liên quan trong quá trình kiểm định và đánh giá.
+ Có thể phân công tạo lập nhóm sau đó thêm các thành viên vào nhóm công tác đánh giá.
+ Có thể giao nhiệm vụ cho nhóm sau đó sau nhiệm vụ cho các thành viên trong hội đồng. Với yêu cầu mỗi một tiêu chuẩn chỉ được giao ở một nhóm và một thành viên trong nhóm có thể nhận nhiều nhiệm vụ để đánh giá trong giai đoạn đánh giá.
+ Trưởng nhóm có thể giao nhiệm vụ cho các thành viên trong nhóm của mình, có thể kiểm soát kết quả đánh giá theo nhóm, gửi kết quả đánh giá tới phía trên.
+ Nhân sự, thành viên hội đồng có thể đánh giá nhiệm vụ và quản lý kết quả đánh giá của bản thân đồng thời đưa ra minh chứng chứng minh lập luận đánh giá đó.
+3.1.1.2. Phạm vi dự án được ứng dụng  Áp dụng cho tất cả những đối tượng cần sử dụng tới công việc đánh giá chất lượng.
+ Dành cho mọi đối tượng trong nhà trường được yêu cầu và yêu cầu tự đánh giá cho việc kiểm chất lượng giáo dục của trường.
+ Do nghiệp vụ của website kết hợp với công nghệ mới và được xử lý trên hệ thống máy tính nên các thao tác thực hiện một cách nhanh chóng và chính xác. Rút ngắn được thời gian làm việc.
+3.1.2 Khảo sát thực tế 3.1.2.1 Thực hiện theo chỉ thị Thực hiện Chỉ thị về nhiệm vụ và giải pháp năm học 2019 - 2020 của Ngành Giáo dục, Công văn số 2274/BGDĐT-QLCL về việc đẩy mạnh công tác bảo đảm và kiểm định chất lượng giáo dục đại học, CĐSP, TCSP và hướng dẫn số 766/QLCL-KĐCLGD về việc hướng dẫn tự đánh giá cơ sở giáo dục đại học năm 3.1.2.2 Tài liệu tham khảo Ví dụ về các nhóm công tác và phân công công việc:
+Nhóm phụ trách Các ví dụ về một bản cáo tiêu chí hoàn chỉnh có sẵn:
+Phiếu đánh giá tiêu chí (Nhận xét đánh giá) Phiếu đánh giá tiêu chí (Điểm mạnh, điểm tồn tại, ...) Các minh chứng được sử dụng trong đánh giá tiêu chí Ví dụ về báo cáo Tiêu chuẩn hoàn chỉnh:
+Kết cấu báo cáo tiêu chuẩn 3.1.3 Xác định đối tượng sử dụng - Tác nhân của hệ thống gồm có:
++ Ban giám hiệu, Chủ quản hội đồng đánh giá, Thành viên có chức vụ và nhiệm vụ tương đương: là thành viên quản trị của hệ thống, có các quyền và chức năng như: tạo các tài khoản, quản lý cơ sở dữ liệu, quản trị người dùng, quản lý việc cập nhật, đánh giá và tự đánh giá của nhân viên(VD: Hiệu trưởng,...) + Cán bộ, nhân sự, giảng viên: là thành viên hội đồng có chức năng đăng nhập, tìm kiếm, xem, sửa thông tin cá nhân, đánh giá chất lượng, xem thông tin về việc đánh giá của bản thân.
+3.1.4 Nhược điểm của hệ thống quản lý hiện nay Với quy mô hoạt động hiện nay, việc quản lý thủ công gặp phải nhiều khó khăn nhược điểm, cụ thể như:
+ Các công việc đánh giá trên muốn thực hiện tốt thì các cần mất thời gian để họp mặt bàn bạc và phân tích và thực hiện công việc, giao nhiệm vụ cho thành viên hội động. Khi đó phải đầu tư lượng thời gian lớn cần nhiều người tham gia và tốn nhiều thời gian để mọi người có thể thu thập dữ kiện và đánh giá thủ công.
+ Không nhữung vậy sau khi đánh giá thì hội đồng còn cần thực hiện công đoạn tiếp nhận đánh giá, thu thập rồi đó mới đi tới kết quả cuối cùng. Những bước này dù được thực hiện cẩn thận tỉ mỉ nhưng chắc rằng tỉ lệ chuẩn xác của việc thực hiện công việc chưa cao và còn cần phải chỉnh sửa lại rất nhiều.
+ Hệ thống cũ còn gây khó khăn trong việc thống kê dữ liệu, độ bảo mật không cao, tốn nhiều thời gian thu thập kết quả 3.1.5 Phương hướng giải quyết Qua việc phân tích ta nhận thấy được cần phải có phương hướng rõ ràng nhất để có thể giải quyết một cách nhanh chóng, tốt đẹp nhất. Để đáp ứng được điều đó thì ta cần đưa ra một chương trình có thể quản lý được công việc một cách tự động hóa trên máy tính. Nó có thể được công nghệ hóa các công đoạn trong giai đoạn kiểm định đánh giá tiêu chuẩn công tác.
+- Các giai đoạn được thực hiện là:
+ Hệ thống với dữ liệu đầu vào là: Thông tin nhân sự, Tiêu chuẩn, tiêu chí, minh chứng, CSDL trường, ...
+ Xử lý việc sắp xếp nhiệm vụ cho nhóm và thành viên đơn giản và thuận tiện hơn.
+ Hệ thống sẽ xử lý các dữ liệu này để đưa ra: thông tin đánh giá, danh mục minh chứng đã dùng theo tiêu chí, Mức độ đánh giá khi có đánh giá của nhân sự 3.2. Phân tích các chức năng của hệ thống 3.2.1. Xác định đối tượng người dùng Đặc tả các tác nhân của hệ thống gồm có:
+• Administrator: là thành viên quản trị của hệ thống, có các quyền và chức năng như: tạo các tài khoản, quản lý cơ sở dữ liệu, quản trị người dùng, quản lý việc cập nhật, đánh giá và tự đánh giá của nhân viên • Member: là hệ thống thành viên có chức năng đăng kí, đăng nhập, tìm kiếm, xem, sửa thông tin cá nhân, xem thông tin về việc đánh giá của bản thân - Đối với chương trình hiện tại thì ta sẽ 3 hướng đối tượng sử dụng:
+ Quản trị viên: Hiệu trưởng, người chủ trì hội đồng đánh giá, người người quản lý hệ thống có toàn bộ vai trò của hệ thống.
+ Trưởng nhóm: Có vai trò quản lý nhóm và giao nhiệm vụ cho các thành viên trong nhóm.
+ Thành viên hội đồng: có thể là giảng viên, nhân viên trong nhà trường.
+3.2.2. Biểu đồ phân cấp chức năng Sơ đồ phân rã chức năng Các chức năng trên đều sẽ đi đến một kết quả thực hiện đó là có thể:
+1.Cập nhật:
+Chức năng này cho phép người quản trị cập nhật các thông tin cá nhân của các nhân viên nhà trường, cơ sở dữ liệu của nhà trường trong thơi gian nhất định, các minh chứng, tiêu chuẩn tiêu chí và thông tin TDG theo các yêu cầu của nhà trường và nhà nước đưa ra.
+2.Xử lý dữ liệu:
+Chức năng này cho phép người quản trị xử lý các dữ liệu liên quan đến nhân viên hay các cơ sở dữ liệu nhà trường và quản lý việc tự đánh giá và đánh giá của nhân viên theo tiêu chuẩn tiêu chí do nhà trường, nhà nước đưa ra theo chỉ thị.
+3.Báo cáo, thống kê:
+Chức nay cho phép in ra các báo cáo, thống kê theo từng mục đính sử dụng, theo dõi hay kiểm kê của nhà trường.
+3.2.3. Biểu đồ ngữ cảnh Biểu đồ ngữ cảnh Trong đó có các tác nhân:
+- Ban giám hiệu, quản trị viên: khi nhà nước có các thông báo về tiêu chuẩn tiêu chí cho việc kiểm định chất lượng giáo dục thì ban giám hiệu có trách nhiệm đưa các tiêu chuẩn tiêu chí đó lên hệ thống nhằm cho việc nhân viên tự đánh giá theo các tiêu chuẩn tiêu chí đó. Hoặc là cập nhật lại các cơ sở dữ liệu nhà trường trong các năm qua.
+- Trưởng nhóm: Có trách nhiệm nhận danh sách thành viên hội đồng từ quản trị viên đồng thời nhận nhiệm vụ cần thực hiện. Tiếp theo cần giao nhiệm vụ đánh giá cho các thành viên trong nhóm đã được nhận.
+- Thành viên hội đồng: có trách nhiệm tự đánh giá các tiêu chuẩn tiêu chí nhà trường đã đưa ra và trưởng nhóm giao cho.
+3.2.4. Sơ đồ luồng dữ liệu mức Sơ đồ luồng dữ liệu mức không - Với 4 chức năng chính được liệt theo sơ đồ luồng bên dưới  Chức năng quản lý thông: thi được sử dụng khi Ban giám hiệu, quản trị viên thực hiện việc cập nhật dữ liệu đầu vào. Các dữ liệu này chỉ được quản lý bởi bộ phận cấp cao của hệ thống nhằm quản lý tính thống nhất, bảo mật và an toàn của hệ thống quản lý thông tin.
+ Chức năng quản lý đăng nhập: Được tạo ra nhằm mục đích giúp hệ thống quản lý được nhân sự, thành viên hội đồng. Có thể trực tiếp trao quyền sử dụng cho mỗi người trong hệ thống.
+ Chức năng quản lý nhóm: Là khi đã có đầy đủ thông tin từ trước và khi này quản trị sẽ tiến hành tạo nhóm và phân công công việc tới tất cả các nhóm.
+ Quản lý dữ liệu: là khi thành viên hội đồng nhận được nhiệm vụ của cá nhân và tiến hành đánh giá. Khi đó dữ liệu sẽ được lưu và hiển thị ra kết quả cần dùng  Thống kê báo cáo: thực hiện thu thập thông tin cần dùng từ những kết quả đã đánh giá của thành viên hội đồng.
+3.2.5 Sơ đồ luồng dữ liệu mức 1 – chức năng quản lý đăng nhập Sơ đồ luồng dữ liệu mức 1 - quản lý đăng nhập - Tại chức năng này Ban giám hiệu – người quản trị có sẽ cần phải thực hiện việc cập nhật và quản lý 2 chức năng chính đó là Vai trò và Chức năng. Sau khi hai chức năng này nhận được dữ liệu thì dữ thì dữ liệu đó sẽ được truyền vào kho. Sau khi hoàn thành tại 2 chức năng này thì hệ thống đồng thời lưu dữ liệu vào kho Quyền hệ thống. Khi đó Quản trị sẽ tiến hành thực hiện việc phân quyền cho các tài khoản tại chức năng Quản lý tài khoản.
+- Khi đã có được danh sách tài khoản có phân quyền thì danh sách này sẽ được chuyển tới kho Danh sách tài khoản và cung cấp tới các thành viên khách trong hội đồng đánh giá.
+3.2.6. Sơ đồ luồng dữ liệu mức 1- chức năng quản lý thông tin Sơ đồ luồng dữ liệu mức 1 – chức năng quản lý thông tin - Tại chức năng Quản lý thông tin này quản trị viên sẽ cần phải cập nhật vào đó nhưng dữ liệu liên quan tới công tác đánh giá. Các chức năng này khi được lưu kho vào kho có thể được sử dụng cho nhiều đối tượng trong hệ thống.
+- Đồng thời cũng sẽ giúp cho hệ thống hoạt động ổn định không bị lưu giữ những file không liên quan từ những thành viên khác.
+3.2.7 Sơ đồ luồng dữ liệu mức 1- chức năng quản lý nhóm Sơ đồ luồng dữ liệu mức 1: quản lý nhóm - Chức năng này giúp cho quản trị viên có thể hình thành ra các nhóm công tác và từ đó có thể tiến hành phân công công việc cho các nhóm đã được thành lập bởi quản trị.
+3.2.8. Sơ đồ luồng dữ liệu mức 1 – Xử lý dữ liệu Sơ đồ luồng dữ liệu mức 1: Xử lý dữ liệu - Xử lý dữ liệu đang được xem như mấu chốt của cả hệ thống khi việc quản lý này có thể giúp thành viên hội đồng có thể đánh giá tiêu chí và thực hiện việc xem lại kết quả đánh giá cũng như trưởng nhóm và hội quản trị có thể thực hiện việc xem lại kết quả.
+3.2.9. Sơ đồ luồng dữ liệu mức 1 – chức năng thống kê, báo cáo Sơ đồ luồng dữ liệu mức 1: thống kê, báo cáo - Báo cáo sẽ được thực hiện khi các tiêu chí đã được đánh giá. Và việc in báo cáo sẽ được thực hiện khi các tiêu chí và tiêu chuẩn đã hoàn thành một cách tốt đẹp 3.2.10. Sơ đồ ER Sơ đồ thực thể ER 3.2.11. Chuyển đổi từ mô hình thực thể ER sang mô hình quan hệ NhanSu: (MaNhanSu, TenNhanSu, GioiTinh,…) STT TÊN THUỘC TÍNH DIỀN GIẢI KIỂU DỮ LIỆU GHI CHÚ HoSoNhanSuID Hồ sơ nhân sự ID uniqueidentifier MaNhanSu Mã nhân sự nvarchar(250) HoNhanSu Họ nhân sự nvarchar(250) TenNhanSu Tên nhân sự nvarchar(200) GioiTinh Giới Tính bit NgaySinh Ngày sinh datetime ChuyenNganh Chuyên ngành uniqueidentifier TrinhDoDaoTaoID Trình độ đào tạo uniqueidentifier CoSoDaoTaoID Cơ sở đào tạo uniqueidentifier ChucVuID Chức vụ uniqueidentifier SoDienThoai Số điện thoại nvarchar(10) Email Email nvarchar(200) AccountID Account uniqueidentifier PhongBanID Phòng ban uniqueidentifier Thông tin nhân sự ThongTinTruong: (MaCoSo, TenCoSo, DiaChi, SoDienThoai,…) STT TÊN THUỘC TÍNH DIỀN GIẢI KIỂU DỮ LIỆU GHI CHÚ CoSoID Cơ sở uniqueidentifier MaCoSo Mã cơ sở nvarchar(100) TenCoSo Tên cơ sở nvarchar(100) TenNhaTruongVN Tên nhà trường VN nvarchar(150) TenNhaTruongEL Tên nhà trường EL nvarchar(150) TenVietTatVN Tên viết tắt VN nvarchar(250) BoChuQuan Bộ chủ quản nvarchar(150) DiaChi Địa chỉ nvarchar(500) SoDienThoai Số điện thoại nvarchar(15) SoFax Số Fax nvarchar(15) Email Email nvarchar(150) Website Website nvarchar(250) LoaiHinhCoSoGD Loại hình cơ sở GD nvarchar(150) ChinhQuy Chính quy bit TuXa Từ xa bit LienKetDaoTaoVoiNu ocNgoai Liên kết đào tạo với nước ngoài bit Thông tin trường HoiDongDanhGia:
+(MaThanhVien,NhomCongTac,MaNhanSu,ChucVuTrongNhom…) STT TÊN THUỘC TÍNH DIỀN GIẢI KIỂU DỮ LIỆU GHI CHÚ ThanhVienHoiDongID Thành viên hội đồng uniqueidentifier HoSoNhanSuID Hồ sơ nhân sự uniqueidentifier GiaoNhiemVuNhomID Giao nhiệm vụ nhóm uniqueidentifier ChucVuTrongNhom Chức vụ trong nhóm nvarchar(250) Danh sách hội đồng đánh giá NhomCongTac: (MaNhomCongTac,TenNhomCongTac,…) STT TÊN THUỘC TÍNH DIỀN GIẢI KIỂU DỮ LIỆU GHI CHÚ NhomCongTacID Nhóm công tác uniqueidentifier MaNhomCongTac Mã nhóm công tác nvarchar(150) TenNhomCongTac Tên nhóm công tác nvarchar(150) MoTa Mô tả nvarchar(150) Danh sách nhóm công tác DanhMucMinhChung:(MaMinhChung,TenMinhChung,SoBanHanh, NgayBanHanh, NoiBanHanh, ...) STT TÊN THUỘC TÍNH DIỀN GIẢI KIỂU DỮ LIỆU GHI CHÚ MinhChungID Minh chứng uniqueidentifier MaMinhChung Mã minh chứng nvarchar(50) TenMinhChung Tên minh chứng nvarchar(250) NoiDungChinh Nội dung chính nvarchar(MAX) SoBanHanh Sở ban hành nvarchar(150) NgayBanHanh Ngày ban hành datetime NoiBanHanh Nơi ban hành nvarchar(MAX) FileLuuGiu File lưu giữ nvarchar(MAX) GhiChu Ghi chú nvarchar(250) Danh mục minh chứng TieuChi: (MaTieuChi,TenTieuChi,…) STT TÊN THUỘC TÍNH DIỀN GIẢI KIỂU DỮ LIỆU GHI CHÚ TieuChiID Tiêu chí uniqueidentifier MaTieuChi Mã tiêu chí nvarchar(150) TenTieuChi Tên tiêu chí nvarchar(250) TinhTrangTieuChi Tình trạng tiêu chí int MucDoToiDa Mức độ tối đa int MoTa Mô tả nvarchar(500) Danh sách tiêu chí TieuChuan: (MaTieuChuan,TenTieuChuan,…) STT TÊN THUỘC TÍNH DIỀN GIẢI KIỂU DỮ LIỆU GHI CHÚ TieuChuanID Tiêu chuẩn uniqueidentifier MaTieuChuan Mã tiêu chuẩn nvarchar(250) TenTieuChuan Tên tiêu chuẩn nvarchar(250) MoTa Mô tả nvarchar(250) Danh sách tiêu chuẩn NangLuc: (MaNangLuc,TenNangLuc,…) STT TÊN THUỘC TÍNH DIỀN GIẢI KIỂU DỮ LIỆU GHI CHÚ NangLucID Năng lực uniqueidentifier MaNangLuc Mã năng lực nvarchar(250) TenNangLuc Tên năng lực nvarchar(250) MoTa Mô tả nvarchar(250) Danh sách năng lực – cơ sở công tác.
+MinhChungSuDung:(MinhChungSuDungID,LichSuDanhGiaID, MinhChungID) STT TÊN THUỘC TÍNH DIỀN GIẢI KIỂU DỮ LIỆU GHI CHÚ MinhChungSD Minh chứng sử dụng uniqueidentifier LichSuDanhGiaID Lịch sử đánh giá uniqueidentifier MinhChungID Minh chứng uniqueidentifier Danh sách minh chứng được sử dụng để đánh giá ChiTietCongViec: (ChiTietCongViecID, TieuChiID, ThanhVienHoiDongID,...) STT TÊN THUỘC TÍNH DIỀN GIẢI KIỂU DỮ LIỆU GHI CHÚ ChiTietCongViecID Chi tiết công việc uniqueidentifier TieuChiID Tiêu chí uniqueidentifier ThanhVienHoiDongID Thành viên hội đồng uniqueidentifier TinhTrangNhiemVu Tình trạng nhiệm vụ int NgayGiao Ngày giao datetime Danh sách chi tiết công việc GiaoNhiemVu: (GiaoNhiemVuNhomID, TinhTrangNhiemVu,...) STT TÊN THUỘC TÍNH DIỀN GIẢI KIỂU DỮ LIỆU GHI CHÚ GiaoNhiemVuNhomID Giao nhiệm vụ nhóm uniqueidentifier TinhTrangNhiemVu Tình trạng nhiệm vụ int NguoiGiaoNhiemVuID Người giao nhiệm vụ uniqueidentifier NgayGiaoNhiemVu Ngày giao nhiệm vụ datetime KyCongTacID Kỳ công tác uniqueidentifier NhomCongTacID Nhóm công tác uniqueidentifier TieuChuanID Tiêu chuẩn uniqueidentifier Danh sách nhiệm vụ đã giao cho nhóm KyCongTacDanhGia: (KyCongTacID, NgayPhatSinh,...) STT TÊN THUỘC TÍNH DIỀN GIẢI KIỂU DỮ LIỆU GHI CHÚ KyCongTacID Kỳ công tác uniqueidentifier NgayPhatSinh Ngày phát sinh datetime GiaiDoanBatDau Giai đoạn bắt đầu datetime GiaiDoanKetThuc Giai đoạn kết thúc datetime MaKyCongTac Mã kỳ công tác nvarchar(250) TenKyCongTac Tên kỳ công tác nvarchar(250) TrangThai Trạng thái int GhiChu Ghi chú nvarchar(250) Danh sách giai đoạn đánh giá ChucNang: (ChucNangID, MaChucNang, TenChucNang) STT TÊN THUỘC TÍNH DIỀN GIẢI KIỂU DỮ LIỆU GHI CHÚ ChucNangID Chức năng uniqueidentifier MaChucNang Mã chức năng Nvarchar(150) TenChucNang Tên chức năng Nvarchar(150) Danh sách chức năng hệ thống VaiTro: (RoleID, MaRole,Name) STT TÊN THUỘC TÍNH DIỀN GIẢI KIỂU DỮ LIỆU GHI CHÚ RoleID Vai trò uniqueidentifier MaRole Mã vai trò Nvarchar(150) Name Tên vai trò Nvarchar(150) Danh sách vai trò trong hệ thống LichSuDanhGia: (LichSuDanhGiaID, NgayDanhGia, NhanXetDanhGia,...) STT TÊN THUỘC TÍNH DIỀN GIẢI KIỂU DỮ LIỆU GHI CHÚ LichSuDanhGiaID Lịch sử đánh giá uniqueidentifier NgayDanhGia Ngày đánh giá datetime NhanXetDanhGia Nhận xét đánh giá nvarchar(MAX) DiemManh Điểm mạnh nvarchar(MAX) DiemTonTai Điểm tồn tại nvarchar(MAX) KeHoachHanhDong Kế hoạch hành động nvarchar(MAX) MucDoDanhGia Mức độ đánh giá nvarchar(150) MucDoToiDa Mức độ tối đa nvarchar(150) MoTa Mô tả nvarchar(250) ThoiGianDanhGia Thời gian đánh giá datetime ChiTietCongViecID Chi tiết công việc uniqueidentifier HoSoNhanSuID Hồ sơ nhân sự uniqueidentifier DaXoa Đã xóa bit Lịch sử đánh giá 3.2.12. Cơ sở dữ liệu và sơ đồ Diagram 15 Cơ Sở Dữ liệu và sơ đồ Diagram CHƯƠNG GIAO DIỆN WEBSITE KIỂM ĐỊNH CHẤT LƯỢNG GIÁO DỤC (VIUEDU) 4.1. Lựa chọn ngôn ngữ và môi trường cài đặt Website được xây dựng bằng ngôn ngữ C++, JavaScript dựa trên môi trường asp.net và hệ quản trị cơ sở dữ liệu SQL server.
+ASP.Net là kỹ thuật lập trình và phát triển ứng dụng web ở phía Server (Server-side) dựa trên nền tảng của Microsoft .Net Framework. Hầu hết, những người mới đến với lập trình web đều bắt đầu tìm hiểu những kỹ thuật ở phía Client (Client-side) như: HTML, Java Script, CSS (Cascading Style Sheets).
+Khi Web browser yêu cầu một trang web (trang web sử dụng kỹ thuật client- side), Web server tìm trang web mà Client yêu cầu, sau đó gởi về cho Client.
+Client nhận kết quả trả về từ Server và hiển thị lên màn hình. ASP.Net sử dụng kỹ thuật lập trình ở phía server thì hoàn toàn khác, mã lệnh ở phía server (ví dụ: mã lệnh trong trang ASP, ASP.NET) sẽ được biên dịch và thi hành tại Web Server. Sau khi được Server đọc, biên dịch và thi hành, kết quả tự động được chuyển sang HTML/ JavaScript/ CSS và trả về cho Client. Tất cả các xử lý lệnh ASP, ASP.Net đều được thực hiện tại Server và do đó, gọi là kỹ thuật lập trình ở phía server.
+4.2. Thiết kế giao diện 4.2.1. Giao diện trang chủ 1. Giao diện trang chủ - Trang chủ : là trang chính được hiển thị khi người dùng đăng nhập thành công. Tại đây nếu như không có tài khoản đăng nhập thì người dùng sẽ không thể nào nhìn thấy được - Thông tin về các loại với giao diện gần gũi, thân thiện và dễ sử dụng… từ đó người dùng có thể thực hiện các chức năng như xem thông tin, tự đánh giá.
+4.2.2. Giao diện Form đăng nhập.
+2. Giao diện Form đăng nhập - Tại giao diện đăng nhập này tài khoản mật khẩu để đăng nhập được quản trị viên cấp khi được sắp xếp vào danh sách hội đồng đánh giá.
+- Tài khoản được cấp có 3 quyền được phần như sau: Quản trị, trưởng nhóm, thành viên. Mỗi quyền sẽ có các chức năng và nhiệm vụ riêng biết. Và mỗi người nhận được tài khoản sẽ có công việc khác nhau nhưng hướng tới mục đích cuối cùng vẫn sẽ là có kết quả đánh giá cuối cùng 4.2.3 Giao diện Hồ sơ cá nhân Giao diện thông tin cá nhân - Thành viên sau khi đăng nhập có thể trực tiếp vào xem thông tin cá nhân mà không cần được cấp quyền từ quản trị viên hệ thống. Thông tin cá nhân được liên kết với hồ sơ nhân viên từ đó lấy ra được thông tin cá nhân của mình.
+4.2.4. Giao diện Hồ sơ nhân viên Giao diện Hồ sơ nhân viên - Trang hồ sơ nhân sự là trang mà người quản trị có thể xem, sửa thông tin của các nhân viên trong nhà trường.
+- Tại đây mọi thông tin nhân sự sẽ được cập nhật và lưu vào. Sau đó người quản trị có thể sắp xếp công việc cho mỗi nhân viên để tạo thành một danh sách thành viên hội đồng hoàn chỉnh.
+4.2.5. Giao diện thông tin nhà trường Giao diện thông tin trường - Trang quản trị cơ sở dữ liệu nhà trường cho phép người dùng xem các cơ sở của trường và tình trạng của các cơ sở đó.
+- Đồng thời có thể xem chi tiết thông tin của một cơ sở và áp dụng cơ sở cho các nhân sự giúp việc quản lý các cơ sở của nhà trường trở nên đơn giản, thuận tiện và linh hoạt hơn.
+4.2.6. Giao diện Danh mục Minh chứng Giao diện Danh mục Minh chứng - Trang minh chứng giúp quản lý, thêm, sửa, xoá những minh chứng cần thiết và không cần thiết với mục đích tạo ra độ tin tưởng khi thực hiện đánh giá của một thành viên trong hội đồng làm nhiệm vụ. Minh chứng được đưa ra giúp chứng minh việc đánh giá có độ tin cậy cao.
+- Như tại Hình 3.6 chúng ta có thể thấy hai khung được đánh dấu. Điều đó có ý nghĩa rằng tại đấy chúng ta có thể thực hiện thao tác thêm vào hàng loạt dữ liệu (Import) chỉ bẳng file excel có sẵn và dữ liệu cần được tuân theo file mẫu đã được tại trang web.
+4.2.7. Giao diện Tiêu chuẩn, tiêu chí Giao diện Tiêu chuẩn - Trang tiêu chuẩn được tạo ra giúp nhóm công tác có thể xác định chính xác tiêu chuẩn cần phải đánh giá trong một giai đoạn được đặt ra.
+- Điều kiện được đưa ra rằng mỗi giai đoạn thì mỗi tiêu chuẩn chỉ được giao cho một nhóm.
+Giao diện Tiêu chí - Sau tiêu chuẩn tiếp đến là tiêu chí. Yêu cầu là một tiêu chuẩn có nhiều tiêu chí. Và những tiêu chí này thì được thêm vào trước khi chúng ta gán chúng vào tiêu chuẩn trong giai đoạn đánh giá.
+4.2.8. Giao diện Kết quả Đánh giá Giao diện kết quả đánh giá - Trang kết quả đánh giá cho phép người dùng xem lại mốc hệ số mà thành viên hội đồng đã hoàn thành theo các tiêu chuẩn tiêu chí mà quản trị đã giao cho.
+- Tại biểu đồ được hiển thị có hai loại được hiển thị:
+ Một là: hiển thị kết quả tổng đánh của các tiêu chuẩn trong khoảng giai đoạn đánh giá được đưa ra.
+ Hai là: hiển thị kết quả đánh giá tiêu chí theo từng tiêu chuẩn và giao đoạn đánh giá được đưa ra. Chức năng này cơ bản giống như một bộ lọc giúp lọc ra chỉ kết quả điểm đánh giá cuối cùng.
+4.2.9. Giao diện Nhóm công tác Giao diện Nhóm công tác - Nhóm công tác được tạo ra giúp mọi người phân chia nhóm và phân công công việc một cách nhanh chóng thuận tiện hơn.
+- Việc phân công nhóm giúp việc quản lý trở nên được chia nhỏ và chặt chẽ hơn rất nhiều. Đồng thời công việc cũng được xử lý nhanh hơn với sự quản lý của các trưởng nhóm.
+- Tại giao diện của nhóm công tác này được tích hợp thêm thành viên vào nhóm nhưng với điều kiện nhóm đã được giao các tiêu chuẩn để đánh giá.
+Nếu như nhóm chưa có tiêu chuẩn để thực hiện đánh giá thì hệ thống sẽ báo lỗi và sẽ không thể thêm thành viên hội đồng vào nhóm.
+- Kèm theo đó ta có thêm thao tác xuất danh sách thành viên sau khi được thêm giúp người quản lý có thể báo cáo lên danh sách thành viên.
+4.2.10. Giao diện Giao nhiệm vụ nhóm Giao nhiệm vụ nhóm công tác - Sau khi nhóm công tác được cập nhật và lưu trữ thì chúng ta có thể giao một hoặc nhiều tiêu chuẩn cho một nhóm trong giai đoạn đánh giá.
+Form giao nhiệm vụ nhóm 4.2.11. Giao diện Hội đồng đánh giá Giao diện Hội đồng đánh giá - Trang Hội đồng đánh giá cho phép người dùng xem được có những thành viên hội đồng nào. Nhưng như đã nói tại mục Nhóm công tác thì điều kiện để có được thành viên hội đồng đó là tại các nhóm công tác phải có được gán tiêu chuẩn từ đó có thể thêm được thành viên hội đồng.
+4.2.12. Giao diện chi tiết công việc cho thành viên Giao diện chi tiết công việc cho có thành viên - Công đoạn giao nhiệm vụ cho thành viên trong nhóm này được thực hiện bởi trưởng nhóm và phải được sau khi các công đoạn trước đó đã được hoàn thành.
+3.2.13. Giao diện Báo cáo Tiêu chuẩn – Tiêu chí Giao diện Báo cáo Tiêu chuẩn - Trang báo cáo tiêu chuẩn – tiêu chí cho phép người dùng xem được những nội dung đã đánh giá trong tiêu chuẩn – tiêu chí. Tác dụng có thể giúp thống kê nhanh nhưng nội dung đã đánh giá một cách đầy đủ nhất.
+Giao diện báo cáo Tiêu chí 4.2.14. Giao diện Lịch sử Đánh giá Giao diện Lịch sử Đánh giá - Trang Lịch sử Đánh giá cho phép quản trị viên hoặc trưởng nhóm xem lại các minh chứng, tiêu chuẩn tiêu chí với các mức độ đánh giá và do các thành viên trong nhóm công tác đánh giá.
+- Tại đây chúng ta cũng có thể thực hiện việc in báo cáo tiêu chuẩn hoặc tiêu chí tùy theo ý muốn của bản thân:
+In báo cáo tiêu chuẩn – tiêu chí - Để có thể thực hiện in báo cáo thì chúng ta cần chọn vào nút Báo cáo sau đó chọn dữ liệu cần in báo cáo. Form minh họa được hiển thị sau khi thực hiện thao tác in:
+Form in báo cáo 4.2.15 Giao diện Chức năng Hình 4.20 Giao diện chức năng - Tại đây bảng chức năng sẽ có nhiệm vụ quản trị các chức năng có tại menu của chương trình. Ví dụ như:
+Hình 4.21 Các chức năng - Như đã thấy phía trên thì bảng chức năng sẽ có nhiệm vụ quản lý các chức năng trên cột menu trên. Và để làm được điều đó thì chúng ta cần phải có thêm 2 bảng tiếp theo đó là Vai trò và Vai Trò-Chức năng.
+4.2.16 Giao diện Vai trò Hình 4.22 Giao diện Vai trò - Tại giao diện bảng này sẽ giúp người dùng có thể quản trị các loại quyền của người dùng.
+4.2.17 Giao diện Vai trò – Chức năng Hình 4.23 Giao diện Vai trò – Chức Năng - Tại đây để có thể phân được các quyền của hệ thống chúng ta cần phải lựa chọn vai trò chúng ta cần phân quyền như đã giới thiếu phía trên.
+Sau đó chúng ta có thể tiến hành phân quyền các loại quyền bằng cách:
+Giao diện phân quyền - Lựa chọn vào dòng dữ liệu chúng ta cần cấp quyền. Nếu như dấu checkbox được chọn thì vai trò đó có thể sử dụng quyền mà người quản trị đã cấp.
+Form đăng ký quyền - Tại form này người dùng chỉ cần thay đổi checkbox Áp dụng là đã có thể cấp hoặc không cấp quyền cho vài trò đó.
+4.2.18 Minh chứng sử dụng Minh chứng đã sử dụng - Bảng này sẽ có chức năng giúp chúng ta phân loại ra những minh chứng đã được sử dụng vào hệ thống từ đó có thể xác định tính chính xác của đánh giá với các minh chứng đã được sử dụng.
+4.2.19 Giao diện xem nhiệm vụ các nhân Xem nhiệm vụ các nhân - Tại bảng này các thành viên trong hội đồng đánh giá và đã có nhiệm vụ có thể xem được các nhiệm vụ cần đánh giá mà họ đã được giao. Từ đấy có thể lựa chọn và đánh giá nhiệm vụ mà bản thân đã được giao cho./ - Khi đã đánh giá xong và nhiệm vụ đã hoàn thành thì người dùng đó sẽ không được sửa hoặc đánh giá lại .
+Form đánh giá Để thực hiện đánh giá chúng ta cần chọn dữ liệu nhiệm vụ chưa đánh giá và tiến hành thực hiện đánh giá tại form trên. Tại form trên khi chúng ta đã đánh giá đầy đủ thì thì kết quả sẽ được lưu lại.
+4.2.20 Giao diện lịch sử đánh giá cá nhân Hình 4.29 Giao diện lịch sử đánh giá cá nhân - Tại đây thành viên hội đồng có thể xem lại những đánh giá của cá nhân và đồng thời có thể đánh giá hoặc xóa đánh giá được chọn./ KẾT LUẬN 1. Ưu điểm của chương trình - Chương trình đã hoàn thành tốt các yêu cầu.
+- Các quy trình nghiệp vụ hệ thống đã xử lý rất tốt. Các công việc trở nên rõ ràng, dễ sử dụng hơn rất nhiều.
+- Các chức năng của hệ thống được kiểm soát chặt chẽ và được phần quyền cụ thể tới người sử dụng hệ thống.
+- Việc đánh giá được minh bạch và chỉ có người đánh giá được sử phép thực hiện sửa ý kiến đánh giá của bản thân.
+- Hệ thống tìm kiếm đa dụng sử dụng nhanh chính xác cao.
+- Thống kê, in báo cáo đã hiển thị được đầy đủ thông tin mà người quản trị cần 2. Nhược điểm của chương trình - Trong quá trình phân quyền của hệ thống còn rườm ra việc chọn lựa ở nhiều trang giao diện khác nhau.
+- Chưa kiểm soát được URL khi người dùng không có quyền được truy cập.
+3. Hướng phát triển tiếp theo - Trong quá trình sắp tới hệ thống sẽ cần được tích hợp thêm tính năng gán minh chứng vào các mục đánh giá mà không phải chỉ là chọn theo dạng danh sách thả xuống. Điều này giúp kết quả đánh giá trở nên chuẩn xác hơn.
+Minh chứng chứng minh cũng sẽ được rõ ràng hơn.
+- Cần tích hợp nhiều giao diện giúp việc sử dụng và phân quyền dễ dàng hơn và độ bảo mật sẽ là cao nhất.
+- Hệ thống cần phải cải tiến việc thông báo và cảnh báo tới thành viên trong hội đồng về nhiệm vụ của bản thân.
+- Tự động tính điểm và đưa ra kết quả đánh giá mà không cần phải thực hiện bằng thủ công.
+TÀI LIỆU THAM KHẢO 1. Pro ASP.NET MVC 4 – Adam FreeMan - Steven Sanderson.
+2. Website: https://stackoverflow.com/ 3. Website: https://www.w3schools.com/ 4. Giáo trình Cấu trúc dữ liệu và giải thuật – Đỗ Xuân Lôi – NXB Thống Kê 5. Giáo trình Cấu trúc dữ liệu và giải thuật – Trần Hạnh Nhi – NXB ĐHQG TPHCM 6. Bài giảng Giải thuật và lập trình – Lê Minh Hoàng – ĐHSP Hà Nội 7. Giáo trình Cấu trúc dữ liệu và giải thuật – ĐHCN Hà Nội – NXB KHKT 8. Các trang web: google, youtube,… 9. Phân tích và thiết kế hệ thống thông tin - Nguyễn Văn Ba – NXB ĐHQG Hà Nội

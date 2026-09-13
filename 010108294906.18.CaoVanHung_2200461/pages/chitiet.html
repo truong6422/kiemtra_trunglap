@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết kiểm tra trùng lặp văn bản</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: #1e293b;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .viewer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            z-index: 10;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #64748b;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .back-btn:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .file-title-display {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .viewer-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .doc-preview-pane {
+            flex: 1;
+            background: #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .doc-footer-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px 20px;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .similarity-sidebar {
+            width: 380px;
+            background: #ffffff;
+            border-left: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .sidebar-top-card {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8fafc;
+        }
+
+        .total-similarity-badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .similarity-score-box {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .similarity-list-container {
+            padding: 15px;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .source-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+
+        .source-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+        }
+
+        .source-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #d97706;
+        }
+
+        .source-card-title {
+            font-size: 14px;
+            color: #1e293b;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* ================= Trình xem PDF tự dựng ================= */
+
+        .pdf-khung {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: #33373b;
+        }
+
+        .pdf-toolbar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 12px;
+            height: 44px;
+            background: #3c4043;
+            color: #e8eaed;
+            font-size: 13px;
+            flex-shrink: 0;
+            border-bottom: 1px solid #2a2d30;
+        }
+
+        .pdf-toolbar__ten {
+            flex: 1;
+            min-width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #e8eaed;
+            font-weight: 500;
+        }
+
+        .pdf-toolbar__nhom {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 0 6px;
+        }
+
+        .pdf-toolbar__vach {
+            width: 1px;
+            height: 20px;
+            background: #5f6368;
+        }
+
+        .pdf-nut {
+            background: transparent;
+            color: #e8eaed;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .15s;
+            text-decoration: none;
+        }
+
+        .pdf-nut:hover {
+            background: rgba(255, 255, 255, .12);
+        }
+
+        .pdf-nut--bat {
+            background: rgba(138, 180, 248, .22);
+            color: #8ab4f8;
+        }
+
+        .pdf-o-trang {
+            width: 46px;
+            background: #26282b;
+            color: #e8eaed;
+            border: 1px solid #5f6368;
+            border-radius: 5px;
+            padding: 4px 4px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .pdf-o-trang:focus {
+            outline: none;
+            border-color: #8ab4f8;
+        }
+
+        .pdf-muc-zoom {
+            min-width: 46px;
+            text-align: center;
+            color: #bdc1c6;
+        }
+
+        .pdf-thongbao {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: #3c4043;
+            border-bottom: 1px solid #2a2d30;
+            color: #fdd663;
+            font-size: 12.5px;
+            flex-shrink: 0;
+        }
+
+        .pdf-than {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .pdf-thumbs {
+            width: 132px;
+            flex-shrink: 0;
+            overflow-y: auto;
+            background: #2e3134;
+            padding: 12px 0;
+            border-right: 1px solid #26282b;
+        }
+
+        .pdf-thumbs::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .pdf-thumbs::-webkit-scrollbar-thumb {
+            background: #5f6368;
+            border-radius: 4px;
+        }
+
+        .pdf-thumb {
+            width: 100px;
+            margin: 0 auto 12px auto;
+            cursor: pointer;
+            border-radius: 4px;
+            padding: 4px;
+            transition: background .15s;
+        }
+
+        .pdf-thumb:hover {
+            background: rgba(255, 255, 255, .08);
+        }
+
+        .pdf-thumb canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: #fff;
+            border: 1px solid #5f6368;
+            border-radius: 2px;
+        }
+
+        .pdf-thumb__so {
+            text-align: center;
+            color: #9aa0a6;
+            font-size: 11px;
+            margin-top: 4px;
+        }
+
+        .pdf-thumb--dangxem canvas {
+            border-color: #8ab4f8;
+            box-shadow: 0 0 0 2px rgba(138, 180, 248, .5);
+        }
+
+        .pdf-thumb--dangxem .pdf-thumb__so {
+            color: #8ab4f8;
+            font-weight: 600;
+        }
+
+        .pdf-vung-trang {
+            flex: 1;
+            overflow: auto;
+            background: #525659;
+            padding: 20px 0 40px 0;
+            text-align: center;
+        }
+
+        .pdf-vung-trang::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .pdf-vung-trang::-webkit-scrollbar-thumb {
+            background: #7a7f83;
+            border-radius: 6px;
+        }
+
+        /* Khối câu trùng ở bảng bên phải */
+
+        .khoi-cau-trung {
+            transition: box-shadow .15s, border-color .15s;
+        }
+
+        .khoi-cau-trung:hover {
+            border-color: #93c5fd !important;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, .08);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header điều hướng -->
+    <div class="viewer-header">
+        <div class="header-left">
+            <button class="back-btn" onclick="goBack()"><i class="fa-solid fa-chevron-left"></i></button>
+            <span class="file-title-display" id="headerFileName">Đang tải tên tài liệu...</span>
+        </div>
+        <div class="header-right">
+            <span style="font-size: 14px; color: #64748b;" id="totalSourcesCount">0 nguồn trùng lặp</span>
+        </div>
+    </div>
+
+    <!-- Nội dung chia 2 cột -->
+    <div class="viewer-body">
+        
+       <!-- Cột bên trái: Hiển thị file thực tế -->
+        <div class="doc-preview-pane">
+            <div class="pdf-khung">
+
+                <!-- Thanh công cụ tự dựng, thay cho toolbar của trình duyệt -->
+                <div id="pdfToolbar" class="pdf-toolbar">
+
+                    <button type="button" id="pdfToggleThumbs"
+                        class="pdf-nut pdf-nut--bat" title="Ẩn/hiện danh sách trang">&#9776;</button>
+
+                    <span id="pdfTitle" class="pdf-toolbar__ten"></span>
+
+                    <div class="pdf-toolbar__nhom">
+                        <button type="button" id="pdfPrevPage"
+                            class="pdf-nut" title="Trang trước">&#8249;</button>
+
+                        <input type="number" id="pdfPageInput" min="1" value="1"
+                            class="pdf-o-trang" title="Nhảy tới trang">
+
+                        <span id="pdfPageTotal" style="color:#9aa0a6;">/ --</span>
+
+                        <button type="button" id="pdfNextPage"
+                            class="pdf-nut" title="Trang sau">&#8250;</button>
+                    </div>
+
+                    <div class="pdf-toolbar__vach"></div>
+
+                    <div class="pdf-toolbar__nhom">
+                        <button type="button" id="pdfZoomOut"
+                            class="pdf-nut" title="Thu nhỏ">&minus;</button>
+
+                        <span id="pdfZoomLevel" class="pdf-muc-zoom">100%</span>
+
+                        <button type="button" id="pdfZoomIn"
+                            class="pdf-nut" title="Phóng to">+</button>
+                    </div>
+
+                    <div class="pdf-toolbar__vach"></div>
+
+                    <div class="pdf-toolbar__nhom">
+                        <button type="button" id="pdfPrint"
+                            class="pdf-nut" title="In tài liệu">&#128424;</button>
+
+                        <a id="pdfDownload" download class="pdf-nut"
+                            title="Tải xuống bản bôi màu">&#11123;</a>
+                    </div>
+                </div>
+
+                <!-- Thông báo số chỗ trùng của nguồn đang chọn -->
+                <div id="pdfMatchInfo" class="pdf-thongbao"></div>
+
+                <div class="pdf-than">
+                    <!-- Dải ảnh thu nhỏ các trang -->
+                    <div id="pdfThumbnails" class="pdf-thumbs"></div>
+
+                    <!-- Vùng render các trang PDF, highlight được phủ lên đây -->
+                    <div id="pdfViewer" class="pdf-vung-trang"></div>
+                </div>
+            </div>
+
+            <!-- Chân trang báo cáo -->
+            <div class="doc-footer-info">
+                <span id="pageCountDisplay">Kiểm tra trùng lặp</span>
+                <span id="lastModifiedDisplay">Chỉnh sửa lần cuối: Đang cập nhật...</span>
+            </div>
+        </div>
+
+        <!-- Cột bên phải: Danh sách nguồn trùng lặp -->
+        <div class="similarity-sidebar">
+            <div class="sidebar-top-card">
+                <span style="font-weight: 600; color: #0f172a; font-size: 14px;">Tất cả trùng lặp</span>
+                <span class="total-similarity-badge" id="sidebarMatchCount">2 tài liệu</span>
+            </div>
+
+            <div class="similarity-score-box">
+                <span style="font-weight: 600; color: #475569; font-size: 14px;">Tỉ lệ trùng lặp</span>
+                <span style="font-size: 20px; font-weight: 700; color: #ef4444;" id="overallSimilarityScore">7%</span>
+            </div>
+
+            <div class="similarity-list-container" id="similarityListContainer">
+                <!-- Danh sách nguồn mẫu -->
+                <div class="source-card">
+                    <div class="source-card-header"><span>1. TRÙNG LẶP - 90%</span></div>
+                    <div class="source-card-title">A345_Quyet_dinh_3875_UBND.pdf</div>
+                </div>
+                <div class="source-card">
+                    <div class="source-card-header"><span>2. TRÙNG LẶP - 79%</span></div>
+                    <div class="source-card-title">A5_Luan_van_Trac_nghiem_truc_tuyen.docx</div>
+                </div>
+                
+            </div>
+            <div id="matchedSentencePanel"
+     style="
+        border-top:1px solid #e2e8f0;
+        padding:12px;
+        background:white;
+        height:400px;
+        overflow-y:auto;
+     ">
+    Chọn một nguồn để xem chi tiết
+</div>
+        </div>
+
+    </div>
+
+    <!-- Thư viện pdf.js để tự render PDF, nhờ vậy mới bôi màu được bằng JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        if (window.pdfjsLib) {
+            pdfjsLib.GlobalWorkerOptions.workerSrc =
+                "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+        }
+    </script>
+    <!-- Module render PDF kèm lớp bôi màu câu trùng -->
+    <script src="../js/pdf-highlight-viewer.js"></script>
+
+    <!-- Gọi file JS xử lý dữ liệu từ localStorage -->
+    <script src="../js/chitiet.js"></script>
+    <!-- Thư viện đọc file Word (.docx) trực tiếp trên web -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <!-- Thư viện docx-preview để hiển thị file Word giữ nguyên 100% định dạng, căn lề -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docx-preview@0.1.20/dist/docx-preview.min.js"></script>
+</head>
+</head>
+</body>
+</html>

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý lớp học</title>
+    <link rel="stylesheet" href="../css/quanlylophoc.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+</head>
+
+<body>
+    <header>
+        <nav class="menu">
+            <div class="menu-container">
+                <div class="logo">
+                    <img src="../images/logo.jpg">
+                    <p>Phần mềm kiểm tra trùng lặp văn bản</p>
+                </div>
+                <ul>
+                    <li>
+                        <a href="../pages/trangchu_saudn.html">
+                            Trang chủ
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/quanlytailieu.html">
+                            Quản lý tài liệu
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/quanlylophoc.html">
+                            Quản lý lớp học
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/huongdanchitiet.html">
+                            Hướng dẫn chi tiết
+                        </a>
+                    </li>
+                    <li class="user-dropdown-container">
+                        <div class="user-avatar-btn" id="userMenuBtn">
+                            <img src="../images/default-avatar.png" id="userAvatarImg" alt="Avatar">
+                            <span id="navUserName">Tài khoản</span>
+                            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                        </div>
+
+                        <!-- Menu Dropdown -->
+                        <div class="user-dropdown-menu" id="userDropdownMenu">
+                            <a href="../pages/taikhoan.html" class="dropdown-item">
+                                <i class="fa-regular fa-user"></i>
+                                <span>Tài khoản</span>
+                            </a>
+                            <a href="../pages/matkhau.html" class="dropdown-item">
+                                <i class="fa-solid fa-lock"></i>
+                                <span>Đổi mật khẩu</span>
+                            </a>
+                            <a href="../pages/dangnhap.html" class="dropdown-item text-danger" id="logoutBtn">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <span>Đăng xuất</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="classroom-main">
+        <div class="empty-class">
+            <img src="../images/class.jpg" alt="Empty Classroom" class="empty-img">
+            <h3>Bạn chưa tạo hoặc tham gia lớp học nào</h3>
+            <div class="btn-group">
+                <button class="create-btn"><i class="fa-solid fa-plus"></i> Tạo lớp học mới</button>
+                <button class="join-btn"><i class="fa fa-link"></i> Tham gia lớp học</button>
+            </div>
+            <p class="desc">
+                Lớp học (Classroom) giúp giảng viên, sinh viên gửi và nhận tài liệu (bài tập, khoá luận, tiểu luận...)
+                với chức năng kiểm tra trùng lặp văn bản
+            </p>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-plus"></i>
+                    <span class="line"></span>
+                </div>
+                <h4>Tạo lớp học</h4>
+                <p>Giảng viên tạo lớp học và thêm các thành viên vào lớp học thông qua email, Excel hoặc liên kết tham
+                    gia.</p>
+            </div>
+
+            <div class="step">
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-pencil"></i>
+                    <span class="line"></span>
+                </div>
+                <h4>Thêm bài tập</h4>
+                <p>Giảng viên tạo bài tập và yêu cầu các thành viên trong lớp nộp bài tập. Có thể tạo nhiều bài tập
+                    trong một lớp học.</p>
+            </div>
+
+            <div class="step">
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-upload"></i>
+                    <span class="line"></span>
+                </div>
+                <h4>Nộp bài tập</h4>
+                <p>Sinh viên dùng kiểm tra trùng lặp tại mục “Tài liệu” của bài tập. Khi điểm được lập và gửi, sinh viên
+                    vào lớp học để nộp bài tập.</p>
+            </div>
+
+            <div class="step">
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h4>Nhận kết quả</h4>
+                <p>Giảng viên xem danh sách bài tập kèm kết quả trùng lặp, được tổng hợp từ kết quả kiểm tra của sinh
+                    viên.</p>
+            </div>
+        </div>
+
+
+
+        <div class="classroom-benefits">
+            <h3>Vì sao nên sử dụng chức năng Lớp học (Classroom):</h3>
+            <ul>
+                <li><i class="fa-solid fa-check"></i> Quy trình tạo lớp, gửi và nhận tài liệu đơn giản</li>
+                <li><i class="fa-solid fa-check"></i> Kiểm tra trùng lặp và kiểm tra nhóm tích hợp</li>
+                <li><i class="fa-solid fa-check"></i> Không giới hạn số lượng lớp và bài tập</li>
+                <li><i class="fa-solid fa-check"></i> Miễn phí sử dụng Classroom và kiểm tra trùng lặp trong nhóm</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-left">
+            <p>Copyright © 2016 Trường Đại học Công nghiệp Việt-Hung. All Rights Reserved.</p>
+            <h4>Địa điểm đào tạo:</h4>
+            <p><strong>Cơ sở Sơn Tây:</strong> Số 16 Hữu Nghị, phường Tùng Thiện, TP. Hà Nội</p>
+            <p><strong>Cơ sở Thạch Thất:</strong> Số 88, đường 419 - Tây Phương, TP. Hà Nội</p>
+            <p><strong>Cơ sở Thanh Xuân:</strong> Số 27 Lê Văn Lương, phường Thanh Xuân, TP. Hà Nội</p>
+        </div>
+        <div class="footer-right">
+            <div>
+                <a href="#">Điều khoản sử dụng</a> | <a href="#">Quyền riêng tư</a>
+            </div>
+            <!--<div class="icons">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-solid fa-envelope"></i>
+                <i class="fa-solid fa-phone"></i>
+            </div>-->
+            <div class="icons">
+                <a href="https://www.facebook.com/dhcnvh/" target="_blank">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="https://tuyensinh.viu.edu.vn/kham-pha-viu.html" target="_blank">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="mailto:dhcnviethung.viu@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="tel:0974.966.966">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+            </div>
+            <div class="hotline-one">
+                <a>Hotline: 0974.966.966</a>
+            </div>
+            <div class="hotline-two">
+                <a>Email: dhcnviethung.viu@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="../js/trangchu_saudn.js"></script>
+
+    <!-- MODAL TẠO LỚP HỌC MỚI (TO RỘNG & ĐẦY ĐỦ CHỨC NĂNG) -->
+    <div class="modal-overlay" id="createClassModal">
+        <div class="modal-box-large">
+            <div class="modal-header-large">
+                <h3>Tạo lớp học mới</h3>
+                <button class="close-modal-large" id="closeCreate"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body-large">
+                <div class="form-group-large">
+                    <label>* Tên lớp học</label>
+                    <input type="text" class="form-input-large" placeholder="Nhập tên lớp học">
+                </div>
+                <div class="form-group-large">
+                    <label>Mô tả (không bắt buộc)</label>
+                    <div class="editor-container">
+                        <!-- Menu phía trên -->
+                        <div class="editor-menu-bar">
+                            <span>Tập tin</span>
+                            <span>Sửa</span>
+                            <span>Xem</span>
+                            <span>Chèn</span>
+                            <span>Định dạng</span>
+                            <span>Bảng</span>
+                        </div>
+                        <!-- Thanh công cụ định dạng -->
+                        <div class="editor-toolbar">
+                            <button title phóng to><i class="fa-solid fa-expand"></i></button>
+                            <div class="editor-divider"></div>
+                            <button><i class="fa-solid fa-undo"></i></button>
+                            <button><i class="fa-solid fa-redo"></i></button>
+                            <div class="editor-divider"></div>
+                            <button style="font-weight: bold;">B</button>
+                            <button style="font-style: italic;">I</button>
+                            <button style="text-decoration: underline;">U</button>
+                            <button style="text-decoration: line-through;">S</button>
+                            <div class="editor-divider"></div>
+                            <select>
+                                <option>Arial</option>
+                                <option>Times New Roman</option>
+                            </select>
+                            <select>
+                                <option>12pt</option>
+                                <option>14pt</option>
+                                <option>16pt</option>
+                            </select>
+                            <select>
+                                <option>Đoạn văn</option>
+                                <option>Tiêu đề 1</option>
+                            </select>
+                            <div class="editor-divider"></div>
+                            <button><i class="fa-solid fa-align-left"></i></button>
+                            <button><i class="fa-solid fa-align-center"></i></button>
+                            <button><i class="fa-solid fa-align-right"></i></button>
+                            <button><i class="fa-solid fa-align-justify"></i></button>
+                            <button><i class="fa-solid fa-ellipsis"></i></button>
+                        </div>
+                        <!-- Ô nhập liệu mô tả -->
+                        <textarea class="editor-textarea" placeholder="Nhập mô tả lớp học..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer-large">
+                <button class="btn-cancel-large" id="cancelCreate">Hủy bỏ</button>
+                <button class="btn-submit-large">Tạo lớp học</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL THAM GIA LỚP HỌC -->
+    <div class="modal-overlay" id="joinClassModal">
+        <div class="modal-box-large" style="width: 500px;">
+            <div class="modal-header-large">
+                <h3>Tham gia lớp học</h3>
+                <button class="close-modal-large" id="closeJoin"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body-large">
+                <div class="form-group-large">
+                    <label style="font-weight: bold; color: #202124; font-size: 16px;">Mã lớp</label>
+                    <p style="font-size: 13px; color: #5f6368; margin-bottom: 8px;">Nhận mã lớp từ giảng viên của bạn
+                        rồi nhập mã đó vào đây.</p>
+
+                    <!-- Đã thêm id="inputClassCode" vào đây -->
+                    <input type="text" id="inputClassCode" class="form-input-large" placeholder="Mã lớp">
+                </div>
+            </div>
+            <div class="modal-footer-large">
+                <button class="btn-cancel-large" id="cancelJoin">Hủy bỏ</button>
+
+                <!-- Đã thêm id="btnSubmitJoin" vào đây -->
+                <button class="btn-submit-large" id="btnSubmitJoin">Tham gia</button>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Cập nhật lớp học -->
+    <div class="modal-overlay" id="updateClassModal">
+        <div class="modal-box-large">
+            <div class="modal-header-large">
+                <h3>Cập nhật lớp học</h3>
+                <button class="close-modal-large" id="closeUpdate"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body-large">
+                <div class="form-group-large">
+                    <label>* Tên lớp học</label>
+                    <input type="text" class="form-input-large" id="updateClassNameInput" placeholder="Nhập tên lớp học"
+                        width="95%">
+                </div>
+                <div class="form-group-large">
+                    <label>Mô tả (không bắt buộc)</label>
+                    <div class="editor-container">
+                        <div class="editor-menu-bar">
+                            <span>Tập tin</span><span>Sửa</span><span>Xem</span><span>Chèn</span><span>Định
+                                dạng</span><span>Bảng</span>
+                        </div>
+                        <div class="editor-toolbar">
+                            <button><i class="fa-solid fa-expand"></i></button>
+                            <div class="editor-divider"></div>
+                            <button><i class="fa-solid fa-undo"></i></button>
+                            <button><i class="fa-solid fa-redo"></i></button>
+                            <div class="editor-divider"></div>
+                            <button><i class="fa-solid fa-bold"></i></button>
+                            <button><i class="fa-solid fa-italic"></i></button>
+                            <button><i class="fa-solid fa-underline"></i></button>
+                            <button><i class="fa-solid fa-strikethrough"></i></button>
+                            <div class="editor-divider"></div>
+                            <select>
+                                <option>Arial</option>
+                            </select>
+                            <select>
+                                <option>12pt</option>
+                            </select>
+                            <select>
+                                <option>Đoạn văn</option>
+                            </select>
+                            <div class="editor-divider"></div>
+                            <button><i class="fa-solid fa-align-left"></i></button>
+                            <button><i class="fa-solid fa-align-center"></i></button>
+                            <button><i class="fa-solid fa-align-right"></i></button>
+                            <button><i class="fa-solid fa-align-justify"></i></button>
+                            <button><i class="fa-solid fa-ellipsis"></i></button>
+                        </div>
+                        <textarea class="editor-textarea" placeholder="Nhập mô tả lớp học..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer-large">
+                <button class="btn-cancel-large" id="cancelUpdate">Hủy bỏ</button>
+                <button class="btn-submit-large btn-open-update" id="submitUpdateBtn">Cập nhật</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Thêm bài tập mới -->
+<div id="createExerciseModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; overflow-y: auto;">
+    <div style="background: #fff; width: 1100px; max-height: 95vh; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); overflow-y: auto; font-family: inherit; position: relative; margin: 20px 0;">
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid #dadce0;">
+            <h3 style="margin: 0 auto; font-size: 18px; font-weight: 400; color: #202124;">Thêm bài tập mới</h3>
+            <button id="closeExerciseModalX" style="background: none; border: none; font-size: 18px; cursor: pointer; color: #5f6368; position: absolute; right: 20px;">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Body -->
+        <div style="padding: 24px;">
+            <h4 style="font-size: 14px; font-weight: 500; color: #202124; margin-bottom: 15px;">Thông tin chung</h4>
+
+            <!-- Tên bài tập -->
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                <label style="width: 140px; font-size: 13px; color: #3c4043;">
+                    <span style="color: dimgrey;">*</span> Tên bài tập
+                </label>
+                <input type="text" id="exerciseNameInput" placeholder="Nhập tên bài tập" style="flex: 1; padding: 10px 14px; border: 1px solid #dadce0; border-radius: 4px; font-size: 14px; outline: none;">
+            </div>
+
+            <!-- Thời gian nộp bài -->
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                <label style="width: 140px; font-size: 13px; color: #3c4043;">Thời gian nộp bài</label>
+                <div style="display: flex; align-items: center; gap: 10px; flex: 1;">
+                    <!-- Ô thời gian bắt đầu -->
+                    <div style="display: flex; align-items: center; border: 1px solid #dadce0; border-radius: 4px; padding: 4px 12px; background: #fff; width: 220px;">
+                        <i class="fa-regular fa-clock" style="color: #5f6368; margin-right: 8px;"></i>
+                        <input type="datetime-local" id="startTimeInput" style="border: none; outline: none; width: 100%; font-size: 13px; color: #3c4043; background: transparent;">
+                    </div>
+                    <span style="font-size: 13px; color: #5f6368;">đến</span>
+                    <!-- Ô thời gian kết thúc -->
+                    <div style="display: flex; align-items: center; border: 1px solid #dadce0; border-radius: 4px; padding: 4px 12px; background: #fff; width: 220px;">
+                        <i class="fa-regular fa-clock" style="color: #5f6368; margin-right: 8px;"></i>
+                        <input type="datetime-local" id="endTimeInput" style="border: none; outline: none; width: 100%; font-size: 13px; color: #3c4043; background: transparent;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hướng dẫn -->
+            <div style="display: flex; margin-bottom: 25px;">
+                <label style="width: 140px; font-size: 13px; color: #3c4043; padding-top: 8px;">Hướng dẫn</label>
+                <div style="flex: 1; border: 1px solid #dadce0; border-radius: 4px;">
+                    <div style="background: #f8f9fa; padding: 8px 12px; border-bottom: 1px solid #dadce0; display: flex; gap: 15px; font-size: 13px; color: #3c4043; align-items: center;">
+                        <span style="cursor: pointer;">Tập tin</span>
+                        <span style="cursor: pointer;">Sửa</span>
+                        <span style="cursor: pointer;">Xem</span>
+                        <span style="cursor: pointer;">Chèn</span>
+                        <span style="cursor: pointer;">Định dạng</span>
+                        <span style="cursor: pointer;">Bảng</span>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 6px 12px; border-bottom: 1px solid #dadce0; display: flex; gap: 12px; font-size: 14px; color: #3c4043; align-items: center; flex-wrap: wrap;">
+                        <i class="fa-solid fa-expand" style="cursor: pointer;"></i>
+                        <i class="fa-solid fa-rotate-left" style="cursor: pointer;"></i>
+                        <i class="fa-solid fa-rotate-right" style="cursor: pointer;"></i>
+                        <span style="border-left: 1px solid #dadce0; height: 16px; margin: 0 2px;"></span>
+                        <i class="fa-solid fa-bold" style="cursor: pointer;"></i>
+                        <i class="fa-solid fa-italic" style="cursor: pointer;"></i>
+                        <i class="fa-solid fa-underline" style="cursor: pointer;"></i>
+                        <i class="fa-solid fa-strikethrough" style="cursor: pointer;"></i>
+                        <span style="border-left: 1px solid #dadce0; height: 16px; margin: 0 2px;"></span>
+                        <span style="border: 1px solid #dadce0; border-radius: 3px; padding: 2px 8px; font-size: 12px; background: #fff; display: flex; align-items: center; gap: 8px; cursor: pointer;">Arial <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></span>
+                        <span style="border: 1px solid #dadce0; border-radius: 3px; padding: 2px 8px; font-size: 12px; background: #fff; display: flex; align-items: center; gap: 8px; cursor: pointer;">12pt <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></span>
+                        <span style="border: 1px solid #dadce0; border-radius: 3px; padding: 2px 8px; font-size: 12px; background: #fff; display: flex; align-items: center; gap: 8px; cursor: pointer;">Đoạn văn <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></span>
+                        <i class="fa-solid fa-ellipsis" style="cursor: pointer; margin-left: auto;"></i>
+                    </div>
+                    <textarea placeholder="" style="width: 100%; height: 120px; border: none; padding: 12px; outline: none; font-family: inherit; font-size: 14px; resize: vertical; box-sizing: border-box;"></textarea>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid #dadce0; margin: 20px 0;">
+
+            <h4 style="font-size: 14px; font-weight: 500; color: #202124; margin-bottom: 5px;">Danh sách các tệp bài tập cần nộp (tối đa 5 file bài tập)</h4>
+            
+            <!-- Dòng tiêu đề "Mặc định" và nút Xóa (Thêm id="fileHeaderRow") -->
+            <div id="fileHeaderRow" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <div style="font-size: 13px; color: #5f6368;">Mặc định</div>
+                <a href="#" id="deleteFileBtn" style="color: #c5221f; font-size: 13px; text-decoration: none;">Xóa</a>
+            </div>
+
+            <!-- Khung cấu hình file nộp (Thêm id="fileConfigBox") -->
+            <!-- Khung cấu hình file nộp -->
+<div id="fileConfigBox" style="border: 1px solid #dadce0; border-radius: 8px; padding: 16px; background: #fff; margin-bottom: 15px;">
+    <div style="display: flex; align-items: center; margin-bottom: 12px;">
+        <label style="width: 140px; font-size: 13px; color: #3c4043;">Tên</label>
+        <input type="text" value="Mặc định" style="flex: 1; padding: 8px 12px; border: 1px solid #dadce0; border-radius: 4px; font-size: 13px; color: #3c4043;">
+    </div>
+
+    <div style="display: flex; margin-bottom: 12px;">
+        <label style="width: 140px; font-size: 13px; color: #3c4043; padding-top: 6px;">Mô tả</label>
+        <textarea placeholder="Nhập mô tả" style="flex: 1; height: 60px; border: 1px solid #dadce0; border-radius: 4px; padding: 8px 12px; font-family: inherit; font-size: 13px; outline: none;"></textarea>
+    </div>
+
+    <div style="display: flex; align-items: center; margin-bottom: 12px;">
+        <label style="width: 140px; font-size: 13px; color: #3c4043;">Định dạng</label>
+        <div style="display: flex; gap: 20px; font-size: 13px; color: #3c4043; flex-wrap: wrap; align-items: center;">
+            <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;"><input type="checkbox" id="pdfCheckbox" checked style="accent-color: #1a73e8;"> PDF</label>
+            <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;"><input type="checkbox" id="wordCheckbox" checked style="accent-color: #1a73e8;"> Word</label>
+            
+            <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;"><input type="checkbox" style="accent-color: #1a73e8;"> Excel</label>
+            <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;"><input type="checkbox" style="accent-color: #1a73e8;"> PowerPoint</label>
+            <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;"><input type="checkbox" style="accent-color: #1a73e8;"> Hình ảnh</label>
+            <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;"><input type="checkbox" style="accent-color: #1a73e8;"> Khác</label>
+        </div>
+    </div>
+
+    <div style="display: flex; align-items: center;">
+        <label style="width: 140px; font-size: 13px; color: #3c4043;">Kiểm tra trùng lặp</label>
+        <input type="checkbox" id="duplicateCheckbox" checked style="width: 13px; height: 13px; accent-color: #1a73e8; cursor: pointer;">
+    </div>
+</div>
+
+            <!-- Nút Thêm tệp bài tập (Thêm id="addFileBtn") -->
+            <a href="#" id="addFileBtn" style="color: #1a73e8; font-size: 13px; text-decoration: none; display: inline-block; margin-bottom: 10px;">+ Thêm tệp bài tập</a>
+        </div>
+
+        <!-- Footer Actions -->
+        <div style="display: flex; justify-content: flex-end; gap: 10px; padding: 12px 24px; background: #f8f9fa; border-top: 1px solid #dadce0;">
+            <button id="cancelExerciseModalBtn" style="background: #fff; border: 1px solid #dadce0; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; color: #3c4043;">Hủy bỏ</button>
+            <button id="saveExerciseBtn" disabled style="background: #1a73e8; color: #fff; border: none; padding: 6px 16px; border-radius: 4px; cursor: not-allowed; font-size: 14px; opacity: 0.6;">Thêm bài tập</button>
+        </div>
+    </div>
+</div>
+
+<<!-- Modal Xác nhận xóa bài tập -->
+    <div id="deleteConfirmModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div style="background: #fff; padding: 24px; border-radius: 8px; width: 400px; border: 2px solid #007BFF; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-family: Arial, sans-serif;">
+            <h3 style="margin-top: 0; color: #202124; text-align: center; font-size: 22px; font-weight: 600;">Xóa bài tập</h3>
+            <p style="color: #5f6368; font-size: 18px; line-height: 1.5;">Bạn có chắc chắn muốn xóa bài tập này không?</p>
+            <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+                <button id="cancelDeleteBtn" class="btn-cancel" style="background: transparent; border: 1px solid #dadce0; background-color: #f94c17; color: #fff; font-size: 16px; padding: 9px 17px; border-radius: 4px; cursor: pointer; font-weight: 500; ">Hủy</button>
+                <button id="confirmDeleteBtn" class="btn-confirm" style="background: #007BFF; border: none; color: #fff; font-size: 16px; padding: 9px 17px; border-radius: 4px; cursor: pointer; font-weight: 500;">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+
+      <!-- Modal Cập nhật bài tập -->
+<div id="updateExerciseModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; overflow-y: auto;">
+    <div style="background: #fff; width: 1100px; max-height: 95vh; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); overflow-y: auto; font-family: inherit; position: relative; margin: 20px 0;">
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid #dadce0;">
+            <h3 style="margin: 0 auto; font-size: 18px; font-weight: 400; color: #202124;">Cập nhật bài tập</h3>
+            <button id="closeUpdateModalX" style="background: none; border: none; font-size: 18px; cursor: pointer; color: #5f6368; position: absolute; right: 20px;">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Body -->
+        <div style="padding: 24px;">
+            <h4 style="font-size: 14px; font-weight: 500; color: #202124; margin-bottom: 15px;">Thông tin chung</h4>
+
+            <!-- Tên bài tập -->
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                <label style="width: 140px; font-size: 13px; color: #3c4043;">
+                    <span style="color: dimgrey;">*</span> Tên bài tập
+                </label>
+                <input type="text" id="updateExerciseNameInput" placeholder="Nhập tên bài tập" style="flex: 1; padding: 10px 14px; border: 1px solid #dadce0; border-radius: 4px; font-size: 14px; outline: none;">
+            </div>
+
+            <!-- Thời gian nộp bài -->
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                <label style="width: 140px; font-size: 13px; color: #3c4043;">Thời gian nộp bài</label>
+                <div style="display: flex; align-items: center; gap: 10px; flex: 1;">
+                    <!-- Ô thời gian bắt đầu -->
+                    <div style="display: flex; align-items: center; border: 1px solid #dadce0; border-radius: 4px; padding: 4px 12px; background: #fff; width: 220px;">
+                        <i class="fa-regular fa-clock" style="color: #5f6368; margin-right: 8px;"></i>
+                        <input type="datetime-local" id="updateStartTimeInput" style="border: none; outline: none; width: 100%; font-size: 13px; color: #3c4043; background: transparent;">
+                    </div>
+                    <span style="font-size: 13px; color: #5f6368;">đến</span>
+                    <!-- Ô thời gian kết thúc -->
+                    <div style="display: flex; align-items: center; border: 1px solid #dadce0; border-radius: 4px; padding: 4px 12px; background: #fff; width: 220px;">
+                        <i class="fa-regular fa-clock" style="color: #5f6368; margin-right: 8px;"></i>
+                        <input type="datetime-local" id="updateEndTimeInput" style="border: none; outline: none; width: 100%; font-size: 13px; color: #3c4043; background: transparent;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hướng dẫn -->
+            <div style="display: flex; margin-bottom: 25px;">
+                <label style="width: 140px; font-size: 13px; color: #3c4043; padding-top: 8px;">Hướng dẫn</label>
+                <div style="flex: 1; border: 1px solid #dadce0; border-radius: 4px;">
+                    <div style="background: #f8f9fa; padding: 8px 12px; border-bottom: 1px solid #dadce0; display: flex; gap: 15px; font-size: 13px; color: #3c4043; align-items: center;">
+                        <span style="cursor: pointer;">Tập tin</span>
+                        <span style="cursor: pointer;">Sửa</span>
+                        <span style="cursor: pointer;">Xem</span>
+                        <span style="cursor: pointer;">Chèn</span>
+                        <span style="cursor: pointer;">Định dạng</span>
+                        <span style="cursor: pointer;">Bảng</span>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 6px 12px; border-bottom: 1px solid #dadce0; display: flex; gap: 12px; font-size: 14px; color: #3c4043; align-items: center; flex-wrap: wrap;">
+                        <i class="fa-solid fa-expand" style="cursor: pointer;"></i>
+                        <i class="fa-solid fa-rotate-left" style="cursor: pointer;"></i>
+                        <i class="fa-solid fa-rotate-right" style="cursor: pointer;"></i>
+                        <span style="border-left: 1px solid #dadce0; height: 16px; margin: 0 2px;"></span>
+                        <i class="fa-solid fa-bold" style="cursor: pointer;"></i>
+                        <i class="fa-solid fa-italic" style="cursor: pointer;"></i>
+                        <i class="fa-solid fa-underline" style="cursor: pointer;"></i>
+                        <i class="fa-solid fa-strikethrough" style="cursor: pointer;"></i>
+                        <span style="border-left: 1px solid #dadce0; height: 16px; margin: 0 2px;"></span>
+                        <span style="border: 1px solid #dadce0; border-radius: 3px; padding: 2px 8px; font-size: 12px; background: #fff; display: flex; align-items: center; gap: 8px; cursor: pointer;">Arial <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></span>
+                        <span style="border: 1px solid #dadce0; border-radius: 3px; padding: 2px 8px; font-size: 12px; background: #fff; display: flex; align-items: center; gap: 8px; cursor: pointer;">12pt <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></span>
+                        <span style="border: 1px solid #dadce0; border-radius: 3px; padding: 2px 8px; font-size: 12px; background: #fff; display: flex; align-items: center; gap: 8px; cursor: pointer;">Đoạn văn <i class="fa-solid fa-chevron-down" style="font-size: 10px;"></i></span>
+                        <i class="fa-solid fa-ellipsis" style="cursor: pointer; margin-left: auto;"></i>
+                    </div>
+                    <textarea id="updateDescTextarea" placeholder="" style="width: 100%; height: 120px; border: none; padding: 12px; outline: none; font-family: inherit; font-size: 14px; resize: vertical; box-sizing: border-box;"></textarea>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid #dadce0; margin: 20px 0;">
+
+            <h4 style="font-size: 14px; font-weight: 500; color: #202124; margin-bottom: 5px;">Danh sách các tệp bài tập cần nộp (tối đa 5 file bài tập)</h4>
+            
+            <div id="updateFileHeaderRow" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <div style="font-size: 13px; color: #5f6368;">Mặc định</div>
+                <a href="#" id="updateDeleteFileBtn" style="color: #c5221f; font-size: 13px; text-decoration: none;">Xóa</a>
+            </div>
+
+            <div id="updateFileConfigBox" style="border: 1px solid #dadce0; border-radius: 8px; padding: 16px; background: #fff; margin-bottom: 15px;">
+                <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                    <label style="width: 140px; font-size: 13px; color: #3c4043;">Tên</label>
+                    <input type="text" value="Mặc định" style="flex: 1; padding: 8px 12px; border: 1px solid #dadce0; border-radius: 4px; font-size: 13px; color: #3c4043;">
+                </div>
+
+                <div style="display: flex; margin-bottom: 12px;">
+                    <label style="width: 140px; font-size: 13px; color: #3c4043; padding-top: 6px;">Mô tả</label>
+                    <textarea placeholder="Nhập mô tả" style="flex: 1; height: 60px; border: 1px solid #dadce0; border-radius: 4px; padding: 8px 12px; font-family: inherit; font-size: 13px; outline: none;"></textarea>
+                </div>
+
+                <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                    <label style="width: 140px; font-size: 13px; color: #3c4043;">Định dạng</label>
+                    <div style="display: flex; gap: 20px; font-size: 13px; color: #3c4043; flex-wrap: wrap; align-items: center;">
+                        <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;"><input type="checkbox" checked style="accent-color: #1a73e8;"> PDF</label>
+                        <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;"><input type="checkbox" checked style="accent-color: #1a73e8;"> Word</label>
+                        <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;"><input type="checkbox" style="accent-color: #1a73e8;"> Excel</label>
+                        <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;"><input type="checkbox" style="accent-color: #1a73e8;"> PowerPoint</label>
+                        <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;"><input type="checkbox" style="accent-color: #1a73e8;"> Hình ảnh</label>
+                        <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;"><input type="checkbox" style="accent-color: #1a73e8;"> Khác</label>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center;">
+                    <label style="width: 140px; font-size: 13px; color: #3c4043;">Kiểm tra trùng lặp</label>
+                    <input type="checkbox" checked style="width: 13px; height: 13px; accent-color: #1a73e8; cursor: pointer;">
+                </div>
+            </div>
+
+            <a href="#" style="color: #1a73e8; font-size: 13px; text-decoration: none; display: inline-block; margin-bottom: 10px;">+ Thêm tệp bài tập</a>
+        </div>
+
+        <!-- Footer Actions -->
+        <div style="display: flex; justify-content: flex-end; gap: 10px; padding: 12px 24px; background: #f8f9fa; border-top: 1px solid #dadce0;">
+            <button id="cancelUpdateModalBtn" style="background: #fff; border: 1px solid #dadce0; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 14px; color: #3c4043;">Hủy bỏ</button>
+            <button id="saveUpdateExerciseBtn" style="background: #1a73e8; color: #fff; border: none; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 14px;">Cập nhật</button>
+        </div>
+    </div>
+</div>
+
+    <script src="../js/quanlylophoc.js"></script>
+    <script src="../js/thembaitap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</body>
+</html>

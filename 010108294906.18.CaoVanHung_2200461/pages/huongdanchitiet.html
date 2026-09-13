@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hướng dẫn chi tiết</title>
+    <link rel="stylesheet" href="../css/huongdanchitiet.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <style>
+      /* CSS cho phần Main */
+      .main-container {
+        display: flex;
+        height: calc(100vh - 70px); /* Trừ đi chiều cao của header (nếu có) */
+        background-color: #f0f2f5;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Cột bên trái */
+      .sidebar-left {
+        width: 500px;
+        background-color: #f0f2f5;
+        border-right: 1px solid #e0e0e0;
+        padding-top: 0px;
+      }
+
+      .sidebar-left ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .sidebar-left li {
+        padding: 15px 40px;
+        cursor: pointer;
+        color: #333;
+        font-size: 25px;
+        border-bottom: 1px solid #e5e5e5;
+        transition: background 0.2s;
+        font-weight: 300;
+      }
+
+      .sidebar-left li:hover {
+        background-color: #e4e6eb;
+      }
+
+      /* Cột bên phải */
+      .content-right {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f2f5;
+      }
+
+      .content-right h1 {
+        font-size: 60px;
+        font-weight: bold;
+        color: #000;
+        letter-spacing: 2px;
+      }
+      /*PHần header*/
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #ffffff;
+        color: white;
+      }
+      .menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /* Căn giữa theo chiều dọc */
+        padding: 10px 50px;
+      }
+      .menu-container {
+        display: flex;
+        align-items: center;
+        /* Căn giữa theo chiều dọc */
+        justify-content: space-between;
+        /* Đẩy chữ sang bên phải */
+        width: 100%;
+        /* Cho khối chiếm toàn chiều ngang */
+      }
+      .logo {
+        display: flex;
+        /* Cho ảnh và chữ nằm ngang */
+        align-items: center;
+        /* Căn giữa theo chiều dọc */
+        gap: 30px;
+        /* Khoảng cách giữa ảnh và chữ */
+      }
+      .logo p {
+        margin: 0;
+        text-decoration: none;
+        color: #0655ff;
+        font-weight: bold;
+        font-size: 20px !important; /* Cùng kích thước 20px với menu */
+        white-space: nowrap; /* Giữ trên 1 hàng ngang */
+      }
+      .menu img {
+        width: 100px;
+        /* Tăng kích thước ảnh */
+        height: auto;
+        /* Giữ tỷ lệ vuông để không méo */
+        border-radius: 50%;
+        /* Bo tròn ảnh, loại bỏ viền vuông */
+        object-fit: cover;
+        /* Giữ phần trung tâm, cắt viền trắng */
+      }
+      .menu ul {
+        list-style: none;
+        display: flex;
+        gap: 30px;
+        align-items: center;
+        /* Căn giữa các mục trong danh sách */
+      }
+      .menu a {
+        text-decoration: none;
+        color: #0655ff;
+        font-weight: bold;
+        font-size: 20px !important; /* Cùng kích thước 20px */
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+      }
+      .menu a:hover {
+        color: red;
+      }
+
+      /* Container nút Tài khoản */
+      .user-dropdown-container {
+        position: relative;
+        display: inline-block;
+      }
+
+      .user-avatar-btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 20px;
+        transition: background 0.2s ease;
+      }
+
+      .user-avatar-btn:hover {
+        background-color: rgba(0, 123, 255, 0.08);
+      }
+
+      .user-avatar-btn img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid #007bff;
+      }
+
+      .user-avatar-btn span {
+        font-weight: bold;
+        color: #0655ff;
+        font-size: 20px !important; /* Cùng kích thước 20px */
+      }
+
+      .menu-container,
+      .logo,
+      .menu ul,
+      .menu ul li,
+      .user-avatar-btn {
+        display: flex !important;
+        align-items: center !important; /* Căn thẳng trục dọc */
+      }
+      /*.dropdown-arrow {
+    font-size: 12px;
+    color: #666;
+    transition: transform 0.2s ease;
+}*/
+      .dropdown-arrow {
+        font-size: 14px;
+        color: #0655ff;
+      }
+
+      .user-dropdown-container.active .dropdown-arrow {
+        transform: rotate(180deg);
+      }
+
+      /* Khung Menu Dropdown */
+      .user-dropdown-menu {
+        display: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        background-color: #ffffff;
+        min-width: 200px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        border-radius: 8px;
+        padding: 8px 0;
+        z-index: 1000;
+      }
+
+      .user-dropdown-menu.show {
+        display: block;
+        animation: fadeIn 0.2s ease-in-out;
+      }
+
+      /* Các mục Menu */
+      .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 18px;
+        color: #333333 !important; /* Mặc định chữ & icon màu tối */
+        text-decoration: none;
+        font-size: 15px;
+        transition: all 0.2s ease;
+      }
+
+      /* Chỉ khi Di chuột (Hover) mới chuyển màu xanh */
+      .dropdown-item:hover {
+        background-color: #f0f7ff;
+        color: #007bff !important;
+      }
+
+      .dropdown-item:hover i {
+        color: #007bff !important;
+      }
+
+      .dropdown-item i {
+        font-size: 16px;
+        width: 20px;
+        text-align: center;
+        color: #555555;
+        transition: color 0.2s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Hiển thị dropdown khi HOVER vào container */
+      .user-dropdown-container:hover .user-dropdown-menu {
+        display: block;
+        animation: fadeIn 0.2s ease-in-out;
+      }
+
+      /* Xoay mũi tên khi HOVER */
+      .user-dropdown-container:hover .dropdown-arrow {
+        transform: rotate(180deg);
+      }
+
+      /* Đổi màu nền nút khi HOVER */
+      .user-dropdown-container:hover .user-avatar-btn {
+        background-color: rgba(0, 123, 255, 0.08);
+      }
+
+      /* Tạo khoảng đệm ẩn giúp chuột di chuyển xuống menu không bị mất hover */
+      .user-dropdown-menu::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 0;
+        width: 100%;
+        height: 10px;
+      }
+
+      /* Thu hẹp khoảng cách giữa 3 mục */
+      .user-dropdown-menu .dropdown-item {
+        padding: 10px 16px !important; /* Giảm chiều cao trên/dưới xuống còn 6px */
+        line-height: 1.2 !important; /* Reset line-height cũ không cho bị giãn dòng */
+        margin: 0 !important; /* Xóa margin thừa nếu có */
+        min-height: unset !important; /* Xóa chiều cao tối thiểu thừa */
+      }
+
+      /* Khung viền ngoài bao quanh menu */
+      .user-dropdown-menu {
+        padding: 10px 0 !important; /* Giảm lề trên/dưới của toàn bộ khung */
+      }
+
+      /*Phần main trang chủ*/
+      .menu-one {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 40px;
+      }
+
+      .welcome-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+        padding: 20px 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .welcome-section p {
+        font-size: 18px;
+        color: #333;
+      }
+
+      .welcome-section strong {
+        color: #000;
+      }
+
+      #uploadBtn {
+        background-color: #2b8cff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      #uploadBtn:hover {
+        background-color: #1e6fd1;
+      }
+
+      /* Form upload */
+      .upload-form {
+        display: none;
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 400px;
+        margin: 40px auto;
+      }
+
+      .upload-form h3 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .upload-form form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .upload-form input[type="file"] {
+        border: 1px solid #ccc;
+        padding: 8px;
+        border-radius: 4px;
+      }
+
+      .upload-form button {
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .upload-form button[type="submit"] {
+        background-color: #2b8cff;
+        color: white;
+      }
+
+      .upload-form button[type="button"] {
+        background-color: #ccc;
+        color: #333;
+      }
+
+      .main-container {
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
+        background-size: 40px 40px;
+      }
+      .main-container h1 {
+        color: #2ca02c;
+        font-size: 2em;
+        margin-bottom: 40px;
+      }
+      .features-container {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        flex-wrap: wrap;
+      }
+      .features-item {
+        width: 400px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-align: left;
+      }
+      .features-item p {
+        color: #555;
+        font-size: 1em;
+        line-height: 1.6;
+        position: relative;
+      }
+      .features-item p::before {
+        content: "“";
+        font-size: 2em;
+        color: #999;
+        position: absolute;
+        left: -15px;
+        top: -20px;
+      }
+      .features-item p::after {
+        content: "”";
+        font-size: 2em;
+        color: #999;
+        position: absolute;
+        right: -10px;
+        bottom: -25px;
+      }
+      /**/
+      .faq-section {
+        text-align: center;
+        padding-top: 10px;
+        padding-left: 20px;
+        padding-bottom: 40px;
+        padding-right: 20px;
+        background-size: 40px 40px;
+      }
+      .faq-section h1 {
+        color: #2ca02c;
+        font-size: 2em;
+        margin-bottom: 40px;
+      }
+      .faq-container {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        flex-wrap: wrap;
+      }
+      .faq-item {
+        width: 400px;
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-align: left;
+      }
+      .faq-item h2 {
+        color: #00a2ff;
+        font-size: 1.2em;
+        margin-bottom: 15px;
+      }
+      .faq-item p {
+        color: #555;
+        font-size: 1em;
+        line-height: 1.6;
+        position: relative;
+      }
+      .faq-item p::before {
+        content: "“";
+        font-size: 2em;
+        color: #999;
+        position: absolute;
+        left: -15px;
+        top: -15px;
+      }
+      .faq-item p::after {
+        content: "”";
+        font-size: 2em;
+        color: #999;
+        position: absolute;
+        right: -10px;
+        bottom: -25px;
+      }
+
+      /*Phần footer trang chủ*/
+      footer {
+        background-color: #012541;
+        /* Màu xanh thương hiệu */
+        padding: 30px 60px;
+        display: flex;
+        justify-content: space-between;
+        /* Chia đều hai bên */
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .footer-left {
+        max-width: 60%;
+        margin-left: 150px;
+      }
+      .footer-left h4 {
+        color: #ffd700;
+        /* Màu vàng nổi bật */
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+      .footer-left p {
+        margin: 5px 0;
+        line-height: 1.6;
+      }
+      .footer-right {
+        text-align: right;
+        margin-top: 10px;
+        margin-right: 150px;
+      }
+      .footer-right a {
+        color: #fff;
+        text-decoration: none;
+        margin-left: 15px;
+        margin-right: 15px;
+        font-weight: bold;
+      }
+      .footer-right a:hover {
+        color: red;
+      }
+      .icons {
+        margin-top: 15px;
+        margin-right: 6px;
+      }
+      .icons i {
+        font-size: 20px;
+        margin-left: 10px;
+        color: #fff;
+        /* Màu biểu tượng trắng */
+        background-color: #0655ff;
+        /* Nền xanh đồng bộ */
+        transition: 0.3s;
+        border-radius: 50%;
+        /* Bo tròn icon */
+        border: none;
+        box-shadow: none;
+        padding: 10px;
+        /* Tạo khoảng cách đều */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .icons i:hover {
+        transform: scale(1.3);
+        color: red;
+        background-color: white;
+      }
+      .hotline-one {
+        padding-top: 15px;
+        padding-right: 150px;
+      }
+      .hotline-two {
+        padding-top: 15px;
+        padding-right: 32px;
+      }
+
+      /* ==== CSS bổ sung: Phần các bước sử dụng trang web ==== */
+      .guide-section {
+        padding: 40px;
+        background-color: #ffffff;
+      }
+      .guide-section h1 {
+        text-align: center;
+        color: #2ca02c;
+        font-size: 2em;
+        margin-bottom: 40px;
+      }
+      .guide-step {
+        max-width: 900px;
+        margin: 0 auto 40px auto;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-align: left;
+        color: black;
+      }
+      .guide-step h2 {
+        color: #0655ff;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+      }
+      .guide-step ol {
+        color: #333;
+        font-size: 1em;
+        line-height: 1.8;
+        padding-left: 20px;
+      }
+      .guide-step img {
+        width: 100%;
+        max-width: 700px;
+        display: block;
+        margin: 20px auto 0 auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      }
+      .guide-step ol li {
+        margin-bottom: 25px;
+      }
+      .guide-step ol li:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Ghi đè canh giữa mặc định của .content-right để hiển thị nội dung hướng dẫn dạng cuộn dọc, căn trái */
+      .content-right.guide-content-right {
+        display: block;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        padding: 0;
+      }
+      .guide-content-right .guide-section {
+        padding: 30px 40px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <nav class="menu">
+        <div class="menu-container">
+          <div class="logo">
+            <img src="../images/logo.jpg" />
+            <p>Phần mềm kiểm tra trùng lặp văn bản</p>
+          </div>
+          <ul>
+            <li>
+              <a href="../pages/trangchu_saudn.html"> Trang chủ </a>
+            </li>
+            <li>
+              <a href="../pages/quanlytailieu.html"> Quản lý tài liệu </a>
+            </li>
+            <li>
+              <a href="../pages/quanlylophoc.html"> Quản lý lớp học </a>
+            </li>
+            <li>
+              <a href="../pages/huongdanchitiet.html"> Hướng dẫn chi tiết </a>
+            </li>
+            <li class="user-dropdown-container">
+              <div class="user-avatar-btn" id="userMenuBtn">
+                <img
+                  src="../images/default-avatar.png"
+                  id="userAvatarImg"
+                  alt="Avatar"
+                />
+                <span id="navUserName">Tài khoản</span>
+                <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+              </div>
+
+              <!-- Menu Dropdown -->
+              <div class="user-dropdown-menu" id="userDropdownMenu">
+                <a href="../pages/taikhoan.html" class="dropdown-item">
+                  <i class="fa-regular fa-user"></i>
+                  <span>Tài khoản</span>
+                </a>
+                <a href="../pages/matkhau.html" class="dropdown-item">
+                  <i class="fa-solid fa-lock"></i>
+                  <span>Đổi mật khẩu</span>
+                </a>
+                <a
+                  href="../pages/dangnhap.html"
+                  class="dropdown-item text-danger"
+                  id="logoutBtn"
+                >
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <span>Đăng xuất</span>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="main-container">
+        <!-- Menu bên trái -->
+        <div class="sidebar-left">
+          <ul>
+            <li onclick="hienThiXinChao(event)">Đăng ký tài khoản</li>
+            <li onclick="hienThiXinChao(event)">Đăng nhập tài khoản</li>
+            <li onclick="hienThiXinChao(event)">Tải tài liệu lên</li>
+            <li onclick="hienThiXinChao(event)">Xem kết quả chi tiết</li>
+          </ul>
+        </div>
+
+        <!-- Nội dung bên phải: Các bước sử dụng trang web -->
+        <div class="content-right guide-content-right" id="contentArea">
+          <div class="guide-section">
+            <h1>Các bước sử dụng trang web</h1>
+
+            <!-- Bước 1: Đăng ký tài khoản -->
+            <div class="guide-step">
+              <h2>Bước 1: Đăng ký tài khoản</h2>
+              <p>
+                Tại trang chủ, nhấn vào nút <strong>"Đăng ký"</strong> ở góc
+                trên bên phải màn hình để chuyển đến trang đăng ký và tạo tài
+                khoản mới.
+              </p>
+              <img
+                src="../images/huongdandangky.jpg"
+                alt="Nhấn nút Đăng ký trên trang chủ"
+              />
+            </div>
+
+            <!-- Bước 2: Đăng nhập tài khoản -->
+            <div class="guide-step">
+              <h2>Bước 2: Đăng nhập tài khoản</h2>
+              <p>
+                Tại trang chủ, nhấn vào nút <strong>"Đăng nhập"</strong> ở góc
+                trên bên phải màn hình, sau đó nhập tài khoản và mật khẩu để vào
+                hệ thống.
+              </p>
+              <img
+                src="../images/huongdandangnhap.jpg"
+                alt="Nhấn nút Đăng nhập trên trang chủ"
+              />
+            </div>
+
+            <!-- Bước 3: Tải tài liệu lên kiểm tra -->
+            <div class="guide-step">
+              <h2>Bước 3: Tải tài liệu lên kiểm tra</h2>
+              <ol>
+                <li>
+                  Sau khi đăng nhập, chọn mục
+                  <strong>"Quản lý tài liệu"</strong> trên thanh menu, hoặc nhấn
+                  nút <strong>"Tải tài liệu lên kiểm tra"</strong> ngay ở trang
+                  chủ.
+                  <img
+                    src="../images/taitailieulen1.jpg"
+                    alt="Chọn Quản lý tài liệu hoặc nút Tải tài liệu lên kiểm tra"
+                  />
+                </li>
+                <li>
+                  Tại trang Quản lý tài liệu, nhấn nút
+                  <strong>"Kiểm tra tài liệu"</strong> ở góc trên bên phải để mở
+                  cửa sổ tải file lên.
+                  <img
+                    src="../images/taitailieulen2.jpg"
+                    alt="Nhấn nút Kiểm tra tài liệu"
+                  />
+                </li>
+                <li>
+                  Trong cửa sổ hiện ra, nhấn
+                  <strong>"click để chọn file"</strong> (hoặc kéo thả file vào
+                  khung) để chọn tài liệu cần kiểm tra — hỗ trợ định dạng .doc,
+                  .docx, .pdf, dung lượng tối đa 20MB — đồng thời nhập họ và tên
+                  tác giả.
+                  <img
+                    src="../images/taitailieulen3.jpg"
+                    alt="Chọn file tài liệu cần kiểm tra"
+                  />
+                </li>
+                <li>
+                  Sau khi chọn file, kiểm tra lại thông tin tài liệu, chọn phạm
+                  vi kiểm tra (<strong>Kiểm tra toàn bộ</strong> hoặc
+                  <strong>Kiểm tra một phần</strong>), rồi nhấn nút
+                  <strong>"Kiểm tra tài liệu"</strong> để bắt đầu xử lý.
+                  <img
+                    src="../images/taitailieulen4.jpg"
+                    alt="Xác nhận tài liệu và bắt đầu kiểm tra"
+                  />
+                </li>
+              </ol>
+            </div>
+
+            <!-- Bước 4: Xem kết quả chi tiết -->
+            <div class="guide-step">
+              <h2>Bước 4: Xem kết quả chi tiết</h2>
+              <ol>
+                <li>
+                  Sau khi tải lên, tài liệu sẽ hiển thị trong danh sách với
+                  trạng thái <strong>"Đang xử lý"</strong>. Bạn chờ trong giây
+                  lát để hệ thống phân tích nội dung.
+                  <img
+                    src="../images/taitailieulen5.jpg"
+                    alt="Tài liệu đang ở trạng thái xử lý"
+                  />
+                </li>
+                <li>
+                  Khi xử lý xong, trạng thái chuyển thành
+                  <strong>"Đã xử lý"</strong> và hệ thống hiển thị tỷ lệ trùng
+                  lặp (%). Nhấn vào liên kết <strong>"chi tiết"</strong> để xem
+                  thông tin cụ thể.
+                  <img
+                    src="../images/taitailieulen6.jpg"
+                    alt="Kết quả tỷ lệ trùng lặp và liên kết xem chi tiết"
+                  />
+                </li>
+                <li>
+                  Trang kết quả chi tiết hiển thị toàn bộ nội dung tài liệu; các
+                  đoạn văn bản bị trùng lặp sẽ được đánh dấu (highlight) để bạn
+                  dễ dàng nhận biết và đối chiếu.
+                  <img
+                    src="../images/taitailieulen7.jpg"
+                    alt="Nội dung trùng lặp được đánh dấu trong tài liệu"
+                  />
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="footer-left">
+        <p>
+          Copyright © 2016 Trường Đại học Công nghiệp Việt-Hung. All Rights
+          Reserved.
+        </p>
+        <h4>Địa điểm đào tạo:</h4>
+        <p>
+          <strong>Cơ sở Sơn Tây:</strong> Số 16 Hữu Nghị, phường Tùng Thiện, TP.
+          Hà Nội
+        </p>
+        <p>
+          <strong>Cơ sở Thạch Thất:</strong> Số 88, đường 419 - Tây Phương, TP.
+          Hà Nội
+        </p>
+        <p>
+          <strong>Cơ sở Thanh Xuân:</strong> Số 27 Lê Văn Lương, phường Thanh
+          Xuân, TP. Hà Nội
+        </p>
+      </div>
+      <div class="footer-right">
+        <div>
+          <a href="#">Điều khoản sử dụng</a> | <a href="#">Quyền riêng tư</a>
+        </div>
+        <div class="icons">
+          <a href="https://www.facebook.com/dhcnvh/" target="_blank">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a
+            href="https://tuyensinh.viu.edu.vn/kham-pha-viu.html"
+            target="_blank"
+          >
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+          <a href="mailto:dhcnviethung.viu@gmail.com">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+          <a href="tel:0974.966.966">
+            <i class="fa-solid fa-phone"></i>
+          </a>
+        </div>
+        <div class="hotline-one">
+          <a>Hotline: 0974.966.966</a>
+        </div>
+        <div class="hotline-two">
+          <a>Email: dhcnviethung.viu@gmail.com</a>
+        </div>
+      </div>
+    </footer>
+    <script src="../js/trangchu_saudn.js"></script>
+</body>
+</html>

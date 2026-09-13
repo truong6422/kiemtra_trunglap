@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mật khẩu</title>
+    <link rel="stylesheet" href="../css/matkhau.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="menu">
+            <div class="menu-container">
+                <div class="logo">
+                    <img src="../images/logo.jpg">
+                    <p>Phần mềm kiểm tra trùng lặp văn bản</p>
+                </div>
+                <ul>
+                    <li>
+                        <a href="../pages/trangchu_saudn.html">Trang chủ</a>
+                    </li>
+                    <li>
+                        <a href="../pages/quanlytailieu.html">Quản lý tài liệu</a>
+                    </li>
+                    <li>
+                        <a href="../pages/quanlylophoc.html">Quản lý lớp học</a>
+                    </li>
+                    <li>
+                        <a href="../pages/huongdanchitiet.html">Hướng dẫn chi tiết</a>
+                    </li>
+                    <li class="user-dropdown-container">
+                        <div class="user-avatar-btn" id="userMenuBtn">
+                            <img src="../images/default-avatar.png" id="userAvatarImg" alt="Avatar">
+                            <span id="navUserName">Tài khoản</span>
+                            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                        </div>
+
+                        <!-- Menu Dropdown -->
+                        <div class="user-dropdown-menu" id="userDropdownMenu">
+                            <a href="../pages/taikhoan.html" class="dropdown-item">
+                                <i class="fa-regular fa-user"></i>
+                                <span>Tài khoản</span>
+                            </a>
+                            <a href="../pages/matkhau.html" class="dropdown-item">
+                                <i class="fa-solid fa-lock"></i>
+                                <span>Đổi mật khẩu</span>
+                            </a>
+                            <a href="../pages/dangnhap.html" class="dropdown-item text-danger" id="logoutBtn">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <span>Đăng xuất</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Bên trái: Sidebar -->
+        <aside class="sidebar">
+            <a class="menu-item active" data-tab="profile">
+                <i class="fa-regular fa-user"></i>
+                Thông tin cá nhân
+            </a>
+            <a class="menu-item" data-tab="password">
+                <i class="fa-solid fa-lock"></i>
+                Mật khẩu
+            </a>
+        </aside>
+
+        <!-- Bên phải: Nội dung chính -->
+        <section class="content">
+            <!-- TAB 1: Thông tin cá nhân (Giữ nguyên 100% của bạn) -->
+            <div id="tab-profile" class="tab-content">
+                <h2>Thông tin cá nhân</h2>
+
+                <form>
+                    <div class="form-group">
+                        <label for="fullname">Họ tên</label>
+                        <input type="text" id="fullname" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" value="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="student-id">Mã sinh viên</label>
+                        <input type="text" id="student-id">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="class-name">Lớp</label>
+                        <input type="text" id="class-name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="course">Khóa học</label>
+                        <input type="text" id="course">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="report-count">Số báo cáo</label>
+                        <input type="text" id="report-count" placeholder="Nhập số báo cáo">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary">Hủy</button>
+                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- TAB 2: Đổi mật khẩu (Thêm mới) -->
+            <div id="tab-password" class="tab-content active">
+                <h2>Đổi mật khẩu</h2>
+
+                <form>
+                    <div class="form-group">
+                        <label for="current-password">Mật khẩu hiện tại:</label>
+                        <input type="password" id="current-password" placeholder="Mật khẩu hiện tại">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-password">Mật khẩu mới:</label>
+                        <input type="password" id="new-password" placeholder="Mật khẩu mới">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password">Nhập lại mật khẩu mới:</label>
+                        <input type="password" id="confirm-password" placeholder="Nhập lại mật khẩu mới">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Xác nhận</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-left">
+            <p>Copyright © 2016 Trường Đại học Công nghiệp Việt-Hung. All Rights Reserved.</p>
+            <h4>Địa điểm đào tạo:</h4>
+            <p><strong>Cơ sở Sơn Tây:</strong> Số 16 Hữu Nghị, phường Tùng Thiện, TP. Hà Nội</p>
+            <p><strong>Cơ sở Thạch Thất:</strong> Số 88, đường 419 - Tây Phương, TP. Hà Nội</p>
+            <p><strong>Cơ sở Thanh Xuân:</strong> Số 27 Lê Văn Lương, phường Thanh Xuân, TP. Hà Nội</p>
+        </div>
+        <div class="footer-right">
+            <div>
+                <a href="#">Điều khoản sử dụng</a> | <a href="#">Quyền riêng tư</a>
+            </div>
+            <div class="icons">
+                <a href="https://www.facebook.com/dhcnvh/" target="_blank">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="https://tuyensinh.viu.edu.vn/kham-pha-viu.html" target="_blank">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="mailto:dhcnviethung.viu@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="tel:0974.966.966">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+            </div>
+            <div class="hotline-one">
+                <a>Hotline: 0974.966.966</a>
+            </div>
+            <div class="hotline-two">
+                <a>Email: dhcnviethung.viu@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Thông Báo Custom -->
+    <div id="systemAlert" class="alert-box">
+        <h2 id="alertTitle">Thông báo hệ thống!</h2>
+        <p id="alertMessage"></p>
+        <button onclick="closeAlert()">Đóng</button>
+    </div>
+    <script src="../js/matkhau.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,542 @@
+[
+  {
+    "sentenceIndex": 0,
+    "page": 1,
+    "text": "TR ƯỜNG ĐẠI HỌC CÔNG NGHIỆP VIỆT – HUNG KHOA:CÔNG NGHỆ THÔNG TIN TR ƯỜNG ĐẠI HỌC CÔNG NGHIỆP VIỆT – HUNG KHOA:CÔNG NGHỆ THÔNG TIN CAO VĂN HƯNG TRẦN THÀNH CÔNG VŨ TIẾN ĐẠT ĐỀ TÀI : THIẾT KẾ WEBSITE QUẢN LÝ BÁN QUẦN ÁO BÀI TẬP LỚN HỌC PHẦN: PHÁT TRIỂN WEB NÂNG CAO HÀ NỘI, NĂM 2025"
+  },
+  {
+    "sentenceIndex": 1,
+    "page": 2,
+    "text": "CAO VĂN HƯNG TRẦN THÀNH CÔNG VŨ TIẾN ĐẠT ĐỀ TÀI : THIẾT KẾ WEBSITE QUẢN LÝ BÁN QUẦN ÁO BÀI TẬP LỚN HỌC PHẦN: PHÁT TRIỂN WEB NÂNG CAO HÀ NỘI, NĂM 2025"
+  },
+  {
+    "sentenceIndex": 2,
+    "page": 3,
+    "text": "LỜI CẢM ƠN Trong suốt quá trình học tập và nghiên cứu để hoàn thành báo cáo học phần này, nhóm em đã may mắn nhận được sự hướng dẫn tận tình, những lời động viên quý giá và sự hỗ trợ chân thành từ nhiều người."
+  },
+  {
+    "sentenceIndex": 3,
+    "page": 3,
+    "text": "Chính những điều ấy đã tạo động lực mạnh mẽ, giúp nhóm em vượt qua những thử thách và hoàn thành bài báo cáo lần này."
+  },
+  {
+    "sentenceIndex": 4,
+    "page": 3,
+    "text": "Bằng tất cả sự kính trọng và lòng biết ơn sâu sắc, nhóm em xin gửi lời cảm ơn chân thành đến giảng viên bộ môn thạc sĩ Ngô Thị Lan , người đã luôn tận tình giảng dạy, hỗ trợ và định hướng cho nhóm em trong suốt quá trình thực hiện báo cáo."
+  },
+  {
+    "sentenceIndex": 5,
+    "page": 3,
+    "text": "Những kiến thức chuyên môn, những góp ý quý giá và sự động viên từ cô đã giúp nhóm em hiểu sâu hơn về cách xây dựng và phát triển một Website thương mại điện tử, cũng như cách áp dụng lý thuyết vào thực tế, cung cấp nền tảng kiến thức quan trọng, tạo điều kiện học tập tốt và luôn sẵn sàng giải đáp các thắc mắc của nhóm em trong quá trình học tậP. Nhờ sự tận tâm của cô, nhóm em đã có cơ hội khám phá những kiến thức mới và mở rộng tầm nhìn trong lĩnh vực công nghệ và phát triển web."
+  },
+  {
+    "sentenceIndex": 6,
+    "page": 3,
+    "text": "Bên cạnh đó, nhóm em xin gửi lời cảm ơn chân thành đến các bạn trong lớp đã đồng hành, những người đã cùng trải qua nhiều giờ thảo luận sôi nổi, cùng chia sẻ kinh nghiệm và hỗ trợ lẫn nhau trong suốt quá trình thực hiện báo cáo."
+  },
+  {
+    "sentenceIndex": 7,
+    "page": 3,
+    "text": "Những ý kiến đóng góp và sự giúp đỡ chân tình từ các bạn không chỉ giúp tôi hoàn thiện nội dung báo cáo mà còn là nguồn cảm hứng để nhóm em phát triển tư duy sáng tạo, nâng cao kỹ năng làm việc nhóm và giải quyết vấn đề."
+  },
+  {
+    "sentenceIndex": 8,
+    "page": 3,
+    "text": "Trong quá trình thực hiện báo cáo và làm đề tài nhóm em vẫn còn có nhiều thiếu xót mong cô và các bạn đóng góp ý kiến để nhóm em có thể thực hiện tốt hơn cho đồ án học phần 2 và đồ án tốt nghiệp sau này."
+  },
+  {
+    "sentenceIndex": 9,
+    "page": 3,
+    "text": "Em xin chân thành cảm ơn cô!"
+  },
+  {
+    "sentenceIndex": 10,
+    "page": 4,
+    "text": "MỤC LỤC CHƯƠNG I TỔNG QUAN VỀ HỆ THỐNG .................................................................................."
+  },
+  {
+    "sentenceIndex": 11,
+    "page": 4,
+    "text": "Mô tả hệ thống ........................................................................................................"
+  },
+  {
+    "sentenceIndex": 12,
+    "page": 4,
+    "text": "Cơ cấu tổ chức ..............................................................................................."
+  },
+  {
+    "sentenceIndex": 13,
+    "page": 4,
+    "text": "Qui trình xử lý ..............................................................................................."
+  },
+  {
+    "sentenceIndex": 14,
+    "page": 4,
+    "text": "Chức năn g th ê m sản phẩm .................................................................."
+  },
+  {
+    "sentenceIndex": 15,
+    "page": 4,
+    "text": "Chức năn g xóa sản phẩm ...................................................................."
+  },
+  {
+    "sentenceIndex": 16,
+    "page": 4,
+    "text": "Chức năn g sửa s ản phẩm ....................................................................."
+  },
+  {
+    "sentenceIndex": 17,
+    "page": 4,
+    "text": "Biểu mẫu .................................................................................................................."
+  },
+  {
+    "sentenceIndex": 18,
+    "page": 4,
+    "text": "Biểu mẫu đăng ký tài khoản ........................................................................."
+  },
+  {
+    "sentenceIndex": 19,
+    "page": 4,
+    "text": "Biểu mẫu đăng nhập ....................................................................................."
+  },
+  {
+    "sentenceIndex": 20,
+    "page": 4,
+    "text": "Biểu mẫu thêm sản phẩm ............................................................................."
+  },
+  {
+    "sentenceIndex": 21,
+    "page": 4,
+    "text": "Biểu mẫu quản lý đặt hàng ..........................................................................."
+  },
+  {
+    "sentenceIndex": 22,
+    "page": 4,
+    "text": "Biểu mẫu quản lý đơn hàng .........................................................................."
+  },
+  {
+    "sentenceIndex": 23,
+    "page": 4,
+    "text": "Biểu mẫu quản lý phản hồi khách hàng ......................................................"
+  },
+  {
+    "sentenceIndex": 24,
+    "page": 4,
+    "text": "Đánh giá ưu, nhược điểm của hệ thống cũ ..........................................................."
+  },
+  {
+    "sentenceIndex": 25,
+    "page": 4,
+    "text": "Ưu điểm ........................................................................................................"
+  },
+  {
+    "sentenceIndex": 26,
+    "page": 4,
+    "text": "Nhược điểm .................................................................................................."
+  },
+  {
+    "sentenceIndex": 27,
+    "page": 4,
+    "text": "11 CHƯƠNG II ................................................................................................................."
+  },
+  {
+    "sentenceIndex": 28,
+    "page": 4,
+    "text": "13 PHÂN TÍCH HỆ THỐNG .........................................................................................."
+  },
+  {
+    "sentenceIndex": 29,
+    "page": 4,
+    "text": "Sơ đồ chức năng của hệ thống ............................................................................."
+  },
+  {
+    "sentenceIndex": 30,
+    "page": 4,
+    "text": "Sơ đồ luồng dữ liệu (DFD) ..................................................................................."
+  },
+  {
+    "sentenceIndex": 31,
+    "page": 4,
+    "text": "Thiết kế Cơ sở dữ liệu .........................................................................................."
+  },
+  {
+    "sentenceIndex": 32,
+    "page": 4,
+    "text": "Mô hình thực thể liên kết ............................................................................"
+  },
+  {
+    "sentenceIndex": 33,
+    "page": 4,
+    "text": "Mô hình quan hệ .........................................................................................."
+  },
+  {
+    "sentenceIndex": 34,
+    "page": 4,
+    "text": "20 CHƯƠNG III ..............................................................................................................."
+  },
+  {
+    "sentenceIndex": 35,
+    "page": 4,
+    "text": "22 THIẾT KẾ HỆ THỐNG ............................................................................................."
+  },
+  {
+    "sentenceIndex": 36,
+    "page": 4,
+    "text": "Thigh kế dữ liệu ...................................................................................................."
+  },
+  {
+    "sentenceIndex": 37,
+    "page": 4,
+    "text": "Giao diện hệ thống ................................................................................................"
+  },
+  {
+    "sentenceIndex": 38,
+    "page": 4,
+    "text": "25 Hình 3.2.1: Hình ảnh giao diện trang chủ ................................................................."
+  },
+  {
+    "sentenceIndex": 39,
+    "page": 4,
+    "text": "26 Hình 3.2.2: Hình ảnh danh mục sản phẩm ..............................................................."
+  },
+  {
+    "sentenceIndex": 40,
+    "page": 4,
+    "text": "26 Hình 3.2.3: Hình ảnh các sản phẩm bán chạy và footer .........................................."
+  },
+  {
+    "sentenceIndex": 41,
+    "page": 4,
+    "text": "27 Hình 3.2.4: Hình ảnh giao diện trang sản phẩm đầm .............................................."
+  },
+  {
+    "sentenceIndex": 42,
+    "page": 4,
+    "text": "28 Hình 3.2.5: Hình ảnh giao diện trang sản phẩm được yêu thích ............................"
+  },
+  {
+    "sentenceIndex": 43,
+    "page": 4,
+    "text": "29 Hình 3.2.6: Hình ảnh giao diện trang giỏ hàng ........................................................."
+  },
+  {
+    "sentenceIndex": 44,
+    "page": 4,
+    "text": "29 Hình 3.2.7: Hình ảnh giao diện trang đăng ký/đăng nhập ......................................"
+  },
+  {
+    "sentenceIndex": 45,
+    "page": 4,
+    "text": "Quản lý tài khoản ................................................................................................."
+  },
+  {
+    "sentenceIndex": 46,
+    "page": 4,
+    "text": "Thêm tài khoản .................................................................................................."
+  },
+  {
+    "sentenceIndex": 47,
+    "page": 4,
+    "text": "Sửa tài khoản ....................................................................................................."
+  },
+  {
+    "sentenceIndex": 48,
+    "page": 4,
+    "text": "Xóa tài khoản ....................................................................................................."
+  },
+  {
+    "sentenceIndex": 49,
+    "page": 4,
+    "text": "Quản lý sản phẩm ................................................................................................."
+  },
+  {
+    "sentenceIndex": 50,
+    "page": 4,
+    "text": "Thêm sản phẩm .................................................................................................."
+  },
+  {
+    "sentenceIndex": 51,
+    "page": 4,
+    "text": "Sửa sản phẩm ....................................................................................................."
+  },
+  {
+    "sentenceIndex": 52,
+    "page": 4,
+    "text": "Xóa sản phẩm ....................................................................................................."
+  },
+  {
+    "sentenceIndex": 53,
+    "page": 4,
+    "text": "35 KẾT LUẬN .................................................................................................................."
+  },
+  {
+    "sentenceIndex": 54,
+    "page": 4,
+    "text": "36 TÀI LIỆU THAM KHẢO"
+  },
+  {
+    "sentenceIndex": 55,
+    "page": 6,
+    "text": "DANH MỤC CHỮ VIẾT TẮT Tên viết tắt Tên đầy đủ Dịch ra Tiếng Việt DFD Data Flow Diagram Sơ đồ luồng dữ liệu ERD Entity Relationship Model Mô hình quan hệ thực thể U C U se Case Trường hợp sử dụng U I User Interface G iao diện người dùng RM The Relational Mode Mô hình dữ liệu quan hệ"
+  },
+  {
+    "sentenceIndex": 56,
+    "page": 7,
+    "text": "DANH MỤC HÌNH VẼ Hình 1.2.1.1: Biểu mẫu đăng ký tài khoản Hình 1.2.2.1: Biểu mẫu đăng nhập Hình 1.2.3.1: Biểu mẫu thêm sản phẩm Hình 1.2.4.1: Biểu mẫu quản lý đặt hàng Hình 1.2.5.1: Biểu mẫu quản lý đơn hàng Hình 1.2.6.1: Biểu mẫu quản lý phản hồi khách hàng Hình 2.1.1: Sơ đồ chức năng của cửa hàng JM Hình 2.1.2: Sơ đồ chức năng xử lý đơn hàng Hình 2.2.3: Sơ đồ luồng dữ liệu Hình 2.3.1.1: Mô hình thực thể liên kết (ERD) Hình 2.3.2.1: Mô hình quan hệ (RM) Hình 3.1.1: Mô hình sơ đồ diagram Hình 3.2.1: Hình ảnh giao diện trang chủ Hình 3.2.2: Hình ảnh danh mục sản phẩm Hình 3.2.3: Hình ảnh các sản phẩm bán chạy và footer Hình 3.2.4: Hình ảnh giao diện trang sản phẩm đầm Hình 3.2.5: Hình ảnh giao diện trang sản phẩm được yêu thích Hình 3.2.6: Hình ảnh giao diện trang giỏ hàng Hình 3.2.7: Hình ảnh giao diện trang đăng ký/đăng nhập"
+  },
+  {
+    "sentenceIndex": 57,
+    "page": 8,
+    "text": "DANH MỤC BẢNG BIỂU Bảng 3.1.1: Bảng phân quyền Bảng 3.1.2: Bảng người sử dụng Bảng 3.1.3: Bảng danh mục sản phẩm Bảng 3.1.4: Bảng chủ đề Bảng 3.1.5: Bảng sản phẩm Bảng 3.1.6: Bảng đơn hàng Bảng 3.1.7: Bảng chi tiết đơn hàng Bảng 3.1.8: Bảng trạng thái đơn hàng Bảng 3.1.9: Bảng giỏ hàng Bảng 3.1.10: Bảng yêu thích"
+  },
+  {
+    "sentenceIndex": 58,
+    "page": 9,
+    "text": "MỞ ĐẦU 1."
+  },
+  {
+    "sentenceIndex": 59,
+    "page": 9,
+    "text": "Lý do chọn đề tài Trong bối cảnh thương mại điện tử ngày càng phát triển mạnh mẽ, việc xây dựng các hệ thống bán hàng trực tuyến không chỉ giúp doanh nghiệp mở rộng thị trường mà còn nâng cao khả năng cạnh tranh."
+  },
+  {
+    "sentenceIndex": 60,
+    "page": 9,
+    "text": "Ngành thời trang, với nhu cầu tiêu dùng cao và đa dạng, đang chứng kiến sự chuyển dịch rõ rệt từ mua sắm truyền thống sang hình thức trực tuyến."
+  },
+  {
+    "sentenceIndex": 61,
+    "page": 9,
+    "text": "JM Dress Design - một thương hiệu quần áo trẻ trung, hiện đại - nhận thấy sự cần thiết trong việc xây dựng một website bán hàng chuyên nghiệp nhằm đáp ứng nhu cầu của khách hàng cũng như tối ưu hoạt động kinh doanh."
+  },
+  {
+    "sentenceIndex": 62,
+    "page": 9,
+    "text": "Mục tiêu của đề tài  Thiết kế và xây dựng website thương mại điện tử cho thương hiệu JM Dress Design."
+  },
+  {
+    "sentenceIndex": 63,
+    "page": 9,
+    "text": " Tối ưu giao diện người dùng (UI) và trải nghiệm người dùng (UX) để nâng cao sự hài lòng khi mua sắm."
+  },
+  {
+    "sentenceIndex": 64,
+    "page": 9,
+    "text": " Tích hợp các chức năng thiết yếu như giỏ hàng, yêu thích , quản lý tài khoản và quản trị sản phẩm."
+  },
+  {
+    "sentenceIndex": 65,
+    "page": 9,
+    "text": "Phạm vi nghiên cứu  Tập trung vào việc phát triển một hệ thống website bán hàng cho mặt hàng quần áo."
+  },
+  {
+    "sentenceIndex": 66,
+    "page": 9,
+    "text": " Hệ thống phục vụ cho khách hàng cá nhân và quản trị viên của JM Dress Design."
+  },
+  {
+    "sentenceIndex": 67,
+    "page": 9,
+    "text": " Phạm vi công nghệ chủ yếu sử dụng ASP.NET và cơ sở dữ liệu SQL Server ."
+  },
+  {
+    "sentenceIndex": 68,
+    "page": 9,
+    "text": "Phương pháp nghiên cứu  Thu thập và phân tích yêu cầu người dùng qua khảo sát và phỏng vấn."
+  },
+  {
+    "sentenceIndex": 69,
+    "page": 9,
+    "text": " Nghiên cứu các giải pháp và công nghệ hiện có liên quan đến thương mại điện tử."
+  },
+  {
+    "sentenceIndex": 70,
+    "page": 10,
+    "text": "Bố cục của đề tài Đề tài gồm 3 chương: Chương 1: Tổng quan về hệ thống Chương 2: Phântích hệ thống Chương 3: Thiết kế hệ thống"
+  },
+  {
+    "sentenceIndex": 71,
+    "page": 11,
+    "text": "CHƯƠNG I TỔNG QUAN VỀ HỆ THỐNG 1.1. Mô tả hệ thống JM Dress Design là thương hiệu Việt quen thuộc với các tín đồ thời trang, nhất là với những khách hàng yêu phong cách thanh lịch, hiện đại. Không khó để tìm thấy những phòng trưng bày JM trên mọi tuyến phố đắc địa, thiên đường thời trang ở Hà Nội hay Thành phố Hồ Chí Minh, Hải Phòng, Thanh Hóa cũng đều được JM định vị bằng những phòng trưng bày to đẹp lộng lẫy. C ác thiết kế của JM trung thành với phong cách thanh lịch, tối giản. Màu sắc được chọn lọc theo những gam màu thanh nhã, trendy, tôn da tuyệt đối giúp khách hàng không phải băn khoăn mỗi khi chọn đồ. Mỗi thiết kế đều được ấp ủ, mang tinh thần chủ đạo của Quý cô thời hiện đại, không phô trương cầu kỳ mà e ấp, tinh tế trong cách thể hiện tính cách của bản thân. Đặc biệt, JM chú trọng tìm kiếm những chất liệu cao cấp, có độ tinh xảo nhằm mang đến sự thoải mái, nhẹ nhàng cho người mặc. Dù ở bất cứ hoàn cảnh nào những thiết kế của JM cũng đều có sự phù hợp và mang đến diện mạo tự tin, hoàn chỉnh cho phái đẹP. Để nâng cao hiệu quả hoạt động, JM đang đưa ra được giải pháp giúp tiếp cận đến khách hàng dễ nhất trong thời đại công nghệ số hiện nay như quảng cáo sản phẩm, thanh toán bằng hình thức online, ...; nâng cao hiệu quả kinh doanh. 1.1.1. Cơ cấu tổ chức Hệ thống quản lý bán hàng quần áo được xây dựng để phục vụ ba nhóm người dùng chính :  Quản lý cửa hàng : đóng vai trò trung tâm trong việc giám sát và điều phối mọi hoạt động thông qua hệ thống.  Nhân viên bán hàng : những người trực tiếp tương tác với khách hàng tại điểm bán, thực hiện các nghiệp vụ phát sinh hàng ngày liên quan đến quá trình bán hàng và tạo hóa đơn. Vai trò của họ tập trung vào việc xử lý giao dịch một cách nhanh chóng và chính xác, đồng thời ghi nhận thông tin cần thiết để hệ thống có thể theo dõi.  Khách hàng : người mua hàng và đưa ra những đánh giá khách quan một cách chính xác nhất."
+  },
+  {
+    "sentenceIndex": 72,
+    "page": 12,
+    "text": "1.1.2. Qui trình xử lý Qua điều tra khảo sát, ta thấy quy trình làm việc, cùng các biểu mẫu được sử dụng trong quy trình như sau 1.1.2.1. Chức năn g th ê m sản phẩm Khi một sản phẩm mới được nhập vào hệ thống, nhân viên sẽ thu thập thông tin từ nhà cung cấp hoặc bộ phận sản xuất, kiểm tra chất lượng, số lượng, sau đó nhập các dữ liệu cần thiết như tên sản phẩm, mô tả, giá bán, hình ảnh, danh mục và số lượng tồn kho. Quy trình này đảm bảo sản phẩm xuất hiện đúng trên hệ thống, giúp khách hàng dễ dàng tiếp cận. Sau khi nhân viên hoàn thành nhập liệu, quản trị viên có nhiệm vụ kiểm duyệt sản phẩm trước khi chính thức hiển thị. Quản trị viên sẽ kiểm tra xem sản phẩm có phù hợp với danh mục kinh doanh không, có đảm bảo các tiêu chí về chất lượng và chính sách giá cả hay không. Nếu phát hiện lỗi như mô tả chưa đầy đủ, hình ảnh kém chất lượng hoặc sai lệch thông tin, quản trị viên sẽ yêu cầu nhân viên chỉnh sửa trước khi xác nhận. Việc kiểm duyệt giúp đảm bảo tính chính xác của hệ thống và tránh sai sót ảnh hưởng đến khách hàng. Mặc dù khách hàng không trực tiếp tham gia vào quá trình thêm sản phẩm, nhưng họ có thể xem sản phẩm mới trên hệ thống, tìm hiểu thông tin chi tiết và quyết định mua hàng. Trong một số trường hợp, khách hàng còn có thể đề xuất những mặt hàng mà họ muốn doanh nghiệp nhập về, giúp mở rộng danh mục sản phẩm theo nhu cầu thị trường. 1.1.2.2. Chức năn g xóa sản phẩm Khi một sản phẩm không còn được kinh doanh n hân viên sẽ kiểm tra sản phẩm cần xóa, xác định rõ lý do (hết hạn sử dụng, lỗi kỹ thuật, không còn nhu cầu tiêu thụ…) và gửi yêu cầu lên hệ thống. Trước khi thực hiện xóa, họ cần kiểm tra tồn kho để đảm bảo không ảnh hưởng đến các đơn hàng đang xử lý. Nếu sản phẩm vẫn còn số lượng tồn hoặc có đơn hàng liên quan, cần xử lý trước khi tiến hành xóa."
+  },
+  {
+    "sentenceIndex": 73,
+    "page": 13,
+    "text": "Sau khi nhân viên gửi yêu cầu, quản trị viên sẽ kiểm tra lý do xóa và xác nhận thông tin trước khi phê duyệt. Quá trình này đảm bảo rằng việc xóa sản phẩm không gây ảnh hưởng đến khách hàng hoặc hệ thống bán hàng. Nếu sản phẩm có lịch sử giao dịch quan trọng, dữ liệu có thể được lưu lại để phục vụ đối chiếu sau này, mặc dù nó sẽ không còn hiển thị trên danh mục sản phẩm. Về phía khách hàng , nếu một sản phẩm bị xóa, họ sẽ không thể tìm thấy thông tin hoặc đặt hàng sản phẩm đó nữa. Nếu sản phẩm bị xóa có liên quan đến đơn hàng hoặc chương trình khuyến mãi trước đó, hệ thống có thể gửi thông báo cho khách hàng về sự thay đổi, giúp họ chủ động tìm kiếm mặt hàng thay thế. 1.1.2.3. Chức năn g sửa s ản phẩm Khi có thay đổi về giá bán, mô tả, hình ảnh hoặc số lượng tồn kho, nhân viên sẽ cập nhật dữ liệu mới vào hệ thống. Trước khi nhập thông tin, nhân viên cần kiểm tra độ chính xác của dữ liệu, đảm bảo rằng các thay đổi phản ánh đúng tình trạng sản phẩm. Nhân viên sau đó gửi yêu cầu chỉnh sửa lên quản trị viên để xác nhận trước khi cập nhật chính thức. Quản trị viên có nhiệm vụ kiểm duyệt các chỉnh sửa, đảm bảo rằng thông tin mới không gây ảnh hưởng tiêu cực đến khách hàng. Nếu phát hiện dữ liệu chưa chính xác hoặc cần bổ sung thông tin, họ có thể yêu cầu nhân viên điều chỉnh lại trước khi xác nhận. Sau khi duyệt, hệ thống sẽ cập nhật sản phẩm với thông tin mới và hiển thị cho khách hàng. Về phía khách hàng , khi một sản phẩm được cập nhật, họ sẽ thấy sự thay đổi như giá giảm trong thời gian khuyến mãi, mô tả chi tiết hơn hoặc hình ảnh mới. Những cập nhật này giúp họ có trải nghiệm mua hàng tốt hơn, đưa ra quyết định chính xác khi lựa chọn sản phẩm. 1.2. Biểu mẫu"
+  },
+  {
+    "sentenceIndex": 74,
+    "page": 14,
+    "text": "1.2.1. Biểu mẫu đăng ký tài khoản Hình 1.2.1.1: Biểu mẫu đăng ký tài khoản 1.2.2. Biểu mẫu đăng nhập Hình 1.2.2.1: Biểu mẫu đăng nhập"
+  },
+  {
+    "sentenceIndex": 75,
+    "page": 15,
+    "text": "1.2.3. Biểu mẫu thêm sản phẩm"
+  },
+  {
+    "sentenceIndex": 76,
+    "page": 16,
+    "text": "Hình 1.2.3.1: Biểu mẫu thêm sản phẩm 1.2.4. Biểu mẫu quản lý đặt hàng"
+  },
+  {
+    "sentenceIndex": 77,
+    "page": 17,
+    "text": "Hình 1.2.4.1: Biểu mẫu quản lý đặt hàng 1.2.5. Biểu mẫu quản lý đơn hàng"
+  },
+  {
+    "sentenceIndex": 78,
+    "page": 18,
+    "text": "Hình 1.2.5.1: Biểu mẫu quản lý đơn hàng"
+  },
+  {
+    "sentenceIndex": 79,
+    "page": 19,
+    "text": "1.2.6. Biểu mẫu quản lý phản hồi khách hàng Hình 1.2.6.1: Biểu mẫu quản lý phản hồi khách hàng 1.3. Đánh giá ưu, nhược điểm của hệ thống cũ Để làm nổi bật giá trị và sự cần thiết trong thời đại công nghệ số ngày nay JM đã chỉ ra những hạn chế của phương pháp quản lý cũ, dựa trên sổ sách hoặc các công cụ đơn giản, là rất quan trọng. Phương pháp truyền thống này, mặc dù vẫn được một số cửa hàng nhỏ áp dụng, bộc lộ nhiều nhược điểm khi quy mô kinh doanh tăng lên hoặc khi yêu cầu về độ chính xác và tốc độ thông tin trở nên cao hơn. Tuy nhiên, không thể phủ nhận rằng hệ thống cũ cũng có một số ưu điểm nhất định trong bối cảnh nhất định."
+  },
+  {
+    "sentenceIndex": 80,
+    "page": 20,
+    "text": "1.3.1. Ưu điểm Cửa hàng quần áo JM có hệ thống quản lý rõ ràng, giúp tối ưu hóa hoạt động kinh doanh và nâng cao hiệu suất làm việc của từng bộ phận. Việc phân chia công việc cụ thể giữa các bộ phận như kho hàng, bán hàng, chăm sóc khách hàng và quản lý tài chính giúp quy trình diễn ra mạch lạc và hạn chế sai sót. Nhờ đó, mỗi nhân viên đều nắm rõ nhiệm vụ của mình, từ quản lý sản phẩm đến tư vấn bán hàng, tạo ra trải nghiệm mua sắm chuyên nghiệp cho khách hàng. Một trong những thế mạnh của JM là khả năng kiểm soát hàng hóa chặt chẽ . Khi có lô hàng mới nhập về, nhân viên sẽ kiểm tra chất lượng sản phẩm, mẫu mã và số lượng trước khi nhập kho. Điều này đảm bảo rằng các sản phẩm luôn đạt tiêu chuẩn trước khi được bày bán. Bên cạnh đó, cửa hàng còn thực hiện kiểm kê định kỳ , giúp giảm thiểu thất thoát hàng hóa và tối ưu hóa quản lý tồn kho. Nhờ quy trình kiểm kê chặt chẽ, cửa hàng luôn có lượng hàng phù hợp với nhu cầu của khách hàng, tránh tình trạng thiếu hụt hoặc dư thừa. Cửa hàng JM còn có quy trình báo cáo kinh doanh định kỳ , giúp ban quản lý theo dõi hiệu suất bán hàng, lượng tồn kho và xu hướng mua sắm của khách hàng. Việc thu thập và phân tích dữ liệu bán hàng giúp cửa hàng đưa ra các chiến lược kinh doanh phù hợp, chẳng hạn như nhập thêm sản phẩm được yêu thích hoặc điều chỉnh giá bán để cạnh tranh tốt hơn. Nhờ quy trình báo cáo này, JM có thể nắm bắt kịp thời xu hướng thị trường và điều chỉnh hoạt động kinh doanh để tối ưu lợi nhuận. Nhân viên của cửa hàng JM có kinh nghiệm thực tế , quen thuộc với quy trình bán hàng trực tiếP. Điều này mang lại lợi thế lớn trong việc tư vấn cho khách hàng, giúp họ lựa chọn sản phẩm phù hợp với nhu cầu. Đội ngũ nhân viên nhiệt tình, thân thiện là một điểm cộng giúp JM tạo dựng lòng tin với khách hàng, từ đó xây dựng mối quan hệ lâu dài và tăng khả năng mua sắm lặp lại. JM lưu trữ dữ liệu nội bộ thay vì sử dụng hệ thống trực tuyến, giúp giảm nguy cơ tấn công mạng. Thông tin khách hàng và doanh thu được quản lý một cách an toàn, hạn"
+  },
+  {
+    "sentenceIndex": 81,
+    "page": 21,
+    "text": "chế các rủi ro về rò rỉ dữ liệu hay mất mát thông tin quan trọng. Đây là một lợi thế khi so sánh với các hệ thống quản lý trực tuyến, vốn có thể bị ảnh hưởng bởi các vấn đề bảo mật. JM có khả năng xử lý linh hoạt các vấn đề phát sinh trong quá trình kinh doanh. Vì hệ thống quản lý vẫn còn mang tính truyền thống, các sự cố nhỏ như đổi trả sản phẩm, điều chỉnh giá hoặc quản lý tồn kho có thể được thực hiện nhanh chóng mà không cần chờ đợi quy trình phức tạp từ phần mềm tự động. Điều này giúp JM phản ứng nhanh với nhu cầu của khách hàng và thị trường, giữ vững vị thế cạnh tranh. 1.3.2. Nhược điểm Mặc dù có nhiều lợi thế, cửa hàng JM vẫn tồn tại một số hạn chế cần khắc phục để tối ưu hóa hiệu suất kinh doanh. Một trong những vấn đề lớn nhất của JM là phụ thuộc nhiều vào phương pháp quản lý truyền thống , chủ yếu dựa vào sổ sách hoặc file Excel để ghi chép thông tin về đơn hàng, tồn kho và doanh thu. Điều này làm tăng nguy cơ sai sót do con người , dẫn đến thất thoát dữ liệu và khó khăn trong việc tổng hợp thông tin. Khi khối lượng hàng hóa tăng lên, việc tìm kiếm thông tin bằng phương pháp thủ công trở nên mất thời gian, ảnh hưởng đến khả năng ra quyết định nhanh chóng. Cửa hàng JM cũng chưa áp dụng công nghệ quản lý chuyên nghiệp , dẫn đến khó khăn trong việc đồng bộ dữ liệu giữa các bộ phận. Ví dụ, khi nhân viên kho cập nhật số lượng hàng tồn, bộ phận bán hàng phải kiểm tra thủ công thay vì hệ thống tự động cập nhật. Điều này không chỉ làm mất thời gian mà còn có thể dẫn đến sai sót, ảnh hưởng đến quá trình kinh doanh. Nếu JM có một hệ thống quản lý chuyên nghiệp, việc theo dõi kho hàng, doanh thu và đơn đặt hàng sẽ trở nên nhanh chóng và hiệu quả hơn. Q uy trình kiểm kê vẫn hoàn toàn thủ công , khiến việc theo dõi hàng hóa mất nhiều thời gian và công sức. Nhân viên phải kiểm tra từng sản phẩm, ghi chép bằng tay, làm giảm độ chính xác của dữ liệu tồn kho. Khi cửa hàng mở rộng quy mô, phương pháp kiểm kê thủ công có thể không còn phù hợp, dẫn đến sai sót trong việc quản lý hàng hóa."
+  },
+  {
+    "sentenceIndex": 82,
+    "page": 22,
+    "text": "JM chưa tối ưu hóa kênh bán hàng trực tuyến , khiến việc mở rộng thị trường gặp nhiều hạn chế. Trong thời đại công nghệ phát triển mạnh mẽ, phần lớn khách hàng có xu hướng mua sắm qua các nền tảng thương mại điện tử. Nếu JM không có hệ thống quản lý đồng bộ giữa cửa hàng vật lý và bán hàng online, quá trình cập nhật tồn kho và xử lý đơn hàng sẽ gặp khó khăn, ảnh hưởng đến uy tín thương hiệu. Việc kiểm tra sản phẩm trước khi nhập kho cũng tốn nhiều thời gian , do quy trình đánh giá chất lượng chưa được tự động hóa. Nhân viên phải kiểm tra từng món hàng bằng mắt thường, đối chiếu đơn đặt hàng thủ công, dễ xảy ra sai sót nếu số lượng nhập lớn. Điều này không chỉ gây chậm trễ trong việc đưa sản phẩm ra thị trường mà còn ảnh hưởng đến tốc độ vận hành của cửa hàng."
+  },
+  {
+    "sentenceIndex": 83,
+    "page": 23,
+    "text": "CHƯƠNG II PHÂN TÍCH HỆ THỐNG 2.1. Sơ đồ chức năng của hệ thống Hình 2.1.1: Sơ đồ chức năng của cửa hàng JM"
+  },
+  {
+    "sentenceIndex": 84,
+    "page": 24,
+    "text": "Hình 2.1.2: Sơ đồ chức năng xử lý đơn hàng"
+  },
+  {
+    "sentenceIndex": 85,
+    "page": 25,
+    "text": "2.2. Sơ đồ luồng dữ liệu (DFD) Hình 2.2.3: Sơ đồ luồng dữ liệu 2.3. Thiết kế Cơ sở dữ liệu Hệ thống là một cơ sở dữ liệu dùng để quản lý nhân sự và gồm những phần chính sau : - Phần dữ liệu: Lưu thông tin của quản trị viên (bảng phân quyền) , người sử dụng, chủ đề, đơn hàng, trạng thái đơn hàng, chi tiết đơn hàng, giỏ hàng, sản phẩm, danh mục sản phẩm và yêu thích. - Các ứng dụng cho phép thực hiện báo cáo, hệ thống website quản lý bán quần áo: Visual Studio 2022, SQL Server Management Studio 19. 2.3.1. Các t hực thể chính trong hệ thống . Dựa trên nghiệp vụ quản lý bán quần áo , các thực thể cốt lõi trong hệ thống được xác định như sau:"
+  },
+  {
+    "sentenceIndex": 86,
+    "page": 26,
+    "text": " Phân quyền (PHANQUYEN): Quản lý thông tin đăng nhập của mọi người, xác định quản trị viên và người sử dụng.  Người sử dụng - khách hàng (USERS): Quản lý thông tin của từng người trong hệ thống website.  Chủ đề (CHUDE): Quản lý thông tin của chủ đề sản phẩm (theo mùa, theo giới tính, theo độ tuổi, theo loại sản phẩm, theo phong cách,...).  Danh mục sản phẩm (DANHMUCSANPHAM): Quản lý thông tin của từng sản phẩm trong hệ thống website.  Sản phẩm (SANPHAM): Quản lý thông tin chi tiết của từng sản phẩm.  Đơn hàng (DONHANG): Quản lý thông tin đơn hàng khi có người đặt hàng trên hệ thống.  Chi tiết đơn hàng (CHITIETDONHANG): Quản lý thông tin chi tiết đơn hàng cho phép người đặt hàng có thể xem chi tiết sản phẩm (số lượng,...) mà mình đã đặt.  Giỏ hàng (GIOHANG): Quản lý thông tin của giỏ hàng khi người người sử dụng hệ thống thêm, sửa hoặc xóa sản phẩm trong giỏ hàng.  Yêu thích (YEUTHICH): Quản lý thông tin các sản phẩm được người sử dụng yêu thích.  Trạng thái đơn hàng (TRANGTHAIDONHANG): Quản lý thông tin trạng thái của đơn hàng (chưa xác nhận, đã xác nhận, đang giao, đã giao,...). 2.3.2. Các thuộc tính chính của thực thể Mỗi thực thể được mô tả bởi các huộc tính chính để thể hiện đầy đủ thông tin cần thiết cho hệ thống:  Phân quyền: Mã phân quyền (khóa chính), Tên phân quyền.  Người sử dụng - khách hàng: Mã người sử dụng (khóa chính), Tên người sử dụng, Email, Địa chỉ, Số điện thoại, Tên đăng nhập hệ thống, Mật khẩu để đăng nhập hệ thống, Ngày tạo tài khoản, Mã phân quyền (khóa ngoại).  Chủ đề: Mã chủ đề (khóa chính) và tên chủ đề.  Danh mục sản phẩm: Mã danh mục (khóa chính) và tên danh mục.  Sản phẩm: Mã sản phẩm (khóa chính), Tên sản phẩm, Mô tả thông tin chi tiết về sản phẩm, Giá ban đầu của sản phẩm, Số lượng sản phẩm đã bán, Sản phẩm được giảm"
+  },
+  {
+    "sentenceIndex": 87,
+    "page": 27,
+    "text": "giá (tính theo tỉ lệ %), Ngày thêm sản phẩm, Ảnh của sản phẩm, Giá của sản phẩm sau khi giảm, Mã đơn hàng (khóa ngoại), Mã chủ đề (khóa ngoại).  Đơn hàng: Mã đơn hàng (khóa chính), Mã người sử dụng (khóa ngoại), Tên người sử dụng, Số điện thoại của người sử dụng, Địa chỉ giao hàng, Tổng số tiền phải trả, Ngày đặt hàng.  Chi tiết đơn hàng: Mã sản phẩm (khóa ngoại), Mã đơn hàng (khóa ngoại), Số lượng đơn hàng, Tổng số tiền người sử dụng phải trả, Đơn giá của mỗi sản phẩm.  Giỏ hàng: Mã giỏ hàng (khóa chính), Mã sản phẩm (khóa ngoại), Mã người sử dụng (khóa ngoại), Số lượng, Ngày thêm sản phẩm.  Yêu thích: Mã yêu thích (khóa chính), Mã sản phẩm (khóa ngoại), Mã người sử dụng (khóa ngoại), Ngày thêm yêu thích.  Trạng thái đơn hàng: Mã trạng thái đơn hàng (khóa chính), Tên trạng thái đơn hàng, Giá trị của trạng thái đơn hàng. 2.3.3. Mối quan hệ giữa các thực thể Các mối quan hệ giữa các thực thể được xác định dựa trên nghiệp vụ quản lý hệ thống website bán quần áo:  Phân quyền - Người sử dụng (1, n): Một quyền có thể được gán cho nhiều người, nhưng một người dùng chỉ có một quyền nhất định.  Người sử dụng - Đơn hàng (1,n): Một người sử dụng có thể đặt nhiều đơn hàng, nhưng mỗi đơn hàng chỉ thuộc về một người dùng.  Đơn hàng - Chi tiết đơn hàng (1, n): M ột đơn hàng chứa nhiều chi tiết đơn hàng, nhưng mỗi chi tiết đơn hàng chỉ thuộc một đơn hàng.  Sản phẩm - Chi tiết đơn hàng (1, n): Một sản phẩm có thể xuất hiện trong nhiều đơn hàng, mỗi chi tiết đơn hàng chứa một sản phẩm.  Sản phẩm - Giỏ hàng (1, n): Một sản phẩm có thể được nhiều người thêm vào giỏ hàng, mỗi dòng giỏ hàng tương ứng với 1 sản phẩm.  Người sử dụng - Giỏ hàng (1, n): Một người dùng có thể có nhiều giỏ hàng (mỗi lần thêm khác nhau), nhưng mỗi giỏ hàng chỉ thuộc về một người dùng .  Người sử dụng - Yêu thích (1, n): Một người dùng có thể thích nhiều sản phẩm, nhưng mỗi lượt thích chỉ thuộc về một người dùng.  Sản phẩm - Yêu thích (1, n): Một sản phẩm có thể được nhiều người dùng thích, nhưng mỗi lượt thích chỉ áp dụng cho một sản phẩm."
+  },
+  {
+    "sentenceIndex": 88,
+    "page": 28,
+    "text": " Danh mục sản phẩm - Sản phẩm (1, n): Nhiều sản phẩm có thể thuộc về cùng một danh mục , nhưng mỗi sản phẩm chỉ thuộc một danh mục .  Trạng thái đơn hàng - Đơn hàng (1, n): Mỗi đơn hàng có một trạng thái, nhưng một trạng thái có thể áp dụng cho nhiều đơn hàng .  Chủ đề - Sản phẩm (1, n): Một sản phẩm chỉ thuộc một chủ đề, nhưng một chủ đề có thể có nhiều sản phẩm."
+  },
+  {
+    "sentenceIndex": 89,
+    "page": 29,
+    "text": "2.3.4. Mô hình thực thể liên kết"
+  },
+  {
+    "sentenceIndex": 90,
+    "page": 30,
+    "text": "Hình 2.3.1.1: Mô hình thực thể liên kết (ERD) 2.3.1. Mô hình quan hệ"
+  },
+  {
+    "sentenceIndex": 91,
+    "page": 31,
+    "text": "Hình 2.3.2.1: Mô hình quan hệ (RM)"
+  },
+  {
+    "sentenceIndex": 92,
+    "page": 32,
+    "text": "CHƯƠNG III THIẾT KẾ HỆ THỐNG 3.1. Thigh kế dữ liệu *dboPHANQUYEN: Lưu trữ thông t in phân quyền. STT Tên thuộc tính Kiểu dữ liệu Ràng buộc Ghi chú 1 Ma PQ int Primary key Mã phân quyền 2 TenPQ nvarchar( 50 ) Tên phân quyền Bảng 3.1.1: Bảng phân quyền *dboUSERS: Lưu trữ thông ti n người sử dụng. STT Tên thuộc tính Kiểu dữ liệu Ràng buộc Ghi chú 1 M a US int Primary key Mã người sử dụng 2 T enUS nvarchar( 50 ) H ọ tên người sử dụng 3 Email varchar(100) Email người sử dụng 4 Diachi nvarchar(150) Địa chỉ người sử dụng 5 SDT varchar(15) Số điện thoại người sử dụng 6 TenDN varchar(20) Tên đăng nhập hệ thống 7 MK varchar(20) Mật khẩu đăng nhập hệ thống 8 Ngaytao datetime Ngày tạo tài khoản 9 MaPQ int Foreign key Mã phân quyền Bảng 3.1.2: Bảng người sử dụng * dboDANHMUCSANPHAM : Lưu trữ thông ti n danh mục sản phẩm. STT Tên thuộc tính Kiểu dữ liệu Ràng buộc Ghi chú 1 M aDM int Primary key Mã danh mục 2 TenDM nvarchar( 50 ) Tên danh mục Bảng 3.1.3: Bảng danh mục sản phẩm"
+  },
+  {
+    "sentenceIndex": 93,
+    "page": 33,
+    "text": "* dboCHUDE : Lưu trữ thông ti n chủ đề. STT Tên thuộc tính Kiểu dữ liệu Ràng buộc Ghi chú 1 M a CD int Primary key Mã chủ đề 2 Ten CD nvarchar( 50 ) Tên chủ đề Bảng 3.1.4: Bảng chủ đề * dboSANPHAM : Lưu trữ thông tin sản phẩm. STT Tên thuộc tính Kiểu dữ liệu Ràng buộc Ghi chú 1 M aSP int Primary key Mã sản phẩm 2 TenSP nvarchar(100) Tên sản phẩm 3 MoTaSP nvar char( max ) Mô tả thông tin chi tiết của từng sản phẩm 4 Gia d ecimal(10,2) Giá sản phẩm 5 SoLuong Ban int Số lượng sản phẩm đã bán 6 GiamGia int Tỉ lệ % giảm giá 7 NgaythemSP datetime Ngày sản phẩm được cập nhật thêm vào hệ thống 8 AnhSP v archar(100) Ảnh sản phẩm 9 M aDM int Foreign key Mã danh mục 10 MaCD int Foreign key Mã chủ đề 11 GiaGiam decimal(10,2) Giá sản phẩm sau khi đã được giảm Bảng 3.1.5: Bảng sản phẩm * dboDONHANG : Lưu trữ thông tin đơn hàng. STT Tên thuộc tính Kiểu dữ liệu Ràng buộc Ghi chú 1 M aDH int Primary key Mã đơn hàng 2 MaUS int Foreign key Mã người sử dụng 3 TenUS nvarchar(50 ) Tên người sử dụng 4 SDT varchar(15) Số điện thoại người sử dụng 5 Diachigiaohang nvarchar(150 ) Địa chỉ giao hàng 6 TongTien decimal(10,2) Tổng số tiền 7 Ngaydathang datetime Ngày đặt hàng"
+  },
+  {
+    "sentenceIndex": 94,
+    "page": 34,
+    "text": "Bảng 3.1.6: Bảng đơn hàng * dboCHITIETDONHANG : Lưu trữ thông tin chi tiết đơn hàng. STT Tên thuộc tính Kiểu dữ liệu Ràng buộc Ghi chú 1 M aSP int Foreign key Mã sản phẩm 2 MaDH int Foreign key Mã đơn hàng 3 SoLuong int Số lượng sản phẩm 4 TongTien decimal(10,2) Tổng số tiền 5 Dongia decimal(10,2) Đơn giá sản phẩm Bảng 3.1.7: Bảng chi tiết đơn hàng * dboTRANGTHAIDONHANG : Lưu trữ thông tin trạng thái đơn hàng. STT Tên thuộc tính Kiểu dữ liệu Ràng buộc Ghi chú 1 Ma TTDH int Primary key Mã trạng thái đơn hàng 2 TextTTDH nvarchar( 1 50) Tên trạng thái đơn hàng 3 ValueTTDH varchar(15) Giá trị trạng thái đơn hàng Bảng 3.1.8: Bảng trạng thái đơn hàng * dboGIOHANG : Lưu trữ thông tin giỏ hàng. STT Tên thuộc tính Kiểu dữ liệu Ràng buộc Ghi chú 1 M aGH int Primary key Mã giỏ hàng 2 MaSP int Foreign key Mã sản phẩm 3 NgaythemSP datetime Ngày thêm sản phẩm 4 Soluong int Số lượng sản phẩm có trong giỏ hàng 5 MaUS Int Foreign key Mã người sử dụng Bảng 3.1.9: Bảng giỏ hàng * dboYEUTHICH : Lưu trữ thông tin sản phẩm được yêu thích. STT Tên thuộc tính Kiểu dữ liệu Ràng buộc Ghi chú 1 M aYT int Primary key Mã yêu thích 2 MaSP int Foreign key Mã sản phẩm 3 MaUS int Foreign key Mã người sử dụng"
+  },
+  {
+    "sentenceIndex": 95,
+    "page": 35,
+    "text": "4 NgaythemYT datetime Ngày thên yêu thích Bảng 3.1.10: Bảng yêu thích  Sơ đồ diagram: CHITIETDONHANG MaSP MaDH SoLuong TongTien Dongia CHUDE MaCD TenCD DANHMUCSANPHAM MaDM TenDM DONHANG MaDH MaUS TenUS SDT Diachigiaohang TongTien Ngaydathang GIOHANG MaGH MaSP MaUS Soluong NgaythemSP PHANQUYEN MaPQ TenPQ SANPHAM MaSP TenSP MoTaSP Gia SoLuongBan GiamGia NgaythemSP AnhSP GiaGiam MaDM MaCD TRANGTHAIDONHANG MaTTDH TextTTDH ValueTTDH USERS MaUS TenUS Email Diachi SDT TenDN MK Ngaytao MaPQ YEUTHICH MaYT MaSP MaUS NgaythemYT Hình 3.1.1: Mô hình sơ đồ diagram 3.2. Giao diện hệ thống"
+  },
+  {
+    "sentenceIndex": 96,
+    "page": 36,
+    "text": "Hình 3.2.1: Hình ảnh giao diện trang chủ Hình 3.2.2: Hình ảnh danh mục sản phẩm"
+  },
+  {
+    "sentenceIndex": 97,
+    "page": 37,
+    "text": "Hình 3.2.3: Hình ảnh các sản phẩm bán chạy và footer"
+  },
+  {
+    "sentenceIndex": 98,
+    "page": 38,
+    "text": "Hình 3.2.4: Hình ảnh giao diện trang sản phẩm đầm"
+  },
+  {
+    "sentenceIndex": 99,
+    "page": 39,
+    "text": "Hình 3.2.5: Hình ảnh giao diện trang sản phẩm được yêu thích Hình 3.2.6: Hình ảnh giao diện trang giỏ hàng"
+  },
+  {
+    "sentenceIndex": 100,
+    "page": 40,
+    "text": "Hình 3.2.7: Hình ảnh giao diện trang đăng ký/đăng nhập 3.3. Quản lý tài khoản 3.3.1. Thêm tài khoản protected void btnThemTK_Click( object sender, EventArgs e) { string TenDN = txtTenDN.Text; string MK = txtMK.Text; string NLMK = txtNLMK.Text; string Hoten = txtHoten.Text; string SDT = txtSDT.Text; string Email = txtEmail.Text; string maphanquyen = ddlQuyen.SelectedValue; SqlConnection objKetnoi = new SqlConnection (Diachi); objKetnoi.Open(); string lenh = @\"insert into [USER](TenUS, Email, SDT, TenDN, MK, Ngaytao, MaPQ) values (N'\" + Hoten + \"' \" + \", '\" + Email + \"' \" + \", '\" + SDT + \"' \" + \", '\" + TenDN + \"' \" + \", '\" + MK + \"', GETDATE(), \" + maphanquyen + \")\" ; SqlDataAdapter objAdap = new SqlDataAdapter (lenh, objKetnoi); DataTable dt = new DataTable (); objAdaP.Fill(dt);"
+  },
+  {
+    "sentenceIndex": 101,
+    "page": 41,
+    "text": "objKetnoi.Close(); } 3.3.2. Sửa tài khoản protected void btnSuaTK_Click( object sender, EventArgs e) { int MaUS = Convert .ToInt32(Request.QueryString[ \"matk\" ]); int maphanquyen = Convert .ToInt32(ddlQuyen.SelectedValue); foreach ( DataListItem item in dlTK.Items) { TextBox txtSuaTenDN = ( TextBox )item.FindControl( \"txtSuaTenDN\" ); string TenDN = txtSuaTenDN.Text; TextBox txtSuaMK = ( TextBox )item.FindControl( \"txtSuaMK\" ); string MK = txtSuaMK.Text; TextBox txtSuaHoten = ( TextBox )item.FindControl( \"txtSuaHoten\" ); string Hoten = txtSuaHoten.Text; TextBox txtSuaSDT = ( TextBox )item.FindControl( \"txtSuaSDT\" ); string SDT = txtSuaSDT.Text; TextBox txtSuaEmail = ( TextBox )item.FindControl( \"txtSuaEmail\" ); string Email = txtSuaEmail.Text; using ( SqlConnection objKetnoi = new SqlConnection (Diachi)) { objKetnoi.Open(); string lenh = \"UPDATE [USER] SET TenUS = @Hoten, SDT = @SDT, Email = @Email, TenDN = @TenDN, MK = @MK, MaPQ = @maphanquyen WHERE MaUS = @MaUS\" ; SqlCommand cmd = new SqlCommand (lenh, objKetnoi); cmd.Parameters.AddWithValue( \"@Hoten\" , Hoten); cmd.Parameters.AddWithValue( \"@SDT\" , SDT); cmd.Parameters.AddWithValue( \"@Email\" , Email); cmd.Parameters.AddWithValue( \"@TenDN\" , TenDN); cmd.Parameters.AddWithValue( \"@MK\" , MK); cmd.Parameters.AddWithValue( \"@maphanquyen\" , maphanquyen); cmd.Parameters.AddWithValue( \"@MaUS\" , MaUS); cmd.ExecuteNonQuery(); } } }"
+  },
+  {
+    "sentenceIndex": 102,
+    "page": 42,
+    "text": "3.3.3. Xóa tài khoản protected void lbtXoa_Command( object sender, CommandEventArgs e) { int matk = int .Parse(e.CommandArgument.ToString()); SqlConnection objKetnoi = new SqlConnection (Diachi); objKetnoi.Open(); string lenh = \"DELETE FROM [USER] WHERE MaUS = \" + matk; SqlDataAdapter da = new SqlDataAdapter (lenh, objKetnoi); DataSet ds = new DataSet (); da.Fill(ds); objKetnoi.Close(); } 3.4. Quản lý sản phẩm 3.4.1. Thêm sản phẩm private void ThemSP( string machude) { string madanhmuc = ddlDMSP.SelectedItem.Value; string TenSP = txtTenSP.Text; string Gia = txtGiaSP.Text; string MoTa = txtMota.Text; if (flAnhSP.FileContent.Length > 0) { if (flAnhSP.FileName.EndsWith( \".jpeg\" ) || flAnhSP.FileName.EndsWith( \".jpg\" ) || flAnhSP.FileName.EndsWith( \".png\" ) || flAnhSP.FileName.EndsWith( \".gif\" )) { flAnhSP.SaveAs(Server.MapPath( \"~/Images/AnhSP/\" ) + flAnhSP.FileName); SqlConnection objKetnoi = new SqlConnection (Diachi); objKetnoi.Open(); string lenh = \"INSERT INTO SANPHAM (MaDM, MaCD, TenSP, AnhSP, Gia, MoTaSP) VALUES (@MaDM, @MaCD, @TenSP, @AnhSP, @Gia, @MoTaSP)\" ; SqlCommand cmd = new SqlCommand (lenh, objKetnoi); cmd.Parameters.AddWithValue( \"@MaDM\" , madanhmuc); cmd.Parameters.AddWithValue( \"@MaCD\" , machude);"
+  },
+  {
+    "sentenceIndex": 103,
+    "page": 43,
+    "text": "cmd.Parameters.AddWithValue( \"@TenSP\" , TenSP); cmd.Parameters.AddWithValue( \"@AnhSP\" , flAnhSP.FileName); cmd.Parameters.AddWithValue( \"@Gia\" , Gia); cmd.Parameters.AddWithValue( \"@MoTaSP\" , MoTa); cmd.ExecuteNonQuery(); objKetnoi.Close(); } else { ScriptManager .RegisterStartupScript( this , this .GetType(), \"alert\" , \"alert('Ảnh không đúng định dạng jpeg, jpg, png, gif.');\" , true ); } } else { ScriptManager .RegisterStartupScript( this , this .GetType(), \"alert\" , \"alert('Hãy tải ảnh lên.');\" , true ); } } 3.4.2. Sửa sản phẩm private void SuaSP() { string machude = ddlCDSP.SelectedItem.Value; string madanhmuc = ddlDMSP.SelectedItem.Value; int MaSP = Convert .ToInt32(Request.QueryString[ \"masp\" ]); foreach ( RepeaterItem item in rptSuaSach.Items) { TextBox txtTenSP = ( TextBox )item.FindControl( \"txtTenSP\" ); string TenSP = txtTenSP.Text; TextBox txtGiaSP = ( TextBox )item.FindControl( \"txtGiaSP\" ); string GiaNiemYet = txtGiaSP.Text; TextBox txtMota = ( TextBox )item.FindControl( \"txtMota\" ); string MoTa = txtMota.Text; FileUpload flAnhSp = ( FileUpload )item.FindControl( \"flAnhSp\" ); if (flAnhSP.FileContent.Length > 0) {"
+  },
+  {
+    "sentenceIndex": 104,
+    "page": 44,
+    "text": "if (flAnhSP.FileName.EndsWith( \".jpeg\" ) || flAnhSP.FileName.EndsWith( \".jpg\" ) || flAnhSP.FileName.EndsWith( \".png\" ) || flAnhSP.FileName.EndsWith( \".gif\" )) { flAnhSP.SaveAs(Server.MapPath( \"~/Images/AnhSP/\" ) + flAnhSP.FileName); } SqlConnection objKetnoi = new SqlConnection (Diachi); objKetnoi.Open(); string lenh = \"UPDATE SANPHAM SET TenSP = @TenSP, AnhSP = @AnhSP, Gia = @Gia, Mota = @MoTaSP, MaDM = @MaDM, MaCD = @MaCD WHERE MaSP = @MaSP\" ; SqlCommand cmd = new SqlCommand (lenh, objKetnoi); cmd.Parameters.AddWithValue( \"@TenSP\" , TenSP); cmd.Parameters.AddWithValue( \"@AnhSP\" , flAnhSP.FileName); cmd.Parameters.AddWithValue( \"@Gia\" , GiaNiemYet); cmd.Parameters.AddWithValue( \"@Mota\" , MoTa); cmd.Parameters.AddWithValue( \"@MaDM\" , madanhmuc); cmd.Parameters.AddWithValue( \"@MaCD\" , machude); cmd.Parameters.AddWithValue( \"@MaSP\" , MaSP); cmd.ExecuteNonQuery(); objKetnoi.Close(); } else { SqlConnection objKetnoi = new SqlConnection (Diachi); objKetnoi.Open(); string lenh = \"UPDATE SANPHAM SET TenSP = @TenSP, Gia = @Gia, MoTaSP = @Mota, MaDM = @MaDM, MaCD = @MaCD WHERE MaSP = @MaSP\" ; SqlCommand cmd = new SqlCommand (lenh, objKetnoi); cmd.Parameters.AddWithValue( \"@TenSP\" , TenSP); cmd.Parameters.AddWithValue( \"@Gia\" , GiaNiemYet); cmd.Parameters.AddWithValue( \"@Mota\" , MoTa); cmd.Parameters.AddWithValue( \"@MaDM\" , madanhmuc); cmd.Parameters.AddWithValue( \"@MaCD\" , machude); cmd.Parameters.AddWithValue( \"@MaSP\" , MaSP); cmd.ExecuteNonQuery(); objKetnoi.Close(); } } }"
+  },
+  {
+    "sentenceIndex": 105,
+    "page": 45,
+    "text": "3.4.3. Xóa sản phẩm protected void lbtXoaSP_Command( object sender, CommandEventArgs e) { int masp = int .Parse(e.CommandArgument.ToString()); SqlConnection objKetnoi = new SqlConnection (Diachi); objKetnoi.Open(); string lenh = \"DELETE FROM SANPHAM WHERE MaSP = \" + masp; SqlDataAdapter da = new SqlDataAdapter (lenh, objKetnoi); DataSet ds = new DataSet (); da.Fill(ds); objKetnoi.Close(); }"
+  },
+  {
+    "sentenceIndex": 106,
+    "page": 46,
+    "text": "KẾT LUẬN Việc thiết kế hệ thống website bán quần áo là một bước quan trọng trong việc xây dựng nền tảng thương mại điện tử hiệu quả, giúp doanh nghiệp tiếp cận khách hàng một cách nhanh chóng và chuyên nghiệP. Trong quá trình phát triển hệ thống, nhóm em đã đảm bảo giao diện thân thiện , trải nghiệm người dùng tốt , tích hợp SQL Server để quản lý dữ liệu và sử dụng ASP.NET để xây dựng các chức năng động . Qua đề tài này, chúng ta thấy được rằng một website bán quần áo không chỉ là nơi trưng bày sản phẩm mà còn là công cụ hỗ trợ kinh doanh , giúp doanh nghiệp phát triển thương hiệu và gia tăng doanh số. Việc lựa chọn nền tảng phù hợp và áp dụng các công nghệ tiên tiến sẽ giúp hệ thống hoạt động hiệu quả, đáp ứng nhu cầu của cả doanh nghiệp và khách hàng."
+  },
+  {
+    "sentenceIndex": 107,
+    "page": 47,
+    "text": "TÀI LIỆU THAM KHẢO [1] Nguyễn Văn Hòa, Thiết kế hệ thống thương mại điện tử , Nhà xuất bản Khoa học và Kỹ thuật, Hà Nội, 2018. [2] Trần Minh Tuấn, Lập trình web với ASP.NET và SQL Server , Nhà xuất bản Đại học Quốc gia TP.HCM, 2020. [3] Lê Anh Tuấn, Quản lý cơ sở dữ liệu với SQL Server trong thương mại điện tử , Nhà xuất bản Khoa học và Công nghệ, 2019. [4] Phạm Văn Nam, Bảo mật website thương mại điện tử với SQL Server , Nhà xuất bản Công nghệ Thông tin, 2016. [5] Mai Thanh Tùng, Xây dựng ứng dụng bán hàng trực tuyến với ASP.NET Core , Nhà xuất bản Đại học Bách Khoa Hà Nội, 2023."
+  }
+]

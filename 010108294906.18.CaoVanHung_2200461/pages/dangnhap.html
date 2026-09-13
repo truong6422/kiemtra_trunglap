@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="../css/dangnhap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="menu">
+            <div class="menu-container">
+                <div class="logo">
+                    <img src="../images/logo.jpg">
+                    <p>Phần mềm kiểm tra trùng lặp văn bản</p>
+                </div>
+                <ul>
+                    <li>
+                        <a href="../pages/trangchu.html">
+                            Trang chủ
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/trogiup.html">
+                            Trợ giúp
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/huongdan.html">
+                            Hướng dẫn chi tiết
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/dangnhap.html">
+                            Đăng nhập
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/dangky.html">
+                            Đăng ký
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="main-dangnhap">
+        <div class="login-box">
+            <h2>Đăng nhập</h2>
+            <form>
+                <label for="email">Email</label>
+                <input type="text" id="email" placeholder="Nhập email">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Nhập mật khẩu">
+                <button type="submit">Đăng nhập</button>
+            </form>
+            <div class="divider">
+                <span>hoặc</span>
+            </div>
+
+            <!--<button type="button" id="googleRegisterBtn" class="google-btn">
+      <img src="D:\kiemtra_trunglap\010108294906.18.CaoVanHung_2200461\images\google.jpg" alt="Google logo">
+      Đăng ký với Google
+    </button>-->
+            <div id="googleButton"></div>
+            <div class="links">
+                <a href="#" id="forgotPasswordBtn" class="forgot">Quên mật khẩu?</a>
+                <a href="../pages/dangky.html" class="register">Đăng ký</a>
+                <br>
+                <a href="#" id="resendActivation">Gửi lại email kích hoạt</a>
+
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-left">
+            <p>Copyright © 2016 Trường Đại học Công nghiệp Việt-Hung. All Rights Reserved.</p>
+            <h4>Địa điểm đào tạo:</h4>
+            <p><strong>Cơ sở Sơn Tây:</strong> Số 16 Hữu Nghị, phường Tùng Thiện, TP. Hà Nội</p>
+            <p><strong>Cơ sở Thạch Thất:</strong> Số 88, đường 419 - Tây Phương, TP. Hà Nội</p>
+            <p><strong>Cơ sở Thanh Xuân:</strong> Số 27 Lê Văn Lương, phường Thanh Xuân, TP. Hà Nội</p>
+        </div>
+        <div class="footer-right">
+            <div>
+                <a href="#">Điều khoản sử dụng</a> | <a href="#">Quyền riêng tư</a>
+            </div>
+            <!--<div class="icons">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-solid fa-envelope"></i>
+                <i class="fa-solid fa-phone"></i>
+            </div>-->
+            <div class="icons">
+                <a href="https://www.facebook.com/dhcnvh/" target="_blank">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="https://tuyensinh.viu.edu.vn/kham-pha-viu.html" target="_blank">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="mailto:dhcnviethung.viu@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="tel:0974.966.966">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+            </div>
+            <div class="hotline-one">
+                <a>Hotline: 0974.966.966</a>
+            </div>
+            <div class="hotline-two">
+                <a>Email: dhcnviethung.viu@gmail.com</a>
+            </div>
+        </div>
+    </footer>
+    <div id="systemAlert" class="alert-box">
+        <div class="alert-content">
+            <h2 id="alertTitle">Thông báo hệ thống!</h2>
+            <p id="alertMessage"></p>
+            <button onclick="closeAlert()">Đóng</button>
+        </div>
+
+
+
+    </div>
+
+
+    <!-- Modal Nhập Mật Khẩu Mới -->
+    <!-- Modal Nhập Mật Khẩu Mới -->
+    <div id="resetPasswordModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 1000;">
+        <div
+            style="background: #fff; padding: 25px; border-radius: 8px; width: 360px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            <!-- Tiêu đề màu xanh in đậm -->
+            <h3 style="margin-top: 0; text-align: center; color: #007bff; font-weight: bold; font-size: 20px;">Mời bạn
+                nhập mật khẩu</h3>
+
+            <div style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 500;">Mật khẩu mới:</label>
+                <input type="password" id="newPassword" placeholder="Nhập mật khẩu mới"
+                    style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: 500;">Nhập lại mật khẩu mới:</label>
+                <input type="password" id="confirmNewPassword" placeholder="Nhập lại mật khẩu mới"
+                    style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+            </div>
+
+            <!-- Hàng nút hành động: Nút Hủy và Nút Xác nhận -->
+            <div style="display: flex; justify-content: center; gap: 12px;">
+                <button type="button" onclick="closeResetModal()"
+                    style="padding: 8px 20px; border: 1px solid #ccc; background: #f8f9fa; color: #333; font-weight: 500; border-radius: 4px; cursor: pointer; font-size: 14px;">Hủy</button>
+                <button type="button" id="btnConfirmReset"
+                    style="padding: 8px 24px; background: #007bff; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px;">Xác
+                    nhận</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <script src="../js/dangnhap.js"></script>
+    <script src="../js/resendActivation.js"></script>
+
+</body>
+
+</html>

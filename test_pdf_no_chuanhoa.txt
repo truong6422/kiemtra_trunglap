@@ -1,0 +1,1021 @@
+MỞ ĐẦU 
+1. Đặt vấn đề 
+1.1. Giới thiệu 
+Trong lĩnh vực khoa học máy tính, thuật toán sắp xếp đóng vai trò quan trọng 
+trong việc xử lý và tổ chức dữ liệu. Hai trong số các thuật toán sắp xếp phổ biến nhất 
+là thuật toán sắp xếp trộn (Merge Sort) và thuật toán sắp xếp phân lô (Radix Sort). Để 
+hiểu rõ hơn về cách hoạt động của chúng và so sánh hiệu suất giữa hai thuật toán này, 
+việc xây dựng một chương trình mô phỏng bằng ngôn ngữ lập trình C# trên môi 
+trường console là cần thiết. Đề tài này sẽ giúp người học nắm vững lý thuyết về các 
+thuật toán sắp xếp, cũng như cách thức triển khai chúng trong thực tế. 
+1.2 Lý do chọn đề tài 
+Như chúng ta đã biết, cấu trúc dữ liệu và giải thuật là một trong những môn học 
+cơ bản của sinh viên ngành Công nghệ thông tin. Các cấu trúc dữ liệu và các giải thuật 
+được xem như là 2 yếu tố quan trọng nhất trong lập trình: Chương trình = Cấu trúc dữ 
+liệu + Giải thuật. 
+Trong khoa học máy tính, cấu trúc dữ liệu là một cách lưu dữ liệu trong máy 
+tính sao cho nó có thể được sử dụng một cách hiệu quả. Giải thuật (hay còn gọi là 
+thuật toán – tiếng Anh là Algorithms) là một tập hợp hữu hạn các chỉ thị để được thực 
+thi theo một thứ tự nào đó để thu được kết quả mong muốn. 
+Để giúp cho sinh viên có thể hình dung, hiểu rõ về Cấu trúc dữ liệu + Giải thuật 
+hơn thì các giảng viên thường sử dụng mô phỏng thuật toán như một công cụ hỗ trợ 
+giúp mô phỏng động bằng đồ họa của một thuật toán và các thay đổi trong cấu trúc dữ 
+liệu của nó trong suốt quá trình thực thi. 
+Hiện nay, một số hệ thống mô phỏng thuật toán được phát triển, hầu hết các hệ 
+thống phổ biến và tinh vi hơn các hệ thống mà thực tế đang sử dụng. 
+Thuật toán về sắp xếp rất đa dạng và phong phú. Vì vậy vấn đề “Mô phỏng 
+thuật toán sắp xếp” được chọn để làm báo cáo thực tập cơ sở này. 
+2. Mục tiêu nghiên cứu của đề tài 
+• Nghiên cứu tổng quan về mô phỏng thuật toán. 
+• Ôn lại, tìm hiểu một số thuật toán thuật toán sắp xếp 
+• Xây dựng chương trình mô phỏng giúp người học có thể hình dung rõ hơn về quá 
+trình sắp xếp 
+• Áp dụng kết quả nghiên cứu làm một demo mô phỏng thuật toán sắp xếp trên màn 
+hình console và C# 
+Bảng 1.2.1. Bảng phân chia công việc 
+Phùng Đình 
+Trường (Team 
+Leader) 
+Phụ trách lập kế hoạch và phân chia công việc cho các thành 
+viên khác: 
+ - Đặt ra kế hoạch làm việc cụ thể cho từng thành viên 
+dựa trên yêu cầu của dự án. 
+Tiếp nhận và tổ chức thông tin từ các thành viên để viết báo 
+cáo: 
+ - Xem xét thông tin từ Developer 1, Developer 2 và 
+Researcher/Writer để đảm bảo đầy đủ cho việc viết báo cáo. 
+Giám sát quá trình triển khai dự án và đảm bảo tiến độ được 
+duy trì: 
+ - Theo dõi tiến độ làm việc của các thành viên và giải 
+quyết vấn đề nếu cần thiết để đảm bảo tiến độ. 
+Tham gia vào việc viết mã chương trình và kiểm tra tính đúng 
+đắn của nó: 
+ - Tham gia vào việc viết mã chương trình để đảm bảo 
+hiểu rõ cách thức hoạt động của chương trình và kiểm tra tính 
+đúng đắn của nó. 
+Triển khai tiến độ với GVHD: 
+ - Liên lạc và báo cáo tiến độ cho Giáo viên hướng dẫn. 
+Đảm bảo hoàn hiện báo cáo và CD-R: 
+ - Chịu trách nhiệm cuối cùng cho việc hoàn thiện báo 
+cáo và CD-R theo yêu cầu của đồ án. 
+Lê Xuân Huy 
+(Developer 1) 
+Tập trung vào việc triển khai các thuật toán sắp xếp Trộn và 
+phân lô: 
+ - Triển khai thuật toán sắp xếp Trộn và phân lô trong 
+mã chương trình. 
+Xây dựng mã chương trình cho các thuật toán được chọn: 
+ - Viết mã chương trình cho các thuật toán sắp xếp Trộn 
+và phân lô. 
+Tham gia vào việc kiểm thử và debug chương trình: 
+ - Thực hiện kiểm thử và debug chương trình để đảm 
+bảo tính đúng đắn của mã. 
+Hỗ trợ viết báo cáo về phần thực hiện của mình: 
+ - Cung cấp thông tin và kết quả từ quá trình triển khai 
+và kiểm thử cho việc viết báo cáo. 
+Vũ Minh Tâm 
+(Developer 2) 
+Phát triển giao diện người dùng cho chương trình mô phỏng: 
+ - Thêm các lựa chọn vào menu để tạo giao diện người 
+dùng. 
+Tạo các tính năng tương tác cho người dùng như nhập dữ liệu 
+và hiển thị kết quả: 
+ - Thực hiện các tính năng tương tác như nhập dữ liệu 
+và hiển thị kết quả trong console. 
+Đảm bảo giao diện người dùng thân thiện và dễ sử dụng: 
+ - Thiết kế và sắp xếp menu một cách hợp lý để tạo ra 
+giao diện người dùng thân thiện và dễ sử dụng. 
+Hỗ trợ viết báo cáo về phần giao diện người dùng: 
+ - Cung cấp thông tin về việc phát triển giao diện và các 
+tính năng tương tác cho việc viết báo cáo. 
+Đinh Thế Quang 
+(Researcher/Writer) 
+Tìm hiểu và nghiên cứu về các thuật toán sắp xếp Trộn và 
+phân lô: 
+ - Nghiên cứu và thu thập thông tin về các thuật toán 
+sắp xếp Trộn và phân lô từ các nguồn đáng tin cậy. 
+Thu thập thông tin, tài liệu tham khảo cho phần lý thuyết và 
+giải thuật của báo cáo: 
+ - Thu thập thông tin và tài liệu tham khảo từ các nguồn 
+đáng tin cậy để viết phần lý thuyết và giải thuật của báo cáo. 
+Viết phần giới thiệu, lý thuyết và so sánh hiệu suất của các 
+thuật toán: 
+ - Viết phần giới thiệu, lý thuyết và so sánh hiệu suất 
+của các thuật toán dựa trên thông tin thu thập được. 
+Hỗ trợ viết báo cáo với các phần lý thuyết và tài liệu tham 
+khảo: 
+ - Cung cấp nội dung và thông tin cho các phần liên 
+quan đến lý thuyết và tài liệu tham khảo cho việc viết báo cáo. 
+3. Nhiệm vụ của đề tài 
+Nghiên cứu: 
+1. Thu thập và tổng hợp tài liệu về thuật toán sắp xếp trộn và thuật toán sắp xếp 
+phân lô. 
+2. Phân tích và mô tả chi tiết cách hoạt động của từng thuật toán, bao gồm: 
+o Thuật toán sắp xếp trộn (Merge Sort) 
+o Thuật toán sắp xếp phân lô (Radix Sort) 
+Demo: 
+1. Xây dựng chương trình mô phỏng thuật toán sắp xếp trộn (Merge Sort) bằng C# 
+console. 
+2. Xây dựng chương trình mô phỏng thuật toán sắp xếp phân lô (Radix Sort) bằng 
+C# console. 
+3. Thực hiện các thử nghiệm với các bộ dữ liệu có kích thước và đặc điểm khác 
+nhau để đánh giá hiệu suất của từng thuật toán. 
+4. Hiển thị kết quả sắp xếp và các thông số hiệu suất (thời gian thực hiện, số lần so 
+sánh, số lần hoán đổi, v.v.) lên console. 
+4. Kết quả đạt được của đề tài 
+* Các yêu cầu đã được giải quyết: 
+• Đã nghiên cứu và hiểu rõ lý thuyết về thuật toán sắp xếp trộn và thuật toán sắp 
+xếp phân lô. 
+• Xây dựng thành công chương trình mô phỏng hai thuật toán trên môi trường C# 
+console. 
+• Thực hiện các thử nghiệm và thu thập dữ liệu về hiệu suất của hai thuật toán. 
+• So sánh và phân tích kết quả thử nghiệm để đánh giá ưu nhược điểm của từng 
+thuật toán trong các tình huống khác nhau. 
+* Các vấn đề chưa giải quyết: 
+• Việc tối ưu hóa hiệu suất của chương trình mô phỏng trong các trường hợp đặc 
+biệt (dữ liệu lớn, dữ liệu ngẫu nhiên hoàn toàn, dữ liệu gần như đã sắp xếp, 
+v.v.) còn hạn chế. 
+• Cần thêm nhiều thử nghiệm hơn để có kết luận chắc chắn về hiệu suất của từng 
+thuật toán trong mọi tình huống. 
+* Các vấn đề đang làm dở dang và gặp khó khăn: 
+• Phát hiện và xử lý các lỗi có thể xảy ra khi chạy chương trình với dữ liệu đặc 
+biệt. 
+• Cải thiện giao diện console để hiển thị thông tin một cách trực quan và dễ hiểu 
+hơn. 
+• Khả năng mở rộng chương trình để hỗ trợ thêm các thuật toán sắp xếp khác 
+hoặc các tính năng bổ sung (ví dụ: hiển thị quá trình sắp xếp từng bước, lưu kết 
+quả vào file, v.v.). 
+5. Bố cục của đề tài 
+Đề tài gồm 3 chương như sau: 
+Chương I : Cơ sở lý thuyết 
+Chương II : Bài toán sắp xếp và thuật toán 
+Chương III : Chương trình ứng dụng thuật toán sắp xếp 
+CHƯƠNG 1. CƠ SỞ LÝ THUYẾT 
+1.1. Ngôn ngữ C# 
+1.1.1. Khái niệm 
+Ngôn ngữ C#(đọc là “C thăng” hay “C sharp”) là một ngôn ngữ lập trình hướng 
+đối tượng được phát triển bởi Microsoft, là phần khởi đầu cho kế hoạch .NET của họ. 
+1.1.2. Ứng dụng của ngôn ngữ lập trình C# 
+- Ứng dụng trên Windows: Với sự trợ giúp của bộ khung .Net, “C#” được sử dụng để 
+phát triển các ứng dụng dựa trên các cửa sổ cho máy tính để bàn. Nhiều ứng dụng 
+Windows phổ biến như các công cụ Microsof Office, Skype, Photoshop và Visual 
+Studio được phát triển bằng ngôn ngữ này. 
+- Các thành phần và điều khiển: Các thành phần và điều khiển là các thư viện có thể 
+được sử dụng để tạo ra một thứ dễ phân phối và có thể chia sẻ được. Thư viện GPS là 
+một ví dụ tuyệt vời cho một thư viện có thể được một lập trình viên xây dựng và dễ 
+dàng phân phối cho các lập trình viên khác để sử dụng trong các ứng dụng của họ. Nó 
+cũng được sử dụng để xây dựng các thành phần máy chủ và nhiều công việc khác nữa. 
+- Ứng dụng Web: Với sự trợ giúp của bộ khung .NET, C# có khả năng tạo ra nhiều 
+ứng dụng web bằng cách sử dụng ASP.NET. Đó là một ngôn ngữ phổ biến khác mà ai 
+ai có thể học ngay lập tức khi muốn làm cho ứng dụng web chạy trơn tru trên một máy 
+chủ web. Các ứng dụng Windows chạy trên cả máy máy chủ cũng như trong trình 
+duyệt của máy khách, tùy thuộc vào cách viết mã. Nếu C# được sử dụng dưới hình 
+thức mã hóa ở backend, thì mã C# chạy trên máy chủ và HTML Frontend chạy trong 
+trình duyệt của máy khách. 
+1.2. Thuật toán 
+1.2.1. Khái niệm thuật toán 
+Thuật toán là một dãy hữu hạn các thao tác được sắp xếp theo một trình tự xác 
+định sao cho sau khi thực hiện dãy các thao tác ấy, từ Input của bài toán ta nhận được 
+Output cần tìm. 
+1.2.2. Các đặc trưng của thuật toán 
+Các thuật toán có một số tính chất chung, đó là: 
+• Đầu vào (Input): Một thuật toán có các giá trị đầu vào từ một tập xác định. 
+• Đầu ra (Output): Từ mỗi tập giá trị đầu vào, thuật toán sẽ tạo ra các giá trị đầu 
+ra. Các giá trị đầu ra chính là nghiệm của bài toán. 
+• Tính xác định: Các bước của thuật toán phải được xác định một cách chính xác. 
+• Tính đúng đắn: Một thuật toán phải cho các giá trị đầu ra đúng đối với mỗi tập 
+giá trị đầu vào. 
+• Tính hữu hạn: Một thuật toán phải tạo ra các giá trị đầu ra sau một số hữu hạn 
+(có thể rất lớn) các bước thực hiện đối với mỗi tập đầu vào. 
+• Tính tổng quát: Thuật toán cần phải áp dụng được cho mọi tập dữ liệu đầu vào 
+của bài toán, chứ không phải chỉ cho một tập đặc biệt các giá trị đầu vào. 
+1.2.3. Sơ lược các thuật toán sắp xếp hiện nay 
+Trong khoa học máy tính và trong toán học, thuật toán sắp xếp là một thuật toán 
+sắp xếp các phần tử của một danh sách(hoặc một mảng) theo thứ tự tăng (hoặc giảm). 
+Người ta thường xét trường hợp các phần tử cần sắp xếp là các số [9]. 
+Sắp xếp là quá trình xử lý một danh sách các phần tử (hoặc các mẫu tin) để đặt 
+chúng theo một thứ tự thỏa mãn một tiêu chuẩn nào đó dựa trên nội dung thông tin lưu 
+giữ tại mỗi phần tử. 
+Mức độ hiệu quả của từng giải thuật phụ thuộc vào tính chất của cấu trúc dữ liệu 
+cụ thể mà nó tác động đến. 
+Có nhiều giải thuật sắp xếp: Selection Sort, Bubble Sort, Insertion Sort, 
+Interchange Sort, Shell Sort, Heap Sort, Quick Sort, Merge Sort, Radix Sort,....Nhưng 
+trong bài báo cáo này, em xin trình bày và những giải thuật sắp xếp kinh điển để có cái 
+nhìn khoa học hơn về giải thuật sắp xếp. 
+1.3. Sơ lược về mô phỏng thuật toán 
+1.3.1. Khái niệm mô phỏng thuật toán 
+Mô phỏng thuật toán là quá trình mô tả cấu trúc dữ liệu, thao tác của một chương 
+trình bằng đồ họa [6].Mô phỏng thuật toán được thiết kế để giúp người dùng có thể 
+hiểu thuật toán, đánh giá chương trình và sửa lỗi chương trình. 
+Một chương trình máy tính chứa các cấu trúc dữ liệu của thuật toán mà nó thực thi. 
+Trong quá trình thực thi chương trình, các giá trị trong cơ sở dữ liệu được thay đổi. Mô 
+phỏng thuật toán sử dụng biểu diễn đồ họa để biểu diễn cấu trúc dữ liệu và chỉ ra sự 
+thay đổi giá trị trong cơ sở dữ liệu trong mỗi trạng thái. Thông qua đó, người sử dụng 
+có thể xem được từng bước thực thi chương trình và nhờ vậy có thể hiểu chi tiết được 
+thuật toán. 
+Mô phỏng thuật toán cũng được dùng để đánh giá một chương trình đã có bằng 
+cách cung cấp các mô phỏng cho các thành phần của hệ thống, nhờ đó có thể kiểm tra 
+được hiệu năng của hệ thống. 
+Bên cạnh việc giúp người sử dụng hiểu hơn về hệ thống, mô phỏng thuật toán còn 
+được dung để giúp thực hiện quá trình dò lỗi dễ dàng hơn. Để sử dụng mô phỏng thuật 
+toán trong quá trình dò lỗi của một chương trình, người sử dụng chú thích vào các 
+trạng thái của chương trình để tạo ra các lệnh mô phỏng, sau đó chúng sẽ được đưa 
+vào hệ thống mô phỏng thuật toán để tạo mô phỏng. Người sử dụng có thể xem 
+chương trình của họ đã thực hiện như thế nào, các giá trị dữ liệu ở mỗi bước và một 
+bước sẽ ảnh hưởng tới các bước sau như thế nào. Nó sẽ giúp người sử dụng tìm ra tất 
+cả các lỗi có thể xảy ra trong chương trình. 
+1.3.2. Quy trình mô phỏng thuật toán 
+Bước 1: Phân tích thuật toán 
+Để thực hiện quá trình mô phỏng thì việc đầu tiên là phải phân tích kỹ thuật 
+toán đó. Một thuật toán cần dùng đến chương trình mô phỏng thì thường thuật toán 
+không đơn giản. Xác định dữ liệu vào và dữ liệu ra của thuật toán, tức là xác định 
+thuật toán xây dựng trên cấu trúc dữ liệu nào, xác định các trường hợp cần xét của dữ 
+liệu, giá trị biến để thoát khỏi vòng lặp... 
+Chẳng hạn, cho dãy số nguyên, yêu cầu tìm phần tử lớn nhất. Với bài toán này, xác 
+định dữ liệu vào là mảng một chiều, với dữ liệu kiểu mảng xác định cách nhập mảng... 
+hay bài toán danh sách cán bộ với hai thao tác thường xuyên thực hiện là bổ sung và 
+loại bỏ thì dùng cấu trúc dữ liệu mảng không còn phù hợp mà nên dùng kiểu danh sách 
+nối đơn, từ đó xác định thuật toán tác động trên danh sách móc nối. 
+Bước 2: Xây dựng mô hình mô phỏng dữ liệu vào và dữ liệu ra 
+Mô phỏng dữ liệu vào là cách chọn hình thức hiện thị cho cấu trúc dữ liệu 
+tương ứng với giải thuật. Việc lựa chọn hình thức mô phỏng cho dữ liệu vào quyết 
+định tính hiệu quả của chương trình mô phỏng. 
+Bước 3: Tách thuật toán thành nhiều bước nhỏ 
+Việc tách thuật toán thành nhiều bước nhỏ tương tự như phân tích bài toán theo 
+hướng modul hóa, giúp quá trình mô phỏng dễ dàng và chi tiết hơn. 
+Bước 4: Tổng hợp các các bước mô phỏng thành thuật toán hoàn chỉnh 
+Sau khi tách thuật toán thành các bước nhỏ, cần tổng hợp lại thành một thuật 
+toán hoàn chỉnh. Điều này bao gồm việc sắp xếp các bước theo thứ tự logic và đảm 
+bảo rằng tất cả các bước đều được thực hiện đúng cách. 
+Bước 5: Kiểm nghiệm giải thuật thông qua dữ liệu ra của từng bước nhỏ 
+Kiểm tra tính đúng đắn của từng bước nhỏ bằng cách so sánh dữ liệu ra sau mỗi 
+bước với kết quả mong đợi. Điều này giúp phát hiện và sửa lỗi kịp thời, đảm bảo thuật 
+toán hoạt động đúng như mong muốn. 
+Ví dụ minh họa cho quy trình trên: 
+Ví dụ: Tìm phần tử lớn nhất trong dãy số nguyên 
+Bước 1: Phân tích thuật toán 
+- Dữ liệu vào: Mảng số nguyên [3, 1, 4, 1, 5, 9, 2, 6, 5] 
+- Dữ liệu ra: Phần tử lớn nhất 9 
+- Cấu trúc dữ liệu: Mảng một chiều 
+Bước 2: Mô phỏng dữ liệu vào và ra 
+- Dữ liệu vào: [3, 1, 4, 1, 5, 9, 2, 6, 5] 
+- Dữ liệu ra: 9 
+Bước 3: Tách thuật toán thành các bước nhỏ 
+- Khởi tạo max_val = arr[0] 
+- Duyệt qua từng phần tử trong mảng từ arr[1] đến arr[n-1] 
+- So sánh từng phần tử với max_val, cập nhật max_val nếu phần tử lớn hơn 
+Bước 4: Tổng hợp thành thuật toán hoàn chỉnh 
+Hình 1.3.2.1 Tổng hợp thuật toán. 
+Bước 5: Kiểm nghiệm giải thuật thông qua dữ liệu ra của từng bước nhỏ 
+Hình 1.3.2.2 Kiểm nghiệm thuật toán. 
+1.3.3. Tác dụng của mô phỏng thuật toán 
+Các hệ thống mô phỏng thuật toán được sử dụng rộng rãi như công cụ hỗ trợ giảng 
+dạy trong ngành giáo dục khoa học máy tính. Một số nghiên cứu thực nghiệm đã ước 
+lượng hiệu quả của chúng trong giáo dục và kết quả nhận được có thay đổi. Cụ thể là: 
+Brown (1984) đã sử dụng BALSA_I để dạy một khóa giới thiệu lập trình và một 
+khóa “cấu trúc dữ liệu và giải thuật”. Hệ thống được sử dụng như một chương trình 
+trực quan trong khóa giới thiệu, và như một người mô phỏng thuật toán mức cao trong 
+lớp cấu trúc dữ liệu. Ông ta báo cáo rằng việc sử dụng các hoạt cảnh mô phỏng để phụ 
+thêm vào thuyết trình dẫn tới “những lợi ích có thể chứng minh được trong việc tăng 
+tốc độ hiểu biết” qua thuyết trình truyề thống. Stasko (1997) được sử dụng Samba, 
+chương trình mô phỏng của hệ thống XTango dạy một khóa thuật toán khoa học máy 
+tính. Những sinh viên được yêu cầu sử dụng hệ thống có thêm vào mô phỏng cho các 
+chương trình ấn định cảu họ. Các kết quả thua được cho biết rằng những sinh viên 
+thích các mô phỏng và những mô phỏng đó có thể làm tăng tính sang tạo của các sinh 
+viên. Hơn nữa, sự hiểu biết của sinh viên về thuật toán được tăng lên nhờ việc mô 
+phỏng. 
+Tuy nhiên, sử dụng thuật toán trong việc dạy học không phải lúc nào cũng thành 
+công. Các nhà giáo dục đã làm các thực nghiệm và thu được các kết quả pha trộn. 
+Stasko et al (1993) đã chỉ ra một thí nghiệm bằng việc dạy hai nhóm sinh viên với hai 
+cách thuyết trình khác nhau. Cả hai nhóm sinh viên này cùng nghiên cứu thuật toán 
+“Pairing heap” (ghép đôi đống). Một nhóm học thuật toán dựa vào sự mô tả văn bản và 
+nhóm kia cũng nhận các tài liệu đó nhưng có thêm sự trợ giúp bằng các chương trình 
+mô phỏng thuật tóa. Mặc dầu những kết quả chỉ ra rằng nhóm thứ hai đạt được nhiều 
+điểm hơn nhóm kia, nhưng không có điểm nổi trội nào có thể được kết luận là nhờ sự 
+trợ giúp của mô phỏng. 
+Tương tự, Byrne et al (1996) đã chủ đạo hai thí nghiệm mà trong đó các kết quả chỉ 
+ra rằng lợi ích của mô phỏng không phải là hiển nhiên. Những kết quả pha trộn này đã 
+gây ra chán nản, nhưng không có điểm nổi trội nào có thể được kết luận là nhờ sự trợ 
+giúp của mô phỏng. 
+Những kết quả này cho thấy rằng để mô phỏng thuật toán có hiệu quả và có lợi cho 
+người dung, thì việc thiết kế cho thích hợp và cách thức mô phỏng là những yếu tố 
+quan trọng. Để mô phỏng thuật toán có hiệu quả thì hệ thống mô phỏng cần phải đáp 
+ứng những điều sau: 
+• Truy cập mở (Open access): Người dùng có thể truy cập hệ thống mô phỏng 
+mở. Hơn nữa, nếu có cài đặt hệ thống mô phỏng trong trường học, thì họ có thể 
+truy cập tới hệ thống này từ nhà hoặc từ bất cứ nới nào khác. 
+• Mô phỏng một cách có điều khiển (Control animation): Người dùng có thể tự 
+tạo tập dữ liệu của chính mình khi sử dụng hệ thống mô phỏng. Trong khi các 
+tập dữ liệu được cài đặt sẵn cũng có thể giúp đỡ sinh viên có những sự hiểu biết 
+ban đầu, hệ thống nên có cả 2 tùy chọn này. 
+• Tương tác (Ineractivity): Hệ thống mô phỏng phải cung cấp được sự tương tác 
+giữa người dung và hệ thống. Sự tương tác bao gồm: người dung xem theo từng 
+bước, hủy, chạy nhanh tới một bước mon muốn, hay xem lại từ đầu,... 
+• Lịch sử (History): Hệ thống mô phỏng cho phép người dung xem lại các bước 
+trước trong quá trình thực hiện 
+• Phản hồi (Feedback): Phải tiếp thu phản hồi của sinh viên về việc sử dụng hệ 
+thống mô phỏng để ước lượn hiệu quả của hệ thống cũng như để cải thiện hệ 
+thống. 
+1.3.4. Kiến trúc của hệ thống mô phỏng thuật toán 
+Đa số các hệ thống mô phỏng thuật toán có những thư viện hỗ trợ thủ tục mô phỏng 
+và giao diện mô phỏng. Vài hệ thống mô phỏng đòi hỏi phải đưa vào trực tiếp bằng tay 
+những thông điệp gửi tới các thủ tục mô phỏng trong chương trình thực hiện thuật 
+toán. Những hệ thống mô phỏng thuật toán ra đời sớm như: BALSA và TAGO là sự 
+kiện – điều khiển, nghĩa là chúng có một chương trình phát sinh những sự kiện trong 
+dạng những thông đệp tới một máy chủ thông điệp. Máy chủ thông đệp chuyển thông 
+điệp tới những cảnh quan tương ứng. Một cảnh quan là một cửa sổ trong một thiết bị 
+màn hình nơi người dung nhìn những đối tượng mô phỏng. Thông điệp bao gôm thông 
+tin của một đối tượng mô phỏng. Sau khi cảnh quan nhận thông điệp, nó tính toán lại 
+đối tượng và kéo lại nó trên cảnh quan. 
+Vài hệ thống gần đây được viết bằng Java và tất cả đều có những kiến trúc tương tự 
+nhau. Những hệ thông này chấp nhận framework của TANGO như kiến trúc của nó. 
+Tất cả các hệ thống sẽ gồm có 3 thành phần, các hàm mô phỏng, kênh mô phỏng và 
+trình diễn mô phỏng: 
+• Các hàm mô phỏng: Chứa các thư viện để vẽ các đối tượng mô phỏng trên thiết 
+bị màn hình. 
+• Màn hình trình diễn mô phỏng: Cung cấp một môi trường đồ họa để trình diễn 
+mô phỏng trên thiết bị màn hình tới người dung cuối 
+• Kênh mô phỏng dịch các lệnh kịch bản thành các lệnh mô phỏng tương ứng và 
+chuyển qua những tham số điều khiển của đối tượng mô phỏng tới các hàm mô 
+phỏng. 
+• Các hàm mô phỏng vẽ đối tượng được mô phỏng theo các tham số điều khiển 
+của đối tượng đó tới Animation viewer. 
+• Các tham số điều khiển bao gồm tọa độ x và y chỉ rõ nơi đối tượng được mô 
+phỏng xuất hiện trong Animation viewer hoặc mày sắc của đối tượng được mô 
+phỏng. 
+1.3.5. Lựa chọn công cụ mô phỏng thuật toán 
+Trong mục này, chúng ta sẽ phân tích cách tiếp cận khác để xây dựng hệ thống mô 
+phỏng và tính khả thi của chúng. Chúng ta cũng sẽ ước lượng một vài công cụ mô 
+phỏng thuật toán thích hợp để xây dựng hệ thống mô phỏng thuật toán. Công cụ thích 
+hợp nhất sẽ được lựa chọn và các căn chỉnh trên sự lựa chọn này sẽ được cung cấp. 
+Có ba cách tiếp cận có thể để xây dựng hệ thống mô phỏng phân tác. Cách tiếp cận 
+đầu tiên sẽ xây dựng hệ thống từ đầu nhờ việc sử dụng ngôn ngữ C#. Cách tiếp cận thứ 
+hai sẽ lựa chọn hệ thống mô phỏng thuật toán có mục đích chung thích hợp để xây 
+dựng các thành phần tương tác của hệ thống phân tách từ đầu. Cách tiếp cận cuối cùng 
+là lựa chọn một hệ thống mô phỏng thuật toán phân tách đã tồn tại và sửa đổi hệ thống 
+đó thành hệ thống cuối cùng. 
+1.4. Một số yếu cầu đối với mô phỏng thuật toán 
+1.4.1. Mô tả đúng theo thuật toán 
+Thuật toán được đưa ra mô phỏng phải chính xác, các bước thực hiện thuật toán 
+phải trực quan và phản ánh đúng theo nội dung thuật toán đã đưa ra để đảm bảo tính 
+đúng đắn của thuật toán. 
+Để kiểm tra tính đúng đắn của thuật toán, ta có thể cài đặt giải thuật đó trên máy 
+tính rồi đưa vào các bộ dữ liệu xác định, lấy kết quả thu được xác định với kết quả đã 
+biết. Bộ dữ liệu đưa vào phải đảm bảo kết quả thu được phải vét kín các trường hợp 
+nghiệm của bài toán (trường hơp jthoong thường và các trường hợp đặc biệt). Làm 
+theo cách này thì không chắc chắn, ta chỉ phát hiện được thuật toán sai chứ không 
+khẳng định được luôn đúng. Tính đúng đắn chỉ có thể khẳng định bằng phương pháp 
+chứng minh toán học 
+1.4.2. Hệ thống mô phỏng phải được thực hiện theo từng bước 
+Thuật toán thường là trừu tượng, nếu để chương trình chạy tự động thì người dung 
+sẽ khó hiều. Vì vậy, cần phải có chế độ thực hiện mô phỏng thuật toán theo từng 
+bước, để người học có thể quan sát, theo dõi sự thay đổi giá trị của từng biến. Nhờ đó, 
+sẽ giúp cho người học hiểu thuật toán rõ hơn và nhanh hơn. 
+1.4.3. Mô phỏng thuật toán phải có tính động 
+Để mô tả trực quan hóa quá trình thực hiện của thuật toán ta nên đưa vào hình ảnh 
+động (có thể có âm thanh) để thể hiện trong mọi trường hợp để đảm bảo thời gian thực 
+thi tốt nhất 
+Một thuật toán được mô phỏng phải đảm bảo là thuật toán tốt, dễ hiểu và đúng 
+đắn. Muốn vậy ta phải thử nghiệm trong các trường hợp dữ liệu ngẫu nhiên, tốt nhất, 
+xấu nhất. Nếu thuật toán vẫn chạy tốt và trong một thời gian cho phép thì thuật toán 
+mới hiệu quả. Ta không thể chấp nhận một thuật toán đúng mà thời gian chạy quá lớn. 
+1.4.4. Phải tạo ra sự phân cấp cho người học 
+Đối tượng học thuật toán thường là các sinh viên. Họ có trình độ tiếp thu khác 
+nhau, nên ta phải đưa ra nhiều chế độ thao tác khác nhau để người học được phép lựa 
+chọn. 
+1.4.5. Cấu trúc của mô phỏng thuật toán 
+INPUT ALGORITHM OUTPUT 
+-Dữ liệu mẫu 
+-Dữ liệu trực tiếp 
+-Tự động 
+-Từng bước 
+Cấu trúc dữ liệu 
+trừu tượng 
+Biểu diễn 
+bằng demo 
+Độ phức tạp của 
+thuật toán 
+CHƯƠNG 2. BÀI TOÁN SẮP XẾP VÀ THUẬT TOÁN 
+2.1 Bài toán sắp xếp 
+Sắp xếp là một trong những bài toán cơ bản và quan trọng nhất trong khoa học 
+máy tính. Bài toán sắp xếp yêu cầu sắp xếp lại một dãy các phần tử sao cho chúng 
+được sắp xếp theo một thứ tự nhất định (tăng dần hoặc giảm dần). Các thuật toán sắp 
+xếp không chỉ hữu ích trong việc tổ chức dữ liệu mà còn là nền tảng cho nhiều thuật 
+toán khác trong lĩnh vực khoa học máy tính. 
+2.1.1 Định nghĩa bài toán sắp xếp 
+Giả sử ta có một dãy các phần tử A=[a
+,a
+,...,a
+n
+] , bài toán sắp xếp yêu cầu tìm 
+một hoán vị của dãy này A′=[a
+′,a
+′,...,a
+n
+′] sao cho: a
+′≤a
+′≤...≤a
+n
+′ (sắp xếp tăng dần) 
+hoặc a
+′≥a
+′≥...≥a
+n
+′ (sắp xếp giảm dần). 
+Trong chương này, chúng ta sẽ trình bày chi tiết hai thuật toán sắp xếp phổ 
+biến: Merge Sort và Radix Sort. 
+2.2 Thuật toán Merge Sort 
+2.2.1 Ý tưởng thuật toán 
+Merge Sort (Sắp xếp trộn) là một thuật toán sắp xếp dựa trên nguyên lý chia để 
+trị (Divide and Conquer). Ý tưởng chính của Merge Sort là chia dãy cần sắp xếp thành 
+hai nửa, sắp xếp từng nửa, và sau đó gộp hai nửa đã được sắp xếp lại thành một dãy đã 
+sắp xếp hoàn chỉnh. 
+2.2.2 Các bước chi tiết 
+1. Chia đôi dãy: Chia dãy thành hai nửa. 
+2. Sắp xếp đệ quy: Áp dụng Merge Sort lên từng nửa dãy. 
+3. Gộp dãy: Gộp hai nửa đã được sắp xếp lại thành một dãy đã sắp xếp. 
+2.2.3 Mô tả thuật toán 
+Giả sử ta có một mảng A với chỉ số từ p đến r, thuật toán Merge Sort được mô tả như 
+sau: 
+MergeSort(A, p, r): 
+1. Nếu p < r thì: 
+1.1. Tính chỉ số trung điểm . 
+1.2. Gọi đệ quy MergeSort(A, p, q). 
+1.3. Gọi đệ quy MergeSort(A, q + 1, r). 
+1.4. Gọi hàm Merge(A, p, q, r) để gộp hai nửa đã được sắp xếp. 
+Merge(A, p, q, r): 
+1. Tạo hai mảng phụ L=A[p..q] và R=A[q+1..r]R = A[q+1..r]. 
+2. Khởi tạo các chỉ số i,j,k lần lượt là 0, 0, và p. 
+3. Trong khi i<len(L) và j<len(R): 
+ 3.1. Nếu L[i]≤R[j], gán A[k]=L[i], tăng i. 
+3.2. Ngược lại, gán A[k]=R[j], tăng j. 
+3.3. Tăng k. 
+4. Copy các phần tử còn lại của L (nếu có) vào A. 
+5. Copy các phần tử còn lại của R (nếu có) vào A. 
+2.2.4 Ví dụ minh họa 
+Giả sử ta có mảng A=[38,27,43,3,9,82,10]: 
+1. Chia đôi dãy: 
+o Chia thành A
+=[38,27,43,3] và A
+=[9,82,10]. 
+2. Sắp xếp đệ quy: 
+o Sắp xếp A
+: 
+▪ Chia thành A
+=[38,27] và A
+=[43,3]. 
+▪ Sắp xếp A
+ thành [27, 38]. 
+▪ Sắp xếp A
+ thành [3, 43]. 
+▪ Gộp lại thành [3, 27, 38, 43]. 
+o Sắp xếp A
+: 
+▪ Chia thành A
+=[9,82] và A
+=[10]. 
+▪ Sắp xếp A
+ thành [9, 82]. 
+▪ A
+ đã được sắp xếp. 
+▪ Gộp lại thành [9, 10, 82]. 
+3. Gộp dãy: 
+o Gộp A
+=[3,27,38,43] và A
+=[9,10,82] thành dãy đã sắp xếp [3, 9, 10, 27, 
+38, 43, 82]. 
+2.3 Thuật toán Radix Sort 
+2.3.1 Ý tưởng thuật toán 
+Radix Sort (Sắp xếp theo cơ số) là một thuật toán sắp xếp không so sánh, hoạt 
+động bằng cách sắp xếp các phần tử theo từng chữ số của chúng. Radix Sort thường 
+được sử dụng để sắp xếp các số nguyên hoặc chuỗi ký tự. 
+2.3.2 Các bước chi tiết 
+1. Xác định số chữ số lớn nhất: Tìm số chữ số lớn nhất trong các phần tử cần sắp 
+xếp. 
+2. Sắp xếp từng chữ số: Sắp xếp các phần tử theo từng chữ số, bắt đầu từ chữ số 
+ít quan trọng nhất (bên phải nhất) đến chữ số quan trọng nhất (bên trái nhất). 
+ 2.3.3 Mô tả thuật toán 
+Giả sử ta có một mảng A gồm các số nguyên dương: 
+RadixSort(A): 
+1. Tìm số chữ số lớn nhất ddd trong các phần tử của A. 
+2. Với i từ 1 đến d: 
+2.1. Sắp xếp A theo chữ số thứ i (sử dụng Counting Sort). 
+CountingSort(A, exp): 
+1. Tạo mảng kết quả output và mảng đếm count với 10 phần tử (đại diện cho 10 
+chữ số từ 0 đến 9). 
+2. Tính chỉ số của mỗi phần tử trong A theo chữ số thứ i và cập nhật count. 
+o Ví dụ: nếu exp =10 thì chữ số cần xét là (A[j]//exp). 
+3. Tính toán vị trí cuối cùng của mỗi giá trị trong output. 
+4. Sắp xếp các phần tử vào output theo vị trí đã tính. 
+5. Sao chép output vào A. 
+2.3.4 Ví dụ minh họa 
+Giả sử ta có mảng A=[170,45,75,90,802,24,2,66]: 
+1. Xác định số chữ số lớn nhất: 
+o Số chữ số lớn nhất là 3 (của số 802). 
+2. Sắp xếp từng chữ số: 
+o Sắp xếp theo chữ số hàng đơn vị: 
+▪ Exp = 1, mảng count: [0, 1, 1, 1, 1, 1, 1, 1, 1, 2]. 
+▪ Sắp xếp lại: [170, 90, 802, 2, 24, 45, 75, 66]. 
+o Sắp xếp theo chữ số hàng chục: 
+▪ Exp = 10, mảng count: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]. 
+▪ Sắp xếp lại: [802, 2, 24, 45, 66, 170, 75, 90]. 
+o Sắp xếp theo chữ số hàng trăm: 
+▪ Exp = 100, mảng count: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]. 
+▪ Sắp xếp lại: [2, 24, 45, 66, 75, 90, 170, 802]. 
+Kết quả cuối cùng là mảng đã sắp xếp: [2, 24, 45, 66, 75, 90, 170, 802]. 
+2.4 So sánh Merge Sort và Radix Sort 
+2.4.1 Độ phức tạp thời gian 
+• Merge Sort: Có độ phức tạp thời gian là O(nlogn) trong mọi trường hợp (tốt 
+nhất, trung bình và tệ nhất). 
+• Radix Sort: Có độ phức tạp thời gian là O(d⋅(n+k)), với d là số chữ số lớn nhất 
+và k là kích thước của bảng chữ số (thường là 10). 
+2.4.2 Độ phức tạp không gian 
+• Merge Sort: Yêu cầu O(n) không gian bổ sung để lưu trữ các mảng phụ. 
+• Radix Sort: Yêu cầu O(n+k) không gian bổ sung, với k là kích thước của bảng 
+chữ số. 
+2.4.3 Ứng dụng và giới hạn 
+• Merge Sort: 
+o Ưu điểm: Hiệu quả với mọi loại dữ liệu, không bị ảnh hưởng bởi dữ liệu 
+đã được sắp xếp trước đó. 
+o Nhược điểm: Cần không gian bổ sung để lưu trữ các mảng phụ. 
+• Radix Sort: 
+o Ưu điểm: Hiệu quả với các số nguyên lớn và các chuỗi ký tự, đặc biệt là 
+khi ddd và kkk nhỏ. 
+o Nhược điểm: Không hiệu quả với các dữ liệu có nhiều chữ số hoặc ký tự 
+khác nhau, cần không gian bổ sung để lưu trữ bảng chữ số. 
+2.5 Kết luận 
+Trong chương này, chúng ta đã xem xét chi tiết về bài toán sắp xếp và hai thuật toán 
+phổ biến: Merge Sort và Radix Sort. 
+• Merge Sort: 
+o Ý tưởng: Sử dụng phương pháp chia để trị để chia nhỏ dãy cần sắp xếp 
+và sau đó gộp các phần đã được sắp xếp lại. 
+o Quy trình: Chia mảng thành hai nửa, sắp xếp từng nửa bằng đệ quy, và 
+sau đó gộp hai nửa đã được sắp xếp. 
+o Ưu điểm: Ổn định, có độ phức tạp thời gian O(nlogn) trong mọi trường 
+hợp. 
+o Hạn chế: Yêu cầu không gian bổ sung O(n). 
+• Radix Sort: 
+o Ý tưởng: Sắp xếp các phần tử theo từng chữ số, bắt đầu từ chữ số ít 
+quan trọng nhất đến chữ số quan trọng nhất. 
+o Quy trình: Xác định số chữ số lớn nhất trong các phần tử, sau đó sắp 
+xếp từng chữ số bằng cách sử dụng Counting Sort. 
+o Ưu điểm: Hiệu quả với các số nguyên lớn và các chuỗi ký tự, đặc biệt 
+khi số chữ số ddvà kích thước bảng chữ số k nhỏ. 
+o Hạn chế: Không hiệu quả với dữ liệu có nhiều chữ số hoặc ký tự khác 
+nhau, và yêu cầu không gian bổ sung O(n+k). 
+Tóm tắt: 
+• Merge Sort là lựa chọn tốt khi cần một thuật toán sắp xếp ổn định với độ phức 
+tạp thời gian O(nlogn) và không quan trọng không gian bổ sung. 
+• Radix Sort phù hợp với các bài toán sắp xếp số nguyên lớn hoặc chuỗi ký tự với 
+số chữ số nhỏ, có thể nhanh hơn Merge Sort trong các trường hợp này nhưng 
+yêu cầu không gian bổ sung nhiều hơn. 
+Cả hai thuật toán đều có các trường hợp ứng dụng và ưu điểm riêng, và việc lựa 
+chọn thuật toán nào phụ thuộc vào đặc điểm cụ thể của bài toán sắp xếp cần giải quyết. 
+Trong chương tiếp theo, chúng ta sẽ tiến hành xây dựng chương trình mô phỏng 
+các thuật toán sắp xếp Merge Sort và Radix Sort, minh họa cách chúng hoạt động và 
+so sánh hiệu năng của chúng trong thực tế. 
+CHƯƠNG 3. CHƯƠNG TRÌNH ỨNG DỤNG THUẬT TOÁN 
+SẮP XẾP 
+3.1. Thuật toán Merge Sort(Sắp xếp trộn) 
+3.1.1. Ý tưởng thuật toán 
+Giống như Quick sort, Merge sort là một thuật toán chia để trị. Thuật toán này 
+chia mảng cần sắp xếp thành 2 nửa. Tiếp tục lặp lại việc này ở các nửa mảng đã chia. 
+Sau cùng gộp các nửa đó thành mảng đã sắp xếp. Hàm merge() được sử dụng để gộp 
+hai nửa mảng. Hàm merge(arr, l, m, r) là tiến trình quan trọng nhất sẽ gộp hai nửa 
+mảng thành 1 mảng sắp xếp, các nửa mảng là arr[l...m] và arr[m+1...r] sau khi gộp sẽ 
+thành một mảng duy nhất đã sắp xếp. 
+3.1.2. Cài đặt mã giả 
+1. Thuật toán MergeSort(arr, originalValues, ascending) 
+- Đặt encoding cho đầu ra của console là UTF-8 
+- In ra thông báo bắt đầu sắp xếp 
+- Gọi hàm MergeSortAlgorithm(arr, originalValues, 0, arr.Length - 1, ascending) 
+2. Hàm MergeSortAlgorithm(arr, originalValues, left, right, ascending) 
+- Nếu left < right 
++ Tính mid = (left + right) / 2 
++ Đệ quy gọi MergeSortAlgorithm cho nửa trái: MergeSortAlgorithm(arr, 
+originalValues, left, mid, ascending) 
++ Đệ quy gọi MergeSortAlgorithm cho nửa phải: MergeSortAlgorithm(arr, 
+originalValues, mid + 1, right, ascending) 
+3. Gọi hàm Merge(arr, originalValues, left, mid, right, ascending) 
+- In ra trạng thái của mảng originalValues từ left đến right 
+- Hàm Merge(arr, originalValues, left, mid, right, ascending) 
+- Tạo các mảng tạm thời cho nửa trái (L, originalL) và nửa phải (R, originalR) 
+- Sao chép dữ liệu từ mảng arr và originalValues vào các mảng tạm thời 
+- Đặt chỉ số i, j, k đều bằng 0 
+- Trong khi i < độ dài của L và j < độ dài của R 
+ Nếu (ascending và L[i] <= R[j]) hoặc (không ascending và L[i] >= R[j]) 
+ Sao chép L[i] và originalL[i] vào arr[k] và originalValues[k] 
+ Tăng i lên 1 
+ Ngược lại 
+ Sao chép R[j] và originalR[j] vào arr[k] và originalValues[k] 
+ Tăng j lên 1 
+ Tăng k lên 1 
+- Sao chép phần còn lại của L vào arr và originalValues nếu có 
+- Sao chép phần còn lại của R vào arr và originalValues nếu có 
+3.1.3. Mô phỏng trên cửa sổ console 
+3.1.3.1. Nhập liệu bằng tay 
+- Dưới đây là quá trình mô phỏng của chương trình thông qua cửa sổ console 
++ Bước 1 
+Hình 3.1.3.1.1 Nhập số lượng phần tử và cách thức nhập. 
++ Bước 2 
+Hình 3.1.3.1.2 Nhập các phần tử từ bàn phím. 
++ Bước 3 
+Hình 3.1.3.1.3 Lựa chọn thuật toán sắp xếp. 
++ Bước 4 
+Hình 3.1.3.1.4 Lựa chọn kiểu sắp xếp. 
++ Bước 5 
+Hình 3.1.3.1.5 Màn hình hiển thị quá trình sắp xếp và kết quả. 
++ Bước 6 
+Hình 3.1.3.1.6 Thông báo hiển thị lựa chọn tiếp tục hoặc không. 
+3.1.3.2. Nhập liệu tự động 
+- Dưới đây là quá trình mô phỏng của chương trình thông qua cửa sổ console 
++ Bước 1 
+Hình 3.1.3.2.1 Nhập số lượng phần tử và cách thức nhập. 
++ Bước 2 
+Hình 3.1.3.2.2 Lựa chọn kiểu số có số âm hay không. 
++ Bước 3 
+Hình 3.1.3.2.3 Lựa chọn kiểu số có số thập phân hay không. 
++ Bước 4 
+Hình 3.1.3.2.4 Nhập phạm vi giá trị. 
++ Bước 5 
+Hình 3.1.3.2.5 Hoàn thiện dẫy số theo yêu cầu. 
++ Bước 6 
+Hình 3.1.3.2.6 Lựa chọn thuật toán sắp xếp. 
++ Bước 7 
+Hình 3.1.3.2.7 Lựa chọn kiểu sắp xếp. 
++ Bước 8 
+Hình 3.1.3.2.8 Màn hình hiển thị quá trình sắp xếp và kết quả. 
++ Bước 9 
+Hình 3.1.3.2.9 Thông báo hiển thị lựa chọn tiếp tục hoặc không. 
+3.1.4. Đánh giá độ phức tạp của thuật toán 
+* Thuật toán Merge Sort có hai giai đoạn chính: 
+1. Phân chia: Mảng được chia thành hai nửa cho đến khi mỗi nửa chỉ chứa một 
+phần tử. 
+2. Hợp nhất: Các nửa đã được chia nhỏ được hợp nhất lại theo thứ tự sắp xếp. 
+* Độ phức tạp thời gian: 
+• Phân chia: Ở mỗi cấp độ của đệ quy, mảng được chia đôi. Quá trình này 
+có log₂(n) cấp độ (vì mỗi lần chia đôi số phần tử). 
+• Hợp nhất: Việc hợp nhất tốn O(n) thời gian vì mỗi phần tử phải được so 
+sánh và sao chép lại. Điều này xảy ra ở mỗi cấp độ của đệ quy. 
+Do đó, tổng độ phức tạp thời gian là: T(n)=O(nlogn) 
+* Độ phức tạp không gian: 
+Thuật toán Merge Sort yêu cầu không gian phụ để lưu trữ các mảng tạm thời cho 
+quá trình hợp nhất. Mỗi lần hợp nhất, các mảng tạm thời L và R được tạo ra có tổng 
+kích thước là n (số phần tử trong mảng gốc). 
+• Không gian cho các mảng tạm thời: O(n) 
+• Không gian cho đệ quy: Chiều sâu của đệ quy là log₂(n) (số lần chia 
+đôi), mỗi lần chia sẽ giữ lại thông tin của một số mảng kích thước n. 
+Do đó, tổng độ phức tạp không gian là: S(n)=O(n) 
+Tóm tắt: 
+Độ phức tạp thời gian: O(n log n) 
+Độ phức tạp không gian: O(n) 
+Thuật toán Merge Sort có hiệu suất ổn định và không phụ thuộc vào phân phối 
+của dữ liệu đầu vào. Điều này làm cho Merge Sort trở thành một lựa chọn tốt cho các 
+bài toán yêu cầu sắp xếp ổn định và có độ phức tạp thời gian tốt ngay cả trong trường 
+hợp xấu nhất. Tuy nhiên, chi phí về không gian là một điểm yếu cần lưu ý, đặc biệt khi 
+sắp xếp các mảng lớn. 
+3.2. Thuật toán Radix Sort(Sắp xếp phân lô) 
+3.2.1. Ý tưởng thuật toán 
+Radix Sort là một thuật toán sắp xếp không so sánh được được sử dụng để sắp 
+xếp các số nguyên. Ý tưởng chính của nó là phân loại các số theo các chữ số từ hàng 
+đơn vị đến hàng cao nhất và sau đó sắp xếp các số trong từng nhóm. Thuật toán lặp lại 
+quá trình này cho đến khi tất cả các chữ số đã được xem xét. Radix Sort hiệu quả khi 
+sắp xếp các số có số lượng chữ số không quá lớn. 
+3.2.2. Cài đặt mã giả 
+1. Hàm Sort(arr, originalValues, ascending): 
+ a. Chuyển đổi mảng arr thành mảng số nguyên dài (long) bằng cách gọi 
+hàm ConvertToIntegerArray(arr). 
+ b. Tìm giá trị lớn nhất trong mảng số nguyên dài này bằng cách gọi hàm 
+FindMax(arr). 
+ c. Duyệt qua mỗi chữ số từ hàng đơn vị đến hàng cao nhất của giá trị lớn 
+nhất, thực hiện CountingSort cho mỗi chữ số này. 
+ d. Trong quá trình duyệt, hiển thị kết quả tạm thời sau mỗi lần sắp xếp 
+bằng cách in ra các giá trị ban đầu tương ứng. 
+ e. Chuyển đổi lại mảng số nguyên dài đã sắp xếp về mảng số thực bằng 
+cách gọi hàm ConvertToDecimalArray(arr, intArr). 
+ f. Nếu thứ tự sắp xếp là giảm dần, đảo ngược các mảng. 
+2. Hàm ConvertToIntegerArray(arr): 
+ a. Khởi tạo mảng số nguyên dài intArr với cùng kích thước như arr. 
+ b. Duyệt qua từng phần tử của arr và chuyển đổi nó thành số nguyên dài 
+bằng cách nhân với 1e9. 
+ c. Trả về mảng số nguyên dài intArr. 
+3. Hàm ConvertToDecimalArray(arr, intArr): 
+ a. Duyệt qua từng phần tử của arr và chuyển đổi nó từ số nguyên dài về số 
+thực bằng cách chia cho 1e9. 
+4. Hàm FindMax(arr): 
+ a. Khởi tạo biến max với giá trị là số nguyên dài nhỏ nhất. 
+ b. Duyệt qua từng phần tử của arr, nếu phần tử đó lớn hơn max, cập nhật 
+max bằng giá trị đó. 
+ c. Trả về max. 
+5. Hàm CountingSort(arr, originalValues, exp, ascending): 
+ a. Khởi tạo một mảng output với kích thước bằng với arr. 
+ b. Khởi tạo một mảng originalOutput với kích thước bằng với arr để lưu 
+giữ các giá trị ban đầu. 
+ c. Khởi tạo một mảng count với kích thước là 19 để đếm số lượng xuất 
+hiện của mỗi chữ số. 
+ d. Duyệt qua từng phần tử của arr, tăng giá trị của count tương ứng với chữ 
+số của phần tử đó. 
+ e. Điều chỉnh mảng count cho phù hợp với thứ tự tăng hoặc giảm dần. 
+ f. Xây dựng mảng output theo thứ tự đã sắp xếp. 
+ g. Sao chép các giá trị từ mảng output và originalOutput vào các mảng ban 
+đầu. 
+3.2.3. Mô phỏng trên cửa sổ console 
+3.2.3.1. Nhập liệu bằng tay 
++ Bước 1 
+Hình 3.2.3.1.1 Nhập số lượng phần tử và cách thức nhập. 
++ Bước 2 
+Hình 3.2.3.1.2 Nhập các phần tử từ bàn phím. 
++ Bước 3 
+Hình 3.2.3.1.3 Lựa chọn thuật toán sắp xếp. 
++ Bước 4 
+Hình 3.2.3.1.4 Lựa chọn kiểu sắp xếp. 
++ Bước 5 
+Hình 3.2.3.1.5 Màn hình hiển thị quá trình sắp xếp và kết quả. 
++ Bước 6 
+Hình 3.2.3.1.6 Thông báo hiển thị lựa chọn tiếp tục hoặc không. 
+3.2.3.2. Nhập liệu tự động 
+- Dưới đây là quá trình mô phỏng của chương trình thông qua cửa sổ console 
++ Bước 1 
+Hình 3.2.3.2.1 Nhập số lượng phần tử và cách thức nhập. 
++ Bước 2 
+Hình 3.2.3.2.2 Lựa chọn kiểu số có số âm hay không. 
++ Bước 3 
+Hình 3.2.3.2.3 Lựa chọn kiểu số có số thập phân hay không. 
++ Bước 4 
+Hình 3.2.3.2.4 Nhập phạm vi giá trị. 
++ Bước 5 
+Hình 3.2.3.2.5 Hoàn thiện dãy số theo yêu cầu. 
++ Bước 6 
+Hình 3.2.3.2.6 Lựa chọn thuật toán sắp xếp. 
++ Bước 7 
+Hình 3.2.3.2.7 Lựa chọn kiểu sắp xếp. 
++ Bước 8 
+Hình 3.2.3.2.8 Màn hình hiển thị quá trình sắp xếp và kết quả. 
++ Bước 9 
+Hình 3.2.3.2.9 Thông báo hiển thị lựa chọn tiếp tục hoặc không. 
+3.2.4. Đánh giá độ phức tạp của thuật toán 
+- Thời gian: Độ phức tạp thời gian của Radix Sort là O(d * (n + k)), trong đó n là 
+số lượng phần tử trong mảng, k là số lượng khả năng cho mỗi chữ số (trong 
+trường hợp này là 19), và d là số lượng chữ số của giá trị lớn nhất. Trong 
+trường hợp trung bình và tốt nhất, d là O(log n), nhưng trong trường hợp xấu 
+nhất, d có thể lên đến O(n). 
+- Không gian: Độ phức tạp không gian của thuật toán này là O(n + k), với n là số 
+lượng phần tử trong mảng và k là số lượng khả năng cho mỗi chữ số. 
+KẾT LUẬN 
+1. Mục đích đạt được: 
+• Đề tài đã hoàn thành mục tiêu xây dựng chương trình mô phỏng các thuật toán 
+sắp xếp Trộn và Phân lô bằng ngôn ngữ lập trình C# (Console .Net 
+Framework). 
+• Chương trình hoạt động chính xác, hiệu quả, dễ sử dụng và có giao diện người 
+dùng trực quan. 
+• Người dùng có thể lựa chọn thuật toán sắp xếp mong muốn, nhập dữ liệu đầu 
+vào, theo dõi quá trình sắp xếp từng bước và xem kết quả sau khi sắp xếp. 
+• Chương trình cung cấp khả năng so sánh hiệu quả của hai thuật toán sắp xếp 
+Trộn và Phân lô thông qua việc đo thời gian thực hiện trên các tập dữ liệu khác 
+nhau. 
+2. Đánh giá kết quả: 
+• Chương trình được thiết kế với mã nguồn logic, rõ ràng, dễ hiểu và dễ bảo trì. 
+• Sử dụng hiệu quả các cấu trúc dữ liệu và thuật toán phù hợp để tối ưu hóa hiệu 
+suất. 
+• Cung cấp đầy đủ các chức năng cần thiết để mô phỏng hai thuật toán sắp xếp 
+Trộn và Phân lô. 
+• Giao diện người dùng được thiết kế đơn giản, thân thiện và dễ sử dụng. 
+3. Ý nghĩa thực tiễn: 
+• Chương trình này có ý nghĩa thực tiễn trong việc giúp sinh viên và người học 
+lập trình hiểu rõ hơn về nguyên tắc hoạt động và hiệu quả của hai thuật toán sắp 
+xếp Trộn và Phân lô. 
+• Có thể ứng dụng chương trình này để so sánh hiệu quả của các thuật toán sắp 
+xếp khác nhau trên các tập dữ liệu cụ thể. 
+• Chương trình cũng có thể được sử dụng như một tài liệu tham khảo để xây 
+dựng các ứng dụng sắp xếp dữ liệu khác trong thực tế. 
+4. Hướng phát triển: 
+• Cải thiện giao diện người dùng để cung cấp thêm các chức năng như: xuất dữ 
+liệu ra tệp, so sánh hiệu quả của thuật toán trên nhiều tập dữ liệu khác nhau, v.v. 
+• Phát triển thêm các thuật toán sắp xếp khác để người dùng có thể lựa chọn và so 
+sánh hiệu quả. 
+• Tối ưu hóa hiệu suất chương trình để xử lý được các tập dữ liệu lớn hơn. 
+• Viết tài liệu hướng dẫn sử dụng chi tiết để giúp người dùng sử dụng chương 
+trình một cách hiệu quả. 
+Kết luận: 
+Chương trình mô phỏng các thuật toán sắp xếp Trộn và Phân lô bằng ngôn ngữ 
+lập trình C# (Console .Net Framework) là một công cụ hữu ích cho việc học tập và 
+nghiên cứu về các thuật toán sắp xếp. Chương trình này có thể được ứng dụng trong 
+nhiều lĩnh vực khác nhau và có tiềm năng phát triển hơn nữa trong tương lai. 
+TÀI LIỆU THAM KHẢO 
+[1].https://vi.wikipedia.org/wiki/C%E1%BA%A5u_tr%C3%BAc_d%E1%BB%AF_li
+%E1%BB%87u 
+[2]. https://vietjack.com/cau-truc-du-lieu-va-giai-thuat/giai-thuat-la-gi.jsp 
+[3].https://vi.wikipedia.org/wiki/C_th%C4%83ng_(ng%C3%B4n_ng%E1%BB%AF_l
+%E1%BA%ADp_tr%C3%ACnh) 
+[4].https://sites.google.com/site/nthanhbanvl/tin-hoc-lop-10/chuong-i/bai-4-bai-toan-
+va-thuat-toan 
+[5].http://ect.ictu.edu.vn/attachments/article/215/bai%20giang%20-
+%20mo%20phong%20va%20mo%20hinh%20hoa_%20duong%20thuy%20huong.pdf 
+[6]. http://ent.htu.edu.vn/tin-tuc-su-kien/mo-phong-thuat-toan-trong-hoc-phan-cau-
+truc-du-lieu-va-giai-thuat.html 
+[7]. http://doc.edu.vn/tai-lieu/de-tai-mo-phong-mot-so-thuat-toan-do-thi-7228/ 
+[8].https://itzone.com.vn/vi/article/gioi-thieu-ve-lap-trinh-c-danh-cho-nguoi-moi-bat-
+dau/ 
+[9].https://vi.wikipedia.org/wiki/Thu%E1%BA%ADt_to%C3%A1n_s%E1%BA%AF
+p_x%E1%BA%BFp 
+PHỤ LỤC 
+Phụ lục 1: Mã nguồn chương trình mô phỏng thuật toán sắp xếp 
+* Mã nguồn thuật toán Merge Sort (Sắp xếp trộn): 
+class MergeSort 
+{ 
+ public static void Sort(double[] arr, string[] originalValues, bool ascending) 
+ { 
+ Console.OutputEncoding = Encoding.UTF8; 
+ Console.WriteLine("Đang sắp xếp theo phương pháp Trộn trực tiếp..."); 
+ MergeSortAlgorithm(arr, originalValues, 0, arr.Length - 1, ascending); 
+ } 
+ private static void MergeSortAlgorithm(double[] arr, string[] originalValues, 
+int left, int right, bool ascending) 
+ { 
+ if (left < right) 
+ { 
+ int mid = left + (right - left) / 2; 
+ MergeSortAlgorithm(arr, originalValues, left, mid, ascending); 
+ MergeSortAlgorithm(arr, originalValues, mid + 1, right, ascending); 
+ Merge(arr, originalValues, left, mid, right, ascending); 
+ Console.WriteLine($"Sau khi trộn từ vị trí |{left}| đến vị trí |{right}|:"); 
+ for (int i = left; i <= right; i++) 
+ { 
+ Console.Write(originalValues[i]); 
+ if (i < right) 
+ { 
+ Console.Write(" | "); 
+ } 
+ } 
+ Console.WriteLine(); 
+ } 
+ } 
+ private static void Merge(double[] arr, string[] originalValues, int left, int 
+mid, int right, bool ascending) 
+ { 
+ int n1 = mid - left + 1; 
+ int n2 = right - mid; 
+ double[] L = new double[n1]; 
+ double[] R = new double[n2]; 
+ string[] originalL = new string[n1]; 
+ string[] originalR = new string[n2]; 
+ Array.Copy(arr, left, L, 0, n1); 
+ Array.Copy(arr, mid + 1, R, 0, n2); 
+ Array.Copy(originalValues, left, originalL, 0, n1); 
+ Array.Copy(originalValues, mid + 1, originalR, 0, n2); 
+ int i = 0, j = 0; 
+ int k = left; 
+ while (i < n1 && j < n2) 
+ { 
+ if ((ascending && L[i] <= R[j]) || (!ascending && L[i] >= R[j])) 
+ { 
+ arr[k] = L[i]; 
+ originalValues[k] = originalL[i]; 
+ i++; 
+ } 
+ else 
+ { 
+ arr[k] = R[j]; 
+ originalValues[k] = originalR[j]; 
+ j++; 
+ } 
+ k++; 
+ } 
+ while (i < n1) 
+ { 
+ arr[k] = L[i]; 
+ originalValues[k] = originalL[i]; 
+ i++; 
+ k++; 
+ } 
+ while (j < n2) 
+ { 
+ arr[k] = R[j]; 
+ originalValues[k] = originalR[j]; 
+ j++; 
+ k++; 
+ } 
+ } 
+} 
+* Mã nguồn thuật toán Radix Sort (Sắp xếp phân lô): 
+class RadixSort 
+{ 
+ public static void Sort(double[] arr, string[] originalValues, bool ascending) 
+ { 
+ // Convert decimal numbers to integers for sorting 
+ long[] intArr = ConvertToIntegerArray(arr); 
+ // Find maximum value in the integer array 
+ long max = FindMax(intArr); 
+ // Perform counting sort for each digit position 
+ for (long exp = 1; max / exp > 0; exp *= 10) 
+ { 
+ CountingSort(intArr, originalValues, exp, ascending); 
+ // Display intermediate result 
+ Console.WriteLine($"Sau mỗi lượt lặp với chữ số hàng {exp}:"); 
+ for (int i = 0; i < arr.Length; i++) 
+ { 
+ Console.Write(originalValues[i] + " | "); 
+ } 
+ Console.WriteLine(); 
+ } 
+ // Convert sorted integer array back to decimal numbers 
+ ConvertToDecimalArray(arr, intArr); 
+ // Reverse the arrays if sorting in descending order 
+ if (!ascending) 
+ { 
+ Array.Reverse(arr); 
+ Array.Reverse(originalValues); 
+ } 
+ } 
+ private static long[] ConvertToIntegerArray(double[] arr) 
+ { 
+ long[] intArr = new long[arr.Length]; 
+ for (int i = 0; i < arr.Length; i++) 
+ { 
+ intArr[i] = (long)(arr[i] * 1e9); // Convert to integer with 9 decimal places 
+precision 
+ } 
+ return intArr; 
+ } 
+ private static void ConvertToDecimalArray(double[] arr, long[] intArr) 
+ { 
+ for (int i = 0; i < arr.Length; i++) 
+ { 
+ arr[i] = intArr[i] / 1e9; // Convert back to decimal 
+ } 
+ } 
+ private static long FindMax(long[] arr) 
+ { 
+ long max = long.MinValue; 
+ foreach (long num in arr) 
+ { 
+ if (num > max) 
+ max = num; 
+ } 
+ return max; 
+ } 
+ private static void CountingSort(long[] arr, string[] originalValues, long exp, bool 
+ascending) 
+ { 
+ int n = arr.Length; 
+ long[] output = new long[n]; 
+ string[] originalOutput = new string[n]; 
+ // Count occurrences of each digit 
+ int[] count = new int[19]; // Increase the size to accommodate negative numbers 
+ foreach (var num in arr) 
+ { 
+ int digit = (int)((num / exp) % 10); 
+ count[digit + 9]++; // Shift the index to accommodate negative numbers 
+ } 
+ // Adjust count array for ascending or descending order 
+ if (!ascending) 
+ { 
+ for (int i = 17; i >= 0; i--) // Change the loop range to accommodate negative 
+numbers 
+ count[i] += count[i + 1]; 
+ } 
+ else 
+ { 
+ for (int i = 1; i < 19; i++) // Change the loop range to accommodate negative 
+numbers 
+ count[i] += count[i - 1]; 
+ } 
+ // Build the output array 
+ for (int i = n - 1; i >= 0; i--) 
+ { 
+ int digit = (int)((arr[i] / exp) % 10); 
+ int index = count[digit + 9] - 1; // Shift the index to accommodate negative 
+numbers 
+ output[index] = arr[i]; 
+ originalOutput[index] = originalValues[i]; 
+ count[digit + 9]--; // Shift the index to accommodate negative numbers 
+ } 
+ // Copy output back to the original arrays 
+ Array.Copy(output, arr, n); 
+ Array.Copy(originalOutput, originalValues, n); 
+ } 
+} 
+Phụ lục 2: Hình ảnh minh họa 
+Hình 1: Mô phỏng thuật toán Merge Sort 
+Hình 2: Mô phỏng thuật toán Radix Sort 
+Phụ lục 3: Bảng so sánh các thuật toán sắp xếp 
+Bảng 3.1. So sánh thuật toán 
+Thuật toán Độ phức tạp 
+trung bình 
+Độ phức tạp 
+tốt nhất 
+Độ phức tạp 
+xấu nhất 
+Bộ nhớ sử 
+dụng 
+Đệ quy 
+Merge Sort O(n log n) O(n log n) O(n log n) O(n) Có 
+Radix Sort O(nk) O(nk) O(nk) O(n + k) Không 
+Phụ lục 4: Tài liệu tham khảo bổ sung 
+Tài liệu 1: "C# Programming Guide" - Microsoft Docs 
+Tài liệu 2: "Introduction to Algorithms" - Thomas H. Cormen, Charles E. Leiserson, 
+Ronald L. Rivest, Clifford Stein 
+Phụ lục 5: Ghi chú và thuật ngữ 
+Merge Sort: Một thuật toán sắp xếp dựa trên phương pháp chia để trị. 
+Radix Sort: Một thuật toán sắp xếp không so sánh, hoạt động dựa trên việc phân loại 
+các chữ số.
