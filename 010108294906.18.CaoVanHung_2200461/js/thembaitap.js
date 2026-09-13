@@ -169,6 +169,12 @@ function formatDisplayTime(timeInput) {
 async function renderExercisesTab(classData, userId) {
     const tabContentContainer = document.getElementById('tabContentContainer');
     if (!tabContentContainer) return;
+
+    // Nút lưu bài tập nằm trong một trình nghe click gắn ở cấp tài liệu nên
+    // không nhận được classData qua tham số, phải lấy qua biến này. Trước đây
+    // không nơi nào gán nên bài tập luôn rơi vào lớp số 1.
+    window.currentClassData = classData;
+
     await syncClassExercisesFromDatabase(classData);
     const isTeacher = checkIfUserIsTeacher(classData, userId);
     tabContentContainer.innerHTML = `
@@ -328,9 +334,19 @@ document.addEventListener('click', async function (e) {
     } else if (endDateObj && now > endDateObj) {
         status = 'Đã hết hạn';
     }
-    const classData = window.currentClassData || window.classData || { id_lop_hoc: 1, members: [] };
+    const classData = window.currentClassData || window.classData;
+
+    // Không xác định được lớp thì dừng hẳn. Trước đây chỗ này mặc định về lớp
+    // số 1, nên bài tập tạo ở lớp nào cũng bị lưu sang lớp 1 mà không báo gì.
+    const classId = classData &&
+        (classData.id_lop_hoc || classData.id || classData.classId);
+
+    if (!classId) {
+        alert('Chưa xác định được lớp học đang mở. Vui lòng tải lại trang rồi thử lại.');
+        return;
+    }
+
     const membersList = classData.members || classData.membersList || [];
-    const classId = classData.id || classData.classId || classData.id_lop_hoc || 1;
     const fullPayload = {
         id_lop_hoc: Number(classId),
         tieu_de: title,
@@ -922,9 +938,11 @@ if (saveUpdateBtn) {
                 alert('Cập nhật bài tập và lưu vào CSDL thành công!');
                 const updateModal = document.getElementById('updateExerciseModal');
                 if (updateModal) updateModal.style.display = 'none';
-                const classData = window.currentClassData || window.classData || { id_lop_hoc: 1 };
-                await syncClassExercisesFromDatabase(classData);
-                updateExerciseTableContent(classData, window.currentUserId || 1);
+                const classData = window.currentClassData || window.classData;
+                if (classData) {
+                    await syncClassExercisesFromDatabase(classData);
+                    updateExerciseTableContent(classData, window.currentUserId || 1);
+                }
             } else {
                 alert('Lỗi cập nhật CSDL: ' + (result.message || 'Không thành công'));
             }
