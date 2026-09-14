@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giới thiệu</title>
-    <link rel="stylesheet" href="../css/trogiup.css">
+    <link rel="stylesheet" href="../css/trangchu.css">
     <link rel="stylesheet" href="../css/gioithieu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/header-chung.css">
 </head>
 
 <body>
@@ -15,15 +16,35 @@
         <nav class="menu">
             <div class="menu-container">
                 <div class="logo">
-                    <img src="../images/logo.jpg">
+                    <img src="../images/logo.jpg" alt="Logo">
                     <p>Phần mềm kiểm tra trùng lặp văn bản</p>
                 </div>
                 <ul>
-                    <li><a href="../pages/trangchu.html">Trang chủ</a></li>
-                    <li><a href="../pages/gioithieu.html">Giới thiệu</a></li>
-                    <li><a href="../pages/huongdan.html">Hướng dẫn chi tiết</a></li>
-                    <li><a href="../pages/dangnhap.html">Đăng nhập</a></li>
-                    <li><a href="../pages/dangky.html">Đăng ký</a></li>
+                    <li>
+                        <a href="../pages/trangchu.html">
+                            Trang chủ
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/gioithieu.html">
+                            Giới thiệu
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/huongdanchitiet_1.html">
+                            Hướng dẫn chi tiết
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/dangnhap.html">
+                            Đăng nhập
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/dangky.html">
+                            Đăng ký
+                        </a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -31,165 +52,342 @@
 
     <main class="gt-trang">
 
-        <!-- Mở đầu -->
+        <!-- ============ MỞ ĐẦU ============ -->
         <section class="gt-mo-dau">
-            <h1>Phần mềm kiểm tra trùng lặp văn bản</h1>
+            <h1>Công nghệ phát hiện trùng lặp đa tầng</h1>
             <p class="gt-mo-dau__phu">
-                Công cụ hỗ trợ giảng viên và sinh viên khoa Công nghệ thông tin,
-                Trường Đại học Công nghiệp Việt – Hung kiểm tra mức độ trùng lặp
-                của bài tập lớn, báo cáo thực tập và khoá luận tốt nghiệp.
+                Hệ thống kết hợp Xử lý ngôn ngữ tự nhiên (NLP) và thuật toán đối sánh
             </p>
         </section>
 
-        <!-- Hệ thống làm được gì -->
+        <!-- ============ SƠ ĐỒ LUỒNG XỬ LÝ ============ -->
         <section class="gt-khoi">
-            <h2>Hệ thống làm được gì</h2>
-            <div class="gt-luoi">
-                <article class="gt-the">
-                    <div class="gt-the__bieu-tuong"><i class="fa-solid fa-file-circle-check"></i></div>
-                    <h3>Kiểm tra trùng lặp</h3>
-                    <p>Tải tài liệu lên, hệ thống tự đối chiếu với kho tài liệu đã
-                        lưu và trả về tỉ lệ trùng lặp cùng danh sách nguồn trùng.</p>
-                </article>
+            <h2 class="gt-tieu-de">Sơ đồ luồng xử lý hệ thống</h2>
 
-                <article class="gt-the">
-                    <div class="gt-the__bieu-tuong"><i class="fa-solid fa-highlighter"></i></div>
-                    <h3>Chỉ rõ chỗ trùng</h3>
-                    <p>Mở tài liệu ngay trên trình duyệt, những câu trùng được bôi
-                        vàng để người đọc thấy chính xác phần nào bị lặp lại.</p>
-                </article>
+            <div class="gt-luong">
+                <div class="gt-luong__muc">
+                    <div class="gt-luong__vong"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                    <div class="gt-luong__ten">Tải tài liệu lên</div>
+                </div>
 
-                <article class="gt-the">
-                    <div class="gt-the__bieu-tuong"><i class="fa-solid fa-chalkboard-user"></i></div>
-                    <h3>Quản lý lớp và bài tập</h3>
-                    <p>Giảng viên tạo lớp, giao bài tập và theo dõi ai đã nộp, ai
-                        chưa nộp cùng tỉ lệ trùng của từng bài.</p>
-                </article>
+                <div class="gt-luong__mui-ten"><i class="fa-solid fa-arrow-right-long"></i></div>
 
-                <article class="gt-the">
-                    <div class="gt-the__bieu-tuong"><i class="fa-solid fa-chart-column"></i></div>
-                    <h3>Thống kê báo cáo</h3>
-                    <p>Xem tỉ lệ trùng trung bình, phân bố theo mức, thống kê theo
-                        lớp học và tài khoản, xuất kết quả ra tệp Excel.</p>
-                </article>
+                <div class="gt-luong__muc">
+                    <div class="gt-luong__vong"><i class="fa-solid fa-broom"></i></div>
+                    <div class="gt-luong__ten">Tiền xử lý</div>
+                </div>
+
+                <div class="gt-luong__mui-ten"><i class="fa-solid fa-arrow-right-long"></i></div>
+
+                <div class="gt-luong__muc">
+                    <div class="gt-luong__vong"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <div class="gt-luong__ten">Kiểm tra</div>
+                </div>
+
+                <div class="gt-luong__mui-ten"><i class="fa-solid fa-arrow-right-long"></i></div>
+
+                <div class="gt-luong__muc">
+                    <div class="gt-luong__vong"><i class="fa-solid fa-chart-pie"></i></div>
+                    <div class="gt-luong__ten">Kết quả</div>
+                </div>
             </div>
         </section>
 
-        <!-- Cách hệ thống đối chiếu -->
+        <!-- ============ CHI TIẾT KIẾN TRÚC ============ -->
         <section class="gt-khoi gt-khoi--nen">
-            <h2>Cách hệ thống đối chiếu</h2>
-            <p class="gt-dan">
-                Mỗi tài liệu được tách thành từng câu rồi so với kho tài liệu mẫu
-                bằng ba thuật toán chạy song song. Kết quả cuối là điểm tổng hợp
-                có trọng số, nhờ vậy bắt được cả sao chép nguyên văn lẫn sao chép
-                có chỉnh sửa câu chữ.
-            </p>
+            <h2 class="gt-tieu-de">Chi tiết kiến trúc</h2>
 
-            <div class="gt-luoi gt-luoi--ba">
-                <article class="gt-the gt-the--thuat-toan">
-                    <div class="gt-trong-so">40%</div>
-                    <h3>TF-IDF &amp; Cosine</h3>
-                    <p>Đo độ giống nhau về mặt từ khoá quan trọng, bắt được trường
-                        hợp diễn đạt lại nhưng giữ nguyên ý.</p>
+            <div class="gt-buoc">
+
+                <article class="gt-the-buoc">
+                    <div class="gt-the-buoc__dau">
+                        <span class="gt-the-buoc__bieu-tuong"><i class="fa-solid fa-broom"></i></span>
+                        <h3>Bước 1: Tiền xử lý văn bản</h3>
+                    </div>
+                    <ul>
+                        <li>Trích xuất văn bản thô từ file.</li>
+                        <li>Chuẩn hóa (lowercase, bỏ ký tự).</li>
+                        <li>Loại bỏ stop-words, làm sạch.</li>
+                    </ul>
+                    <div class="gt-the-buoc__muc-tieu">
+                        <i class="fa-solid fa-bullseye"></i>
+                        <span><strong>Mục tiêu:</strong> Làm sạch dữ liệu đầu vào cho các
+                            tầng thuật toán sau.</span>
+                    </div>
                 </article>
 
-                <article class="gt-the gt-the--thuat-toan">
-                    <div class="gt-trong-so">40%</div>
-                    <h3>Winnowing</h3>
-                    <p>Tạo dấu vân tay của văn bản, bắt sao chép nguyên văn kể cả
-                        khi đã xáo trộn thứ tự các đoạn.</p>
+                <article class="gt-the-buoc">
+                    <div class="gt-the-buoc__dau">
+                        <span class="gt-the-buoc__bieu-tuong"><i class="fa-solid fa-fingerprint"></i></span>
+                        <h3>Bước 2: Tầng 1 — Sentence Hash</h3>
+                    </div>
+                    <ul>
+                        <li>Tách văn bản thành các câu đơn.</li>
+                        <li>Chuyển đổi câu thành mã băm.</li>
+                        <li>Đối chiếu trực tiếp với database.</li>
+                    </ul>
+                    <div class="gt-the-buoc__muc-tieu">
+                        <i class="fa-solid fa-bullseye"></i>
+                        <span><strong>Mục tiêu:</strong> Phát hiện siêu tốc các đoạn sao
+                            chép nguyên văn.</span>
+                    </div>
                 </article>
 
-                <article class="gt-the gt-the--thuat-toan">
-                    <div class="gt-trong-so">20%</div>
-                    <h3>Jaccard</h3>
-                    <p>So sánh tập hợp từ vựng giữa hai văn bản, phát hiện việc
-                        dùng lại vốn từ của tài liệu khác.</p>
+                <article class="gt-the-buoc">
+                    <div class="gt-the-buoc__dau">
+                        <span class="gt-the-buoc__bieu-tuong"><i class="fa-solid fa-diagram-project"></i></span>
+                        <h3>Bước 3: Tầng 2 — Fingerprint</h3>
+                    </div>
+                    <ul>
+                        <li>Tạo chuỗi n-grams từ văn bản.</li>
+                        <li>Áp dụng thuật toán Winnowing.</li>
+                        <li>So khớp vector ngữ nghĩa sâu.</li>
+                    </ul>
+                    <div class="gt-the-buoc__muc-tieu">
+                        <i class="fa-solid fa-bullseye"></i>
+                        <span><strong>Mục tiêu:</strong> Nhận diện văn bản bị thay đổi từ
+                            ngữ hoặc paraphrase.</span>
+                    </div>
+                </article>
+
+                <article class="gt-the-buoc">
+                    <div class="gt-the-buoc__dau">
+                        <span class="gt-the-buoc__bieu-tuong"><i class="fa-solid fa-file-circle-check"></i></span>
+                        <h3>Bước 4: Kết quả tổng hợp</h3>
+                    </div>
+                    <ul>
+                        <li>Tổng hợp tỷ lệ tương đồng (%).</li>
+                        <li>Phân tách rõ ràng từng câu/đoạn.</li>
+                        <li>Xuất báo cáo trực quan cho user.</li>
+                    </ul>
+                    <div class="gt-the-buoc__muc-tieu">
+                        <i class="fa-solid fa-bullseye"></i>
+                        <span><strong>Mục tiêu:</strong> Đưa ra con số chính xác phục vụ
+                            kiểm duyệt khoa học.</span>
+                    </div>
                 </article>
             </div>
         </section>
 
-        <!-- Dùng cho ai -->
+        <!-- ============ THUẬT TOÁN CỐT LÕI ============ -->
         <section class="gt-khoi">
-            <h2>Dành cho ai</h2>
-            <div class="gt-luoi gt-luoi--ba">
-                <article class="gt-the">
-                    <div class="gt-the__bieu-tuong"><i class="fa-solid fa-user-graduate"></i></div>
-                    <h3>Sinh viên</h3>
-                    <p>Tự kiểm tra bài trước khi nộp, biết chỗ nào cần viết lại để
-                        tránh bị đánh giá là sao chép.</p>
-                </article>
+            <h2 class="gt-tieu-de">Chi tiết các thuật toán cốt lõi</h2>
 
-                <article class="gt-the">
-                    <div class="gt-the__bieu-tuong"><i class="fa-solid fa-user-tie"></i></div>
-                    <h3>Giảng viên</h3>
-                    <p>Chấm nhanh cả lớp, xem tỉ lệ trùng từng bài và đối chiếu với
-                        tài liệu gốc chỉ trong vài thao tác.</p>
-                </article>
+            <!-- 1. TF-IDF -->
+            <article class="gt-thuat-toan">
+                <h3 class="gt-thuat-toan__ten">
+                    <span class="gt-so">1</span>
+                    Phương pháp trích chọn đặc trưng sử dụng trọng số TF-IDF
+                </h3>
 
-                <article class="gt-the">
-                    <div class="gt-the__bieu-tuong"><i class="fa-solid fa-gear"></i></div>
-                    <h3>Quản trị viên</h3>
-                    <p>Quản lý tài khoản, điều chỉnh ngưỡng cảnh báo và trọng số
-                        thuật toán cho phù hợp từng kỳ học.</p>
-                </article>
-            </div>
+                <p class="gt-dan">
+                    Đo mức quan trọng của một từ trong văn bản: từ xuất hiện nhiều trong
+                    một tài liệu nhưng hiếm gặp ở các tài liệu khác thì mang nhiều thông
+                    tin nhất.
+                </p>
+
+                <div class="gt-ct">
+                    <div class="gt-ct__nhan">Tần suất từ trong văn bản</div>
+                    <div class="gt-ct__than">
+                        <img src="../images/ct-tf.svg" alt="Công thức TF">
+                    </div>
+                </div>
+
+                <ul class="gt-ghi-chu">
+                    <li><em>f(t, d)</em> là số lần xuất hiện của từ <em>t</em> trong văn bản <em>d</em>.</li>
+                    <li><em>max{ f(w, d) : w &isin; d }</em> là tần suất của từ xuất hiện
+                        nhiều nhất trong văn bản <em>d</em>.</li>
+                </ul>
+
+                <div class="gt-ct">
+                    <div class="gt-ct__nhan">Nghịch đảo tần suất văn bản</div>
+                    <div class="gt-ct__than">
+                        <img src="../images/ct-idf.svg" alt="Công thức IDF">
+                    </div>
+                </div>
+
+                <ul class="gt-ghi-chu">
+                    <li><em>|D|</em> là tổng số văn bản trong tập văn bản <em>D</em>.</li>
+                    <li><em>|{ d &isin; D : t &isin; d }|</em> là số lượng văn bản trong
+                        tập <em>D</em> có chứa từ <em>t</em>.</li>
+                </ul>
+
+                <div class="gt-ct gt-ct--nhan-manh">
+                    <div class="gt-ct__nhan">Trọng số cuối cùng</div>
+                    <div class="gt-ct__than">
+                        <img src="../images/ct-tfidf.svg" alt="Công thức TF-IDF">
+                    </div>
+                </div>
+            </article>
+
+            <!-- 2. Cosine -->
+            <article class="gt-thuat-toan">
+                <h3 class="gt-thuat-toan__ten">
+                    <span class="gt-so">2</span>
+                    Độ tương đồng cosine (Cosine Similarity)
+                </h3>
+
+                <p class="gt-dan">
+                    Biểu diễn mỗi văn bản thành một vector trọng số rồi đo góc giữa hai
+                    vector. Giá trị càng gần 1 thì hai văn bản càng giống nhau về nội dung.
+                </p>
+
+                <div class="gt-ct">
+                    <div class="gt-ct__nhan">Dạng khai triển</div>
+                    <div class="gt-ct__than">
+                        <img src="../images/ct-cosine-khai-trien.svg" alt="Công thức Cosine dạng khai triển">
+                    </div>
+                </div>
+
+                <div class="gt-ct gt-ct--nhan-manh">
+                    <div class="gt-ct__nhan">Công thức tổng quát</div>
+                    <div class="gt-ct__than">
+                        <img src="../images/ct-cosine-tong-quat.svg" alt="Công thức Cosine dạng tổng quát">
+                    </div>
+                </div>
+
+                <ul class="gt-ghi-chu">
+                    <li><em>A = (A<sub>1</sub>, A<sub>2</sub>, &hellip;, A<sub>n</sub>)</em>:
+                        vector biểu diễn văn bản A.</li>
+                    <li><em>B = (B<sub>1</sub>, B<sub>2</sub>, &hellip;, B<sub>n</sub>)</em>:
+                        vector biểu diễn văn bản B.</li>
+                    <li><em>A<sub>i</sub>, B<sub>i</sub></em> là trọng số của từ thứ
+                        <em>i</em> trong hai văn bản (thường là TF hoặc TF-IDF).</li>
+                    <li>Tử số là tích vô hướng của hai vector; mẫu số là tích độ dài của
+                        hai vector.</li>
+                </ul>
+            </article>
+
+            <!-- 3. Jaccard -->
+            <article class="gt-thuat-toan">
+                <h3 class="gt-thuat-toan__ten">
+                    <span class="gt-so">3</span>
+                    Độ tương đồng Jaccard (Jaccard Similarity)
+                </h3>
+
+                <p class="gt-dan">
+                    Cách tiếp cận dựa trên sự tương đồng về văn bản: so sánh mức độ giao
+                    nhau giữa hai tập từ.
+                </p>
+
+                <div class="gt-ct gt-ct--nhan-manh">
+                    <div class="gt-ct__than">
+                        <img src="../images/ct-jaccard.svg" alt="Công thức Jaccard Similarity">
+                    </div>
+                </div>
+
+                <ul class="gt-ghi-chu">
+                    <li><em>A</em>: tập từ/ngữ của văn bản 1.</li>
+                    <li><em>B</em>: tập từ/ngữ của văn bản 2.</li>
+                    <li>Tử số là số phần tử chung, mẫu số là tổng số phần tử khác nhau của
+                        cả hai tập.</li>
+                </ul>
+            </article>
+
+            <!-- 4. Winnowing -->
+            <article class="gt-thuat-toan">
+                <h3 class="gt-thuat-toan__ten">
+                    <span class="gt-so">4</span>
+                    Lấy dấu vân tay văn bản (Winnowing)
+                </h3>
+
+                <div class="gt-buoc-nho">
+
+                    <div class="gt-buoc-nho__muc">
+                        <h4>N-Gram Token Based — tạo tập N-gram từ token</h4>
+                        <p>Văn bản sau khi được làm sạch và tách từ sẽ được chia thành các
+                            chuỗi liên tiếp gồm <em>k</em> từ. Nếu văn bản có chuỗi
+                            <em>T</em> gồm các từ <em>t<sub>1</sub>, t<sub>2</sub>,
+                                &hellip;, t<sub>m</sub></em> thì một k-gram tại vị trí
+                            <em>i</em> là tập hợp con gồm <em>k</em> từ liên tiếp:</p>
+                        <div class="gt-ct">
+                    <div class="gt-ct__than">
+                        <img src="../images/ct-ngram.svg" alt="Công thức tạo k-gram">
+                    </div>
+                </div>
+                    </div>
+
+                    <div class="gt-buoc-nho__muc">
+                        <h4>MD5 Function on N-gram — băm từng N-gram</h4>
+                        <p>Mỗi chuỗi k-gram được đưa qua hàm băm MD5 để chuyển từ một cụm
+                            từ dạng text thành một giá trị băm duy nhất:</p>
+                        <div class="gt-ct">
+                    <div class="gt-ct__than">
+                        <img src="../images/ct-hash.svg" alt="Công thức băm k-gram bằng MD5">
+                    </div>
+                </div>
+                        <p>Bước này chuẩn hóa kích thước các cụm từ thành giá trị có độ dài
+                            cố định, tạo tiền đề để so sánh nhanh chóng.</p>
+                    </div>
+
+                    <div class="gt-buoc-nho__muc">
+                        <h4>Fingerprint — chọn lọc vân tay qua cửa sổ trượt</h4>
+                        <p>Từ danh sách giá trị băm <em>h<sub>1</sub>, h<sub>2</sub>,
+                                &hellip;</em>, thuật toán dùng một cửa sổ trượt kích thước
+                            <em>w</em> quét qua các giá trị băm. Trong mỗi cửa sổ, giá trị
+                            băm nhỏ nhất được chọn vào tập Fingerprint lưu trong cơ sở dữ
+                            liệu. Tập này đại diện cho đặc trưng độc nhất của tài liệu,
+                            giúp phát hiện đạo văn ngay cả khi câu chữ bị thay đổi nhỏ hoặc
+                            đảo trật tự từ.</p>
+                    </div>
+                </div>
+
+                <!-- Sơ đồ ba bước của Winnowing -->
+                <div class="gt-so-do-wn">
+                    <div class="gt-so-do-wn__cot">
+                        <span class="gt-so-do-wn__nhan">Document 1</span>
+                        <span class="gt-so-do-wn__nhan">Document 2</span>
+                    </div>
+                    <div class="gt-luong__mui-ten"><i class="fa-solid fa-arrow-right-long"></i></div>
+                    <div class="gt-so-do-wn__buoc">N-Gram Token Based</div>
+                    <div class="gt-luong__mui-ten"><i class="fa-solid fa-arrow-right-long"></i></div>
+                    <div class="gt-so-do-wn__buoc">MD5 Function on N-gram</div>
+                    <div class="gt-luong__mui-ten"><i class="fa-solid fa-arrow-right-long"></i></div>
+                    <div class="gt-so-do-wn__buoc gt-so-do-wn__buoc--cuoi">Fingerprint</div>
+                </div>
+            </article>
         </section>
 
-        <!-- Câu hỏi thường gặp -->
-        <section class="gt-khoi gt-khoi--nen">
-            <h2>Câu hỏi thường gặp</h2>
-
-            <div class="gt-hoi-dap">
-                <article class="gt-hoi">
-                    <h3>Tài liệu tải lên có bị lộ ra ngoài không?</h3>
-                    <p>Không. Tài liệu chỉ lưu trên máy chủ của hệ thống để phục vụ
-                        việc đối chiếu, không chia sẻ cho bên thứ ba.</p>
-                </article>
-
-                <article class="gt-hoi">
-                    <h3>Hệ thống nhận những định dạng nào?</h3>
-                    <p>Tệp Word (.docx) và PDF (.pdf), dung lượng tối đa 20 MB mỗi tệp.</p>
-                </article>
-
-                <article class="gt-hoi">
-                    <h3>Bao lâu thì có kết quả?</h3>
-                    <p>Tuỳ độ dài tài liệu và số lượng bài đang chờ, thường từ vài
-                        giây tới vài phút. Trong lúc chờ, tài liệu hiện trạng thái
-                        "Đang xử lý".</p>
-                </article>
-
-                <article class="gt-hoi">
-                    <h3>Tỉ lệ trùng bao nhiêu thì bị coi là cao?</h3>
-                    <p>Hệ thống đánh dấu cảnh báo từ 30% trở lên. Mức này quản trị
-                        viên chỉnh được theo quy định từng kỳ.</p>
-                </article>
-
-                <article class="gt-hoi">
-                    <h3>Trùng với chính bài cũ của mình thì sao?</h3>
-                    <p>Vẫn tính là trùng, vì hệ thống đối chiếu với toàn bộ kho tài
-                        liệu. Người chấm sẽ thấy rõ nguồn trùng là bài nào.</p>
-                </article>
-
-                <article class="gt-hoi">
-                    <h3>Quên mật khẩu thì làm thế nào?</h3>
-                    <p>Bấm "Quên mật khẩu" ở trang đăng nhập, hệ thống gửi hướng dẫn
-                        đặt lại qua email đã đăng ký.</p>
-                </article>
-            </div>
-        </section>
-
-        <!-- Kêu gọi -->
+        <!-- ============ KÊU GỌI ĐĂNG KÝ ============ -->
         <section class="gt-keu-goi">
-            <h2>Bắt đầu kiểm tra tài liệu</h2>
-            <p>Đăng nhập để tải tài liệu lên, hoặc xem hướng dẫn chi tiết nếu đây
-                là lần đầu bạn dùng hệ thống.</p>
-            <div class="gt-keu-goi__nut">
-                <a class="gt-nut" href="../pages/dangnhap.html">Đăng nhập</a>
-                <a class="gt-nut gt-nut--phu" href="../pages/huongdan.html">Xem hướng dẫn</a>
-            </div>
+            <a class="gt-nut" href="../pages/dangky.html">Đăng ký tài khoản ngay</a>
         </section>
     </main>
+
+    <footer>
+        <div class="footer-left">
+            <p>Copyright © 2016 Trường Đại học Công nghiệp Việt-Hung. All Rights Reserved.</p>
+            <h4>Địa điểm đào tạo:</h4>
+            <p><strong>Cơ sở Sơn Tây:</strong> Số 16 Hữu Nghị, phường Tùng Thiện, TP. Hà Nội</p>
+            <p><strong>Cơ sở Thạch Thất:</strong> Số 88, đường 419 - Tây Phương, TP. Hà Nội</p>
+            <p><strong>Cơ sở Thanh Xuân:</strong> Số 27 Lê Văn Lương, phường Thanh Xuân, TP. Hà Nội</p>
+        </div>
+        <div class="footer-right">
+            <div>
+                <a href="#">Điều khoản sử dụng</a> | <a href="#">Quyền riêng tư</a>
+            </div>
+            <div class="icons">
+                <a href="https://www.facebook.com/dhcnvh/" target="_blank">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="https://tuyensinh.viu.edu.vn/kham-pha-viu.html" target="_blank">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+                <a href="mailto:dhcnviethung.viu@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="tel:0974.966.966">
+                    <i class="fa-solid fa-phone"></i>
+                </a>
+            </div>
+            <div class="hotline-one">
+                <a>Hotline: 0974.966.966</a>
+            </div>
+            <div class="hotline-two">
+                <a>Email: dhcnviethung.viu@gmail.com</a>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

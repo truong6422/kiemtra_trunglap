@@ -481,4 +481,53 @@ router.get('/chi-tiet/:id/document', async (req, res) => {
     }
 });
 
+// =========================================================================
+// SỬA THÔNG TIN MỘT TÀI LIỆU
+// Chỉ cho sửa phần mô tả (tiêu đề, loại báo cáo); tệp tin và kết quả chấm
+// giữ nguyên vì sửa được sẽ làm lệch với dữ liệu đã đối sánh.
+// =========================================================================
+router.put('/:id_bao_cao', async (req, res) => {
+    try {
+        const { id_bao_cao } = req.params;
+        const { tieu_de, loai_bao_cao } = req.body;
+
+        if (!tieu_de || !String(tieu_de).trim()) {
+            return res.status(400).json({
+                success: false,
+                message: "Tiêu đề tài liệu không được để trống!"
+            });
+        }
+
+        const capNhat = { tieu_de: String(tieu_de).trim() };
+        if (loai_bao_cao !== undefined) {
+            capNhat.loai_bao_cao = String(loai_bao_cao).trim();
+        }
+
+        const daSua = await BaoCao.findOneAndUpdate(
+            { id_bao_cao: id_bao_cao },
+            { $set: capNhat },
+            { new: true }
+        ).lean();
+
+        if (!daSua) {
+            return res.status(404).json({
+                success: false,
+                message: "Không tìm thấy tài liệu cần sửa!"
+            });
+        }
+
+        const { noi_dung_tien_xu_ly, ...phanTraVe } = daSua;
+
+        return res.json({
+            success: true,
+            message: "Đã cập nhật thông tin tài liệu.",
+            data: phanTraVe
+        });
+
+    } catch (error) {
+        console.error("Lỗi khi sửa thông tin tài liệu:", error);
+        return res.status(500).json({ success: false, message: error.message });
+    }
+});
+
 module.exports = router;

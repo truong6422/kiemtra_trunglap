@@ -1785,7 +1785,14 @@ const observerJoinTab = new MutationObserver(function() {
             const classCodeEl = document.querySelector('tr, div'); 
             
             // Lấy URL hiện tại để tạo link chia sẻ chuẩn xác
-            const shareLink = `${window.location.origin}/classrooms/join?code=cfr3j0`;
+            // Mã lớp trước đây bị ghi cứng nên lớp nào cũng ra cùng một liên kết.
+            // Lấy theo lớp đang mở; chưa xác định được thì không dựng liên kết.
+            const duLieuLop = window.currentClassData || window.classData;
+            const maLopHienTai = duLieuLop && duLieuLop.ma_lop;
+            if (!maLopHienTai) return;
+
+            const shareLink =
+                `${window.location.origin}/classrooms/join?code=${maLopHienTai}`;
 
             // Thay thế nội dung bên trong bằng khung chia sẻ liên kết
             // Thay thế đoạn HTML trong MutationObserver bằng đoạn này:

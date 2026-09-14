@@ -50,13 +50,39 @@ document.addEventListener('DOMContentLoaded', function () {
         if (fields.studentId) fields.studentId.value = data.ma_sinh_vien || data.student_id || '';
         if (fields.className) fields.className.value = data.lop || data.class_name || '';
         if (fields.course) fields.course.value = data.khoa_hoc || data.course || '';
-        if (fields.reportNumber) fields.reportNumber.value = data.so_luong_bao_cao !== undefined ? data.so_luong_bao_cao : (data.report_number || '');
+        // Số báo cáo là số đếm do hệ thống tự tính, không phải ô người dùng nhập,
+        // nên chỉ đổ tạm giá trị cũ rồi để demSoBaoCao() ghi đè bằng số thật.
+        if (fields.reportNumber) {
+            fields.reportNumber.value = data.so_luong_bao_cao !== undefined
+                ? data.so_luong_bao_cao : (data.report_number || 0);
+            fields.reportNumber.readOnly = true;
+        }
 
         const navUserName = document.getElementById('navUserName');
         if (navUserName) {
             const displayName = data.ho_ten || data.fullname;
             if (displayName) navUserName.innerText = displayName;
         }
+    }
+
+    /**
+     * Đếm số báo cáo người dùng đã tải lên rồi đổ vào ô "Số báo cáo".
+     * Chưa tải lên bài nào thì để 0.
+     */
+    function demSoBaoCao() {
+        const o = document.getElementById('report-count');
+        if (!o || !userId) return;
+
+        // API_BASE_URL đã trỏ sẵn vào nhánh /api/auth nên ở đây phải dùng gốc /api
+        fetch(`http://localhost:5000/api/bao-cao/tai-lieu-nop/${encodeURIComponent(userId)}`)
+            .then(r => r.json())
+            .then(kq => {
+                o.value = (kq.success && Array.isArray(kq.data)) ? kq.data.length : 0;
+            })
+            .catch(err => {
+                console.error('Không đếm được số báo cáo:', err);
+                o.value = 0;
+            });
     }
 
     function loadUserProfile() {
@@ -95,9 +121,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 email: fields.email ? fields.email.value.trim() : '',
                 ma_sinh_vien: fields.studentId ? fields.studentId.value.trim() : '',
                 lop: fields.className ? fields.className.value.trim() : '',
-                khoa_hoc: fields.course ? fields.course.value.trim() : '',
-                so_luong_bao_cao: fields.reportNumber ? fields.reportNumber.value.trim() : ''
+                khoa_hoc: fields.course ? fields.course.value.trim() : ''
             };
+            // Không gửi so_luong_bao_cao lên máy chủ: đây là số hệ thống tự đếm
+            // từ các báo cáo đã tải lên, người dùng không được sửa.
 
             fetch(`${API_BASE_URL}/profile/${userId}`, {
                 method: 'PUT',
@@ -193,6 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Tải dữ liệu người dùng khi vào trang
     loadUserProfile();
+    demSoBaoCao();
 });
 
 // ==============================

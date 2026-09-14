@@ -28,7 +28,9 @@ const io = new Server(server, {
 });
 
 // Middleware
-app.use(cors());            
+// Cho trình duyệt đọc tên tệp máy chủ gửi kèm khi tải xuống. Không khai báo
+// thì tệp tải về bị đặt tên mặc định thay vì tên gốc của tài liệu.
+app.use(cors({ exposedHeaders: ['Content-Disposition'] }));            
 app.use(express.json());    
 
 // Phục vụ các file tĩnh

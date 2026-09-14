@@ -105,6 +105,11 @@ function isValidEmail(email) {
 function renderClassDetail(classData, userId, currentHoTen, activeTabName = 'description') {
     const mainElement = document.querySelector('main');
 
+    // Ghi nhớ lớp đang mở ngay từ đây, không đợi tới lúc vào tab bài tập. Các
+    // phần gắn sự kiện ở cấp tài liệu (tạo bài tập, liên kết mời tham gia)
+    // không nhận được classData qua tham số nên phải lấy qua biến này.
+    window.currentClassData = classData;
+
     const isOwner = String(classData.id_nguoi_dung) === String(userId);
     const ownerDisplayName = classData.chu_lop_ho_ten || classData.ho_ten_chu_lop || (isOwner ? currentHoTen : 'Chủ lớp học');
 
@@ -1435,7 +1440,14 @@ const observerJoinTab = new MutationObserver(function () {
     const contentAreas = document.querySelectorAll('div, p, span');
     contentAreas.forEach(el => {
         if (el.textContent.trim() === 'Không có yêu cầu tham gia nào.') {
-            const shareLink = `${window.location.origin}/classrooms/join?code=cfr3j0`;
+            // Mã lớp trước đây bị ghi cứng nên lớp nào cũng ra cùng một liên kết.
+            // Lấy theo lớp đang mở; chưa xác định được thì không dựng liên kết.
+            const duLieuLop = window.currentClassData || window.classData;
+            const maLopHienTai = duLieuLop && duLieuLop.ma_lop;
+            if (!maLopHienTai) return;
+
+            const shareLink =
+                `${window.location.origin}/classrooms/join?code=${maLopHienTai}`;
 
             el.innerHTML = `
                 <div style="margin-top: -90px; margin-left: 0; text-align: left; max-width: 600px;">

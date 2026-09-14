@@ -1,4 +1,74 @@
 const BACKEND_URL = 'http://localhost:5000';
+
+/**
+ * Tải tệp của một bài nộp về máy.
+ *
+ * Máy chủ chạy ở cổng khác trang web nên thuộc tính download của thẻ a bị bỏ
+ * qua, bấm vào là nhảy hẳn sang địa chỉ API. Vì vậy tải nội dung về bộ nhớ
+ * trước rồi mới dựng liên kết tải.
+ */
+async function taiTepBaiNop(idBaoCao, tenGoiY) {
+    if (!idBaoCao) {
+        alert('Không tìm thấy mã báo cáo của bài nộp này!');
+        return false;
+    }
+
+    try {
+        const res = await fetch(
+            `${BACKEND_URL}/api/bao-cao/tai-xuong/${encodeURIComponent(idBaoCao)}`);
+
+        if (!res.ok) {
+            alert(res.status === 404
+                ? 'Không tìm thấy tệp của bài nộp này trên máy chủ.'
+                : 'Không tải được tệp, máy chủ trả về mã ' + res.status);
+            return false;
+        }
+
+        let ten = tenGoiY || 'tai-lieu-nop';
+        const cd = res.headers.get('Content-Disposition') || '';
+        const khop = cd.match(/filename\*?=(?:UTF-8'')?"?([^";]+)"?/i);
+        if (khop) ten = decodeURIComponent(khop[1]);
+
+        const dia = URL.createObjectURL(await res.blob());
+        const a = document.createElement('a');
+        a.href = dia;
+        a.download = ten;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(dia), 20000);
+        return true;
+
+    } catch (err) {
+        console.error('Lỗi khi tải tệp bài nộp:', err);
+        alert('Không kết nối được máy chủ: ' + err.message);
+        return false;
+    }
+}
+
+/**
+ * Hai nút ở cột Hành động của bảng bài nộp phía giảng viên.
+ *
+ * Bảng được dựng lại mỗi lần tải nên nghe sự kiện ở cấp tài liệu. Nút Xem mở
+ * thẳng trang chi tiết báo cáo, ở đó giảng viên thấy luôn phần câu trùng đã
+ * bôi màu của sinh viên.
+ */
+document.addEventListener('click', async function (e) {
+
+    const nutXem = e.target.closest('[data-xem-bao-cao]');
+    if (nutXem && nutXem.dataset.xemBaoCao) {
+        e.preventDefault();
+        window.open(`chitiet.html?id=${encodeURIComponent(nutXem.dataset.xemBaoCao)}`, '_blank');
+        return;
+    }
+
+    const nutTai = e.target.closest('[data-tai-bao-cao]');
+    if (nutTai && nutTai.dataset.taiBaoCao) {
+        e.preventDefault();
+        await taiTepBaiNop(nutTai.dataset.taiBaoCao, nutTai.dataset.tenTep);
+    }
+});
+
 // Đặt đoạn kết nối socket ở ngoài cùng của file JS
 // Khai báo biến lưu ID bài tập đang xem ở phạm vi toàn cục
 let currentViewingBaiTapId = null;
@@ -86,6 +156,30 @@ if (addFileBtn) {
         e.preventDefault();
         if (fileConfigBox) fileConfigBox.style.display = 'block';
         if (fileHeaderRow) fileHeaderRow.style.display = 'flex';
+    });
+}
+
+// Modal "Cập nhật bài tập" có khung cấu hình tệp riêng nhưng chưa nơi nào gắn
+// sự kiện, nên bấm "Xóa" không thu gọn được và "Thêm tệp bài tập" không mở
+// lại được. Gắn bổ sung cho bộ nút của modal này.
+const updateDeleteFileBtn = document.getElementById('updateDeleteFileBtn');
+const updateAddFileBtn = document.getElementById('updateAddFileBtn');
+const updateFileConfigBox = document.getElementById('updateFileConfigBox');
+const updateFileHeaderRow = document.getElementById('updateFileHeaderRow');
+
+if (updateDeleteFileBtn) {
+    updateDeleteFileBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (updateFileConfigBox) updateFileConfigBox.style.display = 'none';
+        if (updateFileHeaderRow) updateFileHeaderRow.style.display = 'none';
+    });
+}
+
+if (updateAddFileBtn) {
+    updateAddFileBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (updateFileConfigBox) updateFileConfigBox.style.display = 'block';
+        if (updateFileHeaderRow) updateFileHeaderRow.style.display = 'flex';
     });
 }
 function enforceChecked(checkbox) {
@@ -1153,7 +1247,8 @@ async function openTeacherExerciseDetailView(exercise, classData, userId) {
                                     <td style="padding-top: 10px; color: #5f6368; font-size: 13px;">${updateTime}</td>
                                     <td style="padding-top: 10px; color: ${statusColor}; font-weight: 500;">${subStatus}</td>
                                     <td style="padding-top: 10px; text-align: right;">
-                                        <button ${sub.id_bao_cao ? '' : 'disabled'} onclick="${sub.id_bao_cao ? `window.open('${BACKEND_URL}/api/bao-cao/tai-xuong/${sub.id_bao_cao}', '_blank')` : ''}" style="background: none; border: none; cursor: ${sub.id_bao_cao ? 'pointer' : 'not-allowed'}; color: ${sub.id_bao_cao ? '#1a73e8' : '#9aa0a6'};" title="${sub.id_bao_cao ? 'Tải xuống bài nộp' : 'Chưa có file nộp'}"><i class="fa-solid fa-download"></i></button>
+                                        <button ${sub.id_bao_cao ? '' : 'disabled'} data-xem-bao-cao="${sub.id_bao_cao || ''}" style="background: none; border: none; margin-right: 10px; cursor: ${sub.id_bao_cao ? 'pointer' : 'not-allowed'}; color: ${sub.id_bao_cao ? '#1a73e8' : '#9aa0a6'};" title="${sub.id_bao_cao ? 'Xem chi tiết bài nộp kèm phần bôi màu' : 'Chưa có file nộp'}"><i class="fa-solid fa-eye"></i></button>
+                                        <button ${sub.id_bao_cao ? '' : 'disabled'} data-tai-bao-cao="${sub.id_bao_cao || ''}" data-ten-tep="${(sub.tieu_de_tep || '').replace(/"/g, '&quot;')}" style="background: none; border: none; cursor: ${sub.id_bao_cao ? 'pointer' : 'not-allowed'}; color: ${sub.id_bao_cao ? '#1a73e8' : '#9aa0a6'};" title="${sub.id_bao_cao ? 'Tải xuống bài nộp' : 'Chưa có file nộp'}"><i class="fa-solid fa-download"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -1510,92 +1605,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
-// Đặt đoạn này ở phạm vi toàn cục (ngoài cùng của file thembaitap.js)
-if (!window._isGlobalSubEventAttached) {
-    window._isGlobalSubEventAttached = true;
-    
-    document.addEventListener('click', async function(event) {
-        const target = event.target;
-        const submitBox = document.querySelector('.my-submit-box');
-        if (!submitBox || !submitBox._currentSub) return;
-        
-        const sub = submitBox._currentSub;
-        const idBaiTap = submitBox._idBaiTap;
-        const idSinhVien = submitBox._idSinhVien;
-if (submitBox) {
-    submitBox._currentSub = sub;          // Dữ liệu bài nộp mới từ server trả về
-    submitBox._idBaiTap = idBaiTap;       // Mã bài tập hiện tại
-    submitBox._idSinhVien = idSinhVien;   // Mã sinh viên hiện tại
-}
+// Trước đây có hai khối gắn sự kiện cho các nút trong khung bài nộp, cả hai
+// cùng kiểm tra cờ window._isGlobalSubEventAttached nên chỉ khối đầu được gắn.
+// Khối đầu lại bỏ qua mọi cú bấm khi submitBox._currentSub chưa có — tình
+// trạng xảy ra ngay sau khi khung được dựng lại — nên nút Chỉnh sửa chỉ ăn
+// được một lần rồi thôi. Khối còn lại (phía dưới) tự gọi API lấy dữ liệu khi
+// thiếu nên giữ lại một mình nó.
 
-        // 1. Tải xuống
-        if (target.id === 'downloadFileLink' || target.id === 'btnDownloadSub') {
-            event.preventDefault();
-            if (!sub.id_bao_cao) {
-                alert('Không tìm thấy mã báo cáo (id_bao_cao) của bài nộp này!');
-                return;
-            }
-
-            try {
-                const baoCaoRes = await fetch(`${BACKEND_URL}/api/bao-cao?id_bao_cao=${sub.id_bao_cao}`);
-                if (!baoCaoRes.ok) {
-                    alert('Không thể kết nối đến API báo cáo!');
-                    return;
-                }
-
-                const baoCaoData = await baoCaoRes.json();
-                let targetBaoCao = null;
-                if (Array.isArray(baoCaoData)) {
-                    targetBaoCao = baoCaoData.find(item => item.id_bao_cao === sub.id_bao_cao);
-                } else if (baoCaoData.data) {
-                    targetBaoCao = Array.isArray(baoCaoData.data) 
-                        ? baoCaoData.data.find(item => item.id_bao_cao === sub.id_bao_cao) 
-                        : baoCaoData.data;
-                } else {
-                    targetBaoCao = baoCaoData;
-                }
-
-                const fileRelativePath = targetBaoCao ? (targetBaoCao.tep_tin || targetBaoCao.duong_dan) : null;
-
-                if (fileRelativePath) {
-                    const fileUrl = fileRelativePath.startsWith('http') ? fileRelativePath : `${BACKEND_URL}/${fileRelativePath.replace(/\\/g, '/')}`;
-                    
-                    const link = document.createElement('a');
-                    link.href = fileUrl;
-                    link.download = sub.tieu_de_tep || 'tai-lieu-nop';
-                    link.target = '_blank';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                } else {
-                    alert('Không tìm thấy đường dẫn tệp trong CSDL!');
-                }
-            } catch (err) {
-                console.error("Lỗi khi tải file:", err);
-            }
-        }
-
-        // 2. Chỉnh sửa
-        if (target.id === 'btnEditSub') {
-            event.preventDefault();
-            if (typeof openEditSubmissionModal === 'function') {
-                openEditSubmissionModal(sub);
-            } else {
-                console.error("Hàm openEditSubmissionModal chưa được định nghĩa!");
-            }
-        }
-
-        // 3. Xóa
-        if (target.id === 'btnDeleteSub') {
-            event.preventDefault();
-            if (typeof showDeleteConfirmModal === 'function') {
-                showDeleteConfirmModal(idBaiTap, idSinhVien);
-            } else {
-                console.error("Hàm showDeleteConfirmModal chưa được định nghĩa!");
-            }
-        }
-    });
-}
 // Hàm gọi API lấy dữ liệu bài nộp và tự động cập nhật giao diện khi đã có DOM
 // --- HÀM GỌI API LẤY DỮ LIỆU VÀ RENDER GIAO DIỆN BÀI NỘP ---
 async function fetchAndRenderSubmission(idBaiTap, idSinhVien) {
@@ -1731,27 +1747,8 @@ if (!window._isGlobalSubEventAttached) {
                 alert('Không tìm thấy mã báo cáo của tệp này!');
                 return;
             }
-            try {
-                const baoCaoRes = await fetch(`${BACKEND_URL}/api/bao-cao?id_bao_cao=${targetIdBaoCao}`);
-                const baoCaoData = await baoCaoRes.json();
-                let targetBaoCao = Array.isArray(baoCaoData) ? baoCaoData.find(item => item.id_bao_cao === targetIdBaoCao) : (baoCaoData.data || baoCaoData);
-                
-                const fileRelativePath = targetBaoCao ? (targetBaoCao.tep_tin || targetBaoCao.duong_dan) : null;
-                if (fileRelativePath) {
-                    const fileUrl = fileRelativePath.startsWith('http') ? fileRelativePath : `${BACKEND_URL}/${fileRelativePath.replace(/\\/g, '/')}`;
-                    const link = document.createElement('a');
-                    link.href = fileUrl;
-                    link.download = sub.tieu_de_tep || 'tai-lieu-nop';
-                    link.target = '_blank';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                } else {
-                    alert('Không tìm thấy đường dẫn tệp trong CSDL!');
-                }
-            } catch (err) {
-                console.error("Lỗi khi tải file:", err);
-            }
+            // Dùng API tải tệp thay vì ghép đường dẫn ổ đĩa của máy chủ
+            await taiTepBaiNop(targetIdBaoCao, sub.tieu_de_tep);
         }
 
         // 2. XỬ LÝ NÚT CHỈNH SỬA (Mở Modal chọn file thay thế)

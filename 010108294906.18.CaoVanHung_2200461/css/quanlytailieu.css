@@ -295,6 +295,64 @@ body {
   text-align: left;
 }
 
+/* --- Bề rộng từng cột của bảng tài liệu ---
+   Chia cột theo bề rộng khai báo thay vì theo nội dung; các cột nội dung ngắn
+   được siết lại, phần dư dồn hết cho cột Tiêu đề. Chỉ áp cho bảng tài liệu vì
+   class .data-table còn dùng ở màn thống kê với số cột khác. */
+.bang-tai-lieu {
+  table-layout: fixed;
+}
+
+/* Tính cả phần đệm vào bề rộng, nếu không mỗi cột phình thêm 24px so với
+   con số khai báo bên dưới */
+.bang-tai-lieu th,
+.bang-tai-lieu td {
+  box-sizing: border-box;
+}
+
+.bang-tai-lieu th:nth-child(1),
+.bang-tai-lieu td:nth-child(1) {          /* ô chọn */
+  width: 44px;
+  text-align: center;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+.bang-tai-lieu th:nth-child(2),
+.bang-tai-lieu td:nth-child(2) {          /* mã báo cáo */
+  width: 86px;
+}
+
+.bang-tai-lieu th:nth-child(3),
+.bang-tai-lieu td:nth-child(3) {          /* tiêu đề — nhận toàn bộ phần dư */
+  width: auto;
+  word-break: break-word;
+}
+
+.bang-tai-lieu th:nth-child(4),
+.bang-tai-lieu td:nth-child(4) {          /* độ trùng lặp */
+  width: 150px;
+}
+
+.bang-tai-lieu th:nth-child(5),
+.bang-tai-lieu td:nth-child(5) {          /* ngày tải lên */
+  width: 165px;
+  white-space: nowrap;
+}
+
+.bang-tai-lieu th:nth-child(6),
+.bang-tai-lieu td:nth-child(6) {          /* trạng thái */
+  width: 118px;
+}
+
+.bang-tai-lieu th:nth-child(7),
+.bang-tai-lieu td:nth-child(7) {          /* hành động */
+  width: 130px;
+  text-align: center;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
 .data-table th {
   background-color: #e8f0ff;
   color: #0655FF;
@@ -872,3 +930,147 @@ tr:hover .detail-action-container {
     color: #0369a1;
     text-decoration: underline;
 }
+/* ==========================================================================
+   HỘP THOẠI CỦA CÁC NÚT HÀNH ĐỘNG TRONG BẢNG TÀI LIỆU
+   (sửa thông tin tài liệu, chọn bản tải xuống)
+   ========================================================================== */
+.tl-hop-nen {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, .45);
+}
+
+.tl-hop {
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, .25);
+  overflow: hidden;
+}
+
+.tl-hop__dau {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tl-hop__dau h3 {
+  margin: 0;
+  font-size: 17px;
+  color: #0f172a;
+}
+
+.tl-hop__dong {
+  border: none;
+  background: transparent;
+  font-size: 26px;
+  line-height: 1;
+  color: #94a3b8;
+  cursor: pointer;
+}
+
+.tl-hop__dong:hover { color: #0f172a; }
+
+.tl-hop__than { padding: 20px; }
+
+.tl-hop__chan {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 20px;
+  border-top: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.tl-nhan {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.tl-o {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  font-size: 14.5px;
+}
+
+.tl-o:focus {
+  outline: none;
+  border-color: #0655FF;
+}
+
+.tl-luu-y, .tl-gioi-thieu {
+  margin: 0 0 6px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #64748b;
+}
+
+.tl-gioi-thieu { margin-bottom: 14px; }
+
+.tl-chon {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  margin-bottom: 10px;
+  padding: 13px 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.tl-chon:has(input:checked) {
+  border-color: #0655FF;
+  background: #eff6ff;
+}
+
+.tl-chon input { margin-top: 3px; accent-color: #0655FF; }
+
+.tl-chon strong {
+  display: block;
+  font-size: 14.5px;
+  color: #0f172a;
+  margin-bottom: 3px;
+}
+
+.tl-chon em {
+  font-style: normal;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.tl-nut {
+  padding: 9px 22px;
+  border: none;
+  border-radius: 7px;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #0655FF;
+  color: #fff;
+}
+
+.tl-nut:hover { background: #0443cc; }
+
+.tl-nut--phu {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+}
+
+.tl-nut--phu:hover { background: #f1f5f9; }

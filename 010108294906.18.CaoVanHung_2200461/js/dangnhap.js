@@ -207,9 +207,10 @@ function initGoogleLogin() {
 initGoogleLogin();
 
 
-// Sau khi server trả về thông tin đăng nhập thành công
-localStorage.setItem("username", data.user.username);
-window.location.href = "../pages/trangchu_saudn.html";
+// Hai dòng lưu tên và chuyển trang sau khi đăng nhập vốn nằm trơ ở cuối tệp,
+// không thuộc hàm nào nên chạy ngay lúc tải trang: biến data chưa tồn tại,
+// mỗi lần mở trang đăng nhập là báo lỗi "data is not defined". Phần xử lý
+// đăng nhập thật đã nằm trong hàm phía trên nên xoá đoạn thừa này đi.
 
 
 

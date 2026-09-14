@@ -304,9 +304,9 @@ function renderTablePage() {
                 ${chuaCoKetQua ? '<span class="badge-dang-xu-ly">Đang xử lý</span>' : `<span style="background: #e0f2fe; color: #0284c7; padding: 4px 8px; border-radius: 4px; font-size: 13px; font-weight: 500;">${item.trang_thai || 'Đã xử lý'}</span>`}
             </td>
             <td style="white-space: nowrap;">
-                <button style="border: none; background: transparent; cursor: pointer; color: #0284c7; margin-right: 6px; font-size: 15px;" title="Lưu tài liệu"><i class="fa-solid fa-floppy-disk"></i></button>
-                <button style="border: none; background: transparent; cursor: pointer; color: #d97706; margin-right: 6px; font-size: 15px;" title="Chỉnh sửa"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button style="border: none; background: transparent; cursor: pointer; color: #16a34a; margin-right: 6px; font-size: 15px;" title="Tải xuống"><i class="fa-solid fa-download"></i></button>
+                <button style="border: none; background: transparent; cursor: pointer; color: #0284c7; margin-right: 6px; font-size: 15px;" title="Lưu tài liệu" data-hanh-dong="luu" data-ma="${rowId}"><i class="fa-solid fa-floppy-disk"></i></button>
+                <button style="border: none; background: transparent; cursor: pointer; color: #d97706; margin-right: 6px; font-size: 15px;" title="Chỉnh sửa" data-hanh-dong="sua" data-ma="${rowId}"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button style="border: none; background: transparent; cursor: pointer; color: #16a34a; margin-right: 6px; font-size: 15px;" title="Tải xuống" data-hanh-dong="tai" data-ma="${rowId}"><i class="fa-solid fa-download"></i></button>
                 <button style="border: none; background: transparent; cursor: pointer; color: #dc2626; font-size: 15px;" onclick="deleteDocRow(this)" title="Xóa tài liệu"><i class="fa-solid fa-trash-can"></i></button>
             </td>
         `;
@@ -331,11 +331,16 @@ function updatePaginationUI(totalRecords, totalPages) {
  * Hàm gọi API kiểm tra trạng thái xử lý ngầm định kỳ
  */
 function theoDoiTrangThaiXuLy() {
+
+    // Chặn hai lượt quét chồng lên nhau khi máy chủ trả chậm
+    let dangQuet = false;
+
     setInterval(async () => {
         const dangXuLyElements =
             document.querySelectorAll('.badge-dang-xu-ly');
 
-        if (dangXuLyElements.length > 0) {
+        if (dangXuLyElements.length > 0 && !dangQuet) {
+            dangQuet = true;
             try {
 
                 const userId =
@@ -362,9 +367,11 @@ function theoDoiTrangThaiXuLy() {
                     "Lỗi khi quét trạng thái tự động:",
                     err
                 );
+            } finally {
+                dangQuet = false;
             }
         }
-    }, 1000);
+    }, 3000);
 }
 // -------------------------------------------------------------------
 // 5. SUBMIT KIỂM TRA TÀI LIỆU
@@ -572,7 +579,10 @@ function changeRowsPerPage(selectObj) {
 // -------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
     loadBaoCaoTable();
-    //theoDoiTrangThaiXuLy();
+
+    // Bật lại việc tự quét trạng thái. Trước đây dòng này bị chú thích nên
+    // bài chấm xong vẫn hiện "Đang xử lý" cho tới khi người dùng bấm F5.
+    theoDoiTrangThaiXuLy();
 
     const filterAuthorInput = document.getElementById('author') || document.getElementById('authorName');
     if (filterAuthorInput) {

@@ -178,8 +178,12 @@ router.put('/:id_bai_tap', async (req, res) => {
         const { id_bai_tap } = req.params;
         const { tieu_de, huong_dan, thoi_gian_bat_dau, thoi_gian_ket_thuc } = req.body;
 
-        // Tính toán lại trạng thái dựa trên thời gian mới được truyền vào từ giao diện
-        const calculatedStatus = calculateExerciseStatus(thoiGianBatDau, thoiGianKetThuc);
+        // Tính lại trạng thái theo thời gian mới gửi lên. Trước đây hai tham số
+        // ở đây viết nhầm thành thoiGianBatDau / thoiGianKetThuc — không phải
+        // tên biến nào đang có — nên mọi lần bấm Cập nhật đều báo lỗi và không
+        // lưu được gì.
+        const calculatedStatus = calculateExerciseStatus(
+            thoi_gian_bat_dau, thoi_gian_ket_thuc);
 
         const updatedExercise = await BaiTap.findOneAndUpdate(
             { id_bai_tap: Number(id_bai_tap) },
