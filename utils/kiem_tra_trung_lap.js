@@ -5,6 +5,7 @@
  * ============================================================================
  */
 const fs = require('fs');
+const path = require('path');
 const {
     tinhDoTuongDongWinnowing
 } = require('./winnowing');
@@ -119,7 +120,7 @@ function tinhCosineSparse(
  */
 async function checkPlagiarism(
     idBaoCaoHienTai,
-    nguongTrungLap = 0.5
+    nguongTrungLap = null
 ) {
 
     // ==========================================================
@@ -159,6 +160,32 @@ async function checkPlagiarism(
         Object.keys(
             cauHinh.tu_vung_va_idf
         );
+
+    // ==========================================================
+    // NGUONG VA TRONG SO LAY TU MAN QUAN LY CAU HINH
+    // ==========================================================
+
+    // Người gọi truyền ngưỡng riêng thì ưu tiên, không thì dùng ngưỡng
+    // quản trị viên đặt trong màn Quản lý cấu hình.
+    if (nguongTrungLap === null || nguongTrungLap === undefined) {
+        nguongTrungLap = Number(cauHinh.nguong_trung_lap) || 0.5;
+    }
+
+    // Thuật toán bị tắt coi như trọng số 0. Nếu bản ghi cấu hình chưa khai báo
+    // danh sách thuật toán thì giữ nguyên bộ trọng số gốc 0.4 / 0.4 / 0.2.
+    const trongSo = { TFIDF_COSINE: 0.4, WINNOWING: 0.4, JACCARD: 0.2 };
+
+    if (Array.isArray(cauHinh.danh_sach_thuat_toan)
+        && cauHinh.danh_sach_thuat_toan.length > 0) {
+
+        for (const ma of Object.keys(trongSo)) trongSo[ma] = 0;
+
+        for (const tt of cauHinh.danh_sach_thuat_toan) {
+            if (tt.trang_thai && tt.ma_thuat_toan in trongSo) {
+                trongSo[tt.ma_thuat_toan] = Number(tt.trong_so) || 0;
+            }
+        }
+    }
 
 
     const tuVungMap =
@@ -405,7 +432,10 @@ async function checkPlagiarism(
                         fingerprintsMoi,
                         candidate.fingerprints
                     );
+                // Bước lọc nhanh này chỉ có nghĩa khi Winnowing đang được bật;
+                // nếu quản trị viên tắt nó thì không được loại câu theo nó nữa.
                 if (
+                    trongSo.WINNOWING > 0 &&
                     winnowing < 0.1
                 ) {
                     continue;
@@ -422,11 +452,11 @@ async function checkPlagiarism(
 
                 const similarity =
 
-                    cosine * 0.4 +
+                    cosine * trongSo.TFIDF_COSINE +
 
-                    winnowing * 0.4 +
+                    winnowing * trongSo.WINNOWING +
 
-                    jaccard * 0.2;
+                    jaccard * trongSo.JACCARD;
 
                 if (
                     similarity >=

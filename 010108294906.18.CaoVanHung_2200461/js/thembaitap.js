@@ -346,7 +346,11 @@ document.addEventListener('click', async function (e) {
         return;
     }
 
-    const membersList = classData.members || classData.membersList || [];
+    // Danh sách thành viên của lớp nằm ở classMembersList. Hai tên còn lại
+    // không nơi nào gán, trước đây lấy nhầm nên bài tập mới tạo ra có danh
+    // sách nộp bài rỗng, thống kê lớp học báo không ai phải nộp.
+    const membersList = classData.classMembersList ||
+        classData.members || classData.membersList || [];
     const fullPayload = {
         id_lop_hoc: Number(classId),
         tieu_de: title,
@@ -357,7 +361,9 @@ document.addEventListener('click', async function (e) {
         dinh_dang_file: "docx hoặc pdf",
         id_kiem_tra: null,
         danh_sach_nop_bai: membersList.map(m => ({
-            id_sinh_vien: m.id || m.id_sinh_vien || "",
+            // Thành viên lớp được lưu theo id_nguoi_dung; trước đây chỉ đọc
+            // m.id nên mã người nộp luôn rỗng.
+            id_sinh_vien: m.id_nguoi_dung || m.id || m.id_sinh_vien || "",
             ma_sinh_vien: m.ma_sinh_vien || m.code || "",
             ho_ten: m.ho_ten || m.name || "",
             email: m.email || m.tai_khoan || m.gmail || "",

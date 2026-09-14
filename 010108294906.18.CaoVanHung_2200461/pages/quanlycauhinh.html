@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý cấu hình</title>
+    <link rel="stylesheet" href="../css/quanlytailieu.css">
+    <link rel="stylesheet" href="../css/quanlycauhinh.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="menu">
+            <div class="menu-container">
+                <div class="logo">
+                    <img src="../images/logo.jpg" alt="Logo">
+                    <p>Phần mềm kiểm tra trùng lặp văn bản</p>
+                </div>
+                <ul>
+                    <li>
+                        <a href="../pages/trangchu_saudn.html">
+                            Trang chủ
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/quanlytailieu.html">
+                            Quản lý tài liệu
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/quanlylophoc.html">
+                            Quản lý lớp học
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/huongdanchitiet.html">
+                            Hướng dẫn chi tiết
+                        </a>
+                    </li>
+                    <li class="user-dropdown-container">
+                        <div class="user-avatar-btn" id="userMenuBtn">
+                            <img src="../images/default-avatar.png" id="userAvatarImg" alt="Avatar">
+                            <span id="navUserName">Tài khoản</span>
+                            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+                        </div>
+
+                        <div class="user-dropdown-menu" id="userDropdownMenu">
+                            <a href="../pages/taikhoan.html" class="dropdown-item">
+                                <i class="fa-regular fa-user"></i>
+                                <span>Tài khoản</span>
+                            </a>
+                            <a href="../pages/matkhau.html" class="dropdown-item">
+                                <i class="fa-solid fa-lock"></i>
+                                <span>Đổi mật khẩu</span>
+                            </a>
+                            <a href="../pages/dangnhap.html" class="dropdown-item text-danger" id="logoutBtn">
+                                <i class="fa-solid fa-right-from-bracket"></i>
+                                <span>Đăng xuất</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h2>Quản lý cấu hình</h2>
+
+            <div class="action-bar">
+                <button class="refresh-btn" id="btnTaiLai" title="Tải lại cấu hình">
+                    <i class="fa-solid fa-rotate"></i>
+                </button>
+                <button class="upload-btn" id="btnLuu">
+                    <i class="fa-solid fa-floppy-disk"></i> Lưu cấu hình
+                </button>
+            </div>
+        </div>
+
+        <!-- Thông báo kết quả thao tác -->
+        <div class="ch-thong-bao" id="chThongBao"></div>
+
+        <!-- Chỉ quản trị viên mới vào được -->
+        <div class="ch-chan" id="chChan" hidden>
+            <i class="fa-solid fa-lock"></i>
+            <p>Chỉ quản trị viên mới được xem và chỉnh sửa cấu hình hệ thống.</p>
+        </div>
+
+        <div id="chNoiDung">
+
+            <!-- Ngưỡng trùng lặp -->
+            <section class="ch-khoi">
+                <div class="ch-khoi__dau">
+                    <h3><i class="fa-solid fa-sliders"></i> Ngưỡng trùng lặp</h3>
+                    <p>Hai câu có điểm tương đồng từ ngưỡng này trở lên thì bị coi là
+                        trùng nhau. Đặt thấp thì bắt được nhiều câu hơn nhưng dễ báo
+                        nhầm, đặt cao thì chỉ bắt câu giống gần như nguyên văn.</p>
+                </div>
+
+                <div class="ch-nguong">
+                    <input type="range" id="thanhNguong" min="10" max="100" step="5">
+                    <div class="ch-nguong__gia-tri">
+                        <span id="soNguong">--</span><span class="ch-nguong__dv">%</span>
+                    </div>
+                </div>
+
+                <div class="ch-nguong__moc">
+                    <span>10% — bắt rất rộng</span>
+                    <span>60% — khuyến nghị</span>
+                    <span>100% — trùng nguyên văn</span>
+                </div>
+            </section>
+
+            <!-- Thuật toán -->
+            <section class="ch-khoi">
+                <div class="ch-khoi__dau">
+                    <h3><i class="fa-solid fa-diagram-project"></i> Thuật toán so khớp</h3>
+                    <p>Điểm tương đồng của một cặp câu là tổng có trọng số của các
+                        thuật toán đang bật. Tổng trọng số các thuật toán đang bật
+                        phải bằng 100%.</p>
+                </div>
+
+                <div class="ch-thuat-toan" id="dsThuatToan"></div>
+
+                <div class="ch-tong" id="chTong">
+                    Tổng trọng số: <strong id="soTong">--</strong>
+                </div>
+            </section>
+
+            <!-- Tệp tải lên -->
+            <section class="ch-khoi">
+                <div class="ch-khoi__dau">
+                    <h3><i class="fa-solid fa-file-arrow-up"></i> Tệp tải lên</h3>
+                    <p>Định dạng và dung lượng tệp mà người dùng được phép gửi lên
+                        hệ thống.</p>
+                </div>
+
+                <div class="ch-hang">
+                    <label class="ch-nhan">Định dạng cho phép</label>
+                    <div class="ch-dinh-dang" id="dsDinhDang"></div>
+                </div>
+
+                <div class="ch-hang">
+                    <label class="ch-nhan" for="oKichThuoc">Kích thước tối đa mỗi tệp</label>
+                    <div class="ch-kich-thuoc">
+                        <input type="number" id="oKichThuoc" min="1" max="100" step="1">
+                        <span>MB</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Thông tin hệ thống -->
+            <section class="ch-khoi ch-khoi--phu">
+                <div class="ch-khoi__dau">
+                    <h3><i class="fa-solid fa-circle-info"></i> Thông tin hệ thống</h3>
+                </div>
+
+                <div class="ch-thong-tin">
+                    <div class="ch-o">
+                        <span class="ch-o__nhan">Chế độ so khớp</span>
+                        <span class="ch-o__gt" id="ttCheDo">--</span>
+                    </div>
+                    <div class="ch-o">
+                        <span class="ch-o__nhan">Số từ trong từ điển IDF</span>
+                        <span class="ch-o__gt" id="ttTuVung">--</span>
+                    </div>
+                    <div class="ch-o">
+                        <span class="ch-o__nhan">Người cập nhật gần nhất</span>
+                        <span class="ch-o__gt" id="ttNguoiCapNhat">--</span>
+                    </div>
+                    <div class="ch-o">
+                        <span class="ch-o__nhan">Thời điểm cập nhật</span>
+                        <span class="ch-o__gt" id="ttNgayCapNhat">--</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="../js/menu-theo-vai-tro.js"></script>
+    <script src="../js/trangchu_saudn.js"></script>
+    <script src="../js/quanlycauhinh.js"></script>
+
+</body>
+
+</html>

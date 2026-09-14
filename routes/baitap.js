@@ -8,6 +8,7 @@ const express = require('express');
 const router = express.Router();
 const BaiTap = require('../models/bai_tap');
 const LopHoc = require('../models/lop_hoc');
+const SinhVien = require('../models/sinh_vien');
 
 // HÀM DÙNG CHUNG: Tự động tính toán trạng thái dựa trên thời gian thực tế
 function calculateExerciseStatus(thoiGianBatDau, thoiGianKetThuc) {
@@ -45,14 +46,40 @@ router.post('/', async (req, res) => {
             rawMembers = lopHoc.danh_sach_thanh_vien || lopHoc.members || lopHoc.students || [];
         }
 
-        const danhSachNopBai = rawMembers.map(m => ({
-            id_sinh_vien: String(m.id_sinh_vien || m.id || m._id || ""),
-            ma_sinh_vien: String(m.ma_sinh_vien || m.code || m.mssv || ""),
-            ho_ten: String(m.ho_ten || m.name || m.full_name || ""),
-            trang_thai_nop: "Chưa nộp",
-            thoi_gian_nop: null,
-            danh_sach_tep: []
-        }));
+        // Thành viên lớp chỉ lưu id_nguoi_dung, không có mã sinh viên. Tra sang
+        // bảng sinh_vien để điền nốt, nếu không thì hai trường này rỗng và màn
+        // thống kê không nối được bài nộp với người nộp.
+        const idNguoiDung = rawMembers
+            .map(m => m.id_nguoi_dung)
+            .filter(Boolean);
+
+        const maTheoNguoiDung = new Map();
+        if (idNguoiDung.length) {
+            const dsSinhVien = await SinhVien
+                .find({ id_nguoi_dung: { $in: idNguoiDung } })
+                .select('id_nguoi_dung id_sinh_vien ma_sinh_vien')
+                .lean();
+
+            for (const sv of dsSinhVien) {
+                maTheoNguoiDung.set(sv.id_nguoi_dung, sv);
+            }
+        }
+
+        const danhSachNopBai = rawMembers.map(m => {
+            const sv = maTheoNguoiDung.get(m.id_nguoi_dung) || {};
+
+            return {
+                id_sinh_vien: String(
+                    m.id_nguoi_dung || m.id_sinh_vien || m.id || m._id || ""),
+                ma_sinh_vien: String(
+                    sv.id_sinh_vien || sv.ma_sinh_vien ||
+                    m.ma_sinh_vien || m.code || m.mssv || ""),
+                ho_ten: String(m.ho_ten || m.name || m.full_name || ""),
+                trang_thai_nop: "Chưa nộp",
+                thoi_gian_nop: null,
+                danh_sach_tep: []
+            };
+        });
 
         const thoiGianMoThucTe = thoi_gian_bat_dau ? thoi_gian_bat_dau : new Date();
         const thoiGianDongThucTe = thoi_gian_ket_thuc !== undefined && thoi_gian_ket_thuc !== "" 

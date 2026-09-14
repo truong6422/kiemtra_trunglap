@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu</title>
+    <link rel="stylesheet" href="../css/trogiup.css">
+    <link rel="stylesheet" href="../css/gioithieu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <nav class="menu">
+            <div class="menu-container">
+                <div class="logo">
+                    <img src="../images/logo.jpg">
+                    <p>Phần mềm kiểm tra trùng lặp văn bản</p>
+                </div>
+                <ul>
+                    <li><a href="../pages/trangchu.html">Trang chủ</a></li>
+                    <li><a href="../pages/gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="../pages/huongdan.html">Hướng dẫn chi tiết</a></li>
+                    <li><a href="../pages/dangnhap.html">Đăng nhập</a></li>
+                    <li><a href="../pages/dangky.html">Đăng ký</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="gt-trang">
+
+        <!-- Mở đầu -->
+        <section class="gt-mo-dau">
+            <h1>Phần mềm kiểm tra trùng lặp văn bản</h1>
+            <p class="gt-mo-dau__phu">
+                Công cụ hỗ trợ giảng viên và sinh viên khoa Công nghệ thông tin,
+                Trường Đại học Công nghiệp Việt – Hung kiểm tra mức độ trùng lặp
+                của bài tập lớn, báo cáo thực tập và khoá luận tốt nghiệp.
+            </p>
+        </section>
+
+        <!-- Hệ thống làm được gì -->
+        <section class="gt-khoi">
+            <h2>Hệ thống làm được gì</h2>
+            <div class="gt-luoi">
+                <article class="gt-the">
+                    <div class="gt-the__bieu-tuong"><i class="fa-solid fa-file-circle-check"></i></div>
+                    <h3>Kiểm tra trùng lặp</h3>
+                    <p>Tải tài liệu lên, hệ thống tự đối chiếu với kho tài liệu đã
+                        lưu và trả về tỉ lệ trùng lặp cùng danh sách nguồn trùng.</p>
+                </article>
+
+                <article class="gt-the">
+                    <div class="gt-the__bieu-tuong"><i class="fa-solid fa-highlighter"></i></div>
+                    <h3>Chỉ rõ chỗ trùng</h3>
+                    <p>Mở tài liệu ngay trên trình duyệt, những câu trùng được bôi
+                        vàng để người đọc thấy chính xác phần nào bị lặp lại.</p>
+                </article>
+
+                <article class="gt-the">
+                    <div class="gt-the__bieu-tuong"><i class="fa-solid fa-chalkboard-user"></i></div>
+                    <h3>Quản lý lớp và bài tập</h3>
+                    <p>Giảng viên tạo lớp, giao bài tập và theo dõi ai đã nộp, ai
+                        chưa nộp cùng tỉ lệ trùng của từng bài.</p>
+                </article>
+
+                <article class="gt-the">
+                    <div class="gt-the__bieu-tuong"><i class="fa-solid fa-chart-column"></i></div>
+                    <h3>Thống kê báo cáo</h3>
+                    <p>Xem tỉ lệ trùng trung bình, phân bố theo mức, thống kê theo
+                        lớp học và tài khoản, xuất kết quả ra tệp Excel.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Cách hệ thống đối chiếu -->
+        <section class="gt-khoi gt-khoi--nen">
+            <h2>Cách hệ thống đối chiếu</h2>
+            <p class="gt-dan">
+                Mỗi tài liệu được tách thành từng câu rồi so với kho tài liệu mẫu
+                bằng ba thuật toán chạy song song. Kết quả cuối là điểm tổng hợp
+                có trọng số, nhờ vậy bắt được cả sao chép nguyên văn lẫn sao chép
+                có chỉnh sửa câu chữ.
+            </p>
+
+            <div class="gt-luoi gt-luoi--ba">
+                <article class="gt-the gt-the--thuat-toan">
+                    <div class="gt-trong-so">40%</div>
+                    <h3>TF-IDF &amp; Cosine</h3>
+                    <p>Đo độ giống nhau về mặt từ khoá quan trọng, bắt được trường
+                        hợp diễn đạt lại nhưng giữ nguyên ý.</p>
+                </article>
+
+                <article class="gt-the gt-the--thuat-toan">
+                    <div class="gt-trong-so">40%</div>
+                    <h3>Winnowing</h3>
+                    <p>Tạo dấu vân tay của văn bản, bắt sao chép nguyên văn kể cả
+                        khi đã xáo trộn thứ tự các đoạn.</p>
+                </article>
+
+                <article class="gt-the gt-the--thuat-toan">
+                    <div class="gt-trong-so">20%</div>
+                    <h3>Jaccard</h3>
+                    <p>So sánh tập hợp từ vựng giữa hai văn bản, phát hiện việc
+                        dùng lại vốn từ của tài liệu khác.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Dùng cho ai -->
+        <section class="gt-khoi">
+            <h2>Dành cho ai</h2>
+            <div class="gt-luoi gt-luoi--ba">
+                <article class="gt-the">
+                    <div class="gt-the__bieu-tuong"><i class="fa-solid fa-user-graduate"></i></div>
+                    <h3>Sinh viên</h3>
+                    <p>Tự kiểm tra bài trước khi nộp, biết chỗ nào cần viết lại để
+                        tránh bị đánh giá là sao chép.</p>
+                </article>
+
+                <article class="gt-the">
+                    <div class="gt-the__bieu-tuong"><i class="fa-solid fa-user-tie"></i></div>
+                    <h3>Giảng viên</h3>
+                    <p>Chấm nhanh cả lớp, xem tỉ lệ trùng từng bài và đối chiếu với
+                        tài liệu gốc chỉ trong vài thao tác.</p>
+                </article>
+
+                <article class="gt-the">
+                    <div class="gt-the__bieu-tuong"><i class="fa-solid fa-gear"></i></div>
+                    <h3>Quản trị viên</h3>
+                    <p>Quản lý tài khoản, điều chỉnh ngưỡng cảnh báo và trọng số
+                        thuật toán cho phù hợp từng kỳ học.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Câu hỏi thường gặp -->
+        <section class="gt-khoi gt-khoi--nen">
+            <h2>Câu hỏi thường gặp</h2>
+
+            <div class="gt-hoi-dap">
+                <article class="gt-hoi">
+                    <h3>Tài liệu tải lên có bị lộ ra ngoài không?</h3>
+                    <p>Không. Tài liệu chỉ lưu trên máy chủ của hệ thống để phục vụ
+                        việc đối chiếu, không chia sẻ cho bên thứ ba.</p>
+                </article>
+
+                <article class="gt-hoi">
+                    <h3>Hệ thống nhận những định dạng nào?</h3>
+                    <p>Tệp Word (.docx) và PDF (.pdf), dung lượng tối đa 20 MB mỗi tệp.</p>
+                </article>
+
+                <article class="gt-hoi">
+                    <h3>Bao lâu thì có kết quả?</h3>
+                    <p>Tuỳ độ dài tài liệu và số lượng bài đang chờ, thường từ vài
+                        giây tới vài phút. Trong lúc chờ, tài liệu hiện trạng thái
+                        "Đang xử lý".</p>
+                </article>
+
+                <article class="gt-hoi">
+                    <h3>Tỉ lệ trùng bao nhiêu thì bị coi là cao?</h3>
+                    <p>Hệ thống đánh dấu cảnh báo từ 30% trở lên. Mức này quản trị
+                        viên chỉnh được theo quy định từng kỳ.</p>
+                </article>
+
+                <article class="gt-hoi">
+                    <h3>Trùng với chính bài cũ của mình thì sao?</h3>
+                    <p>Vẫn tính là trùng, vì hệ thống đối chiếu với toàn bộ kho tài
+                        liệu. Người chấm sẽ thấy rõ nguồn trùng là bài nào.</p>
+                </article>
+
+                <article class="gt-hoi">
+                    <h3>Quên mật khẩu thì làm thế nào?</h3>
+                    <p>Bấm "Quên mật khẩu" ở trang đăng nhập, hệ thống gửi hướng dẫn
+                        đặt lại qua email đã đăng ký.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Kêu gọi -->
+        <section class="gt-keu-goi">
+            <h2>Bắt đầu kiểm tra tài liệu</h2>
+            <p>Đăng nhập để tải tài liệu lên, hoặc xem hướng dẫn chi tiết nếu đây
+                là lần đầu bạn dùng hệ thống.</p>
+            <div class="gt-keu-goi__nut">
+                <a class="gt-nut" href="../pages/dangnhap.html">Đăng nhập</a>
+                <a class="gt-nut gt-nut--phu" href="../pages/huongdan.html">Xem hướng dẫn</a>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

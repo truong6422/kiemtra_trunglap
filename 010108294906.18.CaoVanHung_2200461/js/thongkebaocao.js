@@ -134,7 +134,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function demTaiKhoan() {
         try {
-            const kq = await (await fetch(`${API}/thong-ke/tai-khoan`)).json();
+            // Giảng viên chỉ xem được sinh viên trong lớp mình, nên con số trên
+            // thẻ phải đếm đúng phạm vi đó. Trước đây đếm cả 8 tài khoản toàn
+            // hệ thống nên bấm vào lại ra ít hơn số ghi trên thẻ.
+            const thamSo = (vaiTro === "giang_vien" && idNguoiDung)
+                ? `?vai_tro=sinh_vien&giang_vien=${encodeURIComponent(idNguoiDung)}`
+                : "";
+
+            const kq = await (await fetch(`${API}/thong-ke/tai-khoan${thamSo}`)).json();
             if (!kq.success) return;
             $("soTaiKhoan").textContent = kq.data.length;
         } catch (err) {
