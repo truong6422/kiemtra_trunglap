@@ -20,19 +20,24 @@ const {
     buildPatchworkMatches
 } = require('./patchwork_match');
 
-// Khởi tạo tập chứa từ dừng (Stopwords) tiếng Việt an toàn tuyệt đối
+// Nạp tập từ dừng (stopwords) tiếng Việt.
+// Mỗi trường hợp hỏng phải báo đúng nguyên nhân của nó. Trước đây mọi lỗi đều
+// in chung câu "không tìm thấy file", nên khi thiếu require('path') thì màn hình
+// vẫn báo mất tệp — tệp nằm ngay đó mà cứ đi tìm mãi.
 let STOP_WORDS = new Set();
+const duongDanTuDung = path.join(__dirname, 'stopwords-vi.txt');
 try {
-    const filePath = path.join(__dirname, 'stopwords-vi.txt');
-    if (fs.existsSync(filePath)) {
-        const fileContent = fs.readFileSync(filePath, 'utf8');
-        fileContent.split(/\r?\n/).forEach(w => {
+    if (!fs.existsSync(duongDanTuDung)) {
+        console.warn(`⚠️ Không có tệp từ dừng tại ${duongDanTuDung} — bỏ qua bộ lọc từ dừng, tỉ lệ trùng lặp sẽ cao hơn thực tế.`);
+    } else {
+        fs.readFileSync(duongDanTuDung, 'utf8').split(/\r?\n/).forEach(w => {
             const cleanWord = w.trim().toLowerCase();
             if (cleanWord) STOP_WORDS.add(cleanWord);
         });
+        console.log(`✅ Đã nạp ${STOP_WORDS.size} từ dừng tiếng Việt.`);
     }
 } catch (e) {
-    console.warn("⚠️ Không tìm thấy file stopwords-vi.txt, hệ thống sẽ bỏ qua bộ lọc stopword.");
+    console.warn(`⚠️ Đọc tệp từ dừng ${duongDanTuDung} bị lỗi: ${e.message} — bỏ qua bộ lọc từ dừng.`);
 }
 
 

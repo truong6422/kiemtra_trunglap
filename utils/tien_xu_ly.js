@@ -22,11 +22,17 @@ function napTaiNguyen() {
             const tu = dong.trim().toLowerCase();
             if (tu) tapHopTuDung.add(tu);
         });
+    } else {
+        // Thiếu tệp thì kết quả chấm vẫn ra, chỉ là sai lệch. Im lặng ở đây
+        // đồng nghĩa với để người dùng tin vào một con số không đúng.
+        console.warn(`⚠️ Không có tệp từ dừng tại ${duongDanStopwords} — kết quả chấm sẽ lệch.`);
     }
 
     // 2. Đọc File Từ vựng tiếng Việt (vi-vocab.txt) dùng cho tách từ ghép
     const duongDanVocab = path.join(__dirname, 'vi-vocab.txt');
-    if (fs.existsSync(duongDanVocab)) {
+    if (!fs.existsSync(duongDanVocab)) {
+        console.warn(`⚠️ Không có tệp từ vựng tại ${duongDanVocab} — không tách được từ ghép, kết quả chấm sẽ lệch.`);
+    } else {
         const noiDung = fs.readFileSync(duongDanVocab, 'utf-8');
         noiDung.split(/\r?\n/).forEach(dong => {
             const tu = dong.trim().toLowerCase();
