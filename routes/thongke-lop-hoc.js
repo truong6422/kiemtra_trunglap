@@ -29,6 +29,29 @@ async function layBangTraSinhVien(dsIdNguoiDung) {
     return { theoNguoiDung, theoSinhVien };
 }
 
+/**
+ * Bỏ quản trị viên ra khỏi danh sách thành viên lớp.
+ *
+ * Quản trị viên có mặt trong lớp chỉ để xem thống kê, không phải người học nên
+ * không được tính vào sĩ số, cũng không bị coi là "chưa nộp bài" — trước đây
+ * họ luôn nằm ở nhóm chưa nộp và kéo tỉ lệ nộp bài của cả lớp xuống.
+ */
+async function boQuanTriVien(thanhVien) {
+
+    const ds = thanhVien || [];
+    if (!ds.length) return ds;
+
+    const quanTri = await NguoiDung.find({
+        id_nguoi_dung: { $in: ds.map(t => t.id_nguoi_dung).filter(Boolean) },
+        vai_tro: { $in: ['quan_tri_vien', 'admin'] }
+    }).select('id_nguoi_dung').lean();
+
+    if (!quanTri.length) return ds;
+
+    const loai = new Set(quanTri.map(q => String(q.id_nguoi_dung)));
+    return ds.filter(t => !loai.has(String(t.id_nguoi_dung)));
+}
+
 // =========================================================================
 // API GET /api/thong-ke/lop-hoc
 //
@@ -59,6 +82,25 @@ router.get('/lop-hoc', async (req, res) => {
 
         const bangBaiTap = new Map(demBaiTap.map(x => [x._id, x.so_bai_tap]));
 
+        // Số báo cáo đã nộp trong từng lớp, gom từ các bài tập của lớp đó.
+        // Giảng viên cần con số này để biết lớp nào nộp nhiều, lớp nào còn ít.
+        const dsBaiTapCuaLop = await BaiTap.find({ id_lop_hoc: { $in: dsIdLop } })
+            .select('id_bai_tap id_lop_hoc').lean();
+
+        const lopCuaBaiTap = new Map(
+            dsBaiTapCuaLop.map(b => [String(b.id_bai_tap), b.id_lop_hoc]));
+
+        const dsNopTatCa = await ChiTietNopBai.find({
+            id_bai_tap: { $in: dsBaiTapCuaLop.map(b => String(b.id_bai_tap)) }
+        }).select('id_bai_tap').lean();
+
+        const bangNop = new Map();
+        for (const n of dsNopTatCa) {
+            const idLop = lopCuaBaiTap.get(String(n.id_bai_tap));
+            if (idLop === undefined) continue;
+            bangNop.set(idLop, (bangNop.get(idLop) || 0) + 1);
+        }
+
         // Tên giảng viên phụ trách
         const dsChuNhiem = await NguoiDung.find({
             id_nguoi_dung: { $in: dsLop.map(l => l.id_nguoi_dung) }
@@ -67,16 +109,23 @@ router.get('/lop-hoc', async (req, res) => {
         const bangTen = new Map(
             dsChuNhiem.map(n => [n.id_nguoi_dung, n.ho_ten || n.ten_dang_nhap]));
 
-        const ketQua = dsLop.map(l => ({
-            id_lop_hoc: l.id_lop_hoc,
-            ma_lop: l.ma_lop,
-            tieu_de: l.tieu_de,
-            mo_ta: Array.isArray(l.mo_ta) ? l.mo_ta.join(" ") : (l.mo_ta || ""),
-            ngay_tao: l.ngay_tao,
-            giang_vien: bangTen.get(l.id_nguoi_dung) || l.id_nguoi_dung,
-            so_thanh_vien: (l.danh_sach_thanh_vien || []).length,
-            so_bai_tap: bangBaiTap.get(l.id_lop_hoc) || 0
-        }));
+        const ketQua = [];
+
+        for (const l of dsLop) {
+            const thanhVien = await boQuanTriVien(l.danh_sach_thanh_vien || []);
+
+            ketQua.push({
+                id_lop_hoc: l.id_lop_hoc,
+                ma_lop: l.ma_lop,
+                tieu_de: l.tieu_de,
+                mo_ta: Array.isArray(l.mo_ta) ? l.mo_ta.join(" ") : (l.mo_ta || ""),
+                ngay_tao: l.ngay_tao,
+                giang_vien: bangTen.get(l.id_nguoi_dung) || l.id_nguoi_dung,
+                so_thanh_vien: thanhVien.length,
+                so_bai_tap: bangBaiTap.get(l.id_lop_hoc) || 0,
+                so_bai_nop: bangNop.get(l.id_lop_hoc) || 0
+            });
+        }
 
         return res.json({ success: true, data: ketQua });
 
@@ -109,7 +158,8 @@ router.get('/lop-hoc/:id_lop_hoc/bai-tap', async (req, res) => {
                 'thoi_gian_bat_dau thoi_gian_ket_thuc danh_sach_nop_bai')
             .lean();
 
-        const soThanhVien = (lop.danh_sach_thanh_vien || []).length;
+        const soThanhVien =
+            (await boQuanTriVien(lop.danh_sach_thanh_vien || [])).length;
 
         // Đếm số bài đã nộp thật, đối chiếu với bảng chi_tiet_nop_bai
         const dsNop = await ChiTietNopBai.find({
@@ -185,7 +235,8 @@ router.get('/bai-tap/:id_bai_tap', async (req, res) => {
         const lop = await LopHoc.findOne({ id_lop_hoc: baiTap.id_lop_hoc })
             .select('id_lop_hoc ma_lop tieu_de danh_sach_thanh_vien').lean();
 
-        const thanhVien = (lop && lop.danh_sach_thanh_vien) || [];
+        const thanhVien =
+            await boQuanTriVien((lop && lop.danh_sach_thanh_vien) || []);
 
         const { theoNguoiDung, theoSinhVien } =
             await layBangTraSinhVien(thanhVien.map(t => t.id_nguoi_dung));
@@ -302,10 +353,11 @@ router.get('/bai-nop-cua-lop', async (req, res) => {
         const dsLop = await LopHoc.find({ id_nguoi_dung })
             .select('id_lop_hoc ma_lop danh_sach_thanh_vien').lean();
 
-        // Gom thành viên của mọi lớp, bỏ trùng
+        // Gom thành viên của mọi lớp, bỏ trùng và bỏ quản trị viên
         const idThanhVien = [...new Set(
-            dsLop.flatMap(l => (l.danh_sach_thanh_vien || [])
-                .map(t => t.id_nguoi_dung))
+            (await boQuanTriVien(
+                dsLop.flatMap(l => l.danh_sach_thanh_vien || [])
+            )).map(t => t.id_nguoi_dung)
         )];
 
         const { theoNguoiDung } = await layBangTraSinhVien(idThanhVien);

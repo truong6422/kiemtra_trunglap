@@ -23,7 +23,11 @@ window.TkKetQua = (() => {
     let mauDangXem = [];
 
     function nhanDuLieu(ds) {
-        nguonDuLieu = ds || [];
+        // Màn này là "Thống kê kết quả" nên chỉ nhận những bài đã chấm xong.
+        // Trước đây nhận cả danh sách nên bấm vào thẻ là ra nguyên toàn bộ báo
+        // cáo, kể cả bài đang xử lý chưa có tỉ lệ nào để xem.
+        const T = window.TkTienIch;
+        nguonDuLieu = (ds || []).filter(b => T.layTiLe(b) !== null);
     }
 
     /**

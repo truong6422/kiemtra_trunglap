@@ -416,6 +416,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- Bấm thẻ để mở màn thống kê tương ứng ---
 
+    /**
+     * Đặt bộ lọc của bảng tổng quan rồi vẽ lại.
+     * Trước đây bấm vào thẻ nào bảng cũng hiện nguyên danh sách, không lọc gì,
+     * nên con số trên thẻ và số dòng dưới bảng không khớp nhau.
+     */
+    function locTheoThe({ muc = "", trangThai = "", nhan = "" }) {
+        $("locMa").value = "";
+        $("locTieuDe").value = "";
+        $("locMuc").value = muc;
+        $("locTrangThai").value = trangThai;
+
+        trangHienTai = 1;
+        moKhung("tong-quan");
+        locVaVe();
+
+        const o = $("nhanDanhSach");
+        if (o) o.textContent = nhan || "Toàn bộ báo cáo";
+
+        $("tkThanBang").scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    // Tổng số bài đã nộp.
+    // Quản trị viên xem theo toàn hệ thống nên chỉ cần bỏ bộ lọc để thấy đủ mọi
+    // trạng thái, gồm cả Đang xử lý và Lỗi. Giảng viên thì quản lý theo lớp và
+    // theo bài tập, nên vào thẳng màn thống kê lớp học: mỗi lớp một dòng, bấm
+    // tiếp vào lớp ra từng bài tập, bấm vào bài tập ra ai nộp ai chưa.
+    $("theTongBai").addEventListener("click", () => {
+        if (vaiTro === "giang_vien") {
+            moKhung("lop-hoc");
+            window.TkLopHoc.mo();
+            return;
+        }
+        locTheoThe({ nhan: "Toàn bộ báo cáo — mọi trạng thái" });
+    });
+
+    // Vượt ngưỡng cảnh báo: chỉ những bài có kết quả từ 30% trở lên
+    $("theVuotNguong").addEventListener("click", () => {
+        locTheoThe({ muc: "cao", nhan: "Báo cáo vượt ngưỡng cảnh báo (từ 30%)" });
+    });
+
+    // Đang xử lý: chỉ những bài chưa có kết quả
+    $("theDangXuLy").addEventListener("click", () => {
+        locTheoThe({ trangThai: "Đang xử lý", nhan: "Báo cáo đang xử lý" });
+    });
+
     $("theLopHoc").addEventListener("click", () => {
         moKhung("lop-hoc");
         window.TkLopHoc.mo();
@@ -447,6 +492,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     $("btnXuatTaiKhoan").addEventListener("click", () => window.TkTaiKhoan.xuat());
     $("btnXuatKetQua").addEventListener("click", () => window.TkKetQua.xuat());
+
+    // Xuất danh sách sinh viên đã nộp và chưa nộp của một bài tập
+    $("btnXuatNopBai").addEventListener("click", () => {
+        if (!window.TkLopHoc.xuatNopBai()) {
+            thongBao("Chưa có dữ liệu để xuất. Hãy mở một bài tập trước.");
+        }
+    });
 
     document.querySelectorAll(".tk-nut-quay-lai").forEach(nut => {
         nut.addEventListener("click", () => moKhung(nut.dataset.ve));

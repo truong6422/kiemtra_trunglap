@@ -15,6 +15,9 @@ window.TkLopHoc = (() => {
     const $ = id => document.getElementById(id);
     const T = () => window.TkTienIch;
 
+    // Dữ liệu bài tập đang mở, giữ lại để xuất ra tệp bảng tính
+    let duLieuBaiTapDangXem = null;
+
     function veDuongDan(cacMuc) {
         $("tkDuongDanLop").innerHTML = cacMuc
             .map((m, i) => m.hanh_dong
@@ -43,6 +46,11 @@ window.TkLopHoc = (() => {
         veDuongDan([{ ten: "Tất cả lớp học" }]);
         $("tkNoiDungLopHoc").innerHTML = '<div class="tk-khoi"><p class="no-data">Đang tải...</p></div>';
 
+        // Ra khỏi màn chi tiết bài tập thì không còn gì để xuất
+        duLieuBaiTapDangXem = null;
+        const nutXuat = $("btnXuatNopBai");
+        if (nutXuat) nutXuat.hidden = true;
+
         try {
             // Giảng viên chỉ thấy lớp mình phụ trách, quản trị viên thấy tất cả
             const vaiTro = localStorage.getItem("vai_tro") || "";
@@ -65,7 +73,8 @@ window.TkLopHoc = (() => {
                     <thead>
                         <tr>
                             <th>Mã lớp</th><th>Tên lớp</th><th>Giảng viên</th>
-                            <th>Số thành viên</th><th>Số bài tập</th><th>Ngày tạo</th><th>Xem</th>
+                            <th>Số thành viên</th><th>Số bài tập</th>
+                            <th>Bài đã nộp</th><th>Ngày tạo</th><th>Xem</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,6 +85,7 @@ window.TkLopHoc = (() => {
                                 <td>${T().thoat(l.giang_vien)}</td>
                                 <td><strong>${l.so_thanh_vien}</strong></td>
                                 <td><strong>${l.so_bai_tap}</strong></td>
+                                <td><strong>${l.so_bai_nop ?? 0}</strong></td>
                                 <td style="white-space:nowrap">${T().dinhDangNgay(l.ngay_tao)}</td>
                                 <td>
                                     <button type="button" class="tk-lien-ket" data-lop="${l.id_lop_hoc}"
@@ -257,8 +267,66 @@ window.TkLopHoc = (() => {
                     ${bangNguoi(d.danh_sach_thanh_vien, false)}
                 </section>`;
 
+            // Giữ lại dữ liệu để xuất ra tệp mà không phải gọi lại máy chủ
+            duLieuBaiTapDangXem = { ...d, ten_lop: tenLop };
+
+            const nut = $("btnXuatNopBai");
+            if (nut) {
+                nut.hidden = false;
+                nut.disabled = false;
+            }
+
         } catch (err) { baoLoi(err); }
     }
 
-    return { mo: moDanhSachLop };
+    /**
+     * Xuất bảng tính danh sách nộp bài của một bài tập.
+     * Sinh viên chưa nộp vẫn có một dòng riêng, các cột tài liệu, ngày nộp và
+     * tỉ lệ trùng lặp để trống — nhìn vào là thấy ngay ai còn thiếu bài.
+     */
+    function xuatDanhSachNopBai() {
+
+        const d = duLieuBaiTapDangXem;
+        if (!d) return false;
+
+        const T_ = T();
+
+        const dongDaNop = (d.da_nop || []).map(n => [
+            n.ma_sinh_vien || "",
+            n.ho_ten || "",
+            n.email || "",
+            "Đã nộp",
+            n.tieu_de_tep || "",
+            n.ngay_nop ? T_.dinhDangNgay(n.ngay_nop) : "",
+            n.ti_le_trung_lap === null || n.ti_le_trung_lap === undefined
+                ? ""
+                : { v: T_.lamTron(n.ti_le_trung_lap), so: true,
+                    kieu: "muc_" + (T_.xepMuc(n.ti_le_trung_lap) || "trong") }
+        ]);
+
+        const dongChuaNop = (d.chua_nop || []).map(n => [
+            n.ma_sinh_vien || "",
+            n.ho_ten || "",
+            n.email || "",
+            "Chưa nộp",
+            "", "", ""
+        ]);
+
+        return T_.xuatBangExcel({
+            tenTep: `nop-bai-${d.bai_tap ? d.bai_tap.id_bai_tap : "bai-tap"}`,
+            tenTrang: "Danh sach nop bai",
+            cot: [
+                { ten: "Mã sinh viên", rong: 120 },
+                { ten: "Họ tên", rong: 200 },
+                { ten: "Email", rong: 220 },
+                { ten: "Trạng thái", rong: 100 },
+                { ten: "Tài liệu đã nộp", rong: 260 },
+                { ten: "Ngày nộp", rong: 150 },
+                { ten: "Tỉ lệ trùng lặp (%)", rong: 150 }
+            ],
+            dong: [...dongDaNop, ...dongChuaNop]
+        });
+    }
+
+    return { mo: moDanhSachLop, xuatNopBai: xuatDanhSachNopBai };
 })();

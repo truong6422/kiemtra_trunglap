@@ -38,6 +38,21 @@ const CauHinhHeThongSchema = new mongoose.Schema(
             default: '20MB'
         },
 
+        // Số ngày giữ báo cáo của người dùng trong hệ thống. Quá hạn thì bản
+        // ghi và tệp trong uploads, upload2 bị dọn đi để hệ thống không phình
+        // mãi. Mặc định 180 ngày (khoảng 6 tháng).
+        // Đặt 0 để tắt hẳn việc tự động dọn.
+        so_ngay_luu_bao_cao: {
+            type: Number,
+            default: 180
+        },
+
+        // Lần dọn gần nhất, chỉ để tra cứu
+        lan_don_gan_nhat: {
+            type: Date,
+            default: null
+        },
+
         nguoi_cap_nhat: {
             type: String,
             default: ''

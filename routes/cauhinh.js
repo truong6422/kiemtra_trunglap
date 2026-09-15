@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const CauHinhHeThong = require('../models/cau_hinh_he_thong');
+const { donBaoCaoQuaHan } = require('../utils/don_bao_cao_qua_han');
 
 // Danh sách thuật toán dựng sẵn, dùng khi bản ghi cấu hình chưa có mục nào.
 const THUAT_TOAN_MAC_DINH = [
@@ -150,6 +151,12 @@ router.put('/', async (req, res) => {
             ngay_cap_nhat: new Date()
         };
 
+        // Số ngày giữ báo cáo: chỉ ghi khi người dùng có gửi lên, để lần lưu
+        // cấu hình thuật toán không vô tình đặt lại giá trị này.
+        if (req.body.so_ngay_luu_bao_cao !== undefined) {
+            duLieuMoi.so_ngay_luu_bao_cao = Number(req.body.so_ngay_luu_bao_cao);
+        }
+
         // Hệ thống chỉ có duy nhất một bản ghi cấu hình; nếu chưa có thì tạo mới.
         const daLuu = await CauHinhHeThong.findOneAndUpdate(
             {},
@@ -165,6 +172,49 @@ router.put('/', async (req, res) => {
     } catch (error) {
         console.error('Lỗi khi cập nhật cấu hình:', error);
         res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// =========================================================================
+// DỌN BÁO CÁO QUÁ HẠN LƯU TRỮ
+//
+// GET  /api/cau-hinh/don-bao-cao/thu   — chỉ liệt kê những gì sẽ bị xoá
+// POST /api/cau-hinh/don-bao-cao       — xoá thật
+//
+// Truyền ?so_ngay=20 để thử với mốc khác mà không phải đổi cấu hình.
+// =========================================================================
+router.get('/don-bao-cao/thu', async (req, res) => {
+    try {
+        const soNgay = req.query.so_ngay !== undefined
+            ? Number(req.query.so_ngay) : undefined;
+
+        const kq = await donBaoCaoQuaHan({ chayThu: true, soNgay });
+        res.json({ success: true, data: kq });
+
+    } catch (error) {
+        console.error('Lỗi khi thử dọn báo cáo:', error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
+router.post('/don-bao-cao', async (req, res) => {
+    try {
+        const soNgay = req.body && req.body.so_ngay !== undefined
+            ? Number(req.body.so_ngay) : undefined;
+
+        const kq = await donBaoCaoQuaHan({ chayThu: false, soNgay });
+
+        res.json({
+            success: true,
+            message: kq.batDau
+                ? `Đã dọn ${kq.so_bao_cao_da_xoa || 0} báo cáo quá hạn.`
+                : kq.ly_do,
+            data: kq
+        });
+
+    } catch (error) {
+        console.error('Lỗi khi dọn báo cáo:', error);
+        res.status(500).json({ success: false, message: error.message });
     }
 });
 

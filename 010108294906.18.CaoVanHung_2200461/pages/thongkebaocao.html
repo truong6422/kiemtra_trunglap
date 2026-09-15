@@ -89,7 +89,7 @@
         <!-- Các chỉ số tổng quan -->
         <section class="tk-the-so">
 
-            <article class="tk-the">
+            <article class="tk-the tk-the--bam-duoc" id="theTongBai">
                 <div class="tk-the__bieu-tuong"><i class="fa-solid fa-file-lines"></i></div>
                 <div class="tk-the__noi-dung">
                     <div class="tk-the__nhan">Tổng số bài đã nộp</div>
@@ -129,21 +129,21 @@
                 </div>
             </article>
 
-            <article class="tk-the tk-the--do">
+            <article class="tk-the tk-the--do tk-the--bam-duoc" id="theVuotNguong">
                 <div class="tk-the__bieu-tuong"><i class="fa-solid fa-triangle-exclamation"></i></div>
                 <div class="tk-the__noi-dung">
                     <div class="tk-the__nhan">Vượt ngưỡng cảnh báo</div>
                     <div class="tk-the__so" id="soVuotNguong">--</div>
-                    <div class="tk-the__phu">Từ 30% trở lên</div>
+                    <div class="tk-the__phu">Từ 30% trở lên — bấm để xem</div>
                 </div>
             </article>
 
-            <article class="tk-the tk-the--xam">
+            <article class="tk-the tk-the--xam tk-the--bam-duoc" id="theDangXuLy">
                 <div class="tk-the__bieu-tuong"><i class="fa-solid fa-hourglass-half"></i></div>
                 <div class="tk-the__noi-dung">
                     <div class="tk-the__nhan">Đang xử lý</div>
                     <div class="tk-the__so" id="soDangXuLy">--</div>
-                    <div class="tk-the__phu">Chưa có kết quả</div>
+                    <div class="tk-the__phu">Chưa có kết quả — bấm để xem</div>
                 </div>
             </article>
         </section>
@@ -159,6 +159,10 @@
             </div>
             <div class="tk-bieu-do" id="bieuDo"></div>
         </section>
+
+        <!-- Cho biết bảng bên dưới đang hiện nhóm nào, vì bấm mỗi thẻ số ở
+             trên sẽ lọc bảng theo một nhóm khác nhau -->
+        <p class="tk-nhan-danh-sach" id="nhanDanhSach">Toàn bộ báo cáo</p>
 
         <div class="filter-section">
             <label for="locMa">ID</label>
@@ -180,6 +184,7 @@
                 <option value="">Tất cả</option>
                 <option value="Đã xử lý">Đã xử lý</option>
                 <option value="Đang xử lý">Đang xử lý</option>
+                <option value="Lỗi">Lỗi</option>
             </select>
 
             <button type="button" class="clear-btn" id="btnXoaLoc">Xóa bộ lọc</button>
@@ -269,6 +274,11 @@
                     <i class="fa-solid fa-arrow-left"></i> Quay lại tổng quan
                 </button>
                 <span class="tk-duong-dan__chuoi" id="tkDuongDanLop"></span>
+
+                <!-- Chỉ hiện khi đang mở chi tiết một bài tập -->
+                <button type="button" class="export-btn" id="btnXuatNopBai" hidden>
+                    <i class="fa-solid fa-file-excel"></i> Xuất danh sách nộp bài
+                </button>
             </div>
 
             <div id="tkNoiDungLopHoc"></div>

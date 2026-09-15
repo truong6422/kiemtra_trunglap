@@ -455,3 +455,11 @@ button.tk-lien-ket {
         font-size: 11px;
     }
 }
+
+/* Nhãn cho biết bảng đang hiện nhóm báo cáo nào (đổi theo thẻ số vừa bấm) */
+.tk-nhan-danh-sach {
+    margin: 18px 0 8px;
+    font-size: 15.5px;
+    font-weight: bold;
+    color: #0f172a;
+}

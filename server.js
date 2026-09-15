@@ -11,6 +11,7 @@ const lopHocRoutes = require('./routes/lophoc');
 const baiTapRoutes = require('./routes/baitap');   
 const chiTietNopBaiRoutes = require('./routes/chitietnopbai');
 const thongKeRoutes = require('./routes/thongke');
+const { batLichDon } = require('./utils/don_bao_cao_qua_han');
 
 require('dotenv').config();
 
@@ -66,4 +67,8 @@ io.on('connection', (socket) => {
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
   console.log(`🚀 Server đang chạy tại cổng ${PORT}`);
+
+  // Tự động dọn báo cáo quá hạn lưu trữ: chạy sau khi máy chủ lên một phút,
+  // rồi lặp lại mỗi ngày. Số ngày lưu lấy từ cau_hinh_he_thong.
+  batLichDon();
 });
