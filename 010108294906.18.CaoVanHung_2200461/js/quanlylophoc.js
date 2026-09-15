@@ -69,7 +69,9 @@ async function handleJoinClass(enteredCode) {
             return;
         }
 
-        alert('Tham gia lớp học thành công!');
+        // Chờ bấm Đồng ý rồi mới tải lại, không thì hộp thoại hiện ra chưa
+        // kịp đọc đã bị trang mới cuốn đi.
+        await thongBao('Tham gia lớp học thành công!');
         location.reload();
     } catch (error) {
         console.error('Lỗi kết nối:', error);
@@ -646,6 +648,23 @@ function renderClassDetail(classData, userId, currentHoTen, activeTabName = 'des
                     ? ' <span style="color: #c5221f; font-weight: bold; font-size: 11px;">(Email không hợp lệ)</span>'
                     : (member.isRegistered === false ? ' <span style="color: #c5221f; font-weight: bold; font-size: 11px;">(Chưa đăng ký hệ thống)</span>' : '');
 
+                // Người tạo lớp không được xoá khỏi chính lớp mình tạo, và
+                // không ai được tự xoá mình ra khỏi lớp. Hai trường hợp đó thay
+                // nút Xoá bằng dấu cấm, các thành viên khác vẫn xoá như thường.
+                const laChuLop = member.id_nguoi_dung &&
+                    String(member.id_nguoi_dung) === String(classData.id_nguoi_dung);
+                const laChinhMinh = member.id_nguoi_dung &&
+                    String(member.id_nguoi_dung) === String(userId);
+
+                const nutHtml = (laChuLop || laChinhMinh)
+                    ? `<span title="${laChuLop
+                        ? 'Người tạo lớp không thể bị xoá khỏi lớp'
+                        : 'Không thể tự xoá mình khỏi lớp'}"
+                             style="display: inline-flex; align-items: center; gap: 6px; color: #9aa0a6; font-size: 13px; padding: 6px 12px; cursor: not-allowed;">
+                             <i class="fa-solid fa-ban"></i>${laChuLop ? 'Chủ lớp' : 'Bạn'}
+                       </span>`
+                    : `<button onclick="removeMemberItem(${index})" style="background: #fff; color: #c5221f; border: 1px solid #dadce0; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 13px;">Xóa</button>`;
+
                 html += `
                 <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid #f1f3f4; background-color: ${rowBgColor};">
                     <div style="display: flex; align-items: center;">
@@ -657,7 +676,7 @@ function renderClassDetail(classData, userId, currentHoTen, activeTabName = 'des
                             <div style="color: #5f6368; font-size: 13px; font-style: italic;">${member.email} ${errorLabel}</div>
                         </div>
                     </div>
-                    <button onclick="removeMemberItem(${index})" style="background: #fff; color: #c5221f; border: 1px solid #dadce0; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 13px;">Xóa</button>
+                    ${nutHtml}
                 </div>
             `;
             });
@@ -921,7 +940,7 @@ function renderMainContent() {
         const deleteButtons = mainElement.querySelectorAll('.delete-class-item');
         deleteButtons.forEach(btn => {
             btn.onclick = async function () {
-                if (confirm('Bạn có chắc chắn muốn xóa lớp học này không?')) {
+                if (await xacNhan('Bạn có chắc chắn muốn xóa lớp học này không?')) {
                     const idx = parseInt(this.getAttribute('data-index'));
                     const classData = classList[idx];
 
@@ -1272,8 +1291,8 @@ if (submitUpdateBtn) {
             const result = await response.json();
 
             if (response.ok && result.success) {
-                alert('Cập nhật lớp học thành công!');
                 updateModal.style.display = 'none';
+                await thongBao('Cập nhật lớp học thành công!');
                 location.reload();
             } else {
                 alert('Lỗi: ' + (result.message || 'Không thể cập nhật'));

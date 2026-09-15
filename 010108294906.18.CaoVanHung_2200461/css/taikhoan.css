@@ -594,3 +594,21 @@ main .sidebar .menu-item {
   cursor: pointer;
   width: 70px;
 }
+
+/* --- Ô chỉ đọc ---
+   Số báo cáo là con số hệ thống tự đếm. Trước đây ô này tuy đã khoá nhưng
+   trông y hệt các ô nhập khác nên người dùng cứ tưởng sửa được rồi thắc mắc
+   vì sao gõ không ăn. */
+main .form-group input[readonly],
+.form-group input[readonly] {
+  background-color: #f1f5f9 !important;
+  color: #64748b !important;
+  border-color: #e2e8f0 !important;
+  cursor: not-allowed !important;
+}
+
+main .form-group input[readonly]:focus,
+.form-group input[readonly]:focus {
+  border-color: #e2e8f0 !important;
+  box-shadow: none !important;
+}

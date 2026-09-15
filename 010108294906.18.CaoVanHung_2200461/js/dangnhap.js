@@ -1,11 +1,13 @@
+// Dùng hộp thoại chung trong js/hop-thoai.js để mọi màn hiện giống nhau.
+// Giữ nguyên tên và thứ tự tham số (tiêu đề trước, nội dung sau) vì phần còn
+// lại của tệp này đang gọi theo thứ tự đó.
 function showAlert(title, message) {
-  document.getElementById("alertTitle").textContent = title;
-  document.getElementById("alertMessage").textContent = message;
-  document.getElementById("systemAlert").style.display = "flex";
+  return thongBao(message, title);
 }
 
 function closeAlert() {
-  document.getElementById("systemAlert").style.display = "none";
+  // Hộp thoại chung tự đóng khi bấm nút, hàm này giữ lại cho các nút cũ
+  // trong HTML còn gọi tới.
 }
 
 document.addEventListener("DOMContentLoaded", () => {

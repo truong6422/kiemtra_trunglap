@@ -71,7 +71,9 @@ async function handleJoinClass(enteredCode) {
             return;
         }
 
-        alert('Tham gia lớp học thành công!');
+        // Chờ người dùng bấm Đồng ý rồi mới tải lại, nếu không hộp thoại vừa
+        // hiện ra đã bị trang mới cuốn đi mất.
+        await thongBao('Tham gia lớp học thành công!');
         location.reload(); // Tải lại trang để cập nhật danh sách lớp học
     } catch (error) {
         console.error('Lỗi kết nối:', error);
@@ -1179,7 +1181,7 @@ const loggedInUserId = localStorage.getItem('userId') || localStorage.getItem('i
         const deleteButtons = mainElement.querySelectorAll('.delete-class-item');
 deleteButtons.forEach(btn => {
     btn.onclick = async function () {
-        if (confirm('Bạn có chắc chắn muốn xóa lớp học này không?')) {
+        if (await xacNhan('Bạn có chắc chắn muốn xóa lớp học này không?')) {
             const idx = parseInt(this.getAttribute('data-index'));
             const classData = classList[idx];
 
@@ -1580,8 +1582,8 @@ if (submitUpdateBtn) {
             const result = await response.json();
 
             if (response.ok && result.success) {
-                alert('Cập nhật lớp học thành công!');
                 updateModal.style.display = 'none';
+                await thongBao('Cập nhật lớp học thành công!');
                 location.reload();
             } else {
                 alert('Lỗi: ' + (result.message || 'Không thể cập nhật'));

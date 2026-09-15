@@ -1041,7 +1041,17 @@ if (saveUpdateBtn) {
                 const classData = window.currentClassData || window.classData;
                 if (classData) {
                     await syncClassExercisesFromDatabase(classData);
-                    updateExerciseTableContent(classData, window.currentUserId || 1);
+                    // Trước đây chỗ này lấy mặc định là số 1 khi chưa có
+                    // window.currentUserId. Mã người dùng thật có dạng "ND005"
+                    // nên không bao giờ khớp, hệ thống tưởng người đang xem là
+                    // sinh viên và đổi cột hành động thành Chi tiết / Nộp bài,
+                    // giảng viên mất luôn nút sửa và xoá.
+                    updateExerciseTableContent(
+                        classData,
+                        window.currentUserId ||
+                        localStorage.getItem('id_nguoi_dung') ||
+                        localStorage.getItem('userId')
+                    );
                 }
             } else {
                 alert('Lỗi cập nhật CSDL: ' + (result.message || 'Không thành công'));
@@ -1898,8 +1908,8 @@ function showDeleteConfirmModal(idBaiTap, idSinhVien) {
 
             if (deleteRes.ok) {
                 modal.style.display = 'none';
-                alert('Đã xóa bài nộp thành công!');
-                location.reload(); 
+                await thongBao('Đã xóa bài nộp thành công!');
+                location.reload();
             } else {
                 alert('Có lỗi xảy ra khi xóa ở máy chủ. Vui lòng thử lại!');
             }

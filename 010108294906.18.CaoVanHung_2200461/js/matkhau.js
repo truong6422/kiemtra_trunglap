@@ -6,24 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let originalData = {};
 
     // --- CÁC HÀM TIỆN ÍCH (CUSTOM ALERT MODAL) ---
-    function showAlert(message, title = 'Thông báo hệ thống!') {
-        const alertBox = document.getElementById('systemAlert');
-        const alertTitle = document.getElementById('alertTitle');
-        const alertMsg = document.getElementById('alertMessage');
-
-        if (alertBox && alertMsg) {
-            alertTitle.textContent = title;
-            alertMsg.textContent = message;
-            alertBox.style.display = 'block';
-        } else {
-            alert(message);
-        }
+    // Dùng hộp thoại chung trong js/hop-thoai.js. Ở tệp này thứ tự tham số là
+    // nội dung trước, tiêu đề sau — ngược với dangnhap.js — nên vẫn giữ nguyên
+    // chữ ký cũ để không phải sửa lại mọi lời gọi bên dưới.
+    function showAlert(message, title = 'Thông báo hệ thống') {
+        return thongBao(message, title);
     }
 
-    // Đăng ký hàm đóng Alert cho nút Close
     window.closeAlert = function () {
-        const alertBox = document.getElementById('systemAlert');
-        if (alertBox) alertBox.style.display = 'none';
+        // Hộp thoại chung tự đóng khi bấm nút.
     };
 
     // --- CÁC HÀM XỬ LÝ PROFILE (TAB THÔNG TIN CÁ NHÂN) ---

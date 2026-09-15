@@ -26,16 +26,16 @@
 
 .gt-mo-dau h1 {
     margin: 0 0 14px;
-    font-size: 31px;
+    font-size: 35px;
     line-height: 1.3;
     text-transform: uppercase;
     letter-spacing: .5px;
 }
 
 .gt-mo-dau__phu {
-    max-width: 720px;
+    max-width: 860px;
     margin: 0 auto;
-    font-size: 16px;
+    font-size: 18.5px;
     line-height: 1.7;
     opacity: .95;
 }
@@ -54,7 +54,7 @@
 
 .gt-tieu-de {
     margin: 0 0 26px;
-    font-size: 24px;
+    font-size: 27.5px;
     text-align: center;
     color: #0f172a;
     position: relative;
@@ -73,10 +73,11 @@
     background: #0655FF;
 }
 
+/* Không giới hạn chiều rộng: trước đây chặn 860px nên dòng chữ dừng sớm,
+   chừa một khoảng trắng lớn bên phải trong khi lề trái vẫn sát mép khung. */
 .gt-dan {
-    max-width: 860px;
     margin: 0 0 18px;
-    font-size: 15px;
+    font-size: 17px;
     line-height: 1.8;
     color: #475569;
 }
@@ -107,20 +108,20 @@
 }
 
 .gt-luong__vong {
-    width: 60px;
-    height: 60px;
+    width: 46px;
+    height: 46px;
     margin: 0 auto 12px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 23px;
+    font-size: 17px;
     color: #fff;
     background: linear-gradient(135deg, #0655FF, #3b82f6);
 }
 
 .gt-luong__ten {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: bold;
     color: #0f172a;
 }
@@ -130,10 +131,12 @@
     font-size: 19px;
 }
 
-/* ---------- Chi tiết kiến trúc ---------- */
+/* ---------- Chi tiết kiến trúc ----------
+   Hai thẻ mỗi hàng: bước 1 + 2 ở trên, bước 3 + 4 ở dưới. Xếp cả bốn trên một
+   hàng thì chữ bị bó hẹp, đọc rất khó sau khi đã phóng to cỡ chữ toàn trang. */
 .gt-buoc {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 18px;
 }
 
@@ -169,7 +172,7 @@
 
 .gt-the-buoc h3 {
     margin: 0;
-    font-size: 15px;
+    font-size: 17.5px;
     line-height: 1.4;
     color: #0f172a;
 }
@@ -181,7 +184,7 @@
 }
 
 .gt-the-buoc li {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.75;
     color: #64748b;
     margin-bottom: 4px;
@@ -194,7 +197,7 @@
     border-radius: 8px;
     background: #f0f9ff;
     border-left: 3px solid #0655FF;
-    font-size: 13.5px;
+    font-size: 15.5px;
     line-height: 1.65;
     color: #0f172a;
 }
@@ -219,7 +222,7 @@
     align-items: center;
     gap: 13px;
     margin: 0 0 16px;
-    font-size: 18px;
+    font-size: 20.5px;
     line-height: 1.4;
     color: #0f172a;
 }
@@ -243,7 +246,7 @@
 }
 
 .gt-ghi-chu li {
-    font-size: 14.5px;
+    font-size: 16.5px;
     line-height: 1.85;
     color: #475569;
     margin-bottom: 3px;
@@ -252,7 +255,7 @@
 .gt-ghi-chu em {
     font-style: normal;
     font-family: "Cambria Math", Georgia, "Times New Roman", serif;
-    font-size: 15.5px;
+    font-size: 17.5px;
     color: #0f172a;
 }
 
@@ -295,12 +298,18 @@
        bị co nhỏ hơn hẳn các công thức khác, nhìn không đều nhau */
 }
 
-/* ---------- Ba bước nhỏ của Winnowing ---------- */
+/* ---------- Ba bước nhỏ của Winnowing ----------
+   Hai ô hàng trên, ô thứ ba trải hết hàng dưới. Ba ô cùng một hàng thì mỗi ô
+   quá hẹp so với cỡ chữ mới. Sơ đồ bên dưới vẫn đứng riêng một hàng. */
 .gt-buoc-nho {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 18px;
     margin-bottom: 22px;
+}
+
+.gt-buoc-nho__muc:nth-child(3) {
+    grid-column: 1 / -1;
 }
 
 .gt-buoc-nho__muc {
@@ -312,14 +321,14 @@
 
 .gt-buoc-nho__muc h4 {
     margin: 0 0 10px;
-    font-size: 14.5px;
+    font-size: 16.5px;
     color: #0655FF;
     line-height: 1.45;
 }
 
 .gt-buoc-nho__muc p {
     margin: 0 0 12px;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.8;
     color: #475569;
 }
@@ -368,7 +377,7 @@
     border-radius: 7px;
     background: #fff;
     border: 1px solid #cbd5e1;
-    font-size: 13.5px;
+    font-size: 15px;
     color: #334155;
     text-align: center;
 }

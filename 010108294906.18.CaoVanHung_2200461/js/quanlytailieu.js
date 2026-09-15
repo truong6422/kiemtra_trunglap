@@ -21,19 +21,13 @@ function getSystemUserName() {
 // -------------------------------------------------------------------
 // 1. CÁC HÀM XỬ LÝ ALERT (THÔNG BÁO HỆ THỐNG)
 // -------------------------------------------------------------------
-function showAlert(message, title = "Thông báo hệ thống!") {
-    const alertBox = document.getElementById('systemAlert');
-    const alertTitle = document.getElementById('alertTitle');
-    const alertMessage = document.getElementById('alertMessage');
-
-    if (alertMessage) alertMessage.textContent = message;
-    if (alertTitle) alertTitle.textContent = title;
-    if (alertBox) alertBox.style.display = 'block';
+// Dùng hộp thoại chung trong js/hop-thoai.js
+function showAlert(message, title = "Thông báo hệ thống") {
+    return thongBao(message, title);
 }
 
 function closeAlert() {
-    const alertBox = document.getElementById('systemAlert');
-    if (alertBox) alertBox.style.display = 'none';
+    // Hộp thoại chung tự đóng khi bấm nút.
 }
 
 // -------------------------------------------------------------------

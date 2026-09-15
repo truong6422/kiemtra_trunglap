@@ -198,6 +198,15 @@ router.delete('/:idLop/thanh-vien/:idUser', async (req, res) => {
             return res.status(404).json({ success: false, message: 'Không tìm thấy lớp học!' });
         }
 
+        // Người tạo lớp không được rời khỏi chính lớp mình tạo. Chặn ngay ở đây
+        // chứ không chỉ ẩn nút bên giao diện, vì gọi thẳng API vẫn xoá được.
+        if (String(lopHoc.id_nguoi_dung) === String(idUser)) {
+            return res.status(400).json({
+                success: false,
+                message: 'Không thể xoá người tạo lớp ra khỏi lớp học!'
+            });
+        }
+
         // Lọc bỏ thành viên cần xóa khỏi mảng
         lopHoc.danh_sach_thanh_vien = lopHoc.danh_sach_thanh_vien.filter(tv => tv.id_nguoi_dung !== idUser);
         

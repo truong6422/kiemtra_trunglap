@@ -226,12 +226,11 @@ document.addEventListener('DOMContentLoaded', function () {
 // ==============================
 // XỬ LÝ ALERT MODAL HỆ THỐNG
 // ==============================
+// Dùng hộp thoại chung trong js/hop-thoai.js
 function showAlert(message) {
-    document.getElementById('alertTitle').innerText = 'Thông báo hệ thống!';
-    document.getElementById('alertMessage').innerText = message;
-    document.getElementById('systemAlert').style.display = 'block';
+    return thongBao(message);
 }
 
 function closeAlert() {
-    document.getElementById('systemAlert').style.display = 'none';
+    // Hộp thoại chung tự đóng khi bấm nút.
 }

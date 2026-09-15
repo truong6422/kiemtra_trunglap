@@ -345,12 +345,16 @@ body {
   width: 118px;
 }
 
+/* Bốn nút hành động cần 142px kể cả khoảng cách giữa chúng; để 130px thì nút
+   xoá tràn hẳn ra ngoài viền bảng. Cột tiêu đề là width:auto nên tự co lại
+   nhường chỗ. */
 .bang-tai-lieu th:nth-child(7),
 .bang-tai-lieu td:nth-child(7) {          /* hành động */
-  width: 130px;
+  width: 158px;
   text-align: center;
   padding-left: 6px;
   padding-right: 6px;
+  white-space: nowrap;
 }
 
 .data-table th {
