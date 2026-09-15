@@ -8,6 +8,7 @@ const Counter = require('../models/counter');
 const BaoCao = require('../models/bao_cao');
 const KetQuaKiemTra = require('../models/ket_qua_kiem_tra');
 const SinhVien = require('../models/sinh_vien');
+const { capNhatSoBaoCao } = require('../utils/cap_nhat_so_bao_cao');
 
 // 1. IMPORT CÁC HÀM TIỀN XỬ LÝ VÀ ĐỌC TEXT
 const { trichXuatVanBan } = require('../utils/trich_xuat_text');
@@ -192,6 +193,13 @@ router.post('/upload', upload.single('file'), async (req, res) => {
 
         const savedBaoCao = await newBaoCao.save();
 
+        // Đếm lại số báo cáo của sinh viên sau khi thêm bản ghi mới
+        try {
+            await capNhatSoBaoCao(id_sinh_vien);
+        } catch (e) {
+            console.error('Không cập nhật được số báo cáo của sinh viên:', e.message);
+        }
+
         await addPlagiarismTask({
             idBaoCaoMoi: idBaoCao,
 
@@ -273,6 +281,13 @@ router.delete('/:id', async (req, res) => {
 
         await KetQuaKiemTra.deleteMany({ id_bao_cao: deletedBaoCao.id_bao_cao });
 
+        // Đếm lại để số báo cáo giảm theo sau khi xoá
+        try {
+            await capNhatSoBaoCao(deletedBaoCao.id_sinh_vien);
+        } catch (e) {
+            console.error('Không cập nhật được số báo cáo của sinh viên:', e.message);
+        }
+
         return res.status(200).json({
             success: true,
             message: "Đã xóa thành công tài liệu và dữ liệu liên quan!"
@@ -308,6 +323,12 @@ router.post('/upload-khac', upload.single('file'), async (req, res) => {
         });
 
         await baoCaoMoi.save();
+
+        try {
+            await capNhatSoBaoCao(idSinhVienChinhXac);
+        } catch (e) {
+            console.error('Không cập nhật được số báo cáo của sinh viên:', e.message);
+        }
 
         return res.json({ success: true, message: "Upload thành công", data: baoCaoMoi });
     } catch (error) {

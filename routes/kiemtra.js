@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const libre = require('libreoffice-convert');
 const PizZip = require('pizzip');
+const { capNhatSoBaoCao } = require('../utils/cap_nhat_so_bao_cao');
 const ThongKe =
     require('../models/thong_ke');
 const ChiTietCauTrung =
@@ -163,6 +164,14 @@ router.post('/upload-and-check', upload.single('fileBaoCao'), async (req, res) =
             id_sinh_vien: idSinhVien,
             mau_kiem_tra: false
         });
+
+        // 1b. Đếm lại số báo cáo cho sinh viên. Không để lỗi ở đây làm hỏng
+        // việc nộp bài: tài liệu đã lưu rồi, con số thống kê có thể đếm lại sau.
+        try {
+            await capNhatSoBaoCao(idSinhVien);
+        } catch (e) {
+            console.error('Không cập nhật được số báo cáo của sinh viên:', e.message);
+        }
 
         // 2. Đẩy task vào hàng đợi Redis để file worker.js ngầm tự bốc đi xử lý
         await addPlagiarismTask({

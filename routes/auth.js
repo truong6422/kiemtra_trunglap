@@ -5,6 +5,7 @@ const nodemailer = require('nodemailer');
 const NguoiDung = require('../models/nguoi_dung');
 const SinhVien = require("../models/sinh_vien");
 const GiangVien = require("../models/giang_vien");
+const { dongBoVaiTro } = require('../utils/dong_bo_vai_tro');
 
 const router = express.Router();
 
@@ -309,6 +310,15 @@ router.post('/login', async (req, res) => {
       });
     }
 
+    // Đưa hồ sơ về đúng collection theo vai trò hiện tại. Cần thiết vì vai_tro
+    // có thể được sửa thẳng trong cơ sở dữ liệu, khi đó không route nào của
+    // hệ thống chạy qua để chuyển hồ sơ sang collection tương ứng.
+    try {
+      await dongBoVaiTro(user.id_nguoi_dung);
+    } catch (e) {
+      console.error('Không đồng bộ được hồ sơ theo vai trò:', e.message);
+    }
+
     return res.status(200).json({
       success: true,
       message: 'Đăng nhập tài khoản thành công!',
@@ -475,6 +485,56 @@ router.put('/update-user/:id', async (req, res) => {
       success: false,
       message: 'Có lỗi xảy ra trong quá trình cập nhật!'
     });
+  }
+});
+
+
+// ==============================
+// 5b. ĐỔI VAI TRÒ NGƯỜI DÙNG (dành cho quản trị viên)
+//
+// Đổi vai_tro xong phải chuyển luôn hồ sơ sang đúng collection, nếu không
+// người vừa được nâng lên giảng viên vẫn nằm trong sinh_vien và hệ thống vẫn
+// đối xử như sinh viên.
+// ==============================
+router.put('/vai-tro/:id', async (req, res) => {
+  try {
+    const { vai_tro } = req.body;
+    const HOP_LE = ['sinh_vien', 'giang_vien', 'quan_tri_vien'];
+
+    if (!HOP_LE.includes(vai_tro)) {
+      return res.status(400).json({
+        success: false,
+        message: `Vai trò không hợp lệ. Chỉ nhận: ${HOP_LE.join(', ')}`
+      });
+    }
+
+    const nguoiDung = await NguoiDung.findOneAndUpdate(
+      { id_nguoi_dung: req.params.id },
+      { vai_tro, ngay_cap_nhat: new Date() },
+      { returnDocument: 'after' }
+    );
+
+    if (!nguoiDung) {
+      return res.status(404).json({ success: false, message: 'Không tìm thấy người dùng!' });
+    }
+
+    const ketQua = await dongBoVaiTro(nguoiDung.id_nguoi_dung);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Đổi vai trò thành công!',
+      user: {
+        id_nguoi_dung: nguoiDung.id_nguoi_dung,
+        ho_ten: nguoiDung.ho_ten,
+        email: nguoiDung.email,
+        vai_tro: nguoiDung.vai_tro
+      },
+      dong_bo: ketQua
+    });
+
+  } catch (error) {
+    console.error('❌ Lỗi đổi vai trò:', error);
+    return res.status(500).json({ success: false, message: error.message });
   }
 });
 

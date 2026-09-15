@@ -13,9 +13,20 @@ async function taiTepBaiNop(idBaoCao, tenGoiY) {
         return false;
     }
 
+    const ma = encodeURIComponent(idBaoCao);
+
     try {
-        const res = await fetch(
-            `${BACKEND_URL}/api/bao-cao/tai-xuong/${encodeURIComponent(idBaoCao)}`);
+        // Đây là báo cáo sinh viên nộp lên để kiểm tra, nên thứ cần tải về là
+        // bản đã bôi màu chỗ trùng (upload2/BC***.pdf), không phải tệp gốc.
+        // Bản bôi màu chỉ có sau khi worker chấm xong; chưa có thì lùi về tệp
+        // gốc để người dùng vẫn lấy được bài của mình.
+        let res = await fetch(
+            `${BACKEND_URL}/api/kiem-tra/chi-tiet/${ma}/document`);
+        let laBanBoiMau = res.ok;
+
+        if (!res.ok) {
+            res = await fetch(`${BACKEND_URL}/api/bao-cao/tai-xuong/${ma}`);
+        }
 
         if (!res.ok) {
             alert(res.status === 404
@@ -25,9 +36,15 @@ async function taiTepBaiNop(idBaoCao, tenGoiY) {
         }
 
         let ten = tenGoiY || 'tai-lieu-nop';
-        const cd = res.headers.get('Content-Disposition') || '';
-        const khop = cd.match(/filename\*?=(?:UTF-8'')?"?([^";]+)"?/i);
-        if (khop) ten = decodeURIComponent(khop[1]);
+        if (laBanBoiMau) {
+            // Đổi đuôi sang .pdf vì bản bôi màu luôn là PDF, kể cả khi bài nộp
+            // gốc là .docx
+            ten = String(ten).replace(/\.[^.]+$/, '') + '-boi-mau.pdf';
+        } else {
+            const cd = res.headers.get('Content-Disposition') || '';
+            const khop = cd.match(/filename\*?=(?:UTF-8'')?"?([^";]+)"?/i);
+            if (khop) ten = decodeURIComponent(khop[1]);
+        }
 
         const dia = URL.createObjectURL(await res.blob());
         const a = document.createElement('a');
