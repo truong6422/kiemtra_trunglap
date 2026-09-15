@@ -26,67 +26,160 @@ const {
 } = require('./pdfSentenceMapper');
 
 
+// Cùng màu với lớp bôi màu của trang chi tiết: rgba(255, 213, 79, 0.30).
+// Trước đây dùng vàng nguyên rgb(255,255,0) mờ 0.15 nên hai bên nhìn khác hẳn
+// nhau, dù vùng bôi giống nhau.
+const DO_MO = 0.30;
+
 function getSentenceColor() {
-    return rgb(1, 1, 0); // vàng nhạt
+    return rgb(1, 213 / 255, 79 / 255);
 }
 
 /**
- * Gom các cụm chữ của một câu thành từng dòng theo toạ độ y.
- * Hai cụm được coi là cùng dòng khi chênh lệch y nhỏ hơn 60% chiều cao chữ.
+ * Gom các cụm chữ nằm cùng một dòng và sát nhau thành từng vệt.
  *
- * @param {Array<{x:number,y:number,width:number,height:number}>} positions
- * @returns {Array<{y:number,xMin:number,xMax:number,height:number}>}
+ * Cách cũ lấy mép trái nhỏ nhất và mép phải lớn nhất của cả dòng, nên khoảng
+ * trống giữa hai phần rời của câu cũng bị tô. Ở đây chỉ nối tiếp khi hai cụm
+ * đứng sát nhau — giống cách trang chi tiết đang làm.
+ *
+ * Nhận vệt của mọi câu trên cùng một trang, nhờ vậy hai câu đè lên nhau chỉ
+ * cho ra một vệt duy nhất, không bị tô hai lớp thành màu đậm loang lổ.
+ *
+ * @param {Array<{x:number,y:number,width:number,height:number}>} cacO
+ * @returns {Array<{y:number,x:number,width:number,height:number}>}
  */
-function gomViTriTheoDong(positions) {
+function gomViTriTheoDong(cacO) {
 
     if (
-        !Array.isArray(positions) ||
-        positions.length === 0
+        !Array.isArray(cacO) ||
+        cacO.length === 0
     ) {
         return [];
     }
 
+    // Gom về từng dòng theo toạ độ y
     const cacDong = [];
 
-    for (const p of positions) {
+    for (const o of cacO) {
+
+        if (!o.width || o.width <= 0) {
+            continue;
+        }
 
         const nguong =
-            Math.max(p.height, 1) * 0.6;
+            Math.max(o.height, 1) * 0.6;
 
         const dongCu =
             cacDong.find(
                 d =>
-                    Math.abs(d.y - p.y) <= nguong
+                    Math.abs(d.y - o.y) <= nguong
             );
 
         if (dongCu) {
-
-            dongCu.xMin =
-                Math.min(dongCu.xMin, p.x);
-
-            dongCu.xMax =
-                Math.max(
-                    dongCu.xMax,
-                    p.x + p.width
-                );
-
+            dongCu.cacO.push(o);
             dongCu.height =
-                Math.max(dongCu.height, p.height);
-
+                Math.max(dongCu.height, o.height);
         } else {
-
             cacDong.push({
-                y: p.y,
-                xMin: p.x,
-                xMax: p.x + p.width,
-                height: p.height
+                y: o.y,
+                height: o.height,
+                cacO: [o]
             });
-
         }
-
     }
 
-    return cacDong;
+    // Trong từng dòng, nối các cụm chồng nhau hoặc sát nhau
+    const cacVet = [];
+
+    for (const dong of cacDong) {
+
+        const nguongNoi =
+            Math.max(dong.height, 1) * 0.55;
+
+        const sapXep =
+            [...dong.cacO].sort((a, b) => a.x - b.x);
+
+        let dangGom = null;
+
+        for (const o of sapXep) {
+
+            if (
+                dangGom &&
+                o.x <= dangGom.x + dangGom.width + nguongNoi
+            ) {
+
+                const phai =
+                    Math.max(
+                        dangGom.x + dangGom.width,
+                        o.x + o.width
+                    );
+
+                dangGom.width = phai - dangGom.x;
+
+                dangGom.height =
+                    Math.max(dangGom.height, o.height);
+
+            } else {
+
+                if (dangGom) cacVet.push(dangGom);
+
+                dangGom = {
+                    y: dong.y,
+                    x: o.x,
+                    width: o.width,
+                    height: o.height
+                };
+            }
+        }
+
+        if (dangGom) cacVet.push(dangGom);
+    }
+
+    return catPhanTranDong(cacVet);
+}
+
+/**
+ * Cắt phần tràn dọc giữa vệt của hai dòng liền nhau.
+ *
+ * Chiều cao chữ mà pdf.js báo về thường lớn hơn khoảng cách giữa hai dòng. Ở
+ * hệ toạ độ PDF, vệt được vẽ từ đường chân chữ hướng lên, nên vệt dòng dưới
+ * thò lên đè vào vệt dòng trên và chỗ giao bị tô hai lớp.
+ */
+function catPhanTranDong(cacVet) {
+
+    // Xếp từ dòng dưới lên dòng trên
+    const sapXep =
+        [...cacVet].sort((a, b) => a.y - b.y);
+
+    for (let i = 0; i < sapXep.length; i++) {
+
+        const duoi = sapXep[i];
+
+        for (let j = i + 1; j < sapXep.length; j++) {
+
+            const tren = sapXep[j];
+
+            if (tren.y >= duoi.y + duoi.height) {
+                continue;
+            }
+
+            const giaoNgang =
+                duoi.x < tren.x + tren.width &&
+                tren.x < duoi.x + duoi.width;
+
+            if (!giaoNgang) {
+                continue;
+            }
+
+            const chieuCaoMoi = tren.y - duoi.y;
+
+            if (chieuCaoMoi > 2) {
+                duoi.height = chieuCaoMoi;
+            }
+        }
+    }
+
+    return sapXep;
 }
 
 async function convertDocxToPdf(
@@ -226,6 +319,13 @@ async function processAndHighlightReport(
         // HIGHLIGHT 
         // ========================================
 
+        // Gom ô chữ của mọi câu theo từng trang trước, vẽ sau.
+        //
+        // Vẽ ngay từng câu một thì hai câu nằm đè lên nhau cho ra hai lớp màu
+        // chồng lên, chỗ giao đậm hơn hẳn phần còn lại. Gom trước rồi hợp nhất
+        // thì mỗi chỗ chỉ được tô đúng một lần, màu đều như trang chi tiết.
+        const oTheoTrang = new Map();
+
         for (
             const item
             of chiTietCauTrung
@@ -241,28 +341,6 @@ async function processAndHighlightReport(
                     item.cau_kiem_tra
                 ) || [];
 
-            const color =
-                getSentenceColor();
-
-            // label hiển thị
-            const label =
-                '[' +
-                item.danh_sach_nguon
-                    .map(
-                        s =>
-                            s.id_bao_cao
-                                .replace(
-                                    'BC',
-                                    ''
-                                )
-                    )
-                    .join(',') +
-                ']';
-
-            // ====================================
-            // VẼ HIGHLIGHT
-            // ====================================
-
             if (
                 !matches ||
                 matches.length === 0
@@ -276,67 +354,50 @@ async function processAndHighlightReport(
             // hiện sau không được bôi.
             for (const found of matches) {
 
-                const page =
-                    pdfDoc.getPage(
-                        found.page - 1
-                    );
-
-                // Một câu thường trải trên nhiều dòng. Gom các cụm chữ theo
-                // toạ độ y rồi vẽ riêng từng dòng, thay vì một hình chữ nhật
-                // duy nhất chạy từ cụm đầu tới cụm cuối (cách cũ cho ra bề
-                // rộng cụt hoặc âm khi cụm cuối nằm ở dòng dưới).
-                const cacDong =
-                    gomViTriTheoDong(
-                        found.positions
-                    );
-
-                for (const dong of cacDong) {
-
-                    const width =
-                        dong.xMax - dong.xMin;
-
-                    if (width <= 0) {
-                        continue;
-                    }
-
-                    page.drawRectangle({
-                        x: dong.xMin,
-                        y: dong.y,
-                        width,
-                        height:
-                            dong.height + 4,
-                        color,
-                        opacity: 0.15
-                    });
-
+                if (!oTheoTrang.has(found.page)) {
+                    oTheoTrang.set(found.page, []);
                 }
 
+                oTheoTrang
+                    .get(found.page)
+                    .push(...found.positions);
             }
-
-            const firstPos =
-                matches[0].positions?.[0];
-
-            if (firstPos) {
-
-                /*page.drawText(
-                    label,
-                    {
-                        x: firstPos.x,
-                        y:
-                            firstPos.y +
-                            firstPos.height +
-                            2,
-                        size: 8,
-                        color:
-                            rgb(0, 0, 0)
-                    }
-                );*/
-
-            }
-
         }
 
+        // ====================================
+        // VẼ HIGHLIGHT
+        // ====================================
 
+        const color =
+            getSentenceColor();
+
+        for (const [soTrang, cacO] of oTheoTrang) {
+
+            const page =
+                pdfDoc.getPage(soTrang - 1);
+
+            for (const vet of gomViTriTheoDong(cacO)) {
+
+                if (
+                    vet.width <= 0 ||
+                    vet.height <= 0
+                ) {
+                    continue;
+                }
+
+                // Vẽ đúng chiều cao đã tính. Nở thêm cho "đẹp" sẽ làm vệt dòng
+                // này thò sang dòng bên cạnh, thành vạch đậm chạy ngang giữa
+                // các dòng — trang chi tiết cũng cố tình không nở.
+                page.drawRectangle({
+                    x: vet.x,
+                    y: vet.y,
+                    width: vet.width,
+                    height: vet.height,
+                    color,
+                    opacity: DO_MO
+                });
+            }
+        }
 
         // ========================================
         // OUTPUT
@@ -390,5 +451,8 @@ async function processAndHighlightReport(
 }
 
 module.exports = {
-    processAndHighlightReport
+    processAndHighlightReport,
+
+    // Xuất thêm để đối chiếu vùng bôi màu với trang chi tiết khi cần kiểm tra
+    __gomViTriTheoDong: gomViTriTheoDong
 };
