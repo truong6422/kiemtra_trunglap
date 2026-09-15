@@ -44,6 +44,13 @@ router.post('/', async (req, res) => {
         let rawMembers = [];
         if (lopHoc) {
             rawMembers = lopHoc.danh_sach_thanh_vien || lopHoc.members || lopHoc.students || [];
+
+            // Chủ lớp được thêm vào danh sách thành viên ngay lúc tạo lớp, nhưng
+            // người ra bài thì không phải nộp bài. Bỏ ra ở đây để danh sách nộp
+            // bài của bài tập mới chỉ gồm thành viên lớp.
+            rawMembers = rawMembers.filter(
+                m => String(m.id_nguoi_dung) !== String(lopHoc.id_nguoi_dung)
+            );
         }
 
         // Thành viên lớp chỉ lưu id_nguoi_dung, không có mã sinh viên. Tra sang

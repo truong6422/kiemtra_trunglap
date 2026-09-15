@@ -210,6 +210,34 @@ enforceChecked(document.getElementById('pdfCheckbox'));
 enforceChecked(document.getElementById('wordCheckbox'));
 enforceChecked(document.getElementById('duplicateCheckbox'));
 // 4. HÀM KIỂM TRA QUYỀN GIÁO VIÊN (ĐÃ NÂNG CẤP TỰ ĐỘNG BẮT USER ID)
+/**
+ * Bỏ chủ lớp ra khỏi danh sách thành viên phải nộp bài.
+ *
+ * Người tạo ra lớp là người ra bài chứ không phải người nộp bài, nhưng vẫn nằm
+ * trong danh sách thành viên của lớp. Trước đây chỗ nộp bài lấy nguyên danh
+ * sách đó nên chính chủ lớp cũng hiện lên với trạng thái "Chưa nộp".
+ *
+ * @param {Array} danhSach  Danh sách thành viên của lớp
+ * @param {Object} classData Dữ liệu lớp học, để biết ai là người tạo
+ */
+function boChuLopRaKhoiDanhSach(danhSach, classData) {
+
+    const ds = Array.isArray(danhSach) ? danhSach : [];
+
+    const lop = classData || window.currentClassData || window.classData;
+
+    const idChuLop = lop &&
+        (lop.id_nguoi_dung || lop.id_nguoi_tao || lop.creatorId || lop.teacher_id);
+
+    if (!idChuLop) return ds;
+
+    return ds.filter(m => {
+        const idThanhVien =
+            m.id_nguoi_dung || m.id || m.userId || '';
+        return String(idThanhVien) !== String(idChuLop);
+    });
+}
+
 function checkIfUserIsTeacher(classData, userId) {
     if (!classData) return false;
     const currentLoggedUser = userId || window.currentUserId || localStorage.getItem('userId') || localStorage.getItem('id_nguoi_dung');
@@ -460,8 +488,10 @@ document.addEventListener('click', async function (e) {
     // Danh sách thành viên của lớp nằm ở classMembersList. Hai tên còn lại
     // không nơi nào gán, trước đây lấy nhầm nên bài tập mới tạo ra có danh
     // sách nộp bài rỗng, thống kê lớp học báo không ai phải nộp.
-    const membersList = classData.classMembersList ||
-        classData.members || classData.membersList || [];
+    const membersList = boChuLopRaKhoiDanhSach(
+        classData.classMembersList ||
+        classData.members || classData.membersList || [],
+        classData);
     const fullPayload = {
         id_lop_hoc: Number(classId),
         tieu_de: title,
@@ -1149,6 +1179,10 @@ async function openTeacherExerciseDetailView(exercise, classData, userId) {
         classMembers = window.currentClassData.classMembersList;
     }
 
+    // Chỗ nộp bài chỉ dành cho thành viên lớp. Chủ lớp là người ra bài nên
+    // không đứng trong danh sách bài nộp.
+    classMembers = boChuLopRaKhoiDanhSach(classMembers, classData);
+
     const title = exercise.tieu_de || 'Bài tập';
     const deadline = exercise.tg_dong ? `Thời gian nộp bài: ${exercise.tg_dong}` : 'Thời gian nộp bài: Không giới hạn';
     const instruction = exercise.huong_dan && exercise.huong_dan.trim() !== ""
@@ -1212,7 +1246,7 @@ async function openTeacherExerciseDetailView(exercise, classData, userId) {
             tg_cap_nhat: formattedTime,
             id_bao_cao: foundSub ? foundSub.id_bao_cao : null
         };
-    }) : submissions;
+    }) : boChuLopRaKhoiDanhSach(submissions, classData);
 
     if (displayList.length > 0) {
         displayList.forEach((sub, index) => {

@@ -30,16 +30,30 @@ async function layBangTraSinhVien(dsIdNguoiDung) {
 }
 
 /**
- * Bỏ quản trị viên ra khỏi danh sách thành viên lớp.
+ * Bỏ những người không phải học viên ra khỏi danh sách thành viên lớp.
  *
- * Quản trị viên có mặt trong lớp chỉ để xem thống kê, không phải người học nên
- * không được tính vào sĩ số, cũng không bị coi là "chưa nộp bài" — trước đây
- * họ luôn nằm ở nhóm chưa nộp và kéo tỉ lệ nộp bài của cả lớp xuống.
+ * Có hai nhóm:
+ *
+ * - Quản trị viên: có mặt trong lớp chỉ để xem thống kê, không phải người học
+ *   nên không được tính vào sĩ số, cũng không bị coi là "chưa nộp bài" —
+ *   trước đây họ luôn nằm ở nhóm chưa nộp và kéo tỉ lệ nộp bài của lớp xuống.
+ *
+ * - Chủ lớp: người tạo ra lớp là người ra bài, không phải người nộp bài.
+ *
+ * @param {Array} thanhVien   Danh sách thành viên của lớp
+ * @param {string} idChuLop   Mã người tạo lớp, bỏ qua nếu không truyền
  */
-async function boQuanTriVien(thanhVien) {
+async function boNguoiKhongPhaiHocVien(thanhVien, idChuLop) {
 
-    const ds = thanhVien || [];
+    let ds = thanhVien || [];
     if (!ds.length) return ds;
+
+    if (idChuLop) {
+        ds = ds.filter(
+            t => String(t.id_nguoi_dung) !== String(idChuLop)
+        );
+        if (!ds.length) return ds;
+    }
 
     const quanTri = await NguoiDung.find({
         id_nguoi_dung: { $in: ds.map(t => t.id_nguoi_dung).filter(Boolean) },
@@ -112,7 +126,8 @@ router.get('/lop-hoc', async (req, res) => {
         const ketQua = [];
 
         for (const l of dsLop) {
-            const thanhVien = await boQuanTriVien(l.danh_sach_thanh_vien || []);
+            const thanhVien = await boNguoiKhongPhaiHocVien(
+                l.danh_sach_thanh_vien || [], l.id_nguoi_dung);
 
             ketQua.push({
                 id_lop_hoc: l.id_lop_hoc,
@@ -145,7 +160,8 @@ router.get('/lop-hoc/:id_lop_hoc/bai-tap', async (req, res) => {
         const idLop = Number(req.params.id_lop_hoc);
 
         const lop = await LopHoc.findOne({ id_lop_hoc: idLop })
-            .select('id_lop_hoc ma_lop tieu_de danh_sach_thanh_vien').lean();
+            .select('id_lop_hoc ma_lop tieu_de id_nguoi_dung danh_sach_thanh_vien')
+            .lean();
 
         if (!lop) {
             return res.status(404).json({
@@ -159,7 +175,8 @@ router.get('/lop-hoc/:id_lop_hoc/bai-tap', async (req, res) => {
             .lean();
 
         const soThanhVien =
-            (await boQuanTriVien(lop.danh_sach_thanh_vien || [])).length;
+            (await boNguoiKhongPhaiHocVien(
+                lop.danh_sach_thanh_vien || [], lop.id_nguoi_dung)).length;
 
         // Đếm số bài đã nộp thật, đối chiếu với bảng chi_tiet_nop_bai
         const dsNop = await ChiTietNopBai.find({
@@ -233,10 +250,13 @@ router.get('/bai-tap/:id_bai_tap', async (req, res) => {
         }
 
         const lop = await LopHoc.findOne({ id_lop_hoc: baiTap.id_lop_hoc })
-            .select('id_lop_hoc ma_lop tieu_de danh_sach_thanh_vien').lean();
+            .select('id_lop_hoc ma_lop tieu_de id_nguoi_dung danh_sach_thanh_vien')
+            .lean();
 
         const thanhVien =
-            await boQuanTriVien((lop && lop.danh_sach_thanh_vien) || []);
+            await boNguoiKhongPhaiHocVien(
+                (lop && lop.danh_sach_thanh_vien) || [],
+                lop && lop.id_nguoi_dung);
 
         const { theoNguoiDung, theoSinhVien } =
             await layBangTraSinhVien(thanhVien.map(t => t.id_nguoi_dung));
@@ -351,13 +371,19 @@ router.get('/bai-nop-cua-lop', async (req, res) => {
         }
 
         const dsLop = await LopHoc.find({ id_nguoi_dung })
-            .select('id_lop_hoc ma_lop danh_sach_thanh_vien').lean();
+            .select('id_lop_hoc ma_lop id_nguoi_dung danh_sach_thanh_vien').lean();
 
-        // Gom thành viên của mọi lớp, bỏ trùng và bỏ quản trị viên
+        // Gom thành viên của mọi lớp, bỏ trùng, bỏ quản trị viên và chủ lớp.
+        // Lọc theo từng lớp một vì mỗi lớp có chủ riêng.
+        const theoTungLop = [];
+
+        for (const l of dsLop) {
+            theoTungLop.push(...await boNguoiKhongPhaiHocVien(
+                l.danh_sach_thanh_vien || [], l.id_nguoi_dung));
+        }
+
         const idThanhVien = [...new Set(
-            (await boQuanTriVien(
-                dsLop.flatMap(l => l.danh_sach_thanh_vien || [])
-            )).map(t => t.id_nguoi_dung)
+            theoTungLop.map(t => t.id_nguoi_dung)
         )];
 
         const { theoNguoiDung } = await layBangTraSinhVien(idThanhVien);
