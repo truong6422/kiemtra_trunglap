@@ -17,7 +17,7 @@ async function generateIdKiemTra() {
             },
 
             {
-                new: true,
+                returnDocument: 'after',
                 upsert: true
             }
 

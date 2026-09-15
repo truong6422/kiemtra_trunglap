@@ -44,7 +44,7 @@ async function taoMaBaoCaoMoi() {
                 }
             },
             {
-                new: true,
+                returnDocument: 'after',
                 upsert: true
             }
         );
@@ -527,7 +527,7 @@ router.put('/:id_bao_cao', async (req, res) => {
         const daSua = await BaoCao.findOneAndUpdate(
             { id_bao_cao: id_bao_cao },
             { $set: capNhat },
-            { new: true }
+            { returnDocument: 'after' }
         ).lean();
 
         if (!daSua) {

@@ -105,14 +105,11 @@ const ketQuaKiemTraSchema = new mongoose.Schema(
 // INDEX
 // =====================================================================
 
-ketQuaKiemTraSchema.index({
-    id_bao_cao: 1
-});
 
-ketQuaKiemTraSchema.index({
-    bao_cao_mongo_id: 1
-});
 
+// Các trường dưới đây đã khai báo index: true ngay tại chỗ định nghĩa ở
+// trên. Khai thêm một lần nữa làm Mongoose in cảnh báo "Duplicate schema
+// index" mỗi lần máy chủ khởi động. Chỉ mục ghép nhiều trường vẫn giữ.
 ketQuaKiemTraSchema.index({
     ngay_kiem_tra: -1
 });

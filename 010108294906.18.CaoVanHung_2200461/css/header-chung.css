@@ -64,14 +64,14 @@ header {
 }
 
 /* --- Danh sách mục ---
-   Giãn rộng khoảng cách giữa các mục: trước đây cụm menu co cụm sát bên phải,
-   để lại một khoảng trắng lớn giữa tên phần mềm và cụm này. */
+   Khoảng cách giữa các mục: giãn vừa đủ để cụm menu không co cụm sát bên phải,
+   nhưng không rộng quá làm các mục rời rạc. */
 .menu ul {
     list-style: none;
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-    gap: clamp(22px, 4.4vw, 80px);
+    gap: clamp(18px, 2.6vw, 46px);
     margin: 0;
     padding: 0;
     flex-shrink: 0;
@@ -115,14 +115,27 @@ header {
     flex-shrink: 0;
 }
 
+/* Tên tài khoản dài thì xuống thành hai dòng ngay trong ô của nó, thay vì kéo
+   dài ra đẩy cả cụm menu sang trái làm tên phần mềm bị vắt dòng. Quá hai dòng
+   thì cắt bớt và thêm dấu ba chấm. */
 #navUserName {
     font-size: clamp(16px, 1.25vw, 23px) !important;
     font-weight: bold;
     color: #0655FF;
-    white-space: nowrap;
-    max-width: 200px;
+    white-space: normal;
+    max-width: 190px;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+/* Tên phần mềm bên trái không được vắt dòng vì tên tài khoản dài */
+.logo p {
+    white-space: nowrap !important;
 }
 
 /* Các mục trong menu thả xuống giữ cỡ chữ riêng, không theo cỡ của thanh trên */

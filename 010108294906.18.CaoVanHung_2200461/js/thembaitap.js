@@ -1469,7 +1469,7 @@ function renderDocumentTable(docs, keyword = '', currentIdBaoCao = null) {
                 <td style="padding: 10px; border: 1px solid #dadce0; color: #202124; font-weight: 500; text-align: center; width: 80px; min-width: 80px; max-width: 80px;">${displayId}</td>
                 <td style="padding: 10px; border: 1px solid #dadce0; color: #3c4043; word-break: break-all; width: 260px; min-width: 260px; max-width: 260px;">
                     ${displayTitle}
-                    ${isCurrentSelected ? '<span style="font-size: 12px; color: #1967d2; font-weight: 500; margin-left: 6px;">(Đang nộp)</span>' : ''}
+                    <span class="nhan-dang-nop" style="font-size: 12px; color: #1967d2; font-weight: 500; margin-left: 6px; display: ${isCurrentSelected ? 'inline' : 'none'};">(Đang nộp)</span>
                 </td>
                 <td style="padding: 10px; border: 1px solid #dadce0; color: #5f6368; font-size: 13px; text-align: center; width: 160px; min-width: 160px; max-width: 160px;">${displayDate}</td>
                 <td style="padding: 10px; border: 1px solid #dadce0; text-align: center; width: 110px; min-width: 110px; max-width: 110px;">${tyLeTrungLap}</td>
@@ -1510,31 +1510,58 @@ if (searchInputEl) {
 }
 document.getElementById('searchDocBtn')?.addEventListener('click', handleSearchDocuments);
 // 3. Các sự kiện tương tác bảng (Checkbox, đổi màu dòng)
+/**
+ * Mỗi bài tập chỉ nộp được một tài liệu, nên bảng này chỉ cho chọn một dòng.
+ *
+ * Trước đây các ô đánh dấu hoạt động độc lập: chọn dòng mới mà dòng cũ vẫn còn
+ * dấu tích, chữ "(Đang nộp)" cũng nằm nguyên chỗ cũ, nhìn vào không biết rốt
+ * cuộc đang nộp tài liệu nào.
+ */
+function chonMotTaiLieu(cbDuocChon) {
+    document.querySelectorAll('.doc-checkbox').forEach(cb => {
+        const laDangChon = cb === cbDuocChon;
+        cb.checked = laDangChon;
+
+        // Chữ "(Đang nộp)" đi theo dòng đang được chọn
+        const dong = cb.closest('tr');
+        const nhan = dong ? dong.querySelector('.nhan-dang-nop') : null;
+        if (nhan) nhan.style.display = laDangChon ? 'inline' : 'none';
+
+        updateRowStyle(cb);
+    });
+
+    updateSelectAllState();
+}
+
 function initCheckboxEvents() {
     const selectAllCheckbox = document.getElementById('selectAllDocs');
     const checkboxes = document.querySelectorAll('.doc-checkbox');
+
+    // Ô "chọn tất cả" không còn ý nghĩa khi mỗi lần chỉ nộp một tài liệu
     if (selectAllCheckbox) {
-        selectAllCheckbox.onchange = function() {
-            checkboxes.forEach(cb => {
-                cb.checked = selectAllCheckbox.checked;
-                updateRowStyle(cb);
-            });
-        };
+        selectAllCheckbox.checked = false;
+        selectAllCheckbox.indeterminate = false;
+        selectAllCheckbox.disabled = true;
+        selectAllCheckbox.title = 'Mỗi bài tập chỉ nộp được một tài liệu';
+        selectAllCheckbox.style.cursor = 'not-allowed';
+        selectAllCheckbox.onchange = null;
     }
+
     checkboxes.forEach(cb => {
         const row = cb.closest('tr');
-        row.onclick = function(e) {
+
+        row.onclick = function (e) {
             if (e.target.tagName !== 'INPUT') {
-                cb.checked = !cb.checked;
+                chonMotTaiLieu(cb);
             }
-            updateRowStyle(cb);
-            updateSelectAllState();
         };
-        cb.onchange = function(e) {
+
+        cb.onchange = function (e) {
             e.stopPropagation();
-            updateRowStyle(this);
-            updateSelectAllState();
+            // Bỏ tích chính nó thì coi như không chọn tài liệu nào
+            chonMotTaiLieu(this.checked ? this : null);
         };
+
         updateRowStyle(cb);
     });
 }
@@ -1770,8 +1797,11 @@ if (!window._isGlobalSubEventAttached) {
         // 1. XỬ LÝ NÚT TẢI XUỐNG / TÊN FILE
         if (isDownload) {
             const targetIdBaoCao = sub.id_bao_cao;
-            if (!targetIdBaocao && !targetIdBaoCao) {
-                alert('Không tìm thấy mã báo cáo của tệp này!');
+            // Điều kiện cũ viết là targetIdBaocao — chữ c thường, không phải
+            // tên biến nào đang có. Mỗi lần bấm Tải xuống là chạy tới đây rồi
+            // dừng vì biến không tồn tại, nên bấm mãi không thấy tệp đâu.
+            if (!targetIdBaoCao) {
+                thongBao('Không tìm thấy mã báo cáo của tệp này!');
                 return;
             }
             // Dùng API tải tệp thay vì ghép đường dẫn ổ đĩa của máy chủ

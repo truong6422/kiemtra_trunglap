@@ -12,6 +12,7 @@ const baiTapRoutes = require('./routes/baitap');
 const chiTietNopBaiRoutes = require('./routes/chitietnopbai');
 const thongKeRoutes = require('./routes/thongke');
 const { batLichDon } = require('./utils/don_bao_cao_qua_han');
+const { dongBoVaiTroTatCa } = require('./utils/dong_bo_vai_tro');
 
 require('dotenv').config();
 
@@ -71,4 +72,22 @@ server.listen(PORT, () => {
   // Tự động dọn báo cáo quá hạn lưu trữ: chạy sau khi máy chủ lên một phút,
   // rồi lặp lại mỗi ngày. Số ngày lưu lấy từ cau_hinh_he_thong.
   batLichDon();
+
+  // Đưa hồ sơ của mọi tài khoản về đúng collection theo vai_tro.
+  //
+  // Phần này cũng chạy mỗi lần đăng nhập, nhưng khi quản trị viên sửa vai_tro
+  // thẳng trong cơ sở dữ liệu thì người bị đổi vai trò chưa đăng nhập lại nên
+  // hồ sơ vẫn nằm sai chỗ. Chạy thêm một lượt lúc khởi động để chỉ cần bật lại
+  // máy chủ là mọi thứ khớp.
+  dongBoVaiTroTatCa()
+    .then(ds => {
+      if (ds.length) {
+        console.log(`👤 Đã đưa ${ds.length} hồ sơ về đúng collection theo vai trò:`);
+        ds.forEach(x => console.log(
+          `   ${x.id}: ${x.vaiTro}` +
+          (x.daTao ? ` — thêm vào ${x.daTao}` : '') +
+          (x.daXoa ? `, gỡ khỏi ${x.daXoa}` : '')));
+      }
+    })
+    .catch(e => console.error('Không đồng bộ được vai trò:', e.message));
 });

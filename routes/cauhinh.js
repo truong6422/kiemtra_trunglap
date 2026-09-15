@@ -161,7 +161,7 @@ router.put('/', async (req, res) => {
         const daLuu = await CauHinhHeThong.findOneAndUpdate(
             {},
             { $set: duLieuMoi },
-            { new: true, upsert: true }
+            { returnDocument: 'after', upsert: true }
         ).lean();
 
         res.json({

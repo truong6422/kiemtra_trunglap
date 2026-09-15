@@ -154,17 +154,10 @@ const thongKeSchema = new mongoose.Schema(
 // INDEX
 // =====================================================
 
-thongKeSchema.index({
-    id_bao_cao: 1
-});
-
-thongKeSchema.index({
-    bao_cao_mongo_id: 1
-});
-
-thongKeSchema.index({
-    id_sinh_vien: 1
-});
+// Ba trường id_bao_cao, bao_cao_mongo_id và id_sinh_vien đã khai báo
+// index: true ngay tại chỗ định nghĩa ở trên. Khai thêm một lần nữa ở đây làm
+// Mongoose in cảnh báo "Duplicate schema index" mỗi lần máy chủ khởi động.
+// Các chỉ mục ghép nhiều trường bên dưới thì vẫn cần giữ.
 
 thongKeSchema.index({
     ngay_kiem_tra: -1

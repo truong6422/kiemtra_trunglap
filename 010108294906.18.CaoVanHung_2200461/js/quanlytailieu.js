@@ -234,6 +234,10 @@ function renderTablePage() {
     const tbody = document.querySelector('.data-table tbody');
     if (!tbody) return;
 
+    // Ghi lại vân tay của dữ liệu vừa vẽ, để lượt quét tự động sau đó biết
+    // bảng đang hiển thị cái gì mà không vẽ lại thừa
+    vanTayDangHien = layVanTayDuLieu(allBaoCaoData);
+
     const totalRecords = allBaoCaoData.length;
 
     if (totalRecords === 0) {
@@ -324,6 +328,26 @@ function updatePaginationUI(totalRecords, totalPages) {
 /**
  * Hàm gọi API kiểm tra trạng thái xử lý ngầm định kỳ
  */
+/**
+ * Rút gọn danh sách báo cáo thành một chuỗi đại diện, chỉ gồm những thứ có thể
+ * đổi giữa hai lượt quét: mã, trạng thái và tỉ lệ trùng. So hai chuỗi này là
+ * biết dữ liệu có thay đổi hay không mà không phải so từng bản ghi.
+ */
+function layVanTayDuLieu(ds) {
+    if (!Array.isArray(ds)) return '';
+
+    return ds
+        .map(b => [
+            b.id_bao_cao,
+            b.trang_thai,
+            b.ti_le_trung_lap ?? b.ti_le_trung ?? ''
+        ].join('|'))
+        .join(';');
+}
+
+// Vân tay của dữ liệu đang hiển thị trên bảng
+let vanTayDangHien = '';
+
 function theoDoiTrangThaiXuLy() {
 
     // Chặn hai lượt quét chồng lên nhau khi máy chủ trả chậm
@@ -351,9 +375,21 @@ function theoDoiTrangThaiXuLy() {
 
                 if (result.success && result.data) {
 
-                    allBaoCaoData = result.data;
+                    // Chỉ vẽ lại bảng khi dữ liệu thực sự đổi. Trước đây cứ ba
+                    // giây là dựng lại toàn bộ bảng một lần, nên trong lúc chờ
+                    // chấm xong màn hình chớp trắng liên tục: bảng bị xoá sạch
+                    // rồi mới vẽ lại, phần chân trang nhảy vọt lên giữa màn.
+                    const vanTayMoi = layVanTayDuLieu(result.data);
 
-                    renderTablePage();
+                    if (vanTayMoi !== vanTayDangHien) {
+                        vanTayDangHien = vanTayMoi;
+                        allBaoCaoData = result.data;
+                        renderTablePage();
+                    } else {
+                        // Dữ liệu y nguyên thì chỉ cập nhật ngầm, không đụng
+                        // tới giao diện
+                        allBaoCaoData = result.data;
+                    }
                 }
 
             } catch (err) {

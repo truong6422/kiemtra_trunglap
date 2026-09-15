@@ -10,10 +10,16 @@ const {
     rgb
 } = require('pdf-lib');
 
-const convertAsync =
-    util.promisify(
-        libre.convert
-    );
+// Bọc libre.convert thành Promise bằng tay. Dùng util.promisify ở đây làm Node
+// in ra cảnh báo "Calling promisify on a function that returns a Promise",
+// vì bản libreoffice-convert này đã trả Promise sẵn khi không truyền callback.
+function convertAsync(duLieu, dinhDang, boLoc) {
+    return new Promise((ok, loi) => {
+        libre.convert(duLieu, dinhDang, boLoc, (e, ketQua) => {
+            if (e) loi(e); else ok(ketQua);
+        });
+    });
+}
 const {
     loadPdfItems,
     findTextInPdf
@@ -264,46 +270,51 @@ async function processAndHighlightReport(
                 continue;
             }
 
-            const found =
-                matches[0];
+            // Một câu có thể xuất hiện ở nhiều chỗ trong tài liệu. Trang chi
+            // tiết bôi màu mọi chỗ, nên bản PDF cũng phải bôi hết thì hai bên
+            // mới giống nhau — trước đây chỉ lấy matches[0] nên các lần xuất
+            // hiện sau không được bôi.
+            for (const found of matches) {
 
-            const page =
-                pdfDoc.getPage(
-                    found.page - 1
-                );
+                const page =
+                    pdfDoc.getPage(
+                        found.page - 1
+                    );
 
-            // Một câu thường trải trên nhiều dòng. Gom các cụm chữ theo toạ
-            // độ y rồi vẽ riêng từng dòng, thay vì một hình chữ nhật duy nhất
-            // chạy từ cụm đầu tới cụm cuối (cách cũ cho ra bề rộng cụt hoặc âm
-            // khi cụm cuối nằm ở dòng dưới).
-            const cacDong =
-                gomViTriTheoDong(
-                    found.positions
-                );
+                // Một câu thường trải trên nhiều dòng. Gom các cụm chữ theo
+                // toạ độ y rồi vẽ riêng từng dòng, thay vì một hình chữ nhật
+                // duy nhất chạy từ cụm đầu tới cụm cuối (cách cũ cho ra bề
+                // rộng cụt hoặc âm khi cụm cuối nằm ở dòng dưới).
+                const cacDong =
+                    gomViTriTheoDong(
+                        found.positions
+                    );
 
-            for (const dong of cacDong) {
+                for (const dong of cacDong) {
 
-                const width =
-                    dong.xMax - dong.xMin;
+                    const width =
+                        dong.xMax - dong.xMin;
 
-                if (width <= 0) {
-                    continue;
+                    if (width <= 0) {
+                        continue;
+                    }
+
+                    page.drawRectangle({
+                        x: dong.xMin,
+                        y: dong.y,
+                        width,
+                        height:
+                            dong.height + 4,
+                        color,
+                        opacity: 0.15
+                    });
+
                 }
-
-                page.drawRectangle({
-                    x: dong.xMin,
-                    y: dong.y,
-                    width,
-                    height:
-                        dong.height + 4,
-                    color,
-                    opacity: 0.15
-                });
 
             }
 
             const firstPos =
-                found.positions?.[0];
+                matches[0].positions?.[0];
 
             if (firstPos) {
 

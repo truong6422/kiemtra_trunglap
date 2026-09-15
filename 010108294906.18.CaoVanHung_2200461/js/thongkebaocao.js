@@ -437,19 +437,23 @@ document.addEventListener("DOMContentLoaded", () => {
         $("tkThanBang").scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
-    // Tổng số bài đã nộp.
-    // Quản trị viên xem theo toàn hệ thống nên chỉ cần bỏ bộ lọc để thấy đủ mọi
-    // trạng thái, gồm cả Đang xử lý và Lỗi. Giảng viên thì quản lý theo lớp và
-    // theo bài tập, nên vào thẳng màn thống kê lớp học: mỗi lớp một dòng, bấm
-    // tiếp vào lớp ra từng bài tập, bấm vào bài tập ra ai nộp ai chưa.
+    // Tổng số bài đã nộp: bỏ hết bộ lọc để thấy đủ mọi trạng thái, gồm cả
+    // Đang xử lý và Lỗi chứ không riêng bài đã chấm xong.
+    //
+    // Thẻ này chỉ dành cho quản trị viên. Với giảng viên, nội dung của nó trùng
+    // với thẻ Thống kê lớp học nên được ẩn đi (xem ẩn ở phần dưới).
     $("theTongBai").addEventListener("click", () => {
-        if (vaiTro === "giang_vien") {
-            moKhung("lop-hoc");
-            window.TkLopHoc.mo();
-            return;
-        }
         locTheoThe({ nhan: "Toàn bộ báo cáo — mọi trạng thái" });
     });
+
+    // Giảng viên theo dõi bài nộp theo lớp và theo bài tập ở thẻ Thống kê lớp
+    // học, nên thẻ Tổng số bài đã nộp không cần nữa.
+    if (vaiTro === "giang_vien") {
+        const theTongBai = $("theTongBai");
+        // Đặt thẳng display chứ không dùng hidden: thẻ này có display:flex
+        // trong tệp CSS nên thuộc tính hidden bị ghi đè, ẩn không ăn.
+        if (theTongBai) theTongBai.style.display = "none";
+    }
 
     // Vượt ngưỡng cảnh báo: chỉ những bài có kết quả từ 30% trở lên
     $("theVuotNguong").addEventListener("click", () => {

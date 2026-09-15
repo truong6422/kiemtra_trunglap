@@ -155,6 +155,80 @@ router.get('/submissions', async (req, res) => {
         return res.status(500).json({ success: false, error: error.message });
     }
 });
+/**
+ * API xoá bài nộp của một sinh viên cho một bài tập.
+ *
+ * Giao diện đã gọi tới đường dẫn này từ trước nhưng máy chủ chưa hề có, nên
+ * bấm nút Xoá là nhận về 404 rồi báo "Có lỗi xảy ra khi xóa ở máy chủ".
+ *
+ * Chỉ gỡ bản ghi nộp bài và đánh dấu lại trạng thái trong bài tập. Tài liệu
+ * gốc trong kho tài liệu của sinh viên giữ nguyên — đây là bỏ nộp, không phải
+ * xoá tài liệu.
+ */
+router.delete('/submissions', async (req, res) => {
+    try {
+        const { id_bai_tap, id_sinh_vien: rawIdSinhVien } = req.query;
+
+        if (!id_bai_tap || !rawIdSinhVien) {
+            return res.status(400).json({
+                success: false,
+                message: "Thiếu tham số id_bai_tap hoặc id_sinh_vien."
+            });
+        }
+
+        const realStudentId = await resolveIdSinhVien(rawIdSinhVien);
+
+        const daXoa = await BaiChiTietNopBai.findOneAndDelete({
+            id_bai_tap,
+            id_sinh_vien: realStudentId
+        });
+
+        if (!daXoa) {
+            return res.status(404).json({
+                success: false,
+                message: "Không tìm thấy bài nộp để xoá."
+            });
+        }
+
+        // Đưa trạng thái trong danh sách nộp bài của bài tập về "Chưa nộp"
+        try {
+            const BaiTap = require('../models/bai_tap');
+            const baiTap = await BaiTap.findOne({ id_bai_tap: Number(id_bai_tap) });
+
+            if (baiTap && Array.isArray(baiTap.danh_sach_nop_bai)) {
+                let coDoi = false;
+
+                baiTap.danh_sach_nop_bai.forEach(tv => {
+                    const trung = String(tv.id_sinh_vien) === String(realStudentId)
+                        || String(tv.id_sinh_vien) === String(rawIdSinhVien)
+                        || String(tv.ma_sinh_vien) === String(realStudentId);
+
+                    if (trung) {
+                        tv.trang_thai_nop = "Chưa nộp";
+                        tv.thoi_gian_nop = null;
+                        tv.danh_sach_tep = [];
+                        coDoi = true;
+                    }
+                });
+
+                if (coDoi) await baiTap.save();
+            }
+        } catch (e) {
+            console.error("Không cập nhật được trạng thái nộp bài:", e.message);
+        }
+
+        return res.json({
+            success: true,
+            message: "Đã xoá bài nộp.",
+            data: { id_bai_tap, id_sinh_vien: realStudentId }
+        });
+
+    } catch (error) {
+        console.error("Lỗi khi xoá bài nộp:", error);
+        return res.status(500).json({ success: false, error: error.message });
+    }
+});
+
 // 4. API lấy thông tin chi tiết một báo cáo theo id (ví dụ: BC671)
 router.get('/chi-tiet/:id', async (req, res) => {
     try {

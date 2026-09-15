@@ -195,7 +195,7 @@ router.put('/:id_bai_tap', async (req, res) => {
                 trang_thai: calculatedStatus, // Cập nhật luôn trạng thái mới vào CSDL
                 ngay_cap_nhat: new Date()
             },
-            { new: true }
+            { returnDocument: 'after' }
         );
 
         if (!updatedExercise) {

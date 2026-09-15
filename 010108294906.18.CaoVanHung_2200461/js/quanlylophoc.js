@@ -1426,28 +1426,46 @@ observer.observe(document.body, {
     subtree: true
 });
 
+/**
+ * Người đang đăng nhập có phải chủ lớp đang mở hay không.
+ *
+ * Trước đây chỗ này xét quyền bằng cách dò chữ "(Bạn là thành viên)" trong nội
+ * dung trang. Hễ chuỗi đó xuất hiện ở bất kỳ đâu — kể cả ở dòng của một lớp
+ * khác trong danh sách — là nút Thêm bài tập bị khoá. Vì vậy vừa tạo lớp xong,
+ * bấm thêm bài tập cho chính lớp mình tạo vẫn bị báo không có quyền.
+ *
+ * Nay xét theo dữ liệu: so mã chủ lớp của lớp đang mở với mã người đăng nhập.
+ */
+function laChuLopDangMo() {
+    const lop = window.currentClassData || window.classData;
+    if (!lop) return true;   // chưa mở lớp nào thì không khoá gì cả
+
+    const toi = localStorage.getItem('id_nguoi_dung')
+        || localStorage.getItem('userId') || '';
+
+    return String(lop.id_nguoi_dung) === String(toi);
+}
+
 const observerRestrictMember = new MutationObserver(function () {
-    const pageText = document.body.innerText || '';
+    if (laChuLopDangMo()) return;
 
-    if (pageText.includes("(Bạn là thành viên)")) {
-        const buttons = document.querySelectorAll('button, a');
+    const buttons = document.querySelectorAll('button, a');
 
-        buttons.forEach(btn => {
-            const text = btn.textContent.trim();
+    buttons.forEach(btn => {
+        const text = btn.textContent.trim();
 
-            if (text.includes('Thêm thành viên') || text.includes('Thêm bài tập')) {
-                btn.style.cursor = 'not-allowed';
-                btn.style.opacity = '0.6';
+        if (text.includes('Thêm thành viên') || text.includes('Thêm bài tập')) {
+            btn.style.cursor = 'not-allowed';
+            btn.style.opacity = '0.6';
 
-                btn.onclick = function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    alert('Bạn là thành viên nên không có quyền thực hiện chức năng này!');
-                    return false;
-                };
-            }
-        });
-    }
+            btn.onclick = function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                thongBao('Bạn là thành viên nên không có quyền thực hiện chức năng này!');
+                return false;
+            };
+        }
+    });
 });
 
 observerRestrictMember.observe(document.body, {
