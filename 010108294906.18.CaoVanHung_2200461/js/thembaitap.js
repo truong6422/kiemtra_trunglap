@@ -1699,6 +1699,68 @@ document.addEventListener("DOMContentLoaded", () => {
 // được một lần rồi thôi. Khối còn lại (phía dưới) tự gọi API lấy dữ liệu khi
 // thiếu nên giữ lại một mình nó.
 
+/**
+ * Đổi huy hiệu "Nộp bài tập" giữa hai trạng thái 1/1 (đã nộp) và 0/1 (chưa nộp).
+ *
+ * Ưu tiên tìm theo lớp my-badge-status; chỉ khi không thấy mới dò theo nội dung
+ * chữ, vì lúc giao diện được dựng lại huy hiệu có thể chưa kịp mang lớp đó.
+ */
+function datTrangThaiHuyHieuNopBai(daNop) {
+    const mau = daNop
+        ? { nen: '#e6f4ea', chu: '#137333', vien: '#ceead6', chuoi: '1/1' }
+        : { nen: '#fce8e6', chu: '#c5221f', vien: '#fad2cf', chuoi: '0/1' };
+
+    let cacHuyHieu = Array.from(
+        document.querySelectorAll('.my-badge-status')
+    );
+
+    if (!cacHuyHieu.length) {
+        cacHuyHieu = Array.from(document.querySelectorAll('span')).filter(el => {
+            const chu = el.innerText.trim();
+            return chu === '0/1' || chu === '1/1';
+        });
+    }
+
+    cacHuyHieu.forEach(el => {
+        el.innerText = mau.chuoi;
+        el.style.backgroundColor = mau.nen;
+        el.style.color = mau.chu;
+        el.style.border = '1px solid ' + mau.vien;
+    });
+}
+
+/**
+ * Dựng lại khung bài nộp về trạng thái chưa có tệp nào: hàng nhãn định dạng tệp
+ * kèm nút "Thêm file nộp", đúng như lúc bài tập vừa được mở lần đầu.
+ */
+function dungKhungChuaNopBai() {
+    const submitBox = document.querySelector('.my-submit-box');
+    if (!submitBox) return;
+
+    const nhanDinhDang = ['DOCX', 'PDF', 'DOC']
+        .map(dinhDang => `
+            <span style="background: #f1f3f4; padding: 2px 6px; border-radius: 4px; font-size: 11px; color: #5f6368; border: 1px solid #dadce0;">${dinhDang}</span>
+        `)
+        .join('');
+
+    submitBox.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #3c4043;">
+                <span style="font-weight: 500;" title="Mặc định">Mặc định</span>
+                ${nhanDinhDang}
+            </div>
+            <div style="position: relative;">
+                <button id="openSubmitModalBtn" title="Mặc định" style="background: none; border: none; color: #1a73e8; cursor: pointer; font-size: 14px; font-weight: 500;">Thêm file nộp</button>
+            </div>
+        </div>
+        <div style="margin-top: 10px; font-size: 12px; color: #f9ab00; font-style: italic;">
+            *Bài nộp là những tài liệu đã kiểm tra trong danh mục tài liệu của bạn
+        </div>
+    `;
+
+    delete submitBox._currentSub;
+}
+
 // Hàm gọi API lấy dữ liệu bài nộp và tự động cập nhật giao diện khi đã có DOM
 // --- HÀM GỌI API LẤY DỮ LIỆU VÀ RENDER GIAO DIỆN BÀI NỘP ---
 async function fetchAndRenderSubmission(idBaiTap, idSinhVien) {
@@ -1706,7 +1768,16 @@ async function fetchAndRenderSubmission(idBaiTap, idSinhVien) {
         const res = await fetch(`${BACKEND_URL}/api/chi-tiet-nop-bai/submissions?id_bai_tap=${idBaiTap}&id_sinh_vien=${idSinhVien}`);
         if (!res.ok) return;
         const data = await res.json();
-        
+
+        // Không còn bài nộp nào (vừa bị xoá): trả khung về trạng thái chưa nộp
+        // ngay tại chỗ, thay vì tải lại cả trang khiến người dùng bị văng ra
+        // ngoài danh sách lớp học.
+        if (!data || !data.success || !data.data) {
+            datTrangThaiHuyHieuNopBai(false);
+            dungKhungChuaNopBai();
+            return;
+        }
+
         if (data && data.success && data.data) {
             const sub = data.data; 
             
@@ -1728,16 +1799,7 @@ async function fetchAndRenderSubmission(idBaiTap, idSinhVien) {
                 }
             }
             
-            // Tìm badge trạng thái 0/1 hoặc đã nộp trên giao diện
-            const badges = document.querySelectorAll('span');
-            badges.forEach(el => {
-                if (el.innerText.trim() === "0/1" || el.innerText.trim() === "1/1") {
-                    el.innerText = "1/1";
-                    el.style.backgroundColor = "#e6f4ea";
-                    el.style.color = "#137333";
-                    el.style.border = "1px solid #ceead6";
-                }
-            });
+            datTrangThaiHuyHieuNopBai(true);
 
             // Tìm chính xác khung chứa nút "Thêm file nộp" (my-submit-box)
             const submitBox = document.querySelector('.my-submit-box');
@@ -1989,7 +2051,11 @@ function showDeleteConfirmModal(idBaiTap, idSinhVien) {
             if (deleteRes.ok) {
                 modal.style.display = 'none';
                 await thongBao('Đã xóa bài nộp thành công!');
-                location.reload();
+
+                // Vẽ lại đúng khung bài nộp đang mở. Trước đây gọi
+                // location.reload() nên người dùng bị ném hẳn ra trang Quản lý
+                // lớp học, mất luôn bài tập đang xem.
+                await fetchAndRenderSubmission(idBaiTap, idSinhVien);
             } else {
                 alert('Có lỗi xảy ra khi xóa ở máy chủ. Vui lòng thử lại!');
             }

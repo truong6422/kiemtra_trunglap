@@ -788,8 +788,7 @@ function renderClassDetail(classData, userId, currentHoTen, activeTabName = 'des
                     classData.name = newName;
                     classData.mo_ta = newDesc;
 
-                    const now = new Date();
-                    const timeString = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} ${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${String(now.getFullYear()).slice(-2)}`;
+                    const timeString = nhanThoiGianHienTai();
 
                     classData.time = timeString;
                     if (!classData.created_time) {
@@ -821,6 +820,81 @@ function renderClassDetail(classData, userId, currentHoTen, activeTabName = 'des
             }
         };
     }
+}
+
+/**
+ * Chuỗi thời gian hiện tại theo đúng định dạng đang hiển thị ở cột "TG cập nhật"
+ * và ở dòng "cập nhật cuối vào" trong trang chi tiết lớp: HH:mm dd/MM/yy.
+ */
+function nhanThoiGianHienTai() {
+    const now = new Date();
+    const hai = so => String(so).padStart(2, '0');
+
+    return `${hai(now.getHours())}:${hai(now.getMinutes())} `
+        + `${hai(now.getDate())}/${hai(now.getMonth() + 1)}/`
+        + `${String(now.getFullYear()).slice(-2)}`;
+}
+
+/**
+ * Gắn cách lưu cho nút "Cập nhật" khi hộp thoại được mở từ danh sách lớp học.
+ *
+ * Lưu xong thì vẽ lại đúng bảng danh sách đang đứng, không tải lại trang: trước
+ * đây nút này gọi location.reload() nên người dùng bị đưa ra khỏi chỗ đang làm.
+ */
+function ganLuuCapNhatLopTuDanhSach(classData, userId, storageKey, classList) {
+    const updateModal = document.getElementById('updateClassModal');
+    const submitUpdateBtn = document.getElementById('submitUpdateBtn');
+    if (!submitUpdateBtn) return;
+
+    submitUpdateBtn.onclick = async function () {
+        const tenMoi = document.getElementById('updateClassNameInput').value.trim();
+        const moTaMoi = document.querySelector('#updateClassModal .editor-textarea').value.trim();
+
+        if (!tenMoi) {
+            alert('Tên lớp học không được để trống!');
+            return;
+        }
+
+        if (!classData.id) {
+            alert('Không tìm thấy ID lớp học cần cập nhật!');
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                `http://localhost:5000/api/lop-hoc/${classData.id}`,
+                {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ tieu_de: tenMoi, mo_ta: moTaMoi })
+                }
+            );
+            const result = await response.json();
+
+            if (!response.ok || !result.success) {
+                alert('Lỗi: ' + (result.message || 'Không thể cập nhật'));
+                return;
+            }
+
+            classData.tieu_de = tenMoi;
+            classData.name = tenMoi;
+            classData.mo_ta = moTaMoi;
+            classData.time = nhanThoiGianHienTai();
+            if (!classData.created_time) {
+                classData.created_time = classData.time;
+            }
+
+            localStorage.setItem(storageKey, JSON.stringify(classList));
+
+            if (updateModal) updateModal.style.display = 'none';
+            await thongBao('Cập nhật lớp học thành công!');
+
+            renderMainContent();
+        } catch (error) {
+            console.error('Lỗi khi cập nhật:', error);
+            alert('Không thể kết nối đến server để cập nhật!');
+        }
+    };
 }
 
 function renderMainContent() {
@@ -923,17 +997,21 @@ function renderMainContent() {
                 const idx = parseInt(this.closest('tr').querySelector('.table-class-title').getAttribute('data-index'));
                 const classData = classList[idx];
 
-                renderClassDetail(classData, userId, currentHoTen);
+                // Chỉ mở hộp thoại ngay trên danh sách. Trước đây hàm này gọi
+                // renderClassDetail() nên vừa bấm cây bút là màn hình đã bị đẩy
+                // hẳn vào bên trong lớp học, xong việc lại không quay ra được.
+                const updateModal = document.getElementById('updateClassModal');
+                const updateInput = document.getElementById('updateClassNameInput');
+                const updateDescElem = document.querySelector('#updateClassModal .editor-textarea');
 
-                setTimeout(() => {
-                    const updateModal = document.getElementById('updateClassModal');
-                    const updateInput = document.getElementById('updateClassNameInput');
-                    const updateDescElem = document.querySelector('#updateClassModal .editor-textarea');
+                if (updateInput) updateInput.value = classData.name || classData.tieu_de || '';
+                if (updateDescElem) updateDescElem.value = classData.mo_ta || '';
 
-                    if (updateInput) updateInput.value = classData.name || classData.tieu_de;
-                    if (updateDescElem) updateDescElem.value = classData.mo_ta || '';
-                    if (updateModal) updateModal.style.display = 'flex';
-                }, 50);
+                // Mỗi nơi mở hộp thoại tự gắn cách lưu của mình, vì nút Cập nhật
+                // là nút dùng chung cho cả danh sách lẫn trang chi tiết lớp.
+                ganLuuCapNhatLopTuDanhSach(classData, userId, storageKey, classList);
+
+                if (updateModal) updateModal.style.display = 'flex';
             };
         });
 
@@ -1293,7 +1371,10 @@ if (submitUpdateBtn) {
             if (response.ok && result.success) {
                 updateModal.style.display = 'none';
                 await thongBao('Cập nhật lớp học thành công!');
-                location.reload();
+
+                // Vẽ lại danh sách tại chỗ thay vì location.reload(), để người
+                // dùng ở nguyên màn hình đang làm việc.
+                renderMainContent();
             } else {
                 alert('Lỗi: ' + (result.message || 'Không thể cập nhật'));
             }
