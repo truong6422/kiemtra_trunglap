@@ -13,6 +13,7 @@ const { capNhatSoBaoCao } = require('../utils/cap_nhat_so_bao_cao');
 
 // 1. IMPORT CÁC HÀM TIỀN XỬ LÝ VÀ ĐỌC TEXT
 const { trichXuatVanBan } = require('../utils/trich_xuat_text');
+const { trichXuatTheoTrang } = require('../utils/trich_xuat_theo_trang');
 
 // 2. IMPORT HÀM ĐẨY TASK VÀO HÀNG ĐỢI REDIS
 const { addPlagiarismTask } = require('../workers/queue');
@@ -167,9 +168,36 @@ router.post('/upload', upload.single('file'), async (req, res) => {
         const idBaoCao =
             await taoMaBaoCaoMoi();
 
+        // "Kiểm tra một phần": chỉ lấy chữ nằm trong đúng các trang vật lý
+        // người dùng khai, ví dụ "5" là từ trang 5 tới hết, "10-25" là đúng
+        // đoạn trang 10 đến 25. Trước đây hai tham số này được gửi lên nhưng
+        // máy chủ bỏ qua nên bài nào cũng bị chấm toàn bộ.
+        const kieuKiemTra = (req.body.checkType || 'all').trim();
+        const chuoiPhamVi = (req.body.pageRange || '').trim();
+
+        let phamViDaCham = '';
         let rawText = "";
+
         if (file.mimetype === 'text/plain') {
             rawText = fs.readFileSync(file.path, 'utf-8');
+
+        } else if (kieuKiemTra === 'part' && chuoiPhamVi) {
+            const theoTrang = await trichXuatTheoTrang(file.path, chuoiPhamVi);
+
+            if (theoTrang.van_ban) {
+                rawText = theoTrang.van_ban;
+                phamViDaCham = theoTrang.mo_ta;
+            } else {
+                // Không cắt được theo trang (tệp lạ, hỏng, hoặc phạm vi nằm
+                // ngoài tài liệu) thì vẫn chấm toàn bộ để người dùng không mất
+                // bài, và ghi lại lý do trong nhật ký máy chủ.
+                console.warn(
+                    `⚠️ Không áp dụng được phạm vi trang "${chuoiPhamVi}" cho `
+                    + `${originalName} — chấm toàn bộ tài liệu.`
+                );
+                rawText = await trichXuatVanBan(file.path);
+            }
+
         } else {
             rawText = await trichXuatVanBan(file.path);
         }
@@ -189,7 +217,8 @@ router.post('/upload', upload.single('file'), async (req, res) => {
             ngay_tai_len: new Date(),
             trang_thai: "Đang xử lý",
             id_sinh_vien: id_sinh_vien || "",
-            mau_kiem_tra: false
+            mau_kiem_tra: false,
+            pham_vi_trang: phamViDaCham
         });
 
         const savedBaoCao = await newBaoCao.save();

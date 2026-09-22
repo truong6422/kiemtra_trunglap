@@ -46,6 +46,13 @@ const baoCaoSchema = new mongoose.Schema(
         mau_kiem_tra: {
             type: Boolean,
             default: false
+        },
+
+        // Phạm vi trang đã chấm khi người dùng chọn "Kiểm tra một phần".
+        // Rỗng nghĩa là chấm toàn bộ tài liệu.
+        pham_vi_trang: {
+            type: String,
+            default: ""
         }
     },
     {
