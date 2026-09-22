@@ -12,6 +12,7 @@ const {
   chuanHoaMa
 } = require('../utils/doi_ma_sinh_vien');
 const { ganAnhNeuThieu, chonAnhDaiDien } = require('../utils/anh_dai_dien');
+const { capNhatSoBaoCao } = require('../utils/cap_nhat_so_bao_cao');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
@@ -680,7 +681,11 @@ router.put('/profile/:id', async (req, res) => {
     const maNhapVao = chuanHoaMa(body.student_id || body.ma_dinh_danh || '');
     const lop = body.class_name || body.lop || '';
     const khoa_hoc = body.course || body.khoa_hoc || '';
-    const so_bao_cao = Number(body.report_number || body.so_luong_bao_cao || 0);
+
+    // Số báo cáo KHÔNG lấy từ thân yêu cầu. Đây là số hệ thống tự đếm từ các
+    // tài liệu đã tải lên, trang Tài khoản để ô này chỉ đọc nên không bao giờ
+    // gửi lên. Đoạn cũ ép về Number(... || 0) rồi ghi thẳng vào hồ sơ, nên mỗi
+    // lần bấm Cập nhật là số báo cáo trong CSDL bị xoá trắng về 0.
 
     const updateObjUser = { ngay_cap_nhat: new Date() };
     if (ho_ten) updateObjUser.ho_ten = ho_ten;
@@ -751,7 +756,7 @@ router.put('/profile/:id', async (req, res) => {
       }
     }
 
-    const updateObjSV = { lop, khoa_hoc, so_bao_cao };
+    const updateObjSV = { lop, khoa_hoc };
     if (ho_ten) updateObjSV.ho_ten = ho_ten;
     if (email) updateObjSV.email = email;
 
@@ -767,6 +772,11 @@ router.put('/profile/:id', async (req, res) => {
       { returnDocument: 'after', upsert: true }
     );
 
+    // Đếm lại số báo cáo để trả về đúng con số thật, thay vì giá trị vừa đọc
+    // ra từ hồ sơ. Nhờ vậy trang Tài khoản hiển thị đúng ngay sau khi cập nhật,
+    // không phải tải lại trang mới thấy số cũ.
+    const soBaoCaoThat = await capNhatSoBaoCao(sinhVien.id_sinh_vien);
+
     return res.status(200).json({
       success: true,
       message: 'Cập nhật thông tin thành công!',
@@ -776,7 +786,7 @@ router.put('/profile/:id', async (req, res) => {
         student_id: sinhVien.id_sinh_vien,
         class_name: sinhVien.lop,
         course: sinhVien.khoa_hoc,
-        report_number: sinhVien.so_bao_cao
+        report_number: soBaoCaoThat !== null ? soBaoCaoThat : sinhVien.so_bao_cao
       }
     });
 

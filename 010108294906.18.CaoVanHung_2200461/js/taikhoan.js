@@ -51,12 +51,15 @@ document.addEventListener('DOMContentLoaded', function () {
         if (fields.studentId) fields.studentId.value = data.student_id || data.id_sinh_vien || '';
         if (fields.className) fields.className.value = data.lop || data.class_name || '';
         if (fields.course) fields.course.value = data.khoa_hoc || data.course || '';
-        // Số báo cáo là số đếm do hệ thống tự tính, không phải ô người dùng nhập,
-        // nên chỉ đổ tạm giá trị cũ rồi để demSoBaoCao() ghi đè bằng số thật.
+        // Số báo cáo là số đếm do hệ thống tự tính, không phải ô người dùng nhập.
+        //
+        // Không lấy giá trị từ dữ liệu hồ sơ nữa: sau khi bấm Cập nhật, máy chủ
+        // trả về bản ghi không có trường so_luong_bao_cao, nên đoạn cũ đổ về 0
+        // và ô này hiện sai cho tới khi người dùng tải lại trang. Luôn đếm lại
+        // từ danh sách tài liệu để mọi lần vẽ form đều ra số thật.
         if (fields.reportNumber) {
-            fields.reportNumber.value = data.so_luong_bao_cao !== undefined
-                ? data.so_luong_bao_cao : (data.report_number || 0);
             fields.reportNumber.readOnly = true;
+            demSoBaoCao();
         }
 
         const navUserName = document.getElementById('navUserName');
