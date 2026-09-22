@@ -6,6 +6,7 @@ const SinhVien = require('../models/sinh_vien');
 const GiangVien = require('../models/giang_vien');
 const BaoCao = require('../models/bao_cao');
 const LopHoc = require('../models/lop_hoc');
+const { boSungMaTaiKhoan } = require('../utils/thanh_vien_lop');
 
 // =========================================================================
 // API GET /api/thong-ke/tai-khoan?vai_tro=giang_vien|sinh_vien
@@ -39,8 +40,16 @@ router.get('/tai-khoan', async (req, res) => {
 
             tenLopTheoNguoiDung = new Map();
 
+            // Danh sách thành viên trong bản ghi lớp chỉ có id_sinh_vien. Đoạn
+            // cũ đọc thẳng tv.id_nguoi_dung nên khoá của bảng tra toàn undefined
+            // và giảng viên không thấy tài khoản nào. Tra thêm mã tài khoản
+            // trước khi dựng bảng.
             for (const lop of dsLop) {
-                for (const tv of (lop.danh_sach_thanh_vien || [])) {
+                const thanhVien = await boSungMaTaiKhoan(lop.danh_sach_thanh_vien || []);
+
+                for (const tv of thanhVien) {
+                    if (!tv.id_nguoi_dung) continue;
+
                     const cu = tenLopTheoNguoiDung.get(tv.id_nguoi_dung) || [];
                     cu.push(lop.ma_lop);
                     tenLopTheoNguoiDung.set(tv.id_nguoi_dung, cu);

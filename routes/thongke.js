@@ -6,6 +6,7 @@ const ThongKe = require('../models/thong_ke');
 const SinhVien = require('../models/sinh_vien');
 const NguoiDung = require('../models/nguoi_dung');
 const LopHoc = require('../models/lop_hoc');
+const { boSungMaTaiKhoan } = require('../utils/thanh_vien_lop');
 
 // Các nhánh thống kê khác dùng chung tiền tố /api/thong-ke
 router.use(require('./thongke-tai-khoan'));
@@ -79,19 +80,21 @@ router.get('/danh-sach', async (req, res) => {
             const dsLop = await LopHoc.find({ id_nguoi_dung: giang_vien })
                 .select('danh_sach_thanh_vien').lean();
 
-            const idThanhVien = [...new Set(
-                dsLop.flatMap(l => (l.danh_sach_thanh_vien || [])
-                    .map(t => t.id_nguoi_dung))
-            )];
+            // Bản ghi lớp chỉ lưu id_sinh_vien, không lưu id_nguoi_dung. Đoạn cũ
+            // đọc thẳng t.id_nguoi_dung nên lấy ra toàn undefined, danh sách mã
+            // rỗng, và mọi thống kê của giảng viên đều ra 0. Phải tra thêm mã
+            // tài khoản qua boSungMaTaiKhoan trước khi lọc.
+            const thanhVien = (await Promise.all(
+                dsLop.map(l => boSungMaTaiKhoan(l.danh_sach_thanh_vien || []))
+            )).flat();
 
-            const dsSinhVien = await SinhVien.find({
-                id_nguoi_dung: { $in: idThanhVien }
-            }).select('id_sinh_vien').lean();
+            // Báo cáo lúc ghi theo mã sinh viên, lúc theo mã tài khoản, nên
+            // nhận cả hai mã của cùng một người.
+            const dsMa = [...new Set(
+                thanhVien.flatMap(t => [t.id_sinh_vien, t.id_nguoi_dung])
+            )].filter(Boolean);
 
-            dieuKien.id_sinh_vien = {
-                $in: idThanhVien.concat(dsSinhVien.map(s => s.id_sinh_vien))
-                    .filter(Boolean)
-            };
+            dieuKien.id_sinh_vien = { $in: dsMa };
         }
 
         const danhSachBaoCao = await BaoCao.find(dieuKien)
