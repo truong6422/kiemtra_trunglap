@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
+const { timTepBaoCao } = require('../utils/duong_dan_tep');
 
 const libre =
     require('libreoffice-convert');
@@ -222,9 +223,16 @@ async function processAndHighlightReport(
 
     try {
 
+        // Bản ghi cũ giữ đường dẫn của máy khác (ổ D:, dấu gạch ngược), đọc
+        // thẳng là hỏng ngay ở bước mở tệp. Dò lại để tìm tệp thật trong dự án.
+        let pdfPath = timTepBaoCao(originalFilePath);
 
-        let pdfPath =
-            originalFilePath;
+        if (!pdfPath) {
+            throw new Error(
+                `Không tìm thấy tệp gốc của báo cáo ${reportId} `
+                + `(đường dẫn đã lưu: ${originalFilePath}).`
+            );
+        }
 
         // ========================================
         // CHUẨN HÓA PDF
@@ -237,7 +245,7 @@ async function processAndHighlightReport(
 
             pdfPath =
                 await convertDocxToPdf(
-                    originalFilePath
+                    pdfPath
                 );
         }
         const pdfPages =

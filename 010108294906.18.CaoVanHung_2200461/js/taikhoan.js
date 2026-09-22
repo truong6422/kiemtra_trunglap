@@ -47,7 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (fields.fullname) fields.fullname.value = data.ho_ten || data.fullname || '';
         if (fields.email) fields.email.value = data.email || '';
-        if (fields.studentId) fields.studentId.value = data.ma_sinh_vien || data.student_id || '';
+        // Ô mã sinh viên giờ hiện thẳng id_sinh_vien — hồ sơ chỉ còn một mã
+        if (fields.studentId) fields.studentId.value = data.student_id || data.id_sinh_vien || '';
         if (fields.className) fields.className.value = data.lop || data.class_name || '';
         if (fields.course) fields.course.value = data.khoa_hoc || data.course || '';
         // Số báo cáo là số đếm do hệ thống tự tính, không phải ô người dùng nhập,
@@ -119,7 +120,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const payload = {
                 ho_ten: fields.fullname ? fields.fullname.value.trim() : '',
                 email: fields.email ? fields.email.value.trim() : '',
-                ma_sinh_vien: fields.studentId ? fields.studentId.value.trim() : '',
+                // Mã này được máy chủ ghi thẳng vào id_sinh_vien của hồ sơ
+                student_id: fields.studentId ? fields.studentId.value.trim() : '',
                 lop: fields.className ? fields.className.value.trim() : '',
                 khoa_hoc: fields.course ? fields.course.value.trim() : ''
             };

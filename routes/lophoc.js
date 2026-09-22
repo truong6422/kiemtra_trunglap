@@ -1,6 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const LopHoc = require('../models/lop_hoc');
+const {
+    bangTraMaSinhVien,
+    maSinhVienCua,
+    dungThanhVien,
+    laCungNguoi,
+    boSungMaTaiKhoan
+} = require('../utils/thanh_vien_lop');
 
 // API POST: Tạo lớp học mới và lưu vào MongoDB (collection 'lop_hoc')
 router.post('/', async (req, res) => {
@@ -26,21 +33,31 @@ router.post('/', async (req, res) => {
         
         if (Array.isArray(danh_sach_email_nhap) && danh_sach_email_nhap.length > 0) {
             const usersFound = await NguoiDung.find({ email: { $in: danh_sach_email_nhap } });
-            thanhVienHopLe = usersFound.map(u => ({
-                id_nguoi_dung: u.id_nguoi_dung,
-                ho_ten: u.ho_ten || 'Thành viên',
-                email: u.email
-            }));
+
+            const bangMa = await bangTraMaSinhVien(
+                usersFound.map(u => u.id_nguoi_dung));
+
+            thanhVienHopLe = usersFound.map(
+                u => dungThanhVien(u, bangMa.get(u.id_nguoi_dung)));
         }
 
         // Đảm bảo chủ lớp luôn có trong danh sách thành viên
         const owner = await NguoiDung.findOne({ id_nguoi_dung: id_nguoi_dung });
-        if (owner && !thanhVienHopLe.some(tv => tv.id_nguoi_dung === id_nguoi_dung)) {
-            thanhVienHopLe.unshift({
-                id_nguoi_dung: owner.id_nguoi_dung,
-                ho_ten: owner.ho_ten || 'Chủ lớp',
-                email: owner.email || ''
-            });
+
+        if (owner) {
+            const maChuLop = await maSinhVienCua(id_nguoi_dung);
+
+            const daCo = thanhVienHopLe.some(
+                tv => laCungNguoi(tv, {
+                    idSinhVien: maChuLop,
+                    idNguoiDung: id_nguoi_dung
+                }));
+
+            if (!daCo) {
+                thanhVienHopLe.unshift(dungThanhVien(
+                    { ho_ten: owner.ho_ten || 'Chủ lớp', email: owner.email },
+                    maChuLop));
+            }
         }
 
         const currentTime = new Date();
@@ -83,10 +100,17 @@ router.get('/kiem-tra-ma-lop/:maLop', async (req, res) => {
         const lopHoc = await LopHoc.findOne({ ma_lop: maLop });
 
         if (lopHoc) {
-            return res.json({ 
-                success: true, 
-                message: 'Tìm thấy lớp học!', 
-                data: lopHoc 
+            const duLieu = lopHoc.toObject ? lopHoc.toObject() : lopHoc;
+
+            // Gắn kèm mã tài khoản cho từng thành viên — xem ghi chú ở API
+            // lấy lớp theo người dùng bên dưới.
+            duLieu.danh_sach_thanh_vien =
+                await boSungMaTaiKhoan(duLieu.danh_sach_thanh_vien);
+
+            return res.json({
+                success: true,
+                message: 'Tìm thấy lớp học!',
+                data: duLieu
             });
         } else {
             return res.json({ 
@@ -168,17 +192,21 @@ router.post('/tham-gia', async (req, res) => {
         }
 
         // 4. Kiểm tra xem thành viên đã có trong danh sách chưa
-        const daThamGia = lopHoc.danh_sach_thanh_vien.some(tv => tv.id_nguoi_dung === id_nguoi_dung);
+        const maSinhVien = await maSinhVienCua(id_nguoi_dung);
+
+        const daThamGia = lopHoc.danh_sach_thanh_vien.some(
+            tv => laCungNguoi(tv, {
+                idSinhVien: maSinhVien,
+                idNguoiDung: id_nguoi_dung
+            }));
+
         if (daThamGia) {
             return res.status(400).json({ success: false, message: 'Bạn đã tham gia lớp học này trước đó rồi!' });
         }
 
         // 5. Thêm thông tin chuẩn từ bảng nguoi_dung vào mảng danh_sach_thanh_vien
-        lopHoc.danh_sach_thanh_vien.push({
-            id_nguoi_dung: nguoiDung.id_nguoi_dung,
-            ho_ten: nguoiDung.ho_ten,
-            email: nguoiDung.email || ''
-        });
+        lopHoc.danh_sach_thanh_vien.push(
+            dungThanhVien(nguoiDung, maSinhVien));
         lopHoc.ngay_cap_nhat = new Date();
         await lopHoc.save();
         res.status(200).json({ success: true, message: 'Tham gia lớp học thành công!', data: lopHoc });
@@ -207,9 +235,17 @@ router.delete('/:idLop/thanh-vien/:idUser', async (req, res) => {
             });
         }
 
-        // Lọc bỏ thành viên cần xóa khỏi mảng
-        lopHoc.danh_sach_thanh_vien = lopHoc.danh_sach_thanh_vien.filter(tv => tv.id_nguoi_dung !== idUser);
-        
+        // Giao diện vẫn gọi API này theo mã tài khoản, còn danh sách thành viên
+        // đã chuyển sang mã sinh viên, nên phải tra sang trước khi lọc.
+        const maSinhVienCanXoa = await maSinhVienCua(idUser);
+
+        lopHoc.danh_sach_thanh_vien = lopHoc.danh_sach_thanh_vien.filter(
+            tv => !laCungNguoi(tv, {
+                idSinhVien: maSinhVienCanXoa,
+                idNguoiDung: idUser
+            }));
+
+
         await lopHoc.save();
         res.json({ success: true, message: 'Đã xóa thành viên thành công khỏi CSDL', data: lopHoc });
     } catch (error) {
@@ -242,18 +278,33 @@ router.put('/:id/thanh-vien', async (routerReq, routerRes) => {
         const NguoiDung = require('../models/nguoi_dung'); // Model bảng người dùng của bạn (đổi tên biến cho khớp với dự án)
         const LopHoc = require('../models/lop_hoc');
 
-        // Xử lý vòng lặp để tra cứu từng email và gán đúng id_nguoi_dung thực tế từ CSDL
-        const processedMembers = [];
-        for (const member of danh_sach_thanh_vien) {
-            // Tìm trong bảng nguoi_dung xem email này có tồn tại không
-            const userInDb = await NguoiDung.findOne({ email: member.email });
-            
-            processedMembers.push({
-                id_nguoi_dung: userInDb ? userInDb.id_nguoi_dung : 'N/A', // Lấy đúng id_nguoi_dung nếu tìm thấy
-                ho_ten: userInDb ? userInDb.ho_ten : (member.ho_ten || 'Thành viên'),
-                email: member.email
-            });
-        }
+        // Giao diện chỉ gửi lên email, nên tra sang tài khoản rồi tra tiếp sang
+        // hồ sơ sinh viên để lấy mã sinh viên — thứ mà danh sách thành viên lưu.
+        const danhSachEmail = danh_sach_thanh_vien.map(m => m.email);
+
+        const dsTaiKhoan = await NguoiDung
+            .find({ email: { $in: danhSachEmail } })
+            .select('id_nguoi_dung ho_ten email')
+            .lean();
+
+        const taiKhoanTheoEmail = new Map(dsTaiKhoan.map(u => [u.email, u]));
+
+        const bangMa = await bangTraMaSinhVien(
+            dsTaiKhoan.map(u => u.id_nguoi_dung));
+
+        const processedMembers = danh_sach_thanh_vien.map(member => {
+            const userInDb = taiKhoanTheoEmail.get(member.email);
+
+            return dungThanhVien(
+                {
+                    ho_ten: userInDb
+                        ? userInDb.ho_ten
+                        : (member.ho_ten || 'Thành viên'),
+                    email: member.email
+                },
+                userInDb ? bangMa.get(userInDb.id_nguoi_dung) : ''
+            );
+        });
 
         // Cập nhật vào bảng lop_hoc
         const updatedClass = await LopHoc.findOneAndUpdate(
@@ -288,18 +339,37 @@ router.get('/nguoi-dung/:id_nguoi_dung', async (req, res) => {
         const LopHoc = require('../models/lop_hoc');
         const NguoiDung = require('../models/nguoi_dung');
 
-        const listClasses = await LopHoc.find({
-            $or: [
-                { id_nguoi_dung: id_nguoi_dung },
-                { "danh_sach_thanh_vien.id_nguoi_dung": id_nguoi_dung }
-            ]
-        }).lean();
+        // Danh sách thành viên nhận diện người học bằng mã sinh viên, nhưng
+        // đường dẫn này vẫn nhận mã tài khoản. Tìm theo cả hai để những lớp
+        // chưa kịp chuyển đổi dữ liệu cũng vẫn hiện ra.
+        const maSinhVien = await maSinhVienCua(id_nguoi_dung);
+
+        const dieuKien = [
+            { id_nguoi_dung: id_nguoi_dung },
+            { "danh_sach_thanh_vien.id_nguoi_dung": id_nguoi_dung }
+        ];
+
+        // Lop tao tu truoc dot chuyen doi con luu ma tai khoan, nen van tim
+        // theo ca hai. Khong co ho so sinh vien thi bo qua dieu kien nay.
+        if (maSinhVien) {
+            dieuKien.push({ "danh_sach_thanh_vien.id_sinh_vien": maSinhVien });
+        }
+
+        const listClasses = await LopHoc.find({ $or: dieuKien }).lean();
 
         // Lấy tên chính xác của người tạo lớp dựa vào id_nguoi_dung gốc
         const enrichedClasses = await Promise.all(listClasses.map(async (lop) => {
             const chuLop = await NguoiDung.findOne({ id_nguoi_dung: lop.id_nguoi_dung }).lean();
+
+            // Cơ sở dữ liệu lưu thành viên theo mã sinh viên, còn màn hình lớp
+            // học vẫn đối chiếu người tạo lớp theo mã tài khoản. Gắn kèm mã tài
+            // khoản vào bản trả về để giao diện không phải tra thêm lần nữa;
+            // bản ghi trong cơ sở dữ liệu vẫn chỉ giữ mã sinh viên.
+            const thanhVien = await boSungMaTaiKhoan(lop.danh_sach_thanh_vien);
+
             return {
                 ...lop,
+                danh_sach_thanh_vien: thanhVien,
                 ho_ten_chu_lop: chuLop ? chuLop.ho_ten : 'Chủ lớp' // Tên của người tạo lớp
             };
         }));

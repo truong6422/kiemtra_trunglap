@@ -40,20 +40,20 @@ const baiTapSchema = new mongoose.Schema({
         default: null 
     }, // Liên kết đến bảng ket_qua_kiem_tra (FK)
     danh_sach_nop_bai: [{
+        // Mã sinh viên thật (ví dụ 2200461), không phải id_nguoi_dung
         id_sinh_vien: { type: String },
-        ma_sinh_vien: { type: String },
         ho_ten: { type: String },
-        trang_thai_nop: { 
-            type: String, 
-            enum: ['Chưa nộp', 'Đã nộp'], 
-            default: 'Chưa nộp' 
+        trang_thai_nop: {
+            type: String,
+            enum: ['Chưa nộp', 'Đã nộp'],
+            default: 'Chưa nộp'
         },
         thoi_gian_nop: { type: Date, default: null },
-        danh_sach_tep: [{
-            ten_tep: { type: String }, // Tên file bỏ đuôi
-            duong_dan: { type: String }, // Đường dẫn file
-            kich_thuoc: { type: String } // Kích thước file
-        }]
+        // Tên tệp sinh viên đã nộp. Mỗi bài tập chỉ nhận một tài liệu nên đây là
+        // một tên chứ không phải danh sách như trước.
+        ten_tep: { type: String, default: "" },
+        // Mã báo cáo đang được nộp cho bài tập này, để mở thẳng trang chi tiết
+        id_bao_cao: { type: String, default: "" }
     }], // Mảng quản lý nộp bài của sinh viên
     ngay_tao: { 
         type: Date, 

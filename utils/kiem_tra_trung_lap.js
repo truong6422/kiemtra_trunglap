@@ -42,6 +42,23 @@ try {
 
 
 /**
+ * Đổi tổng điểm của một thuật toán thành điểm trung bình theo phần trăm.
+ *
+ * Điểm từng câu luôn nằm trong khoảng 0–1, nên trung bình cũng vậy. Vẫn chặn
+ * trần 100 để một bản ghi cũ lỡ có số lệch cũng không làm bảng thống kê hiện ra
+ * con số vượt mức.
+ */
+function trungBinhPhanTram(tongDiem, soCau) {
+
+    if (!soCau || soCau <= 0) return 0;
+
+    const phanTram = (tongDiem / soCau) * 100;
+
+    return Math.round(Math.min(100, Math.max(0, phanTram)));
+}
+
+
+/**
  * Hàm tách từ: Chuẩn hóa chuỗi, loại bỏ ký tự đặc biệt, chuyển về chữ thường,
  * lọc bỏ từ dừng, số thuần túy và các từ quá ngắn.
  */
@@ -191,6 +208,37 @@ async function checkPlagiarism(
             }
         }
     }
+
+    // Quy bộ trọng số về tổng bằng 1 trước khi đem đi tính.
+    //
+    // Quản trị viên được đặt trọng số tuỳ ý, kể cả 0.5 / 0.5 / 0.3. Phần tính
+    // điểm giống nhau là trung bình có trọng số, nên nếu cộng thẳng bộ số có
+    // tổng 1.3 thì điểm của một câu chép nguyên văn ra 1.3 — tỉ lệ trùng của cả
+    // bài vọt lên trên 100%. Chia mỗi trọng số cho tổng giữ nguyên tương quan
+    // giữa ba thuật toán mà điểm vẫn nằm trong khoảng 0–1, nên đổi sang bộ số
+    // nào thì ngưỡng trùng lặp vẫn mang đúng ý nghĩa cũ.
+    const tongTrongSo = Object.values(trongSo)
+        .reduce((tong, so) => tong + so, 0);
+
+    if (tongTrongSo > 0) {
+        for (const ma of Object.keys(trongSo)) {
+            trongSo[ma] = trongSo[ma] / tongTrongSo;
+        }
+    } else {
+        // Tắt sạch cả ba thuật toán thì không còn gì để so; quay về bộ mặc định
+        // thay vì chia cho 0 rồi cho ra NaN.
+        trongSo.TFIDF_COSINE = 0.4;
+        trongSo.WINNOWING = 0.4;
+        trongSo.JACCARD = 0.2;
+    }
+
+    console.log(
+        `[TRONG_SO] Sau khi quy về tổng 1: `
+        + `TFIDF_COSINE=${trongSo.TFIDF_COSINE.toFixed(4)} `
+        + `WINNOWING=${trongSo.WINNOWING.toFixed(4)} `
+        + `JACCARD=${trongSo.JACCARD.toFixed(4)} `
+        + `(tổng khai báo ban đầu: ${tongTrongSo.toFixed(2)})`
+    );
 
 
     const tuVungMap =
@@ -642,13 +690,13 @@ async function checkPlagiarism(
 
                     so_doan_trung: 0,
 
+                    so_doan_chap_va: 0,
+
                     tong_cosine: 0,
 
                     tong_jaccard: 0,
 
-                    tong_winnowing: 0,
-
-                    tong_similarity: 0
+                    tong_winnowing: 0
                 };
             }
 
@@ -660,6 +708,12 @@ async function checkPlagiarism(
             const key =
                 `${source.id_bao_cao}_${sentence.chi_so_cau_kiem_tra}`;
 
+            // Một câu của người nộp có thể khớp với nhiều câu trong cùng một
+            // báo cáo mẫu. Nếu mỗi lần khớp đều cộng thêm điểm cosine/jaccard/
+            // winnowing mà số câu trùng chỉ đếm một lần thì lúc chia ra trung
+            // bình sẽ lớn hơn 1, nên bảng thống kê hiện ra những con số vô lý
+            // như 128%. Chỉ giữ lần khớp tốt nhất của mỗi câu với mỗi báo cáo
+            // mẫu thì tử số và mẫu số mới đếm cùng một thứ.
             if (
                 !countedMap.has(key)
             ) {
@@ -671,19 +725,15 @@ async function checkPlagiarism(
                 tk.so_tu_trung +=
                     sentence.so_tu;
 
+                tk.tong_cosine +=
+                    source.cosine;
+
+                tk.tong_jaccard +=
+                    source.jaccard;
+
+                tk.tong_winnowing +=
+                    source.winnowing;
             }
-
-            tk.tong_cosine +=
-                source.cosine;
-
-            tk.tong_jaccard +=
-                source.jaccard;
-
-            tk.tong_winnowing +=
-                source.winnowing;
-
-            tk.tong_similarity +=
-                source.do_tuong_dong;
         }
     }
 
@@ -700,6 +750,32 @@ async function checkPlagiarism(
         if (tk) {
 
             tk.so_doan_trung++;
+        }
+    }
+
+    // Đoạn chắp vá: hai câu nằm rời nhau trong bài mẫu bị ghép liền lại trong
+    // bài nộp. Đây cũng là một dạng trùng theo đoạn nên phải đếm riêng cho từng
+    // báo cáo mẫu, không gộp chung vào so_doan_trung.
+    for (
+        const passage
+        of chiTietDoanChapVaFinal
+    ) {
+
+        // Một đoạn chắp vá được ghép từ nhiều câu rời nhau nên có thể dính tới
+        // vài báo cáo mẫu cùng lúc; đoạn đó tính cho từng nguồn góp mặt.
+        const dsNguon =
+            Array.isArray(passage.danh_sach_id_bao_cao_nguon)
+                ? passage.danh_sach_id_bao_cao_nguon
+                : [];
+
+        for (const idNguon of new Set(dsNguon)) {
+
+            const tk = thongKeMap[idNguon];
+
+            if (tk) {
+
+                tk.so_doan_chap_va++;
+            }
         }
     }
     const danhSachIdBaoCaoNguon =
@@ -750,6 +826,9 @@ async function checkPlagiarism(
                 so_doan_trung:
                     tk.so_doan_trung,
 
+                so_doan_chap_va:
+                    tk.so_doan_chap_va,
+
                 ti_le_trung_lap:
                     tongSoTu > 0
                         ? Math.round(
@@ -760,45 +839,26 @@ async function checkPlagiarism(
                         ) / 100
                         : 0,
 
-                cosine_trung_binh:
-                    tk.so_cau_trung > 0
-                        ? Math.round(
-                            (
-                                tk.tong_cosine /
-                                tk.so_cau_trung
-                            ) * 100
-                        )
-                        : 0,
+                // Ba con số dưới đây là điểm trung bình của từng thuật toán
+                // trên các câu trùng với đúng báo cáo mẫu này, quy ra phần
+                // trăm. Mỗi câu chỉ góp một lần nên luôn nằm trong 0–100.
+                cosine:
+                    trungBinhPhanTram(
+                        tk.tong_cosine,
+                        tk.so_cau_trung
+                    ),
 
-                jaccard_trung_binh:
-                    tk.so_cau_trung > 0
-                        ? Math.round(
-                            (
-                                tk.tong_jaccard /
-                                tk.so_cau_trung
-                            ) * 100
-                        )
-                        : 0,
+                jaccard:
+                    trungBinhPhanTram(
+                        tk.tong_jaccard,
+                        tk.so_cau_trung
+                    ),
 
-                winnowing_trung_binh:
-                    tk.so_cau_trung > 0
-                        ? Math.round(
-                            (
-                                tk.tong_winnowing /
-                                tk.so_cau_trung
-                            ) * 100
-                        )
-                        : 0,
-
-                tong_hop_trung_binh:
-                    tk.so_cau_trung > 0
-                        ? Math.round(
-                            (
-                                tk.tong_similarity /
-                                tk.so_cau_trung
-                            ) * 100
-                        )
-                        : 0
+                winnowing:
+                    trungBinhPhanTram(
+                        tk.tong_winnowing,
+                        tk.so_cau_trung
+                    )
             }));
 
     // ==========================================================
@@ -820,18 +880,11 @@ async function checkPlagiarism(
     // RETURN
     // ==========================================================
 
-    fs.appendFileSync(
-        'debug_plagiarism.txt',
-        `
-==============
-tongSoCau=${tongSoCau}
-tongSoCauTrung=${tongSoCauTrung}
-tongSoTu=${tongSoTu}
-tongSoTuTrung=${tongSoTuTrung}
-tiLe=${tongSoTu > 0 ? (tongSoTuTrung / tongSoTu) * 100 : 0}
-==============
-\n`,
-        'utf8'
+    console.log(
+        `[KET_QUA] ${idBaoCaoHienTai} | `
+        + `${tongSoCauTrung}/${tongSoCau} câu trùng | `
+        + `${tongSoTuTrung}/${tongSoTu} từ trùng | `
+        + `tỉ lệ ${Math.round(tiLeTrungLap * 100) / 100}%`
     );
 
     return {

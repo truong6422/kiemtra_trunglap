@@ -72,10 +72,42 @@ async function startWorker() {
                 );
             }
 
+            // Xoá sạch kết quả của những lần chấm trước cho chính báo cáo này.
+            //
+            // Mỗi lượt chấm sinh một mã kiểm tra mới. Trước đây bản ghi cũ được
+            // để nguyên, nên một báo cáo chấm lại ba lần thì trong cơ sở dữ liệu
+            // có ba bộ dữ liệu chồng lên nhau. Bảng thống kê lấy theo mã kiểm
+            // tra mới nhất, còn chi tiết câu trùng lại đọc theo mã báo cáo nên
+            // vớ phải dữ liệu của lượt cũ: danh sách bên trái hiện đủ 45 nguồn
+            // mà bấm vào nguồn nào bảng bên phải cũng trống trơn. Đây cũng là
+            // lý do đổi trọng số rồi chấm lại thì màn hình không đổi theo.
+            const dsXoa = await Promise.all([
+                ThongKe.deleteMany({ id_bao_cao: idBaoCaoMoi }),
+                ChiTietCauTrung.deleteMany({ id_bao_cao: idBaoCaoMoi }),
+                ChiTietDoanTrung.deleteMany({ id_bao_cao: idBaoCaoMoi }),
+                ChiTietDoanChapVa.deleteMany({ id_bao_cao: idBaoCaoMoi }),
+                ChiTietCauTrungHighlight.deleteMany({ id_bao_cao: idBaoCaoMoi }),
+                KetQuaKiemTra.deleteMany({ id_bao_cao: idBaoCaoMoi })
+            ]);
+
+            const tongXoa = dsXoa.reduce((t, r) => t + (r.deletedCount || 0), 0);
+
+            if (tongXoa > 0) {
+                console.log(
+                    `🧹 Đã dọn ${tongXoa} bản ghi của lượt chấm trước cho ${idBaoCaoMoi}`
+                );
+            }
+
+            // Không truyền ngưỡng ở đây.
+            //
+            // Trước đây chỗ này gán cứng 0.6, nên quản trị viên kéo thanh ngưỡng
+            // trong màn Quản lý cấu hình xong chạy lại thì kết quả vẫn y nguyên —
+            // trông như màn cấu hình không có tác dụng gì. Để trống thì module
+            // đối sánh tự đọc nguong_trung_lap trong bản ghi cấu hình.
             const ketQuaThuAtToan =
                 await checkPlagiarism(
                     idBaoCaoMoi,
-                    0.6
+                    null
                 );
 
             // Cập nhật tiến trình công việc: 80%

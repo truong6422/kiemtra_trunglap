@@ -68,9 +68,9 @@ router.get('/tai-khoan', async (req, res) => {
         // Hồ sơ chi tiết nằm ở hai bảng riêng tuỳ vai trò
         const [dsSinhVien, dsGiangVien] = await Promise.all([
             SinhVien.find({ id_nguoi_dung: { $in: dsId } })
-                .select('id_nguoi_dung id_sinh_vien ma_sinh_vien lop khoa_hoc').lean(),
+                .select('id_nguoi_dung id_sinh_vien lop khoa_hoc').lean(),
             GiangVien.find({ id_nguoi_dung: { $in: dsId } })
-                .select('id_nguoi_dung id_giang_vien ma_giang_vien bo_mon so_lan_kiem_tra').lean()
+                .select('id_nguoi_dung id_giang_vien bo_mon so_lan_kiem_tra').lean()
         ]);
 
         const hoSoSinhVien = new Map(dsSinhVien.map(x => [x.id_nguoi_dung, x]));
@@ -109,8 +109,11 @@ router.get('/tai-khoan', async (req, res) => {
                 trang_thai: nd.trang_thai,
                 ngay_tao: nd.ngay_tao,
 
+                // Hồ sơ giờ chỉ còn một mã duy nhất nên hai trường này cùng
+                // lấy từ một chỗ. Vẫn giữ cả hai tên vì giao diện đang đọc
+                // ma_dinh_danh để in ra cột mã.
                 ma_ho_so: sv ? sv.id_sinh_vien : (gv ? gv.id_giang_vien : ""),
-                ma_dinh_danh: sv ? sv.ma_sinh_vien : (gv ? gv.ma_giang_vien : ""),
+                ma_dinh_danh: sv ? sv.id_sinh_vien : (gv ? gv.id_giang_vien : ""),
 
                 // Lớp lấy từ hồ sơ sinh viên; nếu đang xem theo phạm vi một
                 // giảng viên thì ưu tiên mã lớp mà người đó đang theo học.

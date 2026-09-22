@@ -8,6 +8,7 @@ const SinhVien = require('../models/sinh_vien');
 const NguoiDung = require('../models/nguoi_dung');
 const BaoCao = require('../models/bao_cao');
 const ThongKe = require('../models/thong_ke');
+const { boSungMaTaiKhoan } = require('../utils/thanh_vien_lop');
 
 /**
  * Thành viên lớp chỉ lưu id_nguoi_dung, còn bài nộp lại ghi theo mã sinh viên.
@@ -16,7 +17,7 @@ const ThongKe = require('../models/thong_ke');
 async function layBangTraSinhVien(dsIdNguoiDung) {
 
     const ds = await SinhVien.find({ id_nguoi_dung: { $in: dsIdNguoiDung } })
-        .select('id_sinh_vien id_nguoi_dung ma_sinh_vien').lean();
+        .select('id_sinh_vien id_nguoi_dung').lean();
 
     const theoNguoiDung = new Map();
     const theoSinhVien = new Map();
@@ -45,7 +46,9 @@ async function layBangTraSinhVien(dsIdNguoiDung) {
  */
 async function boNguoiKhongPhaiHocVien(thanhVien, idChuLop) {
 
-    let ds = thanhVien || [];
+    // Danh sách thành viên lưu theo mã sinh viên; phần tính toán bên dưới nối
+    // dữ liệu theo mã tài khoản nên gắn thêm mã đó vào trước.
+    let ds = await boSungMaTaiKhoan(thanhVien);
     if (!ds.length) return ds;
 
     if (idChuLop) {
@@ -304,7 +307,7 @@ router.get('/bai-tap/:id_bai_tap', async (req, res) => {
                 id_nguoi_dung: tv.id_nguoi_dung,
                 ho_ten: tv.ho_ten,
                 email: tv.email || "",
-                ma_sinh_vien: sv ? (sv.ma_sinh_vien || sv.id_sinh_vien) : ""
+                id_sinh_vien: sv ? sv.id_sinh_vien : ""
             };
 
             if (!banNop) {

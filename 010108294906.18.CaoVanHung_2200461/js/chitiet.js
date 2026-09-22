@@ -817,212 +817,25 @@ tenTaiLieuMau
 
                             console.log("================================");
                             console.log("📚 NGUỒN:", tenTaiLieuMau);
-                            console.log("🆔 ID:", idBaoCaoNguon);
-
-                            console.log(
-                                "✅ SỐ CÂU TRÙNG:",
-                                dsCauTrung.length
-                            );
-
-                            console.log(
-                                "✅ SỐ ĐOẠN TRÙNG:",
-                                dsDoanTrung.length
-                            );
-
-                            console.log(
-                                "✅ SỐ ĐOẠN CHẮP VÁ:",
-                                dsDoanChapVa.length
-                            );
-
-                            console.log(
-                                "CHI TIẾT CÂU:",
-                                dsCauTrung
-                            );
-                            console.log(
-                                "MAU CAU TRUNG:",
-                                dsCauTrung[0]
-                            );
-                            console.log(
-                                "CHI TIẾT ĐOẠN:",
-                                dsDoanTrung
-                            );
-
-                            console.log(
-                                "CHI TIẾT CHẮP VÁ:",
-                                dsDoanChapVa
-                            );
                             window.currentSourceData = {
                                 source: item,
                                 dsCauTrung,
                                 dsDoanTrung,
                                 dsDoanChapVa
                             };
+
                             const panel =
                                 document.getElementById(
                                     "matchedSentencePanel"
                                 );
-console.log(
-    "PANEL TIM THAY:",
-    panel
-);
 
-console.log(
-    "SO CAU:",
-    dsCauTrung.length
-);
-
-console.log(
-    "SO DOAN:",
-    dsDoanTrung.length
-);
-                            panel.innerHTML = `
-    <h3 style="
-        margin-bottom:12px;
-        color:#0f172a;
-    ">
-        ${tenTaiLieuMau}
-    </h3>
-`;
-                            dsCauTrung.forEach((cau, index) => {
-
-                                const nguon =
-                                    cau.danh_sach_nguon.find(
-                                        n => n.id_bao_cao === idBaoCaoNguon
-                                    );
-
-                                if (!nguon) return;
-
-                                panel.innerHTML += `
-        <div class="khoi-cau-trung" data-chi-so-cau="${index}" style="
-            border:1px solid #ddd;
-            border-radius:8px;
-            margin-bottom:12px;
-            overflow:hidden;
-            cursor:pointer;
-        " title="Bấm để xem vị trí câu này trong tài liệu">
-
-            <div style="
-                background:#f1f5f9;
-                padding:8px;
-                font-weight:bold;
-                display:flex;
-                justify-content:space-between;
-            ">
-                <span>Câu trùng ${index + 1}</span>
-                <span style="color:#2563eb;font-weight:normal;">Xem trong bài &rsaquo;</span>
-            </div>
-
-            <div style="
-                padding:10px;
-                background:#fff7cc;
-            ">
-                <b>Bài nộp</b><br>
-                ${cau.cau_kiem_tra}
-            </div>
-
-            <div style="
-                padding:10px;
-                background:#dbeafe;
-            ">
-                <b>Nguồn</b><br>
-                ${nguon.cau_nguon}
-            </div>
-
-        </div>
-    `;
+                            veBangChiTietTrung(panel, {
+                                tenTaiLieuMau,
+                                idBaoCaoNguon,
+                                dsCauTrung,
+                                dsDoanTrung,
+                                dsDoanChapVa
                             });
-                            if (dsDoanTrung.length > 0) {
-
-                                panel.innerHTML += `
-        <h3 style="
-            margin-top:15px;
-            margin-bottom:10px;
-            color:#dc2626;
-        ">
-            Đoạn trùng
-        </h3>
-    `;
-
-                                dsDoanTrung.forEach((doan, index) => {
-
-                                    panel.innerHTML += `
-            <div style="
-                border:1px solid #ddd;
-                border-radius:8px;
-                margin-bottom:12px;
-                overflow:hidden;
-            ">
-
-                <div style="
-                    background:#fef2f2;
-                    padding:8px;
-                    font-weight:bold;
-                ">
-                    Đoạn ${index + 1}
-                </div>
-
-                <div style="
-                    padding:10px;
-                    background:#fff7cc;
-                ">
-                    ${doan.doan_kiem_tra}
-                </div>
-
-                <div style="
-                    padding:10px;
-                    background:#dbeafe;
-                ">
-                    ${doan.doan_nguon}
-                </div>
-
-            </div>
-        `;
-                                });
-                            }
-
-                            // Bấm vào một câu ở bảng bên phải thì cuộn tài liệu
-                            // tới đúng vị trí câu đó và làm nổi nó lên
-                            panel
-                                .querySelectorAll(".khoi-cau-trung")
-                                .forEach(khoi => {
-
-                                    khoi.addEventListener("click", () => {
-
-                                        const chiSo =
-                                            Number(khoi.dataset.chiSoCau);
-
-                                        const timThay =
-                                            window.PdfHighlightViewer &&
-                                            PdfHighlightViewer.cuonToiCau(chiSo);
-
-                                        // Làm nổi khối đang chọn ở bảng bên phải
-                                        panel
-                                            .querySelectorAll(".khoi-cau-trung")
-                                            .forEach(k => {
-                                                k.style.borderColor = "#ddd";
-                                                k.style.boxShadow = "none";
-                                            });
-
-                                        khoi.style.borderColor =
-                                            timThay ? "#f57c00" : "#cbd5e1";
-                                        khoi.style.boxShadow =
-                                            timThay
-                                                ? "0 0 0 2px rgba(245,124,0,.25)"
-                                                : "none";
-
-                                        const oThongBao =
-                                            document.getElementById("pdfMatchInfo");
-
-                                        if (oThongBao && !timThay) {
-                                            oThongBao.style.display = "flex";
-                                            oThongBao.textContent =
-                                                "Không xác định được vị trí câu này trong tài liệu"
-                                                + " (chữ trong PDF khác với chữ đã trích xuất).";
-                                        }
-                                    });
-                                });
-
-                            console.log("================================");
                         });
                         card.appendChild(
                             header

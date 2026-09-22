@@ -192,7 +192,7 @@ window.TkLopHoc = (() => {
             const muc = T().xepMuc(tiLe);
 
             return `<tr>
-                        <td class="tk-ma">${T().thoat(n.ma_sinh_vien || n.id_nguoi_dung)}</td>
+                        <td class="tk-ma">${T().thoat(n.id_sinh_vien || n.id_nguoi_dung)}</td>
                         <td style="text-align:left">${T().thoat(n.ho_ten)}</td>
                         <td style="text-align:left">${T().thoat(n.email) || '<span class="tk-so--trong">--</span>'}</td>
                         ${coTiLe ? `
@@ -292,7 +292,7 @@ window.TkLopHoc = (() => {
         const T_ = T();
 
         const dongDaNop = (d.da_nop || []).map(n => [
-            n.ma_sinh_vien || "",
+            n.id_sinh_vien || "",
             n.ho_ten || "",
             n.email || "",
             "Đã nộp",
@@ -305,7 +305,7 @@ window.TkLopHoc = (() => {
         ]);
 
         const dongChuaNop = (d.chua_nop || []).map(n => [
-            n.ma_sinh_vien || "",
+            n.id_sinh_vien || "",
             n.ho_ten || "",
             n.email || "",
             "Chưa nộp",

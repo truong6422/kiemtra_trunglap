@@ -100,15 +100,46 @@
             .reduce((s, t) => s + Math.round((Number(t.trong_so) || 0) * 100), 0);
     }
 
+    /**
+     * Cho biết bộ trọng số đang đặt sẽ được quy về tỉ lệ nào khi đem đi tính.
+     *
+     * Tổng không bắt buộc bằng 100%. Máy chủ chia cả bộ cho tổng của chúng
+     * trước khi chấm, nên 50/50/30 và 38.5/38.5/23 cho ra cùng một kết quả.
+     * Hiện sẵn dãy số sau khi quy đổi để người dùng thấy rõ điều đó.
+     */
     function capNhatTong() {
+        const dangBat = cauHinh.danh_sach_thuat_toan.filter(t => t.trang_thai);
         const tong = tinhTong();
-        const dung = tong === 100;
+        const o = $("chTong");
 
-        $("chTong").className = "ch-tong" + (dung ? "" : " ch-tong--sai");
-        $("chTong").innerHTML = dung
-            ? `Tổng trọng số: <strong id="soTong">100%</strong> — hợp lệ.`
-            : `Tổng trọng số: <strong id="soTong">${tong}%</strong> — `
-            + `phải bằng 100% mới lưu được.`;
+        if (tong <= 0) {
+            o.className = "ch-tong ch-tong--sai";
+            o.innerHTML = `Tổng trọng số: <strong id="soTong">0%</strong> — `
+                + `phải lớn hơn 0 thì mới còn thuật toán nào có tiếng nói.`;
+            return;
+        }
+
+        if (tong === 100) {
+            o.className = "ch-tong";
+            o.innerHTML = `Tổng trọng số: <strong id="soTong">100%</strong> — `
+                + `dùng thẳng, không phải quy đổi.`;
+            return;
+        }
+
+        // Tổng khác 100%: vẫn lưu được, chỉ báo cho biết tỉ lệ thực tế
+        const quyDoi = dangBat
+            .map(t => {
+                const phanTram = (Number(t.trong_so) || 0) * 100;
+                return `${thoat(t.ma_thuat_toan)} `
+                    + `${(phanTram / tong * 100).toFixed(1)}%`;
+            })
+            .join(" · ");
+
+        o.className = "ch-tong ch-tong--quy-doi";
+        o.innerHTML = `Tổng trọng số: <strong id="soTong">${tong}%</strong> — `
+            + `hệ thống sẽ quy về tổng 100%: ${quyDoi}. `
+            + `Tỉ lệ giữa các thuật toán giữ nguyên nên kết quả vẫn nằm trong `
+            + `0–100%.`;
     }
 
     function veDinhDang() {
@@ -170,8 +201,9 @@
     async function luu() {
         if (!cauHinh) return;
 
-        if (tinhTong() !== 100) {
-            baoTin("Tổng trọng số của các thuật toán đang bật phải bằng 100%.", true);
+        if (tinhTong() <= 0) {
+            baoTin("Tổng trọng số của các thuật toán đang bật phải lớn hơn 0.",
+                true);
             return;
         }
 

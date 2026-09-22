@@ -53,7 +53,6 @@ async function dongBoVaiTro(idNguoiDung) {
         if (!dangLaGiangVien) {
             await GiangVien.create({
                 id_giang_vien: await maKeTiep(GiangVien, 'id_giang_vien', 'GV'),
-                ma_giang_vien: '',
                 ho_ten: nd.ho_ten || '',
                 bo_mon: '',
                 email: nd.email || '',
@@ -73,7 +72,6 @@ async function dongBoVaiTro(idNguoiDung) {
         if (!dangLaSinhVien) {
             await SinhVien.create({
                 id_sinh_vien: await maKeTiep(SinhVien, 'id_sinh_vien', 'SV'),
-                ma_sinh_vien: '',
                 ho_ten: nd.ho_ten || '',
                 lop: '',
                 khoa_hoc: '',

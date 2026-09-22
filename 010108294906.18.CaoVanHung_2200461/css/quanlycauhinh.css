@@ -267,6 +267,13 @@
     color: #b91c1c;
 }
 
+/* Tổng khác 100%: lưu được, chỉ nhắc rằng bộ số sẽ được quy đổi */
+.ch-tong--quy-doi {
+    background: #fffbeb;
+    border-color: #fde68a;
+    color: #92400e;
+}
+
 /* --- Tệp tải lên --- */
 .ch-hang {
     display: flex;

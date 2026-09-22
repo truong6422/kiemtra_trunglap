@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tài khoản</title>
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/taikhoan.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../css/header-chung.css">
@@ -79,6 +80,25 @@
             <!-- TAB 1: Thông tin cá nhân (Giữ nguyên 100% của bạn) -->
             <div id="tab-profile" class="tab-content active">
                 <h2>Thông tin cá nhân</h2>
+
+                <!-- Ảnh đại diện: bấm vào ảnh để chọn tấm khác trong máy -->
+                <div class="khung-anh-dai-dien" id="khungDoiAnhDaiDien">
+                    <img id="anhDaiDienLon" src="../images/default-avatar.png"
+                         alt="Ảnh đại diện">
+                    <div class="khung-anh-dai-dien__ben-phai">
+                        <p class="khung-anh-dai-dien__nhan">Ảnh đại diện</p>
+                        <p class="khung-anh-dai-dien__mo-ta">
+                            Bấm vào ảnh để chọn tấm khác. Nhận JPG, PNG, WEBP
+                            hoặc GIF, tối đa 5MB.
+                        </p>
+                        <button type="button" id="nutDatLaiAnhDaiDien"
+                                class="khung-anh-dai-dien__nut">
+                            Dùng ảnh mặc định theo email
+                        </button>
+                        <p class="khung-anh-dai-dien__tin" id="thongBaoAnhDaiDien"></p>
+                    </div>
+                    <input type="file" id="oChonAnhDaiDien" accept="image/*" hidden>
+                </div>
 
                 <form>
                     <div class="form-group">
@@ -190,6 +210,8 @@
     </div>
     <script src="../js/menu-theo-vai-tro.js"></script>
     <script src="../js/taikhoan.js"></script>
+    <!-- Ảnh đại diện người dùng dùng chung cho mọi trang -->
+    <script src="../js/anh-dai-dien.js"></script>
 </body>
 
 </html>

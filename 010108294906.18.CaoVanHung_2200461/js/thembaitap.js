@@ -90,15 +90,10 @@ document.addEventListener('click', async function (e) {
 // Khai báo biến lưu ID bài tập đang xem ở phạm vi toàn cục
 let currentViewingBaiTapId = null;
 
-// Đoạn code tự động cập nhật định kỳ mỗi 3 giây
-setInterval(() => {
-    if (currentViewingBaiTapId) {
-        console.log('🔄 Đang tự động làm mới dữ liệu bài nộp...');
-        
-        // Thay dòng này bằng hàm gọi API lấy lại dữ liệu bài nộp của bạn
-        // Ví dụ: loadDanhSachBaiNop(currentViewingBaiTapId);
-    }
-}, 300);
+// Trước đây chỗ này có một vòng lặp chạy ba lần mỗi giây chỉ để in ra màn hình
+// gỡ lỗi dòng chữ "đang tự động làm mới" mà không hề gọi API nào. Nó không làm
+// mới được gì, chỉ khiến bảng điều khiển của trình duyệt trôi liên tục và máy
+// chạy nặng thêm, nên đã bỏ hẳn.
 // HÀM CHUNG: Chuyển đổi định dạng thời gian cho thẻ input datetime-local
 function formatDateTimeForInput(dateString) {
     if (!dateString || dateString === "Không giới hạn") return '';
@@ -501,16 +496,15 @@ document.addEventListener('click', async function (e) {
         trang_thai: status,
         dinh_dang_file: "docx hoặc pdf",
         id_kiem_tra: null,
-        danh_sach_nop_bai: membersList.map(m => ({
-            // Thành viên lớp được lưu theo id_nguoi_dung; trước đây chỉ đọc
-            // m.id nên mã người nộp luôn rỗng.
-            id_sinh_vien: m.id_nguoi_dung || m.id || m.id_sinh_vien || "",
-            ma_sinh_vien: m.ma_sinh_vien || m.code || "",
+        // Chỉ gửi kèm danh sách thành viên; máy chủ tự tra mã sinh viên thật
+        // cho từng người rồi dựng danh sách nộp bài. Trước đây trang này tự
+        // dựng và nhét id_nguoi_dung vào ô id_sinh_vien nên mở cơ sở dữ liệu ra
+        // thấy "ND003" nằm ở cột mã sinh viên.
+        danh_sach_thanh_vien: membersList.map(m => ({
+            id_nguoi_dung: m.id_nguoi_dung || m.id || "",
+            id_sinh_vien: m.id_sinh_vien || "",
             ho_ten: m.ho_ten || m.name || "",
-            email: m.email || m.tai_khoan || m.gmail || "",
-            trang_thai_nop: "Chưa nộp",
-            thoi_gian_nop: null,
-            danh_sach_tep: []
+            email: m.email || m.tai_khoan || m.gmail || ""
         }))
     };
     try {
@@ -1109,7 +1103,12 @@ if (saveUpdateBtn) {
         }
     };
 }
-// TỰ ĐỘNG CẬP NHẬT TRẠNG THÁI GIAO DIỆN VÀ CSDL MỖI 1 GIÂY
+// Rà hạn nộp của các bài tập đang hiện trên bảng.
+//
+// Vòng này chỉ có việc phát hiện thời điểm một bài tập vừa quá hạn, mà hạn nộp
+// thì tính bằng phút. Chạy ba lần mỗi giây như trước là thừa: mỗi lượt đều đọc
+// lại toàn bộ hàng trong bảng rồi tách chuỗi ngày giờ, đủ để giao diện giật khi
+// danh sách dài. Mười giây một lượt vẫn kịp đổi nhãn sang "Đã hết hạn".
 setInterval(() => {
     const rows = document.querySelectorAll('#exerciseTableBody tr');
     if (!rows || rows.length === 0) return;
@@ -1148,7 +1147,7 @@ setInterval(() => {
             }
         }
     });
-}, 300);
+}, 10000);
 // Hàm bật tắt hiển thị bảng chi tiết bài nộp của học sinh
 function toggleStudentSubmissionDetail(rowId, iconId) {
     const detailRow = document.getElementById(rowId);

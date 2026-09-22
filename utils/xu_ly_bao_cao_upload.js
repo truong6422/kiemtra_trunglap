@@ -2,6 +2,9 @@ const crypto = require('crypto');
 
 const ChiSoCau = require('../models/chi_so_cau');
 const CauHinhHeThong = require('../models/cau_hinh_he_thong');
+const BaoCao = require('../models/bao_cao');
+const { timTepBaoCao } = require('./duong_dan_tep');
+const { trichXuatVanBan } = require('./trich_xuat_text');
 
 
 const {
@@ -43,13 +46,45 @@ async function xuLyBaoCaoUpload(
     let noiDungXuLy =
         noi_dung_tien_xu_ly;
 
+    // Chấm lại một báo cáo cũ thì trường nội dung đã trống.
+    //
+    // Nội dung văn bản chỉ được lưu lúc tải tệp lên rồi bị dọn đi cho nhẹ cơ sở
+    // dữ liệu. Vì vậy mọi lần chấm lại đều dừng ngay ở đây với câu "Báo cáo
+    // không có nội dung để xử lý", hàng chờ thử lại ba lần rồi bỏ cuộc, còn
+    // ngoài màn hình báo cáo nằm mãi ở trạng thái "Đang xử lý". Đúng cảnh gặp
+    // phải khi đổi trọng số xong bấm chấm lại. Tệp gốc vẫn nằm trong thư mục
+    // uploads nên đọc lại từ đó là chấm tiếp được.
     if (
-        !noi_dung_tien_xu_ly ||
-        typeof noi_dung_tien_xu_ly !== 'string'
+        !noiDungXuLy ||
+        typeof noiDungXuLy !== 'string' ||
+        !noiDungXuLy.trim()
     ) {
 
-        throw new Error(
-            'Báo cáo không có nội dung để xử lý.'
+        const duongDan = timTepBaoCao(baoCao.tep_tin);
+
+        if (!duongDan) {
+            throw new Error(
+                `Báo cáo ${id_bao_cao} không còn nội dung và cũng không tìm `
+                + `thấy tệp gốc để đọc lại.`
+            );
+        }
+
+        console.log(
+            `📄 ${id_bao_cao}: đọc lại nội dung từ tệp gốc để chấm lại.`
+        );
+
+        noiDungXuLy = await trichXuatVanBan(duongDan);
+
+        if (!noiDungXuLy || !noiDungXuLy.trim()) {
+            throw new Error(
+                `Không đọc được chữ nào từ tệp gốc của báo cáo ${id_bao_cao}.`
+            );
+        }
+
+        // Ghi lại để lần chấm sau khỏi phải đọc tệp lần nữa
+        await BaoCao.updateOne(
+            { id_bao_cao },
+            { $set: { noi_dung_tien_xu_ly: noiDungXuLy } }
         );
     }
 
@@ -100,6 +135,22 @@ async function xuLyBaoCaoUpload(
         `[UPLOAD] ${id_bao_cao} - Bat dau xu ly ${tongSoCau} cau`
     );
 
+
+    // Xoá chỉ số câu của lần xử lý trước cho chính báo cáo này.
+    //
+    // Các câu được chèn thêm chứ không ghi đè, nên mỗi lần chấm lại là số câu
+    // trong cơ sở dữ liệu lại cộng dồn: một bài 402 câu chấm bốn lần thành
+    // 1716 câu. Thuật toán đối sánh đếm "tổng số câu" từ chính bảng này, nên
+    // tỉ lệ trùng của cả bài bị chia cho một mẫu số phình to và cho ra con số
+    // không giống lần chạy nào.
+    const daXoaCauCu = await ChiSoCau.deleteMany({ id_bao_cao });
+
+    if (daXoaCauCu.deletedCount > 0) {
+        console.log(
+            `[UPLOAD] ${id_bao_cao} - Da xoa ${daXoaCauCu.deletedCount} cau cua `
+            + `lan xu ly truoc`
+        );
+    }
 
     let tongSoTu = 0;
     let tongSoCauHopLe = 0;

@@ -215,7 +215,7 @@ async function loadBaoCaoTable() {
 
         const response = await fetch(url);
         const result = await response.json();
-        console.log("DATA API:", result.data);
+
         if (!result.success || !result.data) {
             allBaoCaoData = [];
         } else {
@@ -264,12 +264,6 @@ function renderTablePage() {
 
         // Lấy đúng ID, Tiêu đề và Thời gian của từng item trong CSDL (không gán cứng)
         const rowId = item.id_bao_cao || item._id;
-        console.log(
-            "RENDER:",
-            rowId,
-            item.do_trung_lap,
-            item.trang_thai
-        );
         const tieuDe = item.tieu_de || 'Tài liệu chưa có tiêu đề';
 
         // Hiển thị ngày tải lên hoặc chỉnh sửa lần cuối dựa hoàn toàn vào dữ liệu của báo cáo đó
@@ -332,6 +326,12 @@ function updatePaginationUI(totalRecords, totalPages) {
  * Rút gọn danh sách báo cáo thành một chuỗi đại diện, chỉ gồm những thứ có thể
  * đổi giữa hai lượt quét: mã, trạng thái và tỉ lệ trùng. So hai chuỗi này là
  * biết dữ liệu có thay đổi hay không mà không phải so từng bản ghi.
+ *
+ * Tỉ lệ trùng phải lấy đúng trường mà máy chủ gửi về là do_trung_lap. Trước đây
+ * hàm này chỉ đọc ti_le_trung_lap — một tên không có trong dữ liệu — nên ô tỉ lệ
+ * luôn rỗng: chấm xong rồi mà vân tay vẫn y như lúc đang chạy, bảng không được
+ * vẽ lại, vòng tròn chờ quay mãi và lượt quét ba giây một lần không bao giờ
+ * dừng. Nhìn từ ngoài đúng là trang web tự tải lại liên tục.
  */
 function layVanTayDuLieu(ds) {
     if (!Array.isArray(ds)) return '';
@@ -340,7 +340,7 @@ function layVanTayDuLieu(ds) {
         .map(b => [
             b.id_bao_cao,
             b.trang_thai,
-            b.ti_le_trung_lap ?? b.ti_le_trung ?? ''
+            b.do_trung_lap ?? b.ti_le_trung_lap ?? b.ti_le_trung ?? ''
         ].join('|'))
         .join(';');
 }
@@ -348,17 +348,41 @@ function layVanTayDuLieu(ds) {
 // Vân tay của dữ liệu đang hiển thị trên bảng
 let vanTayDangHien = '';
 
+// Số lượt quét tối đa khi bảng vẫn còn tài liệu "Đang xử lý": 3 giây một lượt,
+// 200 lượt là mười phút. Quá mốc đó coi như việc chấm đã hỏng chứ không phải
+// đang chạy chậm, nên dừng hẳn thay vì gọi máy chủ mãi.
+const SO_LUOT_QUET_TOI_DA = 200;
+
 function theoDoiTrangThaiXuLy() {
 
     // Chặn hai lượt quét chồng lên nhau khi máy chủ trả chậm
     let dangQuet = false;
+    let soLuotDaQuet = 0;
+    let boDem = null;
 
-    setInterval(async () => {
+    boDem = setInterval(async () => {
         const dangXuLyElements =
             document.querySelectorAll('.badge-dang-xu-ly');
 
-        if (dangXuLyElements.length > 0 && !dangQuet) {
+        // Không còn gì đang chạy thì đặt lại bộ đếm, lần nộp sau được quét đủ
+        // mười phút chứ không ăn theo hạn mức của lần trước.
+        if (dangXuLyElements.length === 0) {
+            soLuotDaQuet = 0;
+            return;
+        }
+
+        if (soLuotDaQuet >= SO_LUOT_QUET_TOI_DA) {
+            clearInterval(boDem);
+            console.warn(
+                'Đã chờ quá lâu mà tài liệu vẫn chưa chấm xong — '
+                + 'dừng quét tự động. Tải lại trang để theo dõi tiếp.'
+            );
+            return;
+        }
+
+        if (!dangQuet) {
             dangQuet = true;
+            soLuotDaQuet++;
             try {
 
                 const userId =

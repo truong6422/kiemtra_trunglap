@@ -6,6 +6,15 @@ const NguoiDung = require('../models/nguoi_dung');
 const SinhVien = require("../models/sinh_vien");
 const GiangVien = require("../models/giang_vien");
 const { dongBoVaiTro } = require('../utils/dong_bo_vai_tro');
+const {
+  doiMaSinhVien,
+  doiMaGiangVien,
+  chuanHoaMa
+} = require('../utils/doi_ma_sinh_vien');
+const { ganAnhNeuThieu, chonAnhDaiDien } = require('../utils/anh_dai_dien');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
 
 const router = express.Router();
 
@@ -100,7 +109,11 @@ router.post('/register', async (req, res) => {
       trang_thai: true,
       ngay_tao: new Date(),
       ngay_cap_nhat: new Date(),
-      hinh_anh: ""
+      // Lấy ảnh Gravatar theo email, không có thì sinh ảnh chữ cái
+      hinh_anh: await chonAnhDaiDien({
+        email: email.trim().toLowerCase(),
+        ho_ten: fullName.trim()
+      })
     });
 
     // Tạo bản ghi cho Sinh Viên
@@ -115,7 +128,6 @@ router.post('/register', async (req, res) => {
 
       await SinhVien.create({
         id_sinh_vien: nextSVId,
-        ma_sinh_vien: "",
         ho_ten: user.ho_ten,
         lop: "",
         khoa_hoc: "",
@@ -137,7 +149,6 @@ router.post('/register', async (req, res) => {
 
       await GiangVien.create({
         id_giang_vien: nextGVId,
-        ma_giang_vien: "",
         ho_ten: user.ho_ten,
         bo_mon: "",
         email: user.email,
@@ -205,7 +216,11 @@ router.post('/register/google', async (req, res) => {
       trang_thai: true,
       ngay_tao: new Date(),
       ngay_cap_nhat: new Date(),
-      hinh_anh: ""
+      // Lấy ảnh Gravatar theo email, không có thì sinh ảnh chữ cái
+      hinh_anh: await chonAnhDaiDien({
+        email: email.trim().toLowerCase(),
+        ho_ten: fullName.trim()
+      })
     });
 
     if (user.vai_tro === "sinh_vien") {
@@ -219,7 +234,6 @@ router.post('/register/google', async (req, res) => {
 
       await SinhVien.create({
         id_sinh_vien: nextSVId,
-        ma_sinh_vien: "",
         ho_ten: user.ho_ten,
         lop: "",
         khoa_hoc: "",
@@ -240,7 +254,6 @@ router.post('/register/google', async (req, res) => {
 
       await GiangVien.create({
         id_giang_vien: nextGVId,
-        ma_giang_vien: "",
         ho_ten: user.ho_ten,
         bo_mon: "",
         email: user.email,
@@ -319,6 +332,16 @@ router.post('/login', async (req, res) => {
       console.error('Không đồng bộ được hồ sơ theo vai trò:', e.message);
     }
 
+    // Tài khoản chưa có ảnh đại diện thì gán ngay lúc này. Đặt ở bước đăng
+    // nhập chứ không chỉ lúc đăng ký, để những tài khoản tạo từ trước khi có
+    // tính năng này cũng có ảnh mà không phải làm gì thêm.
+    let anhDaiDien = user.hinh_anh || '';
+    try {
+      anhDaiDien = await ganAnhNeuThieu(NguoiDung, user);
+    } catch (e) {
+      console.error('Không lấy được ảnh đại diện:', e.message);
+    }
+
     return res.status(200).json({
       success: true,
       message: 'Đăng nhập tài khoản thành công!',
@@ -326,7 +349,8 @@ router.post('/login', async (req, res) => {
         id_nguoi_dung: user.id_nguoi_dung,
         ho_ten: user.ho_ten,
         email: user.email,
-        vai_tro: user.vai_tro
+        vai_tro: user.vai_tro,
+        hinh_anh: anhDaiDien
       }
     });
 
@@ -599,13 +623,34 @@ router.get('/profile/:id', async (req, res) => {
     }
 
     const sinhVien = await SinhVien.findOne({ id_nguoi_dung: userId });
+    const giangVien = await GiangVien.findOne({ id_nguoi_dung: userId });
+
+    // Tài khoản chưa có ảnh thì gán ngay tại đây.
+    //
+    // Đăng nhập cũng làm việc này, nhưng ai đang mở sẵn phiên từ trước khi cập
+    // nhật thì chưa đăng nhập lại lần nào. Đặt thêm ở đây để chỉ cần mở trang
+    // Tài khoản là thấy ảnh, không phải đăng xuất rồi vào lại.
+    let anhDaiDien = user.hinh_anh || '';
+    try {
+      anhDaiDien = await ganAnhNeuThieu(NguoiDung, user);
+    } catch (e) {
+      console.error('Không lấy được ảnh đại diện:', e.message);
+    }
+
+    // Mã hiển thị trên trang Tài khoản chính là khoá hồ sơ: id_sinh_vien với
+    // sinh viên, id_giang_vien với giảng viên. Không còn trường mã riêng nữa.
+    let maDinhDanh = '';
+    if (sinhVien) maDinhDanh = sinhVien.id_sinh_vien || '';
+    else if (giangVien) maDinhDanh = giangVien.id_giang_vien || '';
 
     return res.status(200).json({
       success: true,
       data: {
         fullname: user.ho_ten || '',
         email: user.email || '',
-        student_id: sinhVien ? sinhVien.ma_sinh_vien : '',
+        hinh_anh: anhDaiDien,
+        vai_tro: user.vai_tro || '',
+        student_id: maDinhDanh,
         class_name: sinhVien ? sinhVien.lop : '',
         course: sinhVien ? sinhVien.khoa_hoc : '',
         report_number: sinhVien ? sinhVien.so_bao_cao : 0
@@ -632,7 +677,7 @@ router.put('/profile/:id', async (req, res) => {
 
     const ho_ten = body.fullname || body.ho_ten;
     const email = body.email;
-    const ma_sinh_vien = body.student_id || body.ma_sinh_vien || '';
+    const maNhapVao = chuanHoaMa(body.student_id || body.ma_dinh_danh || '');
     const lop = body.class_name || body.lop || '';
     const khoa_hoc = body.course || body.khoa_hoc || '';
     const so_bao_cao = Number(body.report_number || body.so_luong_bao_cao || 0);
@@ -654,18 +699,71 @@ router.put('/profile/:id', async (req, res) => {
       });
     }
 
-    const updateObjSV = {
-      ma_sinh_vien,
-      lop,
-      khoa_hoc,
-      so_bao_cao
-    };
+    // Giảng viên: mã khai trong trang Tài khoản ghi thẳng vào id_giang_vien
+    const giangVienHienTai = await GiangVien.findOne({ id_nguoi_dung: userId });
+
+    if (giangVienHienTai) {
+      if (maNhapVao) {
+        const kq = await doiMaGiangVien(giangVienHienTai.id_giang_vien, maNhapVao);
+
+        if (kq.trung_ma) {
+          return res.status(409).json({ success: false, message: kq.ly_do });
+        }
+      }
+
+      const daCapNhat = await GiangVien.findOneAndUpdate(
+        { id_nguoi_dung: userId },
+        {
+          $set: {
+            ...(ho_ten ? { ho_ten } : {}),
+            ...(email ? { email } : {})
+          }
+        },
+        { returnDocument: 'after' }
+      );
+
+      return res.status(200).json({
+        success: true,
+        message: 'Cập nhật thông tin thành công!',
+        data: {
+          fullname: user.ho_ten,
+          email: user.email,
+          student_id: daCapNhat ? daCapNhat.id_giang_vien : '',
+          class_name: '',
+          course: '',
+          report_number: daCapNhat ? daCapNhat.so_lan_kiem_tra : 0
+        }
+      });
+    }
+
+    // Sinh viên: mã khai trong trang Tài khoản ghi thẳng vào id_sinh_vien.
+    //
+    // Mã này đang được bài nộp, bảng thống kê và danh sách lớp trỏ tới, nên
+    // phải đổi qua doiMaSinhVien để những chỗ đó được sửa theo — đổi trơ hồ sơ
+    // gốc là bài đã nộp mất dấu người nộp ngay.
+    const sinhVienHienTai = await SinhVien.findOne({ id_nguoi_dung: userId });
+
+    if (sinhVienHienTai && maNhapVao) {
+      const kq = await doiMaSinhVien(sinhVienHienTai.id_sinh_vien, maNhapVao);
+
+      if (kq.trung_ma) {
+        return res.status(409).json({ success: false, message: kq.ly_do });
+      }
+    }
+
+    const updateObjSV = { lop, khoa_hoc, so_bao_cao };
     if (ho_ten) updateObjSV.ho_ten = ho_ten;
     if (email) updateObjSV.email = email;
 
+    // Tài khoản chưa có hồ sơ sinh viên thì tạo mới, lấy luôn mã người dùng khai
     const sinhVien = await SinhVien.findOneAndUpdate(
       { id_nguoi_dung: userId },
-      { $set: updateObjSV },
+      {
+        $set: updateObjSV,
+        $setOnInsert: {
+          id_sinh_vien: maNhapVao || `SV_${userId}`
+        }
+      },
       { returnDocument: 'after', upsert: true }
     );
 
@@ -675,7 +773,7 @@ router.put('/profile/:id', async (req, res) => {
       data: {
         fullname: user.ho_ten,
         email: user.email,
-        student_id: sinhVien.ma_sinh_vien,
+        student_id: sinhVien.id_sinh_vien,
         class_name: sinhVien.lop,
         course: sinhVien.khoa_hoc,
         report_number: sinhVien.so_bao_cao
@@ -782,6 +880,129 @@ router.put('/change-password', async (req, res) => {
     return res.status(500).json({
       success: false,
       message: 'Lỗi hệ thống server!'
+    });
+  }
+});
+
+
+// ==============================
+// ẢNH ĐẠI DIỆN
+// ==============================
+
+// Ảnh đại diện để riêng một thư mục, không lẫn với tài liệu người dùng nộp.
+const THU_MUC_ANH = path.join(__dirname, '..', 'uploads', 'anh-dai-dien');
+
+if (!fs.existsSync(THU_MUC_ANH)) {
+  fs.mkdirSync(THU_MUC_ANH, { recursive: true });
+}
+
+const LOAI_ANH_CHO_PHEP = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+
+const luuAnh = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, THU_MUC_ANH),
+
+  // Đặt tên theo mã tài khoản nên mỗi người chỉ chiếm một tệp: đổi ảnh lần thứ
+  // mười vẫn không để lại chín tệp rác trên ổ đĩa.
+  filename: (req, file, cb) => {
+    const duoi = path.extname(file.originalname).toLowerCase() || '.png';
+    cb(null, `${req.params.id}${duoi}`);
+  }
+});
+
+const nhanAnh = multer({
+  storage: luuAnh,
+  limits: { fileSize: 5 * 1024 * 1024 },
+  fileFilter: (req, file, cb) => {
+    if (LOAI_ANH_CHO_PHEP.includes(file.mimetype)) return cb(null, true);
+    cb(new Error('Chỉ nhận ảnh JPG, PNG, WEBP hoặc GIF.'));
+  }
+});
+
+/**
+ * Người dùng bấm vào ảnh đại diện rồi chọn ảnh mới.
+ * Ảnh tải lên ghi đè ảnh Gravatar hoặc ảnh chữ cái đang dùng.
+ */
+router.post('/anh-dai-dien/:id', (req, res) => {
+  nhanAnh.single('anh')(req, res, async loiTaiLen => {
+    try {
+      if (loiTaiLen) {
+        return res.status(400).json({
+          success: false,
+          message: loiTaiLen.message === 'File too large'
+            ? 'Ảnh vượt quá 5MB.'
+            : loiTaiLen.message
+        });
+      }
+
+      if (!req.file) {
+        return res.status(400).json({
+          success: false,
+          message: 'Chưa chọn ảnh nào.'
+        });
+      }
+
+      // Đường dẫn công khai; server.js đã mở sẵn thư mục uploads dạng tĩnh
+      const duongDan = `/uploads/anh-dai-dien/${req.file.filename}`;
+
+      const user = await NguoiDung.findOneAndUpdate(
+        { id_nguoi_dung: req.params.id },
+        { $set: { hinh_anh: duongDan, ngay_cap_nhat: new Date() } },
+        { returnDocument: 'after' }
+      );
+
+      if (!user) {
+        return res.status(404).json({
+          success: false,
+          message: 'Không tìm thấy tài khoản!'
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        message: 'Đã đổi ảnh đại diện.',
+        hinh_anh: duongDan
+      });
+
+    } catch (error) {
+      console.error('❌ Lỗi đổi ảnh đại diện:', error);
+      return res.status(500).json({
+        success: false,
+        message: 'Lỗi hệ thống khi lưu ảnh đại diện!'
+      });
+    }
+  });
+});
+
+/**
+ * Gỡ ảnh đang dùng, quay về ảnh tự sinh theo email.
+ */
+router.delete('/anh-dai-dien/:id', async (req, res) => {
+  try {
+    const user = await NguoiDung.findOne({ id_nguoi_dung: req.params.id });
+
+    if (!user) {
+      return res.status(404).json({
+        success: false, message: 'Không tìm thấy tài khoản!'
+      });
+    }
+
+    const anhMoi = await chonAnhDaiDien(user);
+
+    await NguoiDung.updateOne(
+      { id_nguoi_dung: req.params.id },
+      { $set: { hinh_anh: anhMoi, ngay_cap_nhat: new Date() } }
+    );
+
+    return res.status(200).json({
+      success: true,
+      message: 'Đã đặt lại ảnh đại diện.',
+      hinh_anh: anhMoi
+    });
+
+  } catch (error) {
+    console.error('❌ Lỗi đặt lại ảnh đại diện:', error);
+    return res.status(500).json({
+      success: false, message: 'Lỗi hệ thống!'
     });
   }
 });

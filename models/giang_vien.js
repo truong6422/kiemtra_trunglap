@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const GiangVienSchema = new mongoose.Schema({
+  // Vừa là khoá hồ sơ vừa là mã giảng viên — xem ghi chú trong models/sinh_vien.js
   id_giang_vien: { type: String, required: true, unique: true }, // GV001, GV002...
-  ma_giang_vien: { type: String, required: false },
   ho_ten: { type: String, required: true },
   bo_mon: { type: String, required: false },
   email: { type: String, required: true },

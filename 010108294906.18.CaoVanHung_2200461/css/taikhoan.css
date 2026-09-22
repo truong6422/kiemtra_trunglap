@@ -612,3 +612,62 @@ main .form-group input[readonly]:focus,
   border-color: #e2e8f0 !important;
   box-shadow: none !important;
 }
+
+/* --- Ảnh đại diện trong tab Thông tin cá nhân --- */
+.khung-anh-dai-dien {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px;
+    margin-bottom: 24px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+}
+
+.khung-anh-dai-dien img {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #cbd5e1;
+    background: #ffffff;
+    flex-shrink: 0;
+    transition: border-color .15s;
+}
+
+.khung-anh-dai-dien img:hover {
+    border-color: #2563eb;
+}
+
+.khung-anh-dai-dien__nhan {
+    margin: 0 0 4px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.khung-anh-dai-dien__mo-ta {
+    margin: 0 0 10px;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.khung-anh-dai-dien__nut {
+    padding: 7px 14px;
+    font-size: 13px;
+    color: #334155;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.khung-anh-dai-dien__nut:hover {
+    background: #f1f5f9;
+}
+
+.khung-anh-dai-dien__tin {
+    margin: 8px 0 0;
+    font-size: 13px;
+    min-height: 18px;
+}

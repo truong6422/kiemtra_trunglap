@@ -9,6 +9,7 @@ const router = express.Router();
 const BaiTap = require('../models/bai_tap');
 const LopHoc = require('../models/lop_hoc');
 const SinhVien = require('../models/sinh_vien');
+const { maSinhVienCua, laCungNguoi } = require('../utils/thanh_vien_lop');
 
 // HÀM DÙNG CHUNG: Tự động tính toán trạng thái dựa trên thời gian thực tế
 function calculateExerciseStatus(thoiGianBatDau, thoiGianKetThuc) {
@@ -42,51 +43,52 @@ router.post('/', async (req, res) => {
         
         const lopHoc = await LopHoc.findOne({ id_lop_hoc: Number(id_lop_hoc) });
         let rawMembers = [];
+
         if (lopHoc) {
             rawMembers = lopHoc.danh_sach_thanh_vien || lopHoc.members || lopHoc.students || [];
 
             // Chủ lớp được thêm vào danh sách thành viên ngay lúc tạo lớp, nhưng
             // người ra bài thì không phải nộp bài. Bỏ ra ở đây để danh sách nộp
             // bài của bài tập mới chỉ gồm thành viên lớp.
+            const maChuLop = await maSinhVienCua(lopHoc.id_nguoi_dung);
+
             rawMembers = rawMembers.filter(
-                m => String(m.id_nguoi_dung) !== String(lopHoc.id_nguoi_dung)
+                m => !laCungNguoi(m, {
+                    idSinhVien: maChuLop,
+                    idNguoiDung: lopHoc.id_nguoi_dung
+                })
             );
         }
 
-        // Thành viên lớp chỉ lưu id_nguoi_dung, không có mã sinh viên. Tra sang
-        // bảng sinh_vien để điền nốt, nếu không thì hai trường này rỗng và màn
-        // thống kê không nối được bài nộp với người nộp.
-        const idNguoiDung = rawMembers
-            .map(m => m.id_nguoi_dung)
-            .filter(Boolean);
+        // Danh sách thành viên đã lưu sẵn mã sinh viên. Những lớp tạo từ trước
+        // đợt chuyển đổi còn giữ mã tài khoản, nên vẫn tra thêm một lượt cho
+        // những bản ghi đó thay vì chép nguyên mã tài khoản vào ô mã sinh viên.
+        const canTraThem = rawMembers
+            .filter(m => !m.id_sinh_vien && m.id_nguoi_dung)
+            .map(m => m.id_nguoi_dung);
 
         const maTheoNguoiDung = new Map();
-        if (idNguoiDung.length) {
+
+        if (canTraThem.length) {
             const dsSinhVien = await SinhVien
-                .find({ id_nguoi_dung: { $in: idNguoiDung } })
-                .select('id_nguoi_dung id_sinh_vien ma_sinh_vien')
+                .find({ id_nguoi_dung: { $in: canTraThem } })
+                .select('id_nguoi_dung id_sinh_vien')
                 .lean();
 
             for (const sv of dsSinhVien) {
-                maTheoNguoiDung.set(sv.id_nguoi_dung, sv);
+                maTheoNguoiDung.set(sv.id_nguoi_dung, sv.id_sinh_vien);
             }
         }
 
-        const danhSachNopBai = rawMembers.map(m => {
-            const sv = maTheoNguoiDung.get(m.id_nguoi_dung) || {};
-
-            return {
-                id_sinh_vien: String(
-                    m.id_nguoi_dung || m.id_sinh_vien || m.id || m._id || ""),
-                ma_sinh_vien: String(
-                    sv.id_sinh_vien || sv.ma_sinh_vien ||
-                    m.ma_sinh_vien || m.code || m.mssv || ""),
-                ho_ten: String(m.ho_ten || m.name || m.full_name || ""),
-                trang_thai_nop: "Chưa nộp",
-                thoi_gian_nop: null,
-                danh_sach_tep: []
-            };
-        });
+        const danhSachNopBai = rawMembers.map(m => ({
+            id_sinh_vien: String(
+                m.id_sinh_vien || maTheoNguoiDung.get(m.id_nguoi_dung) || ""),
+            ho_ten: String(m.ho_ten || m.name || m.full_name || ""),
+            trang_thai_nop: "Chưa nộp",
+            thoi_gian_nop: null,
+            ten_tep: "",
+            id_bao_cao: ""
+        }));
 
         const thoiGianMoThucTe = thoi_gian_bat_dau ? thoi_gian_bat_dau : new Date();
         const thoiGianDongThucTe = thoi_gian_ket_thuc !== undefined && thoi_gian_ket_thuc !== "" 

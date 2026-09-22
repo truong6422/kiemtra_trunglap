@@ -27,27 +27,31 @@ const thongKeTheoMauSchema = new mongoose.Schema(
             default: 0
         },
 
+        // Đoạn chắp vá: nhiều câu nằm rời nhau trong báo cáo mẫu này bị ghép
+        // liền lại thành một đoạn trong bài nộp.
+        so_doan_chap_va: {
+            type: Number,
+            default: 0
+        },
+
         ti_le_trung_lap: {
             type: Number,
             default: 0
         },
 
-        cosine_trung_binh: {
+        // Điểm trung bình của từng thuật toán trên các câu trùng với báo cáo
+        // mẫu này, tính theo phần trăm (0–100).
+        cosine: {
             type: Number,
             default: 0
         },
 
-        jaccard_trung_binh: {
+        jaccard: {
             type: Number,
             default: 0
         },
 
-        winnowing_trung_binh: {
-            type: Number,
-            default: 0
-        },
-
-        tong_hop_trung_binh: {
+        winnowing: {
             type: Number,
             default: 0
         }

@@ -1,4 +1,5 @@
 const express = require('express');
+const { timTepBaoCao, tenTepGoc } = require('../utils/duong_dan_tep');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
@@ -438,16 +439,18 @@ router.get('/tai-xuong/:id_bao_cao', async (req, res) => {
             });
         }
 
-        const filePath = path.resolve(baoCao.tep_tin);
+        // Dò tệp theo nhiều cách vì bản ghi cũ mang đường dẫn của máy khác
+        const filePath = timTepBaoCao(baoCao.tep_tin);
 
-        if (!fs.existsSync(filePath)) {
+        if (!filePath) {
             return res.status(404).json({
                 success: false,
                 message: "Tệp tin không tồn tại trên hệ thống lưu trữ của server!"
             });
         }
 
-        return res.download(filePath);
+        // Giữ đúng tên tệp gốc khi tải về, không để thành tên có dấu thời gian
+        return res.download(filePath, tenTepGoc(baoCao.tep_tin));
 
     } catch (error) {
         console.error("Lỗi khi tải xuống tệp tin:", error);

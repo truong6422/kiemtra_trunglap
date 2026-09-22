@@ -19,6 +19,9 @@ window.PdfHighlightViewer = (() => {
     let chiSoCauDangChon = null;    // câu người dùng bấm xem gần nhất
     let thongKePhu = [];            // số từ khớp được của từng câu
 
+    // Các hàm chờ nghe khi người dùng bấm vào một vệt chữ được bôi màu
+    const cacHamNgheBamVet = [];
+
     // Vàng nhạt vừa đủ thấy mà không lấn át chữ bên dưới
     const MAU_THUONG = 'rgba(255, 213, 79, 0.30)';
 
@@ -755,10 +758,39 @@ window.PdfHighlightViewer = (() => {
                     width: ${vet.width}px;
                     height: ${vet.height}px;
                     background: ${MAU_THUONG};
-                    pointer-events: none;
+                    cursor: pointer;
                     border-radius: 2px;
                     transition: background .18s;
                 `;
+
+                el.title = 'Bấm để xem câu này ở bảng chi tiết bên phải';
+
+                // Bấm vào chữ được bôi màu thì báo cho trang chi tiết biết để
+                // mở đúng mục tương ứng ở bảng bên phải.
+                //
+                // Trước đây vệt bôi màu đặt pointer-events: none nên chuột đi
+                // xuyên qua, bấm vào chỗ vàng chóe không có gì xảy ra: người
+                // dùng chỉ đi được một chiều từ bảng sang tài liệu.
+                el.addEventListener('click', () => {
+                    const cacCau = el.dataset.cacCau
+                        .split(' ')
+                        .map(Number)
+                        .filter(n => !Number.isNaN(n));
+
+                    if (!cacCau.length) return;
+
+                    // Một vệt có thể nằm trên nhiều câu khi hai câu dính liền
+                    // nhau trong cùng một dòng; lấy câu đầu tiên.
+                    lamNoiCau(cacCau[0]);
+
+                    for (const ham of cacHamNgheBamVet) {
+                        try {
+                            ham(cacCau[0], cacCau);
+                        } catch (e) {
+                            console.error('Lỗi khi xử lý bấm vệt bôi màu:', e);
+                        }
+                    }
+                });
 
                 lop.appendChild(el);
                 tongVet++;
@@ -1040,10 +1072,21 @@ window.PdfHighlightViewer = (() => {
         return tyLe;
     }
 
+    /**
+     * Đăng ký hàm được gọi mỗi khi người dùng bấm vào một vệt chữ bôi màu.
+     *
+     * @param {function(number, number[]): void} ham Nhận chỉ số câu đầu tiên
+     *        của vệt vừa bấm và toàn bộ các chỉ số câu đi qua vệt đó.
+     */
+    function khiBamVetBoiMau(ham) {
+        if (typeof ham === 'function') cacHamNgheBamVet.push(ham);
+    }
+
     return {
         mo,
         boiMau,
         lamNoiCau,
+        khiBamVetBoiMau,
         cuonToiCau: lamNoiCau,   // tên cũ, giữ cho chỗ gọi sẵn có
         cuonToiVetDau,
         cuonToiTrang,

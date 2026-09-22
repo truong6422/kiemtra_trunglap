@@ -3,32 +3,91 @@ const router = express.Router();
 const BaiChiTietNopBai = require('../models/chi_tiet_nop_bai');
 const BaoCao = require('../models/bao_cao');
 const SinhVien = require('../models/sinh_vien');
+const BaiTap = require('../models/bai_tap');
+const path = require('path');
+const { timTepBaoCao } = require('../utils/duong_dan_tep');
 
-// Hàm hỗ trợ ánh xạ từ id_nguoi_dung sang id_sinh_vien chuẩn
+/**
+ * Đổi một mã bất kỳ (mã tài khoản hoặc mã sinh viên) sang mã sinh viên chuẩn.
+ *
+ * Giao diện chỗ thì gửi lên id_nguoi_dung, chỗ thì gửi id_sinh_vien, nên hàm
+ * này nhận cả hai. Không tra ra hồ sơ nào thì trả lại đúng cái đã nhận để
+ * người gọi tự quyết, thay vì ném lỗi giữa chừng lúc sinh viên đang nộp bài.
+ */
 async function resolveIdSinhVien(inputId) {
     if (!inputId) return null;
-    console.log("--- Đang xử lý ánh xạ cho ID:", inputId);
 
-    let sinhVienRecord = await SinhVien.findOne({ id_nguoi_dung: inputId }).lean();
-    
-    if (!sinhVienRecord) {
-        sinhVienRecord = await SinhVien.findOne({ 
-            $or: [
-                { nguoi_dung_id: inputId },
-                { user_id: inputId },
-                { id_nguoidung: inputId }
-            ]
-        }).lean();
-    }
+    const sinhVienRecord = await SinhVien.findOne({
+        $or: [
+            { id_nguoi_dung: inputId },
+            { id_sinh_vien: inputId }
+        ]
+    }).lean();
 
-    if (sinhVienRecord) {
-        console.log("-> Tìm thấy bản ghi sinh viên:", sinhVienRecord);
-        // Ưu tiên lấy trường id_sinh_vien (ví dụ "SV005")
-        return sinhVienRecord.id_sinh_vien || sinhVienRecord.ma_sinh_vien || sinhVienRecord._id;
-    }
+    if (sinhVienRecord) return sinhVienRecord.id_sinh_vien;
 
-    console.log("-> KHÔNG tìm thấy bản ghi sinh viên nào khớp với:", inputId);
+    console.warn(`Không tìm thấy hồ sơ sinh viên khớp với "${inputId}".`);
     return inputId;
+}
+
+/**
+ * Ghi lại kết quả nộp bài vào danh sách nộp bài nằm trong bản ghi bài tập.
+ *
+ * Việc nộp bài vốn chỉ tạo bản ghi trong chi_tiet_nop_bai, còn mảng
+ * danh_sach_nop_bai của bài tập thì không ai đụng tới. Vì thế màn hình chi tiết
+ * hiện "Đã nộp" nhờ đọc chi_tiet_nop_bai, nhưng mở collection bai_tap ra vẫn
+ * thấy "Chưa nộp" và thời gian nộp để trống. Hàm này đồng bộ hai nơi đó.
+ *
+ * @param {Object} tt Thông tin bài nộp đã chuẩn hoá
+ * @returns {Promise<boolean>} true nếu tìm được dòng để ghi
+ */
+async function ghiTrangThaiVaoBaiTap({
+    idBaiTap, idSinhVien, idNguoiDung, hoTen, tenTep, idBaoCao, thoiGianNop
+}) {
+    const baiTap = await BaiTap.findOne({ id_bai_tap: Number(idBaiTap) });
+
+    if (!baiTap) {
+        console.warn(`Không có bài tập ${idBaiTap} để ghi trạng thái nộp.`);
+        return false;
+    }
+
+    if (!Array.isArray(baiTap.danh_sach_nop_bai)) {
+        baiTap.danh_sach_nop_bai = [];
+    }
+
+    const khop = giaTri => giaTri && String(giaTri) === String(idSinhVien);
+
+    // Dữ liệu cũ có thể còn lưu mã tài khoản ở ô mã sinh viên, nên vẫn dò thêm
+    // theo id_nguoi_dung để không tạo ra dòng trùng người.
+    let dong = baiTap.danh_sach_nop_bai.find(
+        tv => khop(tv.id_sinh_vien)
+            || (idNguoiDung && String(tv.id_sinh_vien) === String(idNguoiDung))
+    );
+
+    if (!dong) {
+        // Sinh viên vào lớp sau khi bài tập đã được tạo thì chưa có dòng nào
+        dong = {
+            id_sinh_vien: idSinhVien,
+            ho_ten: hoTen || "",
+            trang_thai_nop: "Chưa nộp",
+            thoi_gian_nop: null,
+            ten_tep: "",
+            id_bao_cao: ""
+        };
+        baiTap.danh_sach_nop_bai.push(dong);
+    }
+
+    dong.id_sinh_vien = idSinhVien;
+    if (hoTen) dong.ho_ten = hoTen;
+    dong.trang_thai_nop = "Đã nộp";
+    dong.thoi_gian_nop = thoiGianNop;
+    dong.ten_tep = tenTep || "";
+    dong.id_bao_cao = idBaoCao || "";
+
+    baiTap.markModified('danh_sach_nop_bai');
+    await baiTap.save();
+
+    return true;
 }
 
 // 1. API xử lý khi sinh viên nhấn "Xác nhận" nộp bài
@@ -42,7 +101,6 @@ router.post('/nop-bai', async (req, res) => {
 
         // BƯỚC QUAN TRỌNG: Lưu kết quả vào biến riêng biệt `realStudentId`
         const realStudentId = await resolveIdSinhVien(rawIdSinhVien);
-        console.log("-> ID sinh viên thực tế sẽ lưu vào chi_tiet_nop_bai là:", realStudentId);
 
         // Lấy thông tin tài liệu từ bảng BaoCao
         const taiLieu = await BaoCao.findOne({ id_bao_cao: id_bao_cao }).lean();
@@ -90,10 +148,28 @@ router.post('/nop-bai', async (req, res) => {
             { $set: { trang_thai: "Đã xử lý" } }
         );
 
-        return res.json({ 
-            success: true, 
-            message: "Nộp bài thành công!", 
-            data: baiNop 
+        // Ghi luôn sang danh sách nộp bài của bài tập để hai nơi không lệch nhau
+        const hoSoSinhVien = await SinhVien
+            .findOne({ id_sinh_vien: realStudentId })
+            .select('ho_ten id_nguoi_dung')
+            .lean();
+
+        const daGhiVaoBaiTap = await ghiTrangThaiVaoBaiTap({
+            idBaiTap: id_bai_tap,
+            idSinhVien: realStudentId,
+            idNguoiDung: rawIdSinhVien,
+            hoTen: hoSoSinhVien ? hoSoSinhVien.ho_ten : "",
+            tenTep: path.basename(taiLieu.tep_tin || "")
+                || taiLieu.tieu_de || "",
+            idBaoCao: id_bao_cao,
+            thoiGianNop: thoiGianHienTai
+        });
+
+        return res.json({
+            success: true,
+            message: "Nộp bài thành công!",
+            data: baiNop,
+            da_ghi_vao_bai_tap: daGhiVaoBaiTap
         });
 
     } catch (error) {
@@ -108,20 +184,26 @@ router.get('/danh-sach/:id_bai_tap', async (req, res) => {
         const idBaiTap = req.params.id_bai_tap;
         let danhSachNop = await BaiChiTietNopBai.find({ id_bai_tap: idBaiTap }).lean();
         
-        // Tự động gắn thêm id_nguoi_dung cho mỗi bản ghi bài nộp để frontend dễ dàng khớp với classMembers
-        for (let item of danhSachNop) {
-            if (item.id_sinh_vien) {
-                // Tìm ngược lại trong bảng SinhVien xem id_sinh_vien này ứng với id_nguoi_dung nào
-                const svRecord = await SinhVien.findOne({ 
-                    $or: [
-                        { id_sinh_vien: item.id_sinh_vien },
-                        { ma_sinh_vien: item.id_sinh_vien }
-                    ]
-                }).lean();
+        // Giao diện lớp học khớp bài nộp với thành viên lớp theo id_nguoi_dung,
+        // nên gắn kèm mã tài khoản tương ứng với từng mã sinh viên. Tra một lượt
+        // cho cả danh sách thay vì hỏi cơ sở dữ liệu từng người một.
+        const dsMaSinhVien = danhSachNop
+            .map(item => item.id_sinh_vien)
+            .filter(Boolean);
 
-                if (svRecord && svRecord.id_nguoi_dung) {
-                    item.id_nguoi_dung = svRecord.id_nguoi_dung;
-                }
+        if (dsMaSinhVien.length) {
+            const hoSo = await SinhVien
+                .find({ id_sinh_vien: { $in: dsMaSinhVien } })
+                .select('id_sinh_vien id_nguoi_dung')
+                .lean();
+
+            const maTaiKhoan = new Map(
+                hoSo.map(sv => [sv.id_sinh_vien, sv.id_nguoi_dung])
+            );
+
+            for (const item of danhSachNop) {
+                const idNguoiDung = maTaiKhoan.get(item.id_sinh_vien);
+                if (idNguoiDung) item.id_nguoi_dung = idNguoiDung;
             }
         }
 
@@ -192,7 +274,6 @@ router.delete('/submissions', async (req, res) => {
 
         // Đưa trạng thái trong danh sách nộp bài của bài tập về "Chưa nộp"
         try {
-            const BaiTap = require('../models/bai_tap');
             const baiTap = await BaiTap.findOne({ id_bai_tap: Number(id_bai_tap) });
 
             if (baiTap && Array.isArray(baiTap.danh_sach_nop_bai)) {
@@ -200,18 +281,21 @@ router.delete('/submissions', async (req, res) => {
 
                 baiTap.danh_sach_nop_bai.forEach(tv => {
                     const trung = String(tv.id_sinh_vien) === String(realStudentId)
-                        || String(tv.id_sinh_vien) === String(rawIdSinhVien)
-                        || String(tv.ma_sinh_vien) === String(realStudentId);
+                        || String(tv.id_sinh_vien) === String(rawIdSinhVien);
 
                     if (trung) {
                         tv.trang_thai_nop = "Chưa nộp";
                         tv.thoi_gian_nop = null;
-                        tv.danh_sach_tep = [];
+                        tv.ten_tep = "";
+                        tv.id_bao_cao = "";
                         coDoi = true;
                     }
                 });
 
-                if (coDoi) await baiTap.save();
+                if (coDoi) {
+                    baiTap.markModified('danh_sach_nop_bai');
+                    await baiTap.save();
+                }
             }
         } catch (e) {
             console.error("Không cập nhật được trạng thái nộp bài:", e.message);
@@ -276,19 +360,11 @@ router.get('/chi-tiet/:id/document', async (req, res) => {
             return res.status(404).send("Không tìm thấy file tài liệu.");
         }
 
-        const fs = require('fs');
-        const path = require('path');
+        // Bản ghi cũ lưu đường dẫn của máy khác (ổ D:, dấu gạch ngược), nên
+        // phải dò qua nhiều cách mới ra tệp — xem utils/duong_dan_tep.js
+        const filePath = timTepBaoCao(baoCao.tep_tin);
 
-        // Đường dẫn tới thư mục lưu file trên server (chỉnh lại path.join cho khớp với thư mục uploads thực tế của bạn)
-        // Ví dụ: file được lưu ở thư mục gốc project hoặc thư mục uploads
-        let filePath = path.resolve(baoCao.tep_tin);
-        
-        if (!fs.existsSync(filePath)) {
-            // Thử tìm trong thư mục uploads nếu đường dẫn lưu tương đối
-            filePath = path.join(__dirname, '../', baoCao.tep_tin);
-        }
-
-        if (!fs.existsSync(filePath)) {
+        if (!filePath) {
             return res.status(404).send("File vật lý không tồn tại trên ổ cứng server.");
         }
 

@@ -98,11 +98,16 @@ function kiemTraDuLieu({ nguong_trung_lap, danh_sach_thuat_toan,
         }
     }
 
+    // Tổng trọng số không bắt buộc bằng 1.
+    //
+    // Trước đây ai muốn thử bộ số khác đều phải tự cân cho vừa đúng 100%, nên
+    // không so được "tăng riêng Winnowing lên thì kết quả đổi thế nào". Giờ lưu
+    // đúng số người dùng đặt, còn lúc tính thì module đối sánh chia cả bộ cho
+    // tổng của chúng, nên tỉ lệ trùng vẫn nằm trong 0–100%. Chỉ chặn trường hợp
+    // tổng bằng 0 vì khi đó không còn thuật toán nào có tiếng nói.
     const tong = dangBat.reduce((s, t) => s + Number(t.trong_so), 0);
-    // Cộng số thập phân trong JavaScript có sai số nhỏ nên phải so gần đúng.
-    if (Math.abs(tong - 1) > 0.001) {
-        return `Tổng trọng số của các thuật toán đang bật phải bằng 1 `
-            + `(hiện tại là ${tong.toFixed(2)}).`;
+    if (tong <= 0) {
+        return 'Tổng trọng số của các thuật toán đang bật phải lớn hơn 0.';
     }
 
     if (!Array.isArray(cho_phep_upload) || cho_phep_upload.length === 0) {

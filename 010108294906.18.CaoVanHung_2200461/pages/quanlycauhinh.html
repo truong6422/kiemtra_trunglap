@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản lý cấu hình</title>
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/quanlytailieu.css">
     <link rel="stylesheet" href="../css/quanlycauhinh.css">
     <link rel="stylesheet"
@@ -123,9 +124,11 @@
             <section class="ch-khoi">
                 <div class="ch-khoi__dau">
                     <h3><i class="fa-solid fa-diagram-project"></i> Thuật toán so khớp</h3>
-                    <p>Điểm tương đồng của một cặp câu là tổng có trọng số của các
-                        thuật toán đang bật. Tổng trọng số các thuật toán đang bật
-                        phải bằng 100%.</p>
+                    <p>Điểm tương đồng của một cặp câu là trung bình có trọng số
+                        của các thuật toán đang bật. Tổng trọng số không bắt buộc
+                        bằng 100%: đặt bao nhiêu cũng được, hệ thống quy cả bộ về
+                        tổng 100% trước khi chấm nên tỉ lệ trùng luôn nằm trong
+                        khoảng 0–100%.</p>
                 </div>
 
                 <div class="ch-thuat-toan" id="dsThuatToan"></div>
@@ -190,6 +193,8 @@
     <script src="../js/trangchu_saudn.js"></script>
     <script src="../js/quanlycauhinh.js"></script>
 
+    <!-- Ảnh đại diện người dùng dùng chung cho mọi trang -->
+    <script src="../js/anh-dai-dien.js"></script>
 </body>
 
 </html>
