@@ -56,7 +56,6 @@ async function dongBoVaiTro(idNguoiDung) {
                 ho_ten: nd.ho_ten || '',
                 bo_mon: '',
                 email: nd.email || '',
-                so_lan_kiem_tra: 0,
                 id_nguoi_dung: nd.id_nguoi_dung
             });
             ketQua.daTao = 'giang_vien';

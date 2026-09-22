@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             studentId: document.getElementById('student-id'),
             className: document.getElementById('class-name'),
             course: document.getElementById('course'),
+            boMon: document.getElementById('bo-mon'),
             reportNumber: document.getElementById('report-count')
         };
     }
@@ -32,6 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderDataToForm(data) {
         const fields = getProfileInputs();
 
+        // Hồ sơ giảng viên và sinh viên là hai bảng khác nhau, nên biểu mẫu
+        // phải đổi nhãn và ẩn bớt ô cho khớp trước khi đổ dữ liệu vào.
+        const vaiTro = data.vai_tro || localStorage.getItem('vai_tro') || '';
+        if (window.HoSoTheoVaiTro) HoSoTheoVaiTro.apDungVaiTro(vaiTro);
+
+        if (fields.boMon) fields.boMon.value = data.bo_mon || '';
         if (fields.fullname) fields.fullname.value = data.fullname || '';
         if (fields.email) fields.email.value = data.email || '';
         if (fields.studentId) fields.studentId.value = data.student_id || '';
@@ -83,7 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 student_id: fields.studentId ? fields.studentId.value.trim() : '',
                 class_name: fields.className ? fields.className.value.trim() : '',
                 course: fields.course ? fields.course.value.trim() : '',
-                report_number: fields.reportNumber ? fields.reportNumber.value.trim() : ''
+                bo_mon: fields.boMon ? fields.boMon.value.trim() : ''
+                // Không gửi report_number: số báo cáo do hệ thống tự đếm,
+                // gửi lên chỉ khiến máy chủ ghi đè mất số thật.
             };
 
             try {

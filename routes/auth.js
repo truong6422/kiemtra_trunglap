@@ -153,7 +153,6 @@ router.post('/register', async (req, res) => {
         ho_ten: user.ho_ten,
         bo_mon: "",
         email: user.email,
-        so_lan_kiem_tra: 0,
         id_nguoi_dung: user.id_nguoi_dung
       });
     }
@@ -258,7 +257,6 @@ router.post('/register/google', async (req, res) => {
         ho_ten: user.ho_ten,
         bo_mon: "",
         email: user.email,
-        so_lan_kiem_tra: 0,
         id_nguoi_dung: user.id_nguoi_dung
       });
     }
@@ -654,7 +652,12 @@ router.get('/profile/:id', async (req, res) => {
         student_id: maDinhDanh,
         class_name: sinhVien ? sinhVien.lop : '',
         course: sinhVien ? sinhVien.khoa_hoc : '',
-        report_number: sinhVien ? sinhVien.so_bao_cao : 0
+        report_number: sinhVien ? sinhVien.so_bao_cao : 0,
+
+        // Trường riêng của hồ sơ giảng viên. Trang Tài khoản dựa vào vai_tro
+        // để hiện đúng bộ ô: giảng viên thì Bộ môn, sinh viên thì Lớp /
+        // Khoá học / Số báo cáo.
+        bo_mon: giangVien ? (giangVien.bo_mon || '') : ''
       }
     });
 
@@ -681,6 +684,7 @@ router.put('/profile/:id', async (req, res) => {
     const maNhapVao = chuanHoaMa(body.student_id || body.ma_dinh_danh || '');
     const lop = body.class_name || body.lop || '';
     const khoa_hoc = body.course || body.khoa_hoc || '';
+    const bo_mon = (body.bo_mon || body.department || '').trim();
 
     // Số báo cáo KHÔNG lấy từ thân yêu cầu. Đây là số hệ thống tự đếm từ các
     // tài liệu đã tải lên, trang Tài khoản để ô này chỉ đọc nên không bao giờ
@@ -721,22 +725,24 @@ router.put('/profile/:id', async (req, res) => {
         {
           $set: {
             ...(ho_ten ? { ho_ten } : {}),
-            ...(email ? { email } : {})
+            ...(email ? { email } : {}),
+            bo_mon
           }
         },
         { returnDocument: 'after' }
       );
 
+      // Hồ sơ giảng viên chỉ có mã, họ tên, bộ môn và email. Không trả lớp,
+      // khoá học hay số báo cáo — đó là những trường của sinh viên.
       return res.status(200).json({
         success: true,
         message: 'Cập nhật thông tin thành công!',
         data: {
           fullname: user.ho_ten,
           email: user.email,
+          vai_tro: user.vai_tro || 'giang_vien',
           student_id: daCapNhat ? daCapNhat.id_giang_vien : '',
-          class_name: '',
-          course: '',
-          report_number: daCapNhat ? daCapNhat.so_lan_kiem_tra : 0
+          bo_mon: daCapNhat ? (daCapNhat.bo_mon || '') : ''
         }
       });
     }

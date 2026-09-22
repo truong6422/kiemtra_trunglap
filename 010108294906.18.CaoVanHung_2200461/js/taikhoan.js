@@ -36,7 +36,8 @@ document.addEventListener('DOMContentLoaded', function () {
             studentId: document.getElementById('student-id'),
             className: document.getElementById('class-name'),
             course: document.getElementById('course'),
-            reportNumber: document.getElementById('report-count')
+            reportNumber: document.getElementById('report-count'),
+            boMon: document.getElementById('bo-mon')
         };
     }
 
@@ -44,6 +45,15 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!data) return;
 
         const fields = getProfileInputs();
+
+        // Hồ sơ giảng viên và sinh viên là hai bảng khác nhau, nên biểu mẫu
+        // phải đổi nhãn và ẩn bớt ô cho khớp trước khi đổ dữ liệu vào.
+        const vaiTro = data.vai_tro || localStorage.getItem('vai_tro') || '';
+        const laGiangVien = window.HoSoTheoVaiTro
+            ? HoSoTheoVaiTro.apDungVaiTro(vaiTro)
+            : false;
+
+        if (fields.boMon) fields.boMon.value = data.bo_mon || '';
 
         if (fields.fullname) fields.fullname.value = data.ho_ten || data.fullname || '';
         if (fields.email) fields.email.value = data.email || '';
@@ -57,7 +67,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // trả về bản ghi không có trường so_luong_bao_cao, nên đoạn cũ đổ về 0
         // và ô này hiện sai cho tới khi người dùng tải lại trang. Luôn đếm lại
         // từ danh sách tài liệu để mọi lần vẽ form đều ra số thật.
-        if (fields.reportNumber) {
+        // Giảng viên không có ô này nên khỏi đếm cho tốn một lượt gọi máy chủ
+        if (fields.reportNumber && !laGiangVien) {
             fields.reportNumber.readOnly = true;
             demSoBaoCao();
         }
@@ -126,7 +137,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Mã này được máy chủ ghi thẳng vào id_sinh_vien của hồ sơ
                 student_id: fields.studentId ? fields.studentId.value.trim() : '',
                 lop: fields.className ? fields.className.value.trim() : '',
-                khoa_hoc: fields.course ? fields.course.value.trim() : ''
+                khoa_hoc: fields.course ? fields.course.value.trim() : '',
+                bo_mon: fields.boMon ? fields.boMon.value.trim() : ''
             };
             // Không gửi so_luong_bao_cao lên máy chủ: đây là số hệ thống tự đếm
             // từ các báo cáo đã tải lên, người dùng không được sửa.

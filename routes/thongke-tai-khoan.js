@@ -79,7 +79,7 @@ router.get('/tai-khoan', async (req, res) => {
             SinhVien.find({ id_nguoi_dung: { $in: dsId } })
                 .select('id_nguoi_dung id_sinh_vien lop khoa_hoc').lean(),
             GiangVien.find({ id_nguoi_dung: { $in: dsId } })
-                .select('id_nguoi_dung id_giang_vien bo_mon so_lan_kiem_tra').lean()
+                .select('id_nguoi_dung id_giang_vien bo_mon').lean()
         ]);
 
         const hoSoSinhVien = new Map(dsSinhVien.map(x => [x.id_nguoi_dung, x]));

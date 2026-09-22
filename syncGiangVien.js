@@ -24,7 +24,6 @@ async function syncGiangVien() {
         ho_ten: user.ho_ten,
         bo_mon: "",
         email: user.email,
-        so_lan_kiem_tra: 0,
         id_nguoi_dung: user.id_nguoi_dung
       });
 

@@ -445,6 +445,22 @@ const CAC_BUOC = [
             ghiLog(`Đã xoá ${daXoa} chỉ số câu bị chèn trùng ở ${soBaoCao} báo `
                 + `cáo. Những bài đó nên chấm lại để tỉ lệ trùng tính đúng.`);
         }
+    },
+
+    {
+        ma: '2026-09-23-bo-so-lan-kiem-tra-cua-giang-vien',
+        mo_ta: 'giang_vien: bỏ hẳn trường so_lan_kiem_tra — không nơi nào đọc, '
+            + 'cũng không nơi nào cộng thêm, chỉ nằm đó mãi ở 0',
+
+        async chay(db, ghiLog) {
+            const ketQua = await db.collection('giang_vien').updateMany(
+                { so_lan_kiem_tra: { $exists: true } },
+                { $unset: { so_lan_kiem_tra: '' } }
+            );
+
+            ghiLog(`Đã bỏ trường so_lan_kiem_tra khỏi `
+                + `${ketQua.modifiedCount} hồ sơ giảng viên.`);
+        }
     }
 ];
 
