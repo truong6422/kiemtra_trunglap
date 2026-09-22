@@ -34,6 +34,59 @@ document.addEventListener("DOMContentLoaded", async function () {
     let chiTietDoanTrung = [];
     let chiTietDoanChapVa = [];
 
+    // Vùng bôi màu máy chủ đã tính khi sinh bản PDF tải xuống. Có thì trang
+    // này vẽ lại đúng bộ đó, nhờ vậy màn hình và bản tải xuống giống hệt nhau.
+    let vetBoiMau = null;
+
+    /**
+     * Đổi khoá câu trong dữ liệu vệt (chi_so_cau_kiem_tra) sang vị trí trong
+     * mảng câu trùng — đơn vị mà bảng chi tiết bên phải đang dùng.
+     *
+     * @param {Object|null} duLieuVet Dữ liệu vệt máy chủ trả về
+     * @param {Array} dsCau Danh sách câu trùng của báo cáo
+     * @returns {Object|null}
+     */
+    function doiKhoaCauSangChiSoMang(duLieuVet, dsCau) {
+
+        if (!duLieuVet || !Array.isArray(duLieuVet.cac_vet)) return duLieuVet;
+
+        const bangTra = new Map();
+
+        (dsCau || []).forEach((c, i) => {
+            if (c && c.chi_so_cau_kiem_tra !== undefined) {
+                bangTra.set(Number(c.chi_so_cau_kiem_tra), i);
+            }
+        });
+
+        return {
+            ...duLieuVet,
+            cac_vet: duLieuVet.cac_vet.map(v => ({
+                ...v,
+                cac_cau: (v.cac_cau || [])
+                    .map(k => (bangTra.has(Number(k)) ? bangTra.get(Number(k)) : -1))
+                    .filter(i => i >= 0)
+            }))
+        };
+    }
+
+    /**
+     * Giữ lại những vệt có dính tới ít nhất một câu trong danh sách chỉ định.
+     * Dùng khi người dùng chọn xem riêng một tài liệu nguồn.
+     */
+    function locVetTheoCau(duLieuVet, cacChiSoCau) {
+
+        if (!duLieuVet || !Array.isArray(duLieuVet.cac_vet)) return null;
+
+        const canGiu = new Set(cacChiSoCau);
+
+        return {
+            ...duLieuVet,
+            cac_vet: duLieuVet.cac_vet.filter(
+                v => (v.cac_cau || []).some(i => canGiu.has(i))
+            )
+        };
+    }
+
     try {
         // =====================================================================
         // 3. LẤY THÔNG TIN BÁO CÁO
@@ -114,6 +167,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             chiTietDoanChapVa =
                 result.data.chiTietDoanChapVa || [];
+
+            vetBoiMau = doiKhoaCauSangChiSoMang(
+                result.data.vetBoiMau || null,
+                chiTietCauTrung
+            );
             console.log(
                 "✅ Đã lấy dữ liệu từ API."
             );
@@ -202,12 +260,20 @@ document.addEventListener("DOMContentLoaded", async function () {
                         "pdfViewer"
                     );
 
-                // Mặc định bôi màu toàn bộ câu trùng với mọi nguồn
-                const soVet =
-                    PdfHighlightViewer.boiMau(chiTietCauTrung);
+                // Ưu tiên vẽ lại đúng vùng bôi màu máy chủ đã tính: cùng một
+                // phép tính với bản PDF tải xuống nên hai bên không thể lệch.
+                // Bài chấm từ trước khi có dữ liệu này thì quay về cách cũ là
+                // tự dò chữ ngay trên trình duyệt.
+                let soVet = PdfHighlightViewer.boiMauTheoMayChu(vetBoiMau);
+                let nguonVet = 'vệt do máy chủ tính';
+
+                if (soVet < 0) {
+                    soVet = PdfHighlightViewer.boiMau(chiTietCauTrung);
+                    nguonVet = 'tự dò chữ (bài chấm trước khi có vệt lưu sẵn)';
+                }
 
                 console.log(
-                    `📄 Đã render ${soTrang} trang, bôi màu ${soVet} vệt.`
+                    `📄 Đã render ${soTrang} trang, bôi màu ${soVet} vệt — ${nguonVet}.`
                 );
 
                 // Link tải xuống trỏ về bản có sẵn highlight do worker vẽ,
@@ -766,21 +832,34 @@ tenTaiLieuMau
                             const idBaoCaoNguon =
                                 item.id_bao_cao;
 
+                            const chiSoCauCuaNguon = [];
+
                             const dsCauTrung =
-                                chiTietCauTrung.filter(cau =>
-                                    cau.danh_sach_nguon.some(
+                                chiTietCauTrung.filter((cau, i) => {
+                                    const co = (cau.danh_sach_nguon || []).some(
                                         nguon =>
                                             nguon.id_bao_cao === idBaoCaoNguon
-                                    )
-                                );
+                                    );
+
+                                    if (co) chiSoCauCuaNguon.push(i);
+
+                                    return co;
+                                });
 
                             // Bôi màu lại trong PDF, chỉ giữ phần trùng với
                             // đúng nguồn vừa chọn, rồi cuộn tới chỗ đầu tiên
                             // để thấy ngay thay đổi
                             if (window.PdfHighlightViewer) {
 
-                                const soVet =
-                                    PdfHighlightViewer.boiMau(dsCauTrung);
+                                // Vẫn ưu tiên bộ vệt của máy chủ, chỉ lọc bớt
+                                // theo nguồn — không quay về kiểu tự dò chữ,
+                                // nếu không vừa lọc nguồn là hai bên lại lệch.
+                                const vetTheoNguon =
+                                    locVetTheoCau(vetBoiMau, chiSoCauCuaNguon);
+
+                                const soVet = vetTheoNguon
+                                    ? PdfHighlightViewer.boiMauTheoMayChu(vetTheoNguon)
+                                    : PdfHighlightViewer.boiMau(dsCauTrung);
 
                                 console.log(
                                     `🖍️ Bôi màu ${soVet} vệt cho nguồn ${idBaoCaoNguon}`

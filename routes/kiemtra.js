@@ -18,6 +18,7 @@ const ChiTietDoanChapVa =
     require('../models/chi_tiet_doan_chap_va');
 
 // Import hàm đẩy task vào hàng đợi Redis (đường dẫn trỏ đến file queue.js trong thư mục workers)
+const VetBoiMau = require('../models/vet_boi_mau');
 const { addPlagiarismTask } = require('../workers/queue');
 
 const uploadsDir = path.resolve(__dirname, '../uploads');
@@ -248,6 +249,15 @@ router.get('/chi-tiet/:idBaoCao', async (req, res) => {
                     baoCao.id_bao_cao
             }).lean();
 
+        // Vùng bôi màu do worker tính sẵn. Trang chi tiết vẽ đúng những vệt
+        // này để giống hệt bản PDF tải xuống. Bài chấm từ trước khi có bảng
+        // này thì không có vệt, trang chi tiết sẽ tự dò chữ như cách cũ.
+        const vetBoiMau =
+            await VetBoiMau.findOne({
+                id_bao_cao:
+                    baoCao.id_bao_cao
+            }).lean();
+
         return res.json({
 
             success: true,
@@ -267,7 +277,10 @@ router.get('/chi-tiet/:idBaoCao', async (req, res) => {
                     dsChiTietDoanTrung,
 
                 chiTietDoanChapVa:
-                    dsChiTietDoanChapVa
+                    dsChiTietDoanChapVa,
+
+                vetBoiMau:
+                    vetBoiMau || null
 
             }
 

@@ -1,21 +1,7 @@
 const fs = require("fs");
 const stringSimilarity =
     require("string-similarity");
-const path = require("path");
 
-const PERF_FILE =
-    path.join(
-        __dirname,
-        "highlight-performance.log"
-    );
-
-function logPerf(text)
-{
-    fs.appendFileSync(
-        PERF_FILE,
-        text + "\n"
-    );
-}
 /*
 function calculateSimilarity(a, b) {
 
@@ -108,6 +94,11 @@ async function loadPdfItems(pdfPath) {
 
                         text:
                             item.str.trim(),
+
+                        // Gắn sẵn số trang để khi quét gộp hai trang liền nhau
+                        // vẫn biết từng cụm chữ nằm ở trang nào
+                        trang:
+                            pageNum,
 
                         x:
                             item.transform[4],
@@ -203,14 +194,46 @@ function findTextInPdf(
         return [];
     }
 
-    const nguyenVan =
-        quetTrang(pages, target, false);
+    // Thử theo thứ tự chắc chắn dần: khớp nguyên văn trong một trang, rồi
+    // nguyên văn vắt qua hai trang liền nhau, rồi mới tới so gần đúng.
+    //
+    // Nếu thiếu lượt quét theo cặp trang thì câu nào bị ngắt ngay chỗ sang
+    // trang sẽ chỉ bôi được phần đuôi, phần đầu ở cuối trang trước bỏ trắng —
+    // đúng kiểu "bôi chưa hết, hở chữ" mà người dùng nhìn thấy.
+    const cacLuot = [
+        () => quetTrang(pages, target, false),
+        () => quetTrang(dungCapTrang(pages), target, false),
+        () => quetTrang(pages, target, true),
+        () => quetTrang(dungCapTrang(pages), target, true)
+    ];
 
-    if (nguyenVan.length) {
-        return nguyenVan;
+    for (const luot of cacLuot) {
+        const ketQua = luot();
+        if (ketQua.length) return ketQua;
     }
 
-    return quetTrang(pages, target, true);
+    return [];
+}
+
+/**
+ * Ghép mỗi hai trang liền nhau thành một vùng quét, để tìm được cả những câu
+ * bị ngắt ở chỗ sang trang. Mỗi cụm chữ vẫn giữ số trang gốc của nó.
+ *
+ * @param {Array<{page:number, items:Array}>} pages
+ * @returns {Array<{page:number, items:Array}>}
+ */
+function dungCapTrang(pages) {
+
+    const cap = [];
+
+    for (let i = 0; i + 1 < pages.length; i++) {
+        cap.push({
+            page: pages[i].page,
+            items: [...pages[i].items, ...pages[i + 1].items]
+        });
+    }
+
+    return cap;
 }
 
 function quetTrang(
@@ -218,7 +241,6 @@ function quetTrang(
     target,
     choPhepGanDung
 ) {
-const startTime = Date.now();
     const targetText = target;
     const matches = [];
     for (const page of pages) {
@@ -274,6 +296,7 @@ const startTime = Date.now();
                         : itemText;
 
                 positions.push({
+                    trang: item.trang || page.page,
                     x: item.x,
                     y: item.y,
                     width: item.width,
@@ -357,35 +380,50 @@ const startTime = Date.now();
                                 );
                     }
 
-                    const firstPos = cacViTri[0];
-
-                    if (!firstPos) {
+                    if (!cacViTri.length) {
                         continue;
                     }
 
-                    const existed = matches.some(
-                        m =>
-                            m.page === page.page &&
-                            Math.abs(
-                                m.positions[0].x - firstPos.x
-                            ) < 2 &&
-                            Math.abs(
-                                m.positions[0].y - firstPos.y
-                            ) < 2
-                    );
+                    // Câu vắt qua chỗ sang trang thì các cụm chữ của nó nằm ở
+                    // hai trang khác nhau. Tách ra theo trang để mỗi trang được
+                    // bôi đúng phần của mình, thay vì bỏ rơi phần đầu câu.
+                    const theoTrang = new Map();
 
-                    if (!existed) {
+                    for (const p of cacViTri) {
+                        const so = p.trang || page.page;
 
-                        matches.push({
-                            page:
-                                page.page,
+                        if (!theoTrang.has(so)) theoTrang.set(so, []);
+                        theoTrang.get(so).push(p);
+                    }
 
-                            text:
-                                targetText,
+                    for (const [soTrang, dsViTri] of theoTrang) {
 
-                            positions: [...cacViTri]
-                        });
+                        const firstPos = dsViTri[0];
 
+                        const existed = matches.some(
+                            m =>
+                                m.page === soTrang &&
+                                Math.abs(
+                                    m.positions[0].x - firstPos.x
+                                ) < 2 &&
+                                Math.abs(
+                                    m.positions[0].y - firstPos.y
+                                ) < 2
+                        );
+
+                        if (!existed) {
+
+                            matches.push({
+                                page:
+                                    soTrang,
+
+                                text:
+                                    targetText,
+
+                                positions: [...dsViTri]
+                            });
+
+                        }
                     }
                     break;
 
@@ -405,15 +443,7 @@ const startTime = Date.now();
         }
 
     }
-    if (
-    Date.now() - startTime > 50
-) {
-    logPerf(
-    `SLOW_MATCH=${Date.now() - startTime}ms | ${targetText.substring(0, 50)}`
-);
-}
-
-return matches;
+    return matches;
 }
 
 module.exports = {

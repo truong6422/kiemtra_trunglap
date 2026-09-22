@@ -17,6 +17,10 @@ window.PdfHighlightViewer = (() => {
     let duLieuTrang = [];           // dữ liệu chữ + viewport theo từng trang
     let cauDangBoiMau = [];         // danh sách câu của lần vẽ gần nhất
     let chiSoCauDangChon = null;    // câu người dùng bấm xem gần nhất
+
+    // Bộ vệt bôi màu do máy chủ tính sẵn, nếu bài này có. Giữ lại để vẽ lại
+    // đúng bộ đó mỗi khi người dùng đổi mức phóng to.
+    let vetMayChuDangDung = null;
     let thongKePhu = [];            // số từ khớp được của từng câu
 
     // Các hàm chờ nghe khi người dùng bấm vào một vệt chữ được bôi màu
@@ -645,6 +649,10 @@ window.PdfHighlightViewer = (() => {
         cauDangBoiMau = danhSachCau || [];
         chiSoCauDangChon = null;
 
+        // Đang đi đường tự dò chữ thì bỏ bộ vệt của máy chủ, để lần vẽ lại sau
+        // không nhảy qua nhảy lại giữa hai cách.
+        vetMayChuDangDung = null;
+
         const cacCau = cauDangBoiMau
             .map(c => chuanHoa(c && c.cau_kiem_tra))
             .map(c => (c && c.length >= 10 ? c.split(' ') : null));
@@ -739,60 +747,138 @@ window.PdfHighlightViewer = (() => {
 
             for (const vet of hopNhatVetChongNhau(vetTheoTrang[iTrang])) {
 
-                if (vet.width <= 0 || vet.height <= 0) continue;
+                if (veMotVet(lop, vet)) tongVet++;
+            }
+        }
 
-                const el = document.createElement('div');
+        return tongVet;
+    }
 
-                el.className = 'pdf-vet-boi-mau';
+    /**
+     * Vẽ một vệt bôi màu lên lớp phủ của trang.
+     *
+     * @param {HTMLElement} lop Lớp phủ của trang
+     * @param {{left:number,top:number,width:number,height:number,cacCau:Iterable}} vet
+     * @returns {boolean} true nếu đã vẽ
+     */
+    function veMotVet(lop, vet) {
 
-                // Danh sách câu đi qua vệt này, phân tách bằng dấu cách để
-                // chọn được bằng selector [data-cac-cau~="3"]
-                el.dataset.cacCau = [...vet.cacCau].join(' ');
+        if (!lop || vet.width <= 0 || vet.height <= 0) return false;
 
-                // Vẽ đúng kích thước đã tính. Nở thêm cho "đẹp" sẽ làm vệt
-                // dòng trên thò xuống đè dòng dưới, thành vạch đậm chạy ngang.
-                el.style.cssText = `
-                    position: absolute;
-                    left: ${vet.left}px;
-                    top: ${vet.top}px;
-                    width: ${vet.width}px;
-                    height: ${vet.height}px;
-                    background: ${MAU_THUONG};
-                    cursor: pointer;
-                    border-radius: 2px;
-                    transition: background .18s;
-                `;
+        const el = document.createElement('div');
 
-                el.title = 'Bấm để xem câu này ở bảng chi tiết bên phải';
+        el.className = 'pdf-vet-boi-mau';
 
-                // Bấm vào chữ được bôi màu thì báo cho trang chi tiết biết để
-                // mở đúng mục tương ứng ở bảng bên phải.
-                //
-                // Trước đây vệt bôi màu đặt pointer-events: none nên chuột đi
-                // xuyên qua, bấm vào chỗ vàng chóe không có gì xảy ra: người
-                // dùng chỉ đi được một chiều từ bảng sang tài liệu.
-                el.addEventListener('click', () => {
-                    const cacCau = el.dataset.cacCau
-                        .split(' ')
-                        .map(Number)
-                        .filter(n => !Number.isNaN(n));
+        // Danh sách câu đi qua vệt này, phân tách bằng dấu cách để
+        // chọn được bằng selector [data-cac-cau~="3"]
+        el.dataset.cacCau = [...(vet.cacCau || [])].join(' ');
 
-                    if (!cacCau.length) return;
+        // Vẽ đúng kích thước đã tính. Nở thêm cho "đẹp" sẽ làm vệt
+        // dòng trên thò xuống đè dòng dưới, thành vạch đậm chạy ngang.
+        el.style.cssText = `
+            position: absolute;
+            left: ${vet.left}px;
+            top: ${vet.top}px;
+            width: ${vet.width}px;
+            height: ${vet.height}px;
+            background: ${MAU_THUONG};
+            cursor: pointer;
+            border-radius: 2px;
+            transition: background .18s;
+            pointer-events: auto;
+        `;
 
-                    // Một vệt có thể nằm trên nhiều câu khi hai câu dính liền
-                    // nhau trong cùng một dòng; lấy câu đầu tiên.
-                    lamNoiCau(cacCau[0]);
+        el.title = 'Bấm để xem câu này ở bảng chi tiết bên phải';
 
-                    for (const ham of cacHamNgheBamVet) {
-                        try {
-                            ham(cacCau[0], cacCau);
-                        } catch (e) {
-                            console.error('Lỗi khi xử lý bấm vệt bôi màu:', e);
-                        }
-                    }
-                });
+        // Bấm vào chữ được bôi màu thì báo cho trang chi tiết biết để
+        // mở đúng mục tương ứng ở bảng bên phải.
+        //
+        // Trước đây vệt bôi màu đặt pointer-events: none nên chuột đi
+        // xuyên qua, bấm vào chỗ vàng chóe không có gì xảy ra: người
+        // dùng chỉ đi được một chiều từ bảng sang tài liệu.
+        el.addEventListener('click', () => {
+            const cacCau = el.dataset.cacCau
+                .split(' ')
+                .map(Number)
+                .filter(n => !Number.isNaN(n));
 
-                lop.appendChild(el);
+            if (!cacCau.length) return;
+
+            // Một vệt có thể nằm trên nhiều câu khi hai câu dính liền
+            // nhau trong cùng một dòng; lấy câu đầu tiên.
+            lamNoiCau(cacCau[0]);
+
+            for (const ham of cacHamNgheBamVet) {
+                try {
+                    ham(cacCau[0], cacCau);
+                } catch (e) {
+                    console.error('Lỗi khi xử lý bấm vệt bôi màu:', e);
+                }
+            }
+        });
+
+        lop.appendChild(el);
+        return true;
+    }
+
+    /**
+     * Vẽ lại đúng những vệt mà máy chủ đã tính khi sinh bản PDF tải xuống.
+     *
+     * Đây là đường đi chính: máy chủ là nơi duy nhất tính vùng bôi màu, trang
+     * chi tiết chỉ quy đổi toạ độ rồi vẽ. Nhờ vậy bản xem trên màn hình và bản
+     * tải xuống luôn giống hệt nhau.
+     *
+     * Toạ độ máy chủ gửi về theo hệ của PDF: gốc ở góc dưới bên trái, đơn vị
+     * point. Màn hình thì gốc ở góc trên bên trái và đã nhân tỉ lệ phóng.
+     *
+     * @param {{cac_vet: Array, kich_thuoc_trang: Array}} duLieu
+     * @returns {number} số vệt đã vẽ, -1 nếu không có dữ liệu để vẽ
+     */
+    function boiMauTheoMayChu(duLieu) {
+
+        // -1 chỉ dành cho trường hợp bài này không có dữ liệu vệt của máy chủ.
+        // Danh sách rỗng vẫn là câu trả lời hợp lệ: nghĩa là không có gì để
+        // bôi (ví dụ người dùng lọc theo một nguồn không trùng câu nào).
+        const cacVet = duLieu && Array.isArray(duLieu.cac_vet)
+            ? duLieu.cac_vet
+            : null;
+
+        if (!cacVet || !containerEl) return -1;
+
+        vetMayChuDangDung = duLieu;
+        cauDangBoiMau = [];
+        chiSoCauDangChon = null;
+
+        // Dọn sạch mọi lớp phủ trước khi vẽ lại
+        for (let iTrang = 0; iTrang < duLieuTrang.length; iTrang++) {
+            const lop =
+                containerEl.querySelector(`#pdfHighlightLayer-${iTrang}`);
+            if (lop) lop.innerHTML = '';
+        }
+
+        let tongVet = 0;
+
+        for (const vet of cacVet) {
+
+            const iTrang = Number(vet.trang) - 1;
+            const trang = duLieuTrang[iTrang];
+
+            const lop =
+                containerEl.querySelector(`#pdfHighlightLayer-${iTrang}`);
+
+            if (!lop || !trang || !trang.viewport) continue;
+
+            // Quy đổi bằng chính viewport đang render, nên đổi mức phóng to
+            // hay lật sang bản PDF khác thì vệt vẫn nằm đúng chỗ.
+            const viewport = trang.viewport;
+
+            if (veMotVet(lop, {
+                left: vet.x * viewport.scale,
+                top: viewport.height - (vet.y + vet.cao) * viewport.scale,
+                width: vet.rong * viewport.scale,
+                height: vet.cao * viewport.scale,
+                cacCau: vet.cac_cau || []
+            })) {
                 tongVet++;
             }
         }
@@ -1060,10 +1146,18 @@ window.PdfHighlightViewer = (() => {
         if (!pdfDoc) return tyLe;
 
         const cauCu = cauDangBoiMau;
+        const vetCu = vetMayChuDangDung;
         const chonCu = chiSoCauDangChon;
 
         await renderTatCaTrang();
-        boiMau(cauCu);
+
+        // Vẽ lại đúng bằng cách đã dùng lúc đầu: bài nào có vệt của máy chủ
+        // thì giữ nguyên bộ vệt đó, không quay về kiểu tự dò chữ.
+        if (vetCu) {
+            boiMauTheoMayChu(vetCu);
+        } else {
+            boiMau(cauCu);
+        }
 
         if (chonCu !== null && chonCu !== undefined) {
             lamNoiCau(chonCu);   // cuộn lại đúng câu đang xem
@@ -1085,6 +1179,7 @@ window.PdfHighlightViewer = (() => {
     return {
         mo,
         boiMau,
+        boiMauTheoMayChu,
         lamNoiCau,
         khiBamVetBoiMau,
         cuonToiCau: lamNoiCau,   // tên cũ, giữ cho chỗ gọi sẵn có

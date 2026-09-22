@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const util = require('util');
 const { timTepBaoCao } = require('../utils/duong_dan_tep');
+const VetBoiMau = require('../models/vet_boi_mau');
 
 const libre =
     require('libreoffice-convert');
@@ -49,19 +50,17 @@ function getSentenceColor() {
  * @param {Array<{x:number,y:number,width:number,height:number}>} cacO
  * @returns {Array<{y:number,x:number,width:number,height:number}>}
  */
-function gomViTriTheoDong(cacO) {
+/**
+ * Xếp các cụm chữ về từng dòng theo toạ độ y.
+ *
+ * @param {Array<{x:number,y:number,width:number,height:number}>} cacO
+ * @returns {Array<{y:number,height:number,cacO:Array}>}
+ */
+function gomTheoDong(cacO) {
 
-    if (
-        !Array.isArray(cacO) ||
-        cacO.length === 0
-    ) {
-        return [];
-    }
-
-    // Gom về từng dòng theo toạ độ y
     const cacDong = [];
 
-    for (const o of cacO) {
+    for (const o of cacO || []) {
 
         if (!o.width || o.width <= 0) {
             continue;
@@ -88,6 +87,96 @@ function gomViTriTheoDong(cacO) {
             });
         }
     }
+
+    return cacDong;
+}
+
+/**
+ * Bôi liền một mạch phần câu nằm trên mỗi dòng: từ chữ đầu tới chữ cuối của
+ * chính câu đó trên dòng đó.
+ *
+ * Trước đây mỗi cụm chữ khớp được tô riêng, nên chữ nào trong câu lệch đi một
+ * chút là ở giữa hở ra một khoảng trắng, dù thống kê vẫn tính cả câu là trùng.
+ * Lấy trọn khoảng của câu trên dòng thì hết hở, và cũng là cách trang chi tiết
+ * phải vẽ theo cho hai bên khớp nhau.
+ *
+ * @param {Array} cacO Các cụm chữ của MỘT câu trên MỘT trang
+ * @param {number} chiSoCau Thứ tự câu trùng, gắn kèm để trang chi tiết biết
+ *        vệt này thuộc câu nào khi người dùng bấm vào
+ */
+function noiLienCauTheoDong(cacO, chiSoCau) {
+
+    return gomTheoDong(cacO).map(dong => {
+
+        const trai =
+            Math.min(...dong.cacO.map(o => o.x));
+
+        const phai =
+            Math.max(...dong.cacO.map(o => o.x + o.width));
+
+        return {
+            x: trai,
+            y: dong.y,
+            width: phai - trai,
+            height: dong.height,
+            cacCau: [chiSoCau]
+        };
+    });
+}
+
+/**
+ * Ghi lại các vệt vừa vẽ để trang chi tiết dùng chung.
+ *
+ * Mỗi báo cáo chỉ giữ một bản mới nhất: chấm lại thì vệt cũ được thay hẳn.
+ * Lưu hỏng cũng không được làm hỏng việc sinh PDF, nên chỉ ghi nhật ký.
+ */
+async function luuVetBoiMau(reportId, pdfDoc, cacVet) {
+
+    if (!reportId) return;
+
+    try {
+        const kichThuocTrang =
+            pdfDoc.getPages().map((p, i) => ({
+                trang: i + 1,
+                rong: p.getWidth(),
+                cao: p.getHeight()
+            }));
+
+        await VetBoiMau.findOneAndUpdate(
+            { id_bao_cao: reportId },
+            {
+                $set: {
+                    id_bao_cao: reportId,
+                    kich_thuoc_trang: kichThuocTrang,
+                    cac_vet: cacVet,
+                    ngay_tao: new Date()
+                }
+            },
+            { upsert: true }
+        );
+
+        console.log(
+            `🖍️  Đã lưu ${cacVet.length} vệt bôi màu cho ${reportId}`
+        );
+
+    } catch (loi) {
+        console.error(
+            `Không lưu được vệt bôi màu của ${reportId}:`,
+            loi.message
+        );
+    }
+}
+
+function gomViTriTheoDong(cacO) {
+
+    if (
+        !Array.isArray(cacO) ||
+        cacO.length === 0
+    ) {
+        return [];
+    }
+
+    const cacDong = gomTheoDong(cacO);
 
     // Trong từng dòng, nối các cụm chồng nhau hoặc sát nhau
     const cacVet = [];
@@ -120,6 +209,10 @@ function gomViTriTheoDong(cacO) {
                 dangGom.height =
                     Math.max(dangGom.height, o.height);
 
+                for (const c of (o.cacCau || [])) {
+                    dangGom.cacCau.add(c);
+                }
+
             } else {
 
                 if (dangGom) cacVet.push(dangGom);
@@ -128,7 +221,8 @@ function gomViTriTheoDong(cacO) {
                     y: dong.y,
                     x: o.x,
                     width: o.width,
-                    height: o.height
+                    height: o.height,
+                    cacCau: new Set(o.cacCau || [])
                 };
             }
         }
@@ -335,11 +429,14 @@ async function processAndHighlightReport(
         const oTheoTrang = new Map();
 
         for (
-            const item
-            of chiTietCauTrung
+            let chiSoCau = 0;
+            chiSoCau < chiTietCauTrung.length;
+            chiSoCau++
         ) {
+            const item = chiTietCauTrung[chiSoCau];
+
             if (
-                !item.cau_kiem_tra
+                !item || !item.cau_kiem_tra
             ) {
                 continue;
             }
@@ -366,9 +463,21 @@ async function processAndHighlightReport(
                     oTheoTrang.set(found.page, []);
                 }
 
+                // Nối liền phần câu trên từng dòng trước khi gộp chung với các
+                // câu khác, để không còn khoảng hở giữa các chữ trong một câu.
+                // Ghi theo chi_so_cau_kiem_tra — khoá ổn định của câu — chứ
+                // không theo vị trí trong mảng, để trang chi tiết ghép lại
+                // đúng câu kể cả khi thứ tự đọc ra từ CSDL có khác.
+                const khoaCau =
+                    item.chi_so_cau_kiem_tra !== undefined
+                        ? Number(item.chi_so_cau_kiem_tra)
+                        : chiSoCau;
+
                 oTheoTrang
                     .get(found.page)
-                    .push(...found.positions);
+                    .push(
+                        ...noiLienCauTheoDong(found.positions, khoaCau)
+                    );
             }
         }
 
@@ -378,6 +487,10 @@ async function processAndHighlightReport(
 
         const color =
             getSentenceColor();
+
+        // Danh sách vệt cuối cùng, vừa dùng để vẽ vào PDF vừa lưu lại cho trang
+        // chi tiết vẽ y hệt. Đây là nơi duy nhất tính vùng bôi màu.
+        const vetDeLuu = [];
 
         for (const [soTrang, cacO] of oTheoTrang) {
 
@@ -404,8 +517,19 @@ async function processAndHighlightReport(
                     color,
                     opacity: DO_MO
                 });
+
+                vetDeLuu.push({
+                    trang: soTrang,
+                    x: vet.x,
+                    y: vet.y,
+                    rong: vet.width,
+                    cao: vet.height,
+                    cac_cau: [...(vet.cacCau || [])]
+                });
             }
         }
+
+        await luuVetBoiMau(reportId, pdfDoc, vetDeLuu);
 
         // ========================================
         // OUTPUT
