@@ -1,4 +1,6 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const router = express.Router();
 const LopHoc = require('../models/lop_hoc');
 const {
@@ -8,6 +10,30 @@ const {
     laCungNguoi,
     boSungMaTaiKhoan
 } = require('../utils/thanh_vien_lop');
+
+// Tệp Excel mẫu để nhập danh sách thành viên lớp
+const TEP_EXCEL_MAU = path.resolve(__dirname, '..', 'file_excel_mau.xlsx');
+
+// =========================================================================
+// API GET /api/lop-hoc/file-excel-mau
+//
+// Trả tệp Excel mẫu cho nút "Tải file excel mẫu".
+//
+// Trước đây giao diện trỏ thẳng vào đường dẫn tương đối '../../file_excel_mau.xlsx',
+// tức là phải leo ra ngoài thư mục giao diện. Đường dẫn đó chỉ chạy được khi
+// máy chủ tĩnh lấy cả thư mục dự án làm gốc; đổi gốc một cái là tải hỏng ngay.
+// Cho máy chủ trả tệp thì không còn phụ thuộc vào cách bày thư mục nữa.
+// =========================================================================
+router.get('/file-excel-mau', (req, res) => {
+    if (!fs.existsSync(TEP_EXCEL_MAU)) {
+        return res.status(404).json({
+            success: false,
+            message: 'Không tìm thấy tệp Excel mẫu trên máy chủ!'
+        });
+    }
+
+    return res.download(TEP_EXCEL_MAU, 'file_excel_mau.xlsx');
+});
 
 // API POST: Tạo lớp học mới và lưu vào MongoDB (collection 'lop_hoc')
 router.post('/', async (req, res) => {

@@ -683,7 +683,10 @@ if (cleanDesc && typeof cleanDesc === 'string') {
 
                     downloadTemplateBtn.onclick = function () {
                         const link = document.createElement('a');
-                        link.href = '../../file_excel_mau.xlsx';
+                        // Lấy từ máy chủ, không dùng đường dẫn tương đối leo ra
+                        // ngoài thư mục giao diện — đường dẫn đó phụ thuộc vào
+                        // cách bày thư mục nên đổi gốc một cái là tải hỏng.
+                        link.href = 'http://localhost:5000/api/lop-hoc/file-excel-mau';
                         link.download = 'file_excel_mau.xlsx';
                         document.body.appendChild(link);
                         link.click();
