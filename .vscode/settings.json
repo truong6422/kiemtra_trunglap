@@ -1,16 +1,41 @@
 {
+    // Live Server chỉ theo dõi đúng thư mục nó phục vụ. Đặt gốc về thư mục giao
+    // diện để mọi tệp dữ liệu vận hành mà máy chủ ghi ra lúc chấm bài (uploads/,
+    // upload2/, tệp .pdf tạm) nằm hẳn ngoài vùng theo dõi.
+    //
+    // Trước đây gốc là cả thư mục dự án: mỗi lần nộp một tệp vài chục MB, multer
+    // ghi tệp theo từng khối nên sinh ra hàng trăm sự kiện đổi tệp trong vài
+    // giây, Live Server tải lại trang theo từng sự kiện — đó chính là hiện tượng
+    // trang nháy liên tục trong lúc đang kiểm tra tài liệu.
+    //
+    // Sau khi đổi, địa chỉ trang rút gọn lại còn:
+    //   http://127.0.0.1:5500/pages/quanlytailieu.html
+    "liveServer.settings.root": "/010108294906.18.CaoVanHung_2200461",
+
+    // Lớp chặn thứ hai, phòng khi ai đó đặt lại gốc về thư mục dự án.
+    "liveServer.settings.ignoreFiles": [
+        "**/.vscode/**",
+        "**/node_modules/**",
+        "**/uploads/**",
+        "**/upload2/**",
+        "**/text_data/**",
+        "**/kiem_thu/**",
+        "**/restructuring_data/**",
+        "**/*.log",
+        "**/*.pdf",
+        "**/*.doc",
+        "**/*.docx"
+    ],
+
     "files.watcherExclude": {
         "**/.git/objects/**": true,
         "**/.git/subtree-cache/**": true,
         "**/node_modules/**": true,
+        "**/uploads/**": true,
         "**/upload2/**": true,
-        "**/uploads/**": true
-    },
-    "liveServer.settings.ignoreFiles": [
-        ".vscode/**",
-        "*.log",
-        "upload2/**",
-        "uploads/**",
-        "**/*.pdf"
-    ]
+        "**/text_data/**": true,
+        "**/kiem_thu/**": true,
+        "**/restructuring_data/**": true,
+        "**/*.log": true
+    }
 }
