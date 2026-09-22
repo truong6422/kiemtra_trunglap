@@ -1,6 +1,7 @@
 const fs = require("fs");
 const stringSimilarity =
     require("string-similarity");
+const { moPdf } = require("../utils/mo_pdf");
 
 /*
 function calculateSimilarity(a, b) {
@@ -41,20 +42,12 @@ function calculateSimilarity(a, b) {
 }*/
 async function loadPdfItems(pdfPath) {
 
-    const pdfjsLib =
-        await import(
-            "pdfjs-dist/legacy/build/pdf.mjs"
-        );
-
-    const data =
-        new Uint8Array(
-            fs.readFileSync(pdfPath)
-        );
-
     const pdf =
-        await pdfjsLib
-            .getDocument({ data })
-            .promise;
+        await moPdf(
+            new Uint8Array(
+                fs.readFileSync(pdfPath)
+            )
+        );
 
     const pages = [];
 

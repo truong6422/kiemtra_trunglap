@@ -17,13 +17,9 @@ const util = require('util');
 const libre = require('libreoffice-convert');
 
 const { phanTichPhamViTrang, moTaPhamVi } = require('./pham_vi_trang');
+const { moPdf } = require('./mo_pdf');
 
 const chuyenDoiAsync = util.promisify(libre.convert);
-
-/** Nạp pdf.js bản legacy — cùng bản mà bước bôi màu đang dùng. */
-async function napPdfJs() {
-    return import('pdfjs-dist/legacy/build/pdf.mjs');
-}
 
 /**
  * Đọc chữ của từng trang trong một tệp PDF.
@@ -32,10 +28,10 @@ async function napPdfJs() {
  * @returns {Promise<string[]>} Mảng chữ, phần tử thứ i là trang i + 1
  */
 async function docChuTungTrang(duongDanPdf) {
-    const pdfjsLib = await napPdfJs();
 
-    const duLieu = new Uint8Array(fs.readFileSync(duongDanPdf));
-    const pdf = await pdfjsLib.getDocument({ data: duLieu }).promise;
+    const pdf = await moPdf(
+        new Uint8Array(fs.readFileSync(duongDanPdf))
+    );
 
     const cacTrang = [];
 
