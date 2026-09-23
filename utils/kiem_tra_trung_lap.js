@@ -193,6 +193,11 @@ async function checkPlagiarism(
         nguongTrungLap = Number(cauHinh.nguong_trung_lap) || 0.5;
     }
 
+    console.log(
+        `[NGUONG] Đang dùng ngưỡng trùng lặp ${nguongTrungLap} `
+        + `(${Math.round(nguongTrungLap * 100)}%) lấy từ Quản lý cấu hình.`
+    );
+
     // Thuật toán bị tắt coi như trọng số 0. Nếu bản ghi cấu hình chưa khai báo
     // danh sách thuật toán thì giữ nguyên bộ trọng số gốc 0.4 / 0.4 / 0.2.
     const trongSo = { TFIDF_COSINE: 0.4, WINNOWING: 0.4, JACCARD: 0.2 };
@@ -209,35 +214,42 @@ async function checkPlagiarism(
         }
     }
 
-    // Quy bộ trọng số về tổng bằng 1 trước khi đem đi tính.
+    // Dùng thẳng bộ trọng số quản trị viên đã đặt, không quy đổi gì thêm.
     //
-    // Quản trị viên được đặt trọng số tuỳ ý, kể cả 0.5 / 0.5 / 0.3. Phần tính
-    // điểm giống nhau là trung bình có trọng số, nên nếu cộng thẳng bộ số có
-    // tổng 1.3 thì điểm của một câu chép nguyên văn ra 1.3 — tỉ lệ trùng của cả
-    // bài vọt lên trên 100%. Chia mỗi trọng số cho tổng giữ nguyên tương quan
-    // giữa ba thuật toán mà điểm vẫn nằm trong khoảng 0–1, nên đổi sang bộ số
-    // nào thì ngưỡng trùng lặp vẫn mang đúng ý nghĩa cũ.
+    // Màn Quản lý cấu hình chỉ cho lưu khi tổng các thuật toán đang bật đúng
+    // 100%, nên bộ số đọc lên ở đây đã có tổng bằng 1. Trước đây chỗ này tự chia
+    // cả bộ cho tổng của chúng: đặt 50/50/30 vẫn lưu được nhưng lúc chấm lại
+    // chạy 38,5/38,5/23 — số hiện trên màn hình không phải số đang chạy.
     const tongTrongSo = Object.values(trongSo)
         .reduce((tong, so) => tong + so, 0);
 
-    if (tongTrongSo > 0) {
-        for (const ma of Object.keys(trongSo)) {
-            trongSo[ma] = trongSo[ma] / tongTrongSo;
-        }
-    } else {
-        // Tắt sạch cả ba thuật toán thì không còn gì để so; quay về bộ mặc định
-        // thay vì chia cho 0 rồi cho ra NaN.
+    if (tongTrongSo <= 0) {
+        // Bản ghi cấu hình cũ tắt sạch cả ba thuật toán thì không còn gì để so;
+        // quay về bộ mặc định thay vì cho ra điểm bằng 0 với mọi câu.
         trongSo.TFIDF_COSINE = 0.4;
         trongSo.WINNOWING = 0.4;
         trongSo.JACCARD = 0.2;
+
+        console.warn(
+            '[TRONG_SO] Cấu hình không có thuật toán nào đang bật — dùng bộ mặc '
+            + 'định 0.4 / 0.4 / 0.2.'
+        );
+
+    } else if (Math.round(tongTrongSo * 100) !== 100) {
+        // Bản ghi có từ trước khi màn cấu hình bắt tổng phải bằng 100%. Chỉ báo
+        // cho biết, không tự nắn: quản trị viên vào lưu lại một lượt là xong.
+        console.warn(
+            `[TRONG_SO] Tổng trọng số trong cấu hình là `
+            + `${Math.round(tongTrongSo * 100)}%, không phải 100%. Hãy mở Quản lý `
+            + `cấu hình và chỉnh lại cho đủ.`
+        );
     }
 
     console.log(
-        `[TRONG_SO] Sau khi quy về tổng 1: `
+        `[TRONG_SO] Đang dùng: `
         + `TFIDF_COSINE=${trongSo.TFIDF_COSINE.toFixed(4)} `
         + `WINNOWING=${trongSo.WINNOWING.toFixed(4)} `
-        + `JACCARD=${trongSo.JACCARD.toFixed(4)} `
-        + `(tổng khai báo ban đầu: ${tongTrongSo.toFixed(2)})`
+        + `JACCARD=${trongSo.JACCARD.toFixed(4)}`
     );
 
 

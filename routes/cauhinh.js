@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const CauHinhHeThong = require('../models/cau_hinh_he_thong');
 const { donBaoCaoQuaHan } = require('../utils/don_bao_cao_qua_han');
+const { quenBanNho } = require('../utils/gioi_han_tep');
 
 // Danh sách thuật toán dựng sẵn, dùng khi bản ghi cấu hình chưa có mục nào.
 const THUAT_TOAN_MAC_DINH = [
@@ -98,16 +99,21 @@ function kiemTraDuLieu({ nguong_trung_lap, danh_sach_thuat_toan,
         }
     }
 
-    // Tổng trọng số không bắt buộc bằng 1.
+    // Tổng trọng số của các thuật toán đang bật phải đúng 100%.
     //
-    // Trước đây ai muốn thử bộ số khác đều phải tự cân cho vừa đúng 100%, nên
-    // không so được "tăng riêng Winnowing lên thì kết quả đổi thế nào". Giờ lưu
-    // đúng số người dùng đặt, còn lúc tính thì module đối sánh chia cả bộ cho
-    // tổng của chúng, nên tỉ lệ trùng vẫn nằm trong 0–100%. Chỉ chặn trường hợp
-    // tổng bằng 0 vì khi đó không còn thuật toán nào có tiếng nói.
+    // Hệ thống không tự quy bộ số về 100% nữa: quy đổi ngầm làm quản trị viên
+    // đặt 50/50/30 rồi tưởng đó là bộ số đang chạy, trong khi thực tế chạy
+    // 38,5/38,5/23. Giờ số nào lưu được là số đó đem đi chấm, còn tổng chưa
+    // bằng 100% thì chặn luôn ở đây để người đặt tự nắn lại.
+    //
+    // So bằng sai số nhỏ vì trọng số được giao diện gửi lên dạng phần trăm chia
+    // 100, ví dụ 0,4 + 0,4 + 0,2 trong dấu phẩy động không ra đúng 1 tuyệt đối.
     const tong = dangBat.reduce((s, t) => s + Number(t.trong_so), 0);
-    if (tong <= 0) {
-        return 'Tổng trọng số của các thuật toán đang bật phải lớn hơn 0.';
+    const tongPhanTram = Math.round(tong * 100);
+
+    if (tongPhanTram !== 100) {
+        return `Tổng trọng số của các thuật toán đang bật phải bằng đúng 100%. `
+            + `Hiện đang là ${tongPhanTram}%.`;
     }
 
     if (!Array.isArray(cho_phep_upload) || cho_phep_upload.length === 0) {
@@ -168,6 +174,11 @@ router.put('/', async (req, res) => {
             { $set: duLieuMoi },
             { returnDocument: 'after', upsert: true }
         ).lean();
+
+        // Luồng tải lên nhớ tạm dung lượng và định dạng cho phép, nên phải báo
+        // cho nó quên đi, nếu không số vừa đặt phải chờ hết thời gian nhớ mới
+        // có hiệu lực.
+        quenBanNho();
 
         res.json({
             success: true,
