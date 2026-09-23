@@ -206,6 +206,14 @@
     cursor: not-allowed;
 }
 
+/* Nút Lưu cấu hình bị khoá khi tổng trọng số chưa bằng 100%. Phải nhìn ra là
+   đang khoá, nếu không người dùng bấm mãi mà không hiểu vì sao không ăn. */
+#btnLuu:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    filter: grayscale(0.6);
+}
+
 /* Công tắc bật / tắt */
 .ch-cong-tac {
     position: relative;
