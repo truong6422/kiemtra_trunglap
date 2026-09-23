@@ -277,23 +277,32 @@ function renderTablePage() {
 
         const chuaCoKetQua = item.do_trung_lap === undefined || item.do_trung_lap === null;
 
+        // Tài liệu không bóc được chữ (PDF/Word dựng từ ảnh) được máy chủ đánh
+        // dấu "Lỗi" kèm độ trùng lặp 0%. Không có kết quả chấm nên cũng không có
+        // trang chi tiết để mở.
+        const laLoi = item.trang_thai === 'Lỗi';
+
         row.innerHTML = `
             <td><input type="checkbox" class="row-checkbox"></td>
             <td style="font-weight: 500; color: #1e293b;">${rowId || '-'}</td>
             <td style="font-weight: 500; color: #0f172a;" title="${tieuDe}">${tieuDe}</td>
             <td id="trung-lap-${rowId}">
                 ${chuaCoKetQua ? '<div class="loading-spinner"></div>' : `
-                    <span style="color: #10b981; font-weight: 600;">${item.do_trung_lap}%</span>
+                    <span style="color: ${laLoi ? '#94a3b8' : '#10b981'}; font-weight: 600;">${item.do_trung_lap}%</span>
+                    ${laLoi ? '' : `
                     <span class="detail-action-container">
                         <button class="detail-link-btn" onclick="xemChiTietChiTiet('${rowId}')">
                             <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i> chi tiết
                         </button>
                     </span>
+                    `}
                 `}
             </td>
             <td style="color: #475569; white-space: nowrap;">${dateStr}</td>
             <td id="trang-thai-${rowId}">
-                ${chuaCoKetQua ? '<span class="badge-dang-xu-ly">Đang xử lý</span>' : `<span style="background: #e0f2fe; color: #0284c7; padding: 4px 8px; border-radius: 4px; font-size: 13px; font-weight: 500;">${item.trang_thai || 'Đã xử lý'}</span>`}
+                ${chuaCoKetQua
+                ? '<span class="badge-dang-xu-ly">Đang xử lý</span>'
+                : `<span style="background: ${laLoi ? '#fee2e2' : '#e0f2fe'}; color: ${laLoi ? '#b91c1c' : '#0284c7'}; padding: 4px 8px; border-radius: 4px; font-size: 13px; font-weight: 500;" title="${laLoi ? 'Không đọc được chữ trong tệp — tài liệu nhiều khả năng chỉ gồm ảnh.' : ''}">${item.trang_thai || 'Đã xử lý'}</span>`}
             </td>
             <td style="white-space: nowrap;">
                 <button style="border: none; background: transparent; cursor: pointer; color: #0284c7; margin-right: 6px; font-size: 15px;" title="Lưu tài liệu" data-hanh-dong="luu" data-ma="${rowId}"><i class="fa-solid fa-floppy-disk"></i></button>
@@ -451,6 +460,10 @@ async function submitCheckDoc() {
 
     closeDocModal();
 
+    // Những tệp máy chủ từ chối (quá dung lượng, sai định dạng) hoặc nhận nhưng
+    // không bóc được chữ. Gom lại để báo một lần, thay vì im lặng như trước.
+    const canhBao = [];
+
     try {
         for (const file of filesToUpload) {
             const formData = new FormData();
@@ -467,15 +480,29 @@ async function submitCheckDoc() {
                 const result = await res.json();
                 if (result.success) {
                     console.log(`Đã tiếp nhận file: ${file.name}`);
+
+                    if (result.khong_doc_duoc_chu) {
+                        canhBao.push(
+                            `${file.name}: không đọc được chữ nào (tài liệu nhiều `
+                            + `khả năng chỉ gồm ảnh) — để trạng thái "Lỗi", độ `
+                            + `trùng lặp 0%.`
+                        );
+                    }
                 } else {
                     console.error(`Lỗi khi upload file ${file.name}:`, result.message);
+                    canhBao.push(`${file.name}: ${result.message || 'không tải lên được.'}`);
                 }
             } catch (err) {
                 console.error("Lỗi kết nối:", err);
+                canhBao.push(`${file.name}: không gửi được lên máy chủ.`);
             }
         }
 
-        showAlert("Đã gửi tài liệu lên hệ thống và đang tiến hành xử lý!");
+        showAlert(
+            canhBao.length === 0
+                ? "Đã gửi tài liệu lên hệ thống và đang tiến hành xử lý!"
+                : "Đã gửi tài liệu lên hệ thống.\n\n" + canhBao.join('\n')
+        );
         await loadBaoCaoTable();
 
     } catch (error) {

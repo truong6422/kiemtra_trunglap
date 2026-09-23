@@ -18,6 +18,9 @@ const { trichXuatTheoTrang } = require('../utils/trich_xuat_theo_trang');
 // 2. IMPORT HÀM ĐẨY TASK VÀO HÀNG ĐỢI REDIS
 const { addPlagiarismTask } = require('../workers/queue');
 
+// 3. GIỚI HẠN DUNG LƯỢNG VÀ ĐỊNH DẠNG THEO MÀN QUẢN LÝ CẤU HÌNH
+const { apDungGioiHanTep } = require('../utils/gioi_han_tep');
+
 // Cấu hình Multer lưu file upload vào thư mục uploads/
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -52,6 +55,51 @@ async function taoMaBaoCaoMoi() {
         );
 
     return `BC${counter.seq}`;
+}
+
+// Trạng thái ghi trong bảng bao_cao khi không đọc được chữ hoặc lượt chấm hỏng
+const TRANG_THAI_LOI = 'Lỗi';
+
+/**
+ * Ghép một bản ghi báo cáo với kết quả chấm của nó thành dòng cho bảng Quản lý
+ * tài liệu.
+ *
+ * Ba trường hợp:
+ *
+ *   - Đã chấm xong  → tỉ lệ thật, trạng thái "Đã xử lý".
+ *   - Đánh dấu Lỗi  → 0% và trạng thái "Lỗi". Rơi vào đây là những tệp PDF hoặc
+ *     Word dựng hoàn toàn từ ảnh: không bóc được chữ nào nên không có gì để so.
+ *     Trước đây chỗ này ép mọi bản ghi chưa có kết quả về "Đang xử lý", nên tài
+ *     liệu hỏng nằm quay vòng tròn chờ mãi không dừng.
+ *   - Còn lại       → đang nằm trong hàng chờ, để "Đang xử lý".
+ *
+ * @param {Object} baoCao Bản ghi trong bảng bao_cao
+ * @param {Object|undefined} ketQua Bản ghi ket_qua_kiem_tra tương ứng
+ */
+function dungDongDanhSach(baoCao, ketQua) {
+    const daChamXong = !!ketQua && ketQua.trang_thai === 'hoan_thanh';
+
+    if (daChamXong) {
+        return {
+            ...baoCao,
+            do_trung_lap: ketQua.ti_le_trung_lap,
+            trang_thai: 'Đã xử lý'
+        };
+    }
+
+    if (baoCao.trang_thai === TRANG_THAI_LOI) {
+        return {
+            ...baoCao,
+            do_trung_lap: 0,
+            trang_thai: TRANG_THAI_LOI
+        };
+    }
+
+    return {
+        ...baoCao,
+        do_trung_lap: null,
+        trang_thai: 'Đang xử lý'
+    };
 }
 
 // API GET: Lấy danh sách báo cáo có lọc theo id_sinh_vien
@@ -106,38 +154,9 @@ router.get('/', async (req, res) => {
         }
 
         const ketQuaHoanChinh =
-            danhSach.map(bc => {
-
-                const ketQuaCheck =
-                    mapKetQua.get(
-                        bc.id_bao_cao
-                    );
-
-                return {
-
-                    ...bc,
-
-                    do_trung_lap:
-                        (
-                            ketQuaCheck &&
-                            ketQuaCheck.trang_thai ===
-                            "hoan_thanh"
-                        )
-                            ? ketQuaCheck.ti_le_trung_lap
-                            : null,
-
-                    trang_thai:
-                        (
-                            ketQuaCheck &&
-                            ketQuaCheck.trang_thai ===
-                            "hoan_thanh"
-                        )
-                            ? "Đã xử lý"
-                            : "Đang xử lý"
-
-                };
-
-            });
+            danhSach.map(
+                bc => dungDongDanhSach(bc, mapKetQua.get(bc.id_bao_cao))
+            );
 
         return res.json({ success: true, data: ketQuaHoanChinh });
     } catch (error) {
@@ -146,7 +165,7 @@ router.get('/', async (req, res) => {
 });
 
 // API POST /upload
-router.post('/upload', upload.single('file'), async (req, res) => {
+router.post('/upload', upload.single('file'), apDungGioiHanTep, async (req, res) => {
     try {
         const file = req.file;
         const { id_sinh_vien } = req.body;
@@ -202,20 +221,22 @@ router.post('/upload', upload.single('file'), async (req, res) => {
             rawText = await trichXuatVanBan(file.path);
         }
 
-        if (!rawText || rawText.trim() === '') {
-            if (fs.existsSync(tepTin)) fs.unlinkSync(tepTin);
-            return res.status(400).json({ success: false, message: 'File rỗng hoặc không đọc được văn bản!' });
-        }
+        // Tệp không bóc được chữ nào — thường là PDF hoặc Word dựng hoàn toàn từ
+        // ảnh chụp/scan. Vẫn ghi nhận tài liệu, nhưng để trạng thái "Lỗi" và
+        // không đẩy vào hàng chờ chấm: không có chữ thì không có gì để so.
+        //
+        // Trước đây chỗ này trả lỗi 400 rồi xoá luôn tệp, nên người dùng tải lên
+        // xong không thấy dòng nào trong bảng mà cũng không biết vì sao.
+        const khongDocDuocChu = !rawText || rawText.trim() === '';
 
         const newBaoCao = new BaoCao({
             id_bao_cao: idBaoCao,
             tieu_de: tieuDe,
             loai_bao_cao: req.body.loaiBaoCao || "Báo cáo kiểm tra",
             tep_tin: tepTin,
-            noi_dung_tien_xu_ly: rawText,
-            do_trung_lap: null,
+            noi_dung_tien_xu_ly: khongDocDuocChu ? '' : rawText,
             ngay_tai_len: new Date(),
-            trang_thai: "Đang xử lý",
+            trang_thai: khongDocDuocChu ? TRANG_THAI_LOI : "Đang xử lý",
             id_sinh_vien: id_sinh_vien || "",
             mau_kiem_tra: false,
             pham_vi_trang: phamViDaCham
@@ -228,6 +249,23 @@ router.post('/upload', upload.single('file'), async (req, res) => {
             await capNhatSoBaoCao(id_sinh_vien);
         } catch (e) {
             console.error('Không cập nhật được số báo cáo của sinh viên:', e.message);
+        }
+
+        if (khongDocDuocChu) {
+            console.warn(
+                `⚠️ ${idBaoCao} (${originalName}): không bóc được chữ nào — `
+                + `nhiều khả năng tài liệu chỉ gồm ảnh. Đánh dấu "Lỗi", độ trùng `
+                + `lặp 0%.`
+            );
+
+            return res.status(200).json({
+                success: true,
+                khong_doc_duoc_chu: true,
+                message: 'Không đọc được chữ nào trong tệp — tài liệu nhiều khả '
+                    + 'năng chỉ gồm ảnh. Đã ghi nhận với trạng thái "Lỗi" và độ '
+                    + 'trùng lặp 0%.',
+                data: savedBaoCao
+            });
         }
 
         await addPlagiarismTask({
@@ -421,33 +459,9 @@ router.get('/tai-lieu-nop/:idNguoiDung', async (req, res) => {
         }
 
         const ketQuaHoanChinh =
-            danhSachBaoCao.map(bc => {
-
-                const ketQuaCheck =
-                    mapKetQua.get(
-                        bc.id_bao_cao
-                    );
-
-                return {
-                    ...bc,
-
-                    do_trung_lap:
-                        (
-                            ketQuaCheck &&
-                            ketQuaCheck.trang_thai === 'hoan_thanh'
-                        )
-                            ? ketQuaCheck.ti_le_trung_lap
-                            : null,
-
-                    trang_thai:
-                        (
-                            ketQuaCheck &&
-                            ketQuaCheck.trang_thai === 'hoan_thanh'
-                        )
-                            ? 'Đã xử lý'
-                            : 'Đang xử lý'
-                };
-            });
+            danhSachBaoCao.map(
+                bc => dungDongDanhSach(bc, mapKetQua.get(bc.id_bao_cao))
+            );
 
         return res.json({ success: true, data: ketQuaHoanChinh });
     } catch (error) {
