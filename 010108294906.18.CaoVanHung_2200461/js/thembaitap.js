@@ -696,18 +696,29 @@ function attachExerciseActionEvents(classData, userId) {
         popupMenu.onmouseleave = () => { popupMenu.style.display = 'none'; };
     }
 }
-// Bắt sự kiện click toàn cục cho nút "Chọn tài liệu" (dù nút được sinh ra động)
-document.addEventListener('click', function(event) {
-    const chonTaiLieuBtn = event.target.closest('#chonTaiLieuBtn');
-    if (chonTaiLieuBtn) {
-        const popupMenu = document.getElementById('popupMenu'); // Đảm bảo đúng id menu của bạn
-        const submitModal = document.getElementById('submitDocumentModal');
-        if (popupMenu) popupMenu.style.display = 'none';
-        if (submitModal) {
-            submitModal.style.display = 'flex';
-            // 👉 Gọi hàm lấy dữ liệu từ CSDL lên bảng ngay lập tức
-            loadStudentDocumentsForSubmission();
-        }
+// Bắt sự kiện click toàn cục cho nút "Thêm file nộp" và mục "Chọn tài liệu"
+// trong pop-up của nó (cả hai nút đều được sinh ra động).
+//
+// Trước đây chỉ mục "Chọn tài liệu" mới mở được hộp thoại, mà mục đó chỉ hiện
+// khi rê chuột lên "Thêm file nộp" và tự ẩn sau 200ms khi chuột rời đi. Bấm
+// thẳng vào "Thêm file nộp" thì không có gì xảy ra — đúng cảnh người dùng báo
+// là nút không bấm được. Giờ bấm vào nút chính cũng mở luôn hộp thoại.
+document.addEventListener('click', function (event) {
+    const nutMoHopThoai =
+        event.target.closest('#chonTaiLieuBtn')
+        || event.target.closest('#openSubmitModalBtn');
+
+    if (!nutMoHopThoai) return;
+
+    const popupMenu = document.getElementById('submitPopupMenu');
+    const submitModal = document.getElementById('submitDocumentModal');
+
+    if (popupMenu) popupMenu.style.display = 'none';
+
+    if (submitModal) {
+        submitModal.style.display = 'flex';
+        // 👉 Gọi hàm lấy dữ liệu từ CSDL lên bảng ngay lập tức
+        loadStudentDocumentsForSubmission();
     }
 });
 // Bổ sung hàm render giao diện chi tiết / nộp bài (Hình 1 & Hình 2)
