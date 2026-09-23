@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             veTheSo();
             suaSoBaiChoGiangVien();
+            veBoLocMuc();
             veBieuDo();
             locVaVe();
 
@@ -176,15 +177,60 @@ document.addEventListener("DOMContentLoaded", () => {
     // BIỂU ĐỒ PHÂN BỐ
     // ========================================================================
 
-    // Các mốc của biểu đồ phân bố. Mốc nào nằm trọn trong một mức lọc thì gắn
-    // kèm mức đó, để bấm vào cột là lọc được ngay xuống bảng bên dưới.
+    // Năm mốc của biểu đồ phân bố, mỗi mốc là một khoảng tỉ lệ riêng.
+    //
+    // Trước đây mỗi mốc chỉ mang theo tên một mức gộp (thấp / vừa / cao) và bấm
+    // vào cột thì lọc theo mức gộp đó. Hai cột "Dưới 5%" và "5 – 15%" cùng thuộc
+    // mức "thấp", hai cột "30 – 50%" và "Từ 50%" cùng thuộc mức "cao", nên bấm
+    // vào cột nào trong cặp cũng ra y hệt nhau: bấm "30 – 50%" lại hiện đủ cả 16
+    // bài từ 30% trở lên. Giờ mỗi mốc có mã riêng và lọc đúng khoảng của nó.
     const MOC_PHAN_BO = [
-        { nhan: "Dưới 5%", tu: 0, den: 5, mau: "#16a34a", muc: "thap" },
-        { nhan: "5 – 15%", tu: 5, den: 15, mau: "#65a30d", muc: "thap" },
-        { nhan: "15 – 30%", tu: 15, den: 30, mau: "#f59e0b", muc: "vua" },
-        { nhan: "30 – 50%", tu: 30, den: 50, mau: "#ea580c", muc: "cao" },
-        { nhan: "Từ 50%", tu: 50, den: Infinity, mau: "#dc2626", muc: "cao" }
+        { ma: "0-5", nhan: "Dưới 5%", tu: 0, den: 5, mau: "#16a34a" },
+        { ma: "5-15", nhan: "5 – 15%", tu: 5, den: 15, mau: "#65a30d" },
+        { ma: "15-30", nhan: "15 – 30%", tu: 15, den: 30, mau: "#f59e0b" },
+        { ma: "30-50", nhan: "30 – 50%", tu: 30, den: 50, mau: "#ea580c" },
+        { ma: "50+", nhan: "Từ 50%", tu: 50, den: Infinity, mau: "#dc2626" }
     ];
+
+    // Ba mức gộp vẫn giữ lại, vì các thẻ tóm tắt phía trên dùng tới — thẻ "Vượt
+    // ngưỡng cảnh báo" lọc theo "cao", tức là từ 30% trở lên, trải qua hai mốc.
+    const MUC_GOP = {
+        cao: { nhan: "Từ 30% trở lên", tu: T.NGUONG_CAO, den: Infinity },
+        vua: { nhan: "Từ 15% đến dưới 30%", tu: T.NGUONG_VUA, den: T.NGUONG_CAO },
+        thap: { nhan: "Dưới 15%", tu: 0, den: T.NGUONG_VUA }
+    };
+
+    /** Đổi giá trị đang chọn ở ô "Mức tỉ lệ" thành khoảng tỉ lệ tương ứng. */
+    function khoangCuaMuc(ma) {
+        if (!ma) return null;
+        if (MUC_GOP[ma]) return MUC_GOP[ma];
+
+        return MOC_PHAN_BO.find(m => m.ma === ma) || null;
+    }
+
+    /**
+     * Dựng danh sách lựa chọn cho ô "Mức tỉ lệ" từ chính hai bảng khai ở trên.
+     *
+     * Sinh ra từ một nguồn duy nhất để danh sách lọc và biểu đồ không bao giờ
+     * lệch nhau nữa — đây chính là gốc của lỗi cũ.
+     */
+    function veBoLocMuc() {
+        const o = $("locMuc");
+        if (!o) return;
+
+        const nhomGop = Object.entries(MUC_GOP)
+            .map(([ma, m]) => `<option value="${ma}">${T.thoat(m.nhan)}</option>`)
+            .join("");
+
+        const nhomChiTiet = MOC_PHAN_BO
+            .map(m => `<option value="${m.ma}">${T.thoat(m.nhan)}</option>`)
+            .join("");
+
+        o.innerHTML = `
+            <option value="">Tất cả</option>
+            <optgroup label="Theo ngưỡng cảnh báo">${nhomGop}</optgroup>
+            <optgroup label="Theo từng mức của biểu đồ">${nhomChiTiet}</optgroup>`;
+    }
 
     function veBieuDo() {
 
@@ -205,7 +251,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ? Math.round((dem[i] / daCham.length) * 100) : 0;
 
             return `
-            <button type="button" class="tk-cot" data-muc="${m.muc}"
+            <button type="button" class="tk-cot" data-muc="${m.ma}"
                     title="${dem[i]} bài ở mức ${T.thoat(m.nhan)} — bấm để lọc">
                 <div class="tk-cot__so">${dem[i]}</div>
                 <div class="tk-cot__than"
@@ -247,7 +293,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 return false;
             }
 
-            if (muc && T.xepMuc(T.layTiLe(b)) !== muc) return false;
+            // Lọc theo đúng khoảng tỉ lệ của mức đang chọn, không quy về ba mức
+            // gộp nữa. Bài chưa chấm xong (chưa có tỉ lệ) thì không thuộc mức
+            // nào, nên bị loại khi người dùng có chọn mức.
+            if (muc) {
+                const khoang = khoangCuaMuc(muc);
+                const t = T.layTiLe(b);
+
+                if (!khoang || t === null || t === undefined) return false;
+                if (t < khoang.tu || t >= khoang.den) return false;
+            }
 
             if (trangThai && b.trang_thai !== trangThai) return false;
 
