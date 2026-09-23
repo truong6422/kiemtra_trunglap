@@ -119,6 +119,11 @@ function renderClassDetail(classData, userId, currentHoTen, activeTabName = 'des
         ? `<a href="#" class="edit-info-link" id="openUpdateModalBtn"><i class="fa-solid fa-pen-to-square"></i> Chỉnh sửa thông tin</a>`
         : `<span style="color: #5f6368; font-style: italic; font-size: 13px;">(Bạn là thành viên)</span>`;
 
+    // Lớp chưa sửa lần nào thì mốc cập nhật đúng bằng mốc tạo. Không có mốc nào
+    // thì để gạch ngang — thà thiếu còn hơn in ra chữ undefined như trước.
+    const mocTao = classData.created_time || classData.time || '--';
+    const mocCapNhat = classData.ngay_cap_nhat || classData.time || mocTao;
+
     mainElement.innerHTML = `
         <div class="classroom-detail-container">
             <div class="class-header-row">
@@ -126,7 +131,7 @@ function renderClassDetail(classData, userId, currentHoTen, activeTabName = 'des
                     <h1 id="detailClassTitle">${classData.tieu_de || classData.name}</h1>
                     ${editInfoLinkHtml}
                     <div class="class-sub-info">
-                        <span id="detailOwnerName"><b>${ownerDisplayName}</b></span> là <strong>Chủ lớp học</strong> - tạo lúc: <b>${classData.created_time}</b> - cập nhật cuối vào <b id="detailClassTime">${classData.ngay_cap_nhat}</b>
+                        <span id="detailOwnerName"><b>${ownerDisplayName}</b></span> là <strong>Chủ lớp học</strong> - tạo lúc: <b>${mocTao}</b> - cập nhật cuối vào <b id="detailClassTime">${mocCapNhat}</b>
                     </div>
                 </div>
                 <div class="class-code-area">
@@ -791,11 +796,22 @@ function renderClassDetail(classData, userId, currentHoTen, activeTabName = 'des
                     classData.name = newName;
                     classData.mo_ta = newDesc;
 
-                    const timeString = nhanThoiGianHienTai();
+                    // Lấy mốc cập nhật từ bản ghi máy chủ vừa lưu. Đồng hồ máy
+                    // người dùng có thể lệch, mà cột "TG cập nhật" ở màn danh
+                    // sách lại đọc thẳng ngay_cap_nhat trong cơ sở dữ liệu — hai
+                    // chỗ lấy từ hai nguồn khác nhau thì hiện ra hai giờ khác
+                    // nhau cho cùng một lớp.
+                    const timeString =
+                        formatVNDate(result.data && result.data.ngay_cap_nhat)
+                        || nhanThoiGianHienTai();
 
                     classData.time = timeString;
+                    classData.ngay_cap_nhat = timeString;
+
                     if (!classData.created_time) {
-                        classData.created_time = classData.time;
+                        classData.created_time =
+                            formatVNDate(result.data && result.data.ngay_tao)
+                            || timeString;
                     }
 
                     saveClassDataToStorage(classData, userId);
@@ -882,9 +898,18 @@ function ganLuuCapNhatLopTuDanhSach(classData, userId, storageKey, classList) {
             classData.tieu_de = tenMoi;
             classData.name = tenMoi;
             classData.mo_ta = moTaMoi;
-            classData.time = nhanThoiGianHienTai();
+
+            // Cùng lý do như ở trang chi tiết: lấy mốc máy chủ trả về, không lấy
+            // đồng hồ máy người dùng.
+            classData.time =
+                formatVNDate(result.data && result.data.ngay_cap_nhat)
+                || nhanThoiGianHienTai();
+            classData.ngay_cap_nhat = classData.time;
+
             if (!classData.created_time) {
-                classData.created_time = classData.time;
+                classData.created_time =
+                    formatVNDate(result.data && result.data.ngay_tao)
+                    || classData.time;
             }
 
             localStorage.setItem(storageKey, JSON.stringify(classList));
@@ -1164,6 +1189,17 @@ if (submitCreateBtn) {
                 }
             }
 
+            // Mốc thời gian lấy từ chính bản ghi máy chủ vừa tạo, không lấy đồng
+            // hồ máy người dùng.
+            //
+            // Hai lý do: đồng hồ hai máy có thể lệch nhau, và lớp mới tạo trước
+            // đây không có trường ngay_cap_nhat nên dòng "cập nhật cuối vào"
+            // hiện thẳng chữ undefined. Lớp chưa sửa lần nào thì thời gian cập
+            // nhật đúng bằng thời gian tạo.
+            const ngayTao = formatVNDate(result.data.ngay_tao) || timeString;
+            const ngayCapNhat =
+                formatVNDate(result.data.ngay_cap_nhat) || ngayTao;
+
             const classInfo = {
                 id: serverClassId,
                 id_nguoi_dung: userId,
@@ -1171,8 +1207,9 @@ if (submitCreateBtn) {
                 tieu_de: className,
                 mo_ta: classDesc,
                 ma_lop: randomClassCode,
-                created_time: timeString,
-                time: timeString,
+                created_time: ngayTao,
+                ngay_cap_nhat: ngayCapNhat,
+                time: ngayCapNhat,
                 classMembersList: [],
                 classAdminsList: []
             };
