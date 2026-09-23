@@ -747,6 +747,26 @@ router.put('/profile/:id', async (req, res) => {
       });
     }
 
+    // Quản trị viên không thuộc bảng sinh_vien lẫn giang_vien — họ chỉ quản lý
+    // hệ thống. Hồ sơ vì vậy chỉ có họ tên và email, đã ghi xong ở trên.
+    //
+    // Phải chặn ngay tại đây, nếu không đoạn dưới sẽ upsert một bản ghi sinh
+    // viên rỗng mang mã SV_ND00x cho chính tài khoản quản trị: mỗi lần quản trị
+    // viên bấm Cập nhật là hệ thống lại đẻ thêm một "sinh viên" không có thật.
+    const vaiTroHienTai = String(user.vai_tro || '').trim();
+
+    if (vaiTroHienTai === 'quan_tri_vien' || vaiTroHienTai === 'admin') {
+        return res.status(200).json({
+            success: true,
+            message: 'Cập nhật thông tin thành công!',
+            data: {
+                fullname: user.ho_ten,
+                email: user.email,
+                vai_tro: vaiTroHienTai
+            }
+        });
+    }
+
     // Sinh viên: mã khai trong trang Tài khoản ghi thẳng vào id_sinh_vien.
     //
     // Mã này đang được bài nộp, bảng thống kê và danh sách lớp trỏ tới, nên
@@ -789,6 +809,7 @@ router.put('/profile/:id', async (req, res) => {
       data: {
         fullname: user.ho_ten,
         email: user.email,
+        vai_tro: user.vai_tro || 'sinh_vien',
         student_id: sinhVien.id_sinh_vien,
         class_name: sinhVien.lop,
         course: sinhVien.khoa_hoc,

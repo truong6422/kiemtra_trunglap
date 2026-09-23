@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Hồ sơ giảng viên và sinh viên là hai bảng khác nhau, nên biểu mẫu
         // phải đổi nhãn và ẩn bớt ô cho khớp trước khi đổ dữ liệu vào.
         const vaiTro = data.vai_tro || localStorage.getItem('vai_tro') || '';
-        const laGiangVien = window.HoSoTheoVaiTro
+        const khongCoOSoBaoCao = window.HoSoTheoVaiTro
             ? HoSoTheoVaiTro.apDungVaiTro(vaiTro)
             : false;
 
@@ -67,8 +67,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // trả về bản ghi không có trường so_luong_bao_cao, nên đoạn cũ đổ về 0
         // và ô này hiện sai cho tới khi người dùng tải lại trang. Luôn đếm lại
         // từ danh sách tài liệu để mọi lần vẽ form đều ra số thật.
-        // Giảng viên không có ô này nên khỏi đếm cho tốn một lượt gọi máy chủ
-        if (fields.reportNumber && !laGiangVien) {
+        // Giảng viên và quản trị viên không có ô này nên khỏi đếm cho tốn một
+        // lượt gọi máy chủ
+        if (fields.reportNumber && !khongCoOSoBaoCao) {
             fields.reportNumber.readOnly = true;
             demSoBaoCao();
         }

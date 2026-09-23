@@ -23,6 +23,15 @@
     const O_RIENG_SINH_VIEN = ['class-name', 'course', 'report-count'];
     const O_RIENG_GIANG_VIEN = ['bo-mon'];
 
+    /**
+     * Quản trị viên không nằm trong bảng sinh_vien lẫn giang_vien — họ chỉ quản
+     * lý hệ thống. Hồ sơ vì vậy chỉ còn họ tên và email; mã định danh, lớp,
+     * khoá học, số báo cáo và bộ môn đều không có dữ liệu để hiện.
+     */
+    const O_AN_VOI_QUAN_TRI = [
+        'student-id', 'class-name', 'course', 'report-count', 'bo-mon'
+    ];
+
     /** Tìm khung .form-group bọc quanh một ô nhập. */
     function khungCua(idO) {
         const o = document.getElementById(idO);
@@ -56,14 +65,23 @@
      * Sắp xếp lại biểu mẫu hồ sơ cho đúng vai trò người đang đăng nhập.
      *
      * @param {string} vaiTro Giá trị vai_tro lấy từ máy chủ hoặc localStorage
+     * @returns {boolean} true khi hồ sơ này không có ô "Số báo cáo" — bên gọi
+     *                    dựa vào đó để bỏ qua lượt đếm báo cáo
      */
     function apDungVaiTro(vaiTro) {
-        const laGiangVien =
-            String(vaiTro || '').trim() === 'giang_vien'
-            || String(vaiTro || '').trim() === 'giaovien';
+        const ten = String(vaiTro || '').trim();
+
+        const laGiangVien = ten === 'giang_vien' || ten === 'giaovien';
+        const laQuanTri = ten === 'quan_tri_vien' || ten === 'admin';
+
+        if (laQuanTri) {
+            O_AN_VOI_QUAN_TRI.forEach(id => hien(id, false));
+            return true;
+        }
 
         datNhan('student-id', laGiangVien ? 'Mã giảng viên' : 'Mã sinh viên');
 
+        hien('student-id', true);
         O_RIENG_SINH_VIEN.forEach(id => hien(id, !laGiangVien));
         O_RIENG_GIANG_VIEN.forEach(id => hien(id, laGiangVien));
 
