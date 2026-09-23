@@ -23,11 +23,27 @@ const GOC_PDFJS = path.dirname(
     require.resolve('pdfjs-dist/package.json')
 );
 
+/**
+ * Đổi một thư mục trên đĩa thành dạng pdf.js chấp nhận.
+ *
+ * pdf.js bắt buộc chuỗi phải kết thúc bằng dấu gạch chéo xuôi, nếu không nó ném
+ * lỗi "Invalid factory url ... must include trailing slash" và cả lượt chấm hỏng.
+ *
+ * Trên Windows path.sep là dấu gạch ngược nên nối path.sep vào là sai — máy
+ * Linux chạy được mà máy Windows thì mọi tệp PDF đều lỗi. Vì vậy phải đổi hết
+ * gạch ngược thành gạch xuôi rồi mới thêm dấu kết thúc.
+ */
+function duongDanChoPdfJs(thuMuc) {
+    const chuan = thuMuc.replace(/\\/g, '/');
+
+    return chuan.endsWith('/') ? chuan : chuan + '/';
+}
+
 const DUONG_DAN_PHONG_CHUAN =
-    path.join(GOC_PDFJS, 'standard_fonts') + path.sep;
+    duongDanChoPdfJs(path.join(GOC_PDFJS, 'standard_fonts'));
 
 const DUONG_DAN_CMAP =
-    path.join(GOC_PDFJS, 'cmaps') + path.sep;
+    duongDanChoPdfJs(path.join(GOC_PDFJS, 'cmaps'));
 
 /** Nạp pdf.js bản legacy — bản chạy được trên Node. */
 async function napPdfJs() {
