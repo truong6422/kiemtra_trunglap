@@ -57,6 +57,7 @@ const KetQuaKiemTra = require('../models/ket_qua_kiem_tra');
 const CauHinhHeThong = require('../models/cau_hinh_he_thong');
 
 const { trichXuatVanBan } = require('../utils/trich_xuat_text');
+const { apDungGioiHanTep } = require('../utils/gioi_han_tep');
 
 async function timBaoCao(idBaoCao) {
     const dieuKien = { $or: [{ id_bao_cao: idBaoCao }] };
@@ -67,7 +68,7 @@ async function timBaoCao(idBaoCao) {
 // ============================================================================
 // API POST: UPLOAD VÀ ĐẨY TASK VÀO REDIS QUEUE
 // ============================================================================
-router.post('/upload-and-check', upload.single('fileBaoCao'), async (req, res) => {
+router.post('/upload-and-check', upload.single('fileBaoCao'), apDungGioiHanTep, async (req, res) => {
     try {
         if (!req.file) {
             return res.status(400).json({ success: false, message: 'Vui lòng tải lên file!' });
