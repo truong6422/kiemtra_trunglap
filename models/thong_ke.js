@@ -39,6 +39,13 @@ const thongKeTheoMauSchema = new mongoose.Schema(
             default: 0
         },
 
+        // Báo cáo mẫu này phủ gần hết bài nộp: bài nộp là bản sao của nó chứ
+        // không phải chỉ giống nhau vài đoạn.
+        trung_toan_bai: {
+            type: Boolean,
+            default: false
+        },
+
         // Điểm trung bình của từng thuật toán trên các câu trùng với báo cáo
         // mẫu này, tính theo phần trăm (0–100).
         cosine: {
@@ -126,6 +133,12 @@ const thongKeSchema = new mongoose.Schema(
         ti_le_trung_lap: {
             type: Number,
             default: 0
+        },
+
+        // Bài nộp là bản sao gần như nguyên vẹn của một báo cáo mẫu.
+        trung_toan_bai: {
+            type: Boolean,
+            default: false
         },
 
         thong_ke_theo_mau: {

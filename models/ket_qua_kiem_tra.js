@@ -70,6 +70,27 @@ const ketQuaKiemTraSchema = new mongoose.Schema(
             default: 0
         },
 
+        // Bài nộp là bản sao gần như nguyên vẹn của một báo cáo mẫu.
+        trung_toan_bai: {
+            type: Boolean,
+            default: false
+        },
+
+        // Các báo cáo mẫu phủ gần hết bài nộp, kèm tỉ lệ phủ của từng cái.
+        danh_sach_nguon_trung_toan_bai: {
+            type: [
+                {
+                    _id: false,
+                    id_bao_cao: String,
+                    ten_bao_cao: String,
+                    so_cau_trung: Number,
+                    so_tu_trung: Number,
+                    ti_le_phu: Number
+                }
+            ],
+            default: []
+        },
+
         trang_thai: {
             type: String,
             default: "hoan_thanh",

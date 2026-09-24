@@ -12,6 +12,13 @@ const CauHinhHeThongSchema = new mongoose.Schema(
             default: 'KET_HOP_3_THUAT_TOAN'
         },
 
+        // Một báo cáo mẫu phủ từng này số từ của bài nộp trở lên thì kết quả
+        // ghi thẳng là "trùng cả bài" chứ không chỉ liệt kê từng đoạn.
+        nguong_trung_toan_bai: {
+            type: Number,
+            default: 0.8
+        },
+
         // Bật / tắt và trọng số của từng thuật toán. Tổng trọng số các thuật
         // toán đang bật luôn bằng 1, do màn Quản lý cấu hình kiểm trước khi lưu.
         danh_sach_thuat_toan: {

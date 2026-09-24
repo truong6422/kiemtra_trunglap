@@ -19,6 +19,9 @@ const {
 const {
     buildPatchworkMatches
 } = require('./patchwork_match');
+const {
+    phatHienTrungToanBai
+} = require('./trung_toan_bai');
 
 // Nạp tập từ dừng (stopwords) tiếng Việt.
 // Mỗi trường hợp hỏng phải báo đúng nguyên nhân của nó. Trước đây mọi lỗi đều
@@ -874,6 +877,28 @@ async function checkPlagiarism(
             }));
 
     // ==========================================================
+    // TRUNG CA BAI
+    // ==========================================================
+
+    // Một báo cáo mẫu phủ gần hết bài nộp thì đây không còn là chuyện vài đoạn
+    // giống nhau nữa mà là chép nguyên bài; phải nói thẳng ra như vậy thay vì
+    // để người chấm tự cộng các đoạn rời lại.
+    const ketQuaTrungToanBai =
+        phatHienTrungToanBai(
+            thongKeTheoMau,
+            tongSoTu,
+            Number(cauHinh.nguong_trung_toan_bai) || undefined
+        );
+
+    for (const tk of thongKeTheoMau) {
+
+        tk.trung_toan_bai =
+            ketQuaTrungToanBai
+                .danh_sach_nguon_trung_toan_bai
+                .some(nguon => nguon.id_bao_cao === tk.id_bao_cao);
+    }
+
+    // ==========================================================
     // TY LE TOAN BAI
     // ==========================================================
 
@@ -897,6 +922,15 @@ async function checkPlagiarism(
         + `${tongSoCauTrung}/${tongSoCau} câu trùng | `
         + `${tongSoTuTrung}/${tongSoTu} từ trùng | `
         + `tỉ lệ ${Math.round(tiLeTrungLap * 100) / 100}%`
+        + (
+            ketQuaTrungToanBai.trung_toan_bai
+                ? ` | TRÙNG CẢ BÀI với `
+                + ketQuaTrungToanBai
+                    .danh_sach_nguon_trung_toan_bai
+                    .map(n => `${n.id_bao_cao} (${n.ti_le_phu}%)`)
+                    .join(', ')
+                : ''
+        )
     );
 
     return {
@@ -921,6 +955,15 @@ async function checkPlagiarism(
 
         so_nguon_phat_hien:
             thongKeTheoMau.length,
+
+        trung_toan_bai:
+            ketQuaTrungToanBai.trung_toan_bai,
+
+        nguong_trung_toan_bai:
+            ketQuaTrungToanBai.nguong_trung_toan_bai,
+
+        danh_sach_nguon_trung_toan_bai:
+            ketQuaTrungToanBai.danh_sach_nguon_trung_toan_bai,
 
         ti_le_trung_lap:
             Math.round(

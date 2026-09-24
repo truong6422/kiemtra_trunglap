@@ -157,6 +157,9 @@ async function startWorker() {
                 ti_le_trung_lap:
                     ketQuaThuAtToan.ti_le_trung_lap,
 
+                trung_toan_bai:
+                    !!ketQuaThuAtToan.trung_toan_bai,
+
                 thong_ke_theo_mau:
                     ketQuaThuAtToan.thong_ke_theo_mau
             });
@@ -287,6 +290,12 @@ async function startWorker() {
 
                 so_nguon_phat_hien:
                     ketQuaThuAtToan.so_nguon_phat_hien,
+
+                trung_toan_bai:
+                    !!ketQuaThuAtToan.trung_toan_bai,
+
+                danh_sach_nguon_trung_toan_bai:
+                    ketQuaThuAtToan.danh_sach_nguon_trung_toan_bai || [],
 
                 trang_thai:
                     "hoan_thanh",
