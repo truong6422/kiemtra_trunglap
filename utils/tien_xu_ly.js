@@ -276,7 +276,10 @@ function tachCau(vanBan) {
         }
 
         for (const cau of tachCauTrongDoan(noiDung)) {
-            const sach = chuanHoaKhoangTrang(cau);
+            // Bỏ nốt ký hiệu liệt kê ở đầu câu. Một dòng có thể chứa vài ý gạch
+            // đầu dòng liền nhau, lúc tách ra thì ký hiệu của các ý từ thứ hai
+            // trở đi mới lộ ra ở đầu câu.
+            const sach = chuanHoaKhoangTrang(boKyHieuLietKe(cau));
 
             if (sach) {
                 cacCau.push(sach);

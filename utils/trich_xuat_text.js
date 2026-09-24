@@ -348,6 +348,21 @@ async function trichXuatVanBan(duongDanFile) {
             }
             catch (err1) {
 
+                // Tệp đặt mật khẩu thì không thư viện nào đọc được. Nói thẳng
+                // nguyên nhân, đừng để người nộp bài chỉ thấy "tệp rỗng" rồi
+                // loay hoay tải lên lại mãi.
+                if (
+                    /password/i.test(err1.message || '') ||
+                    /encrypt/i.test(err1.message || '')
+                ) {
+                    console.warn(
+                        `⚠️ Tệp "${path.basename(duongDanFile)}" đang đặt mật `
+                        + `khẩu bảo vệ nên không đọc được nội dung.`
+                    );
+
+                    return '';
+                }
+
                 console.warn(
                     `⚠️ pdf-parse lỗi: ${err1.message}`
                 );
