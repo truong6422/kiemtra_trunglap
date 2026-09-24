@@ -237,8 +237,13 @@ function bocVungPhuTro(cacDong) {
             // bài — đó là cách duy nhất phân biệt với mục lục không có số trang.
             if (dangTrongMucLuc && vungMoi === VUNG.NOI_DUNG) {
                 const ten = tenDeMuc(t);
+                const fileDungMucLucTuDong = tenDaLietKe.size > 0;
 
-                if (!tenDaLietKe.has(ten)) {
+                // Nếu file dùng mục lục tự động của Word, mọi dòng trong mục lục đều
+                // đã bị hốt bởi if (coNhan(dong, NHAN.MUC_LUC)) ở trên.
+                // Do đó, nếu lọt được xuống đây thì chắc chắn là thân bài, bất kể
+                // tên đề mục có nằm trong mục lục hay không (vd: sinh viên quên cập nhật).
+                if (!fileDungMucLucTuDong && !tenDaLietKe.has(ten)) {
                     tenDaLietKe.add(ten);
                     soDongDaBoTrongVung++;
                     continue;
@@ -344,6 +349,7 @@ function locVungNoiDung(vanBan) {
 module.exports = {
     locVungNoiDung,
     timMocMoDauNoiDung,
+    bocVungPhuTro,
     laDoanVanThucSu,
     VUNG
 };
