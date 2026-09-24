@@ -25,7 +25,7 @@ const {
 //
 // Chữ "o" dính liền một chữ hoa cũng là dấu đầu dòng: Word vẽ dấu tròn cấp hai
 // bằng phông Courier New, khi sang PDF nó rơi lại thành chữ "o" thường.
-const KY_HIEU_LIET_KE = /^[\s]*(?:[-–—+*•·▪●○◦>»‣⁃]+|o(?=[\p{Lu}]))[\s]*/u;
+const KY_HIEU_LIET_KE = /^[\s]*(?:[-–—+*•·▪●○◦>»‣⁃➢➣➤❖✓✔]+|o(?=[\p{Lu}]))[\s]*/u;
 
 // "CHƯƠNG 1", "PHẦN II:" — đã có số nhưng chưa có tên, nên tên chắc chắn nằm ở
 // dòng dưới.
@@ -204,10 +204,12 @@ function noiDongBiNgatGiuaCau(vanBan) {
         // "I em đã được thực hành..."). Dòng ngắn thì để nguyên, vì đó là các ý
         // gạch đầu dòng người viết chủ ý tách ra.
         const truocDaiNhuMotDongDay = truoc.length >= 60;
+        const sauLaLietKe = KY_HIEU_LIET_KE.test(dong);
 
         if (
             !truocDaKetThuc &&
             !sauLaTieuDe &&
+            !sauLaLietKe &&
             !laDongMucLuc(dong) &&
             (sauBatDauThuong || truocDaiNhuMotDongDay)
         ) {
