@@ -88,17 +88,24 @@ function laDongNgayThangChuKy(dong) {
         return false;
     }
 
-    // Câu kể sự kiện lịch sử: có nội dung trước "ngày ... tháng ... năm"
-    // (không bắt đầu bằng địa danh + dấu phẩy) → không phải dòng chữ ký.
-    const coNgayThangGiuaCau =
-        /^.{10,}\sngày\s+\d{1,2}\s*tháng\s+\d{1,2}\s*năm\s+\d{4}/i.test(t);
-    if (coNgayThangGiuaCau) {
+    // RULE BẢO VỆ CÂU VĂN
+    // Câu kể sự kiện lịch sử: có nội dung dài trước "ngày" và không có dấu phẩy địa danh.
+    const chuoiTruocNgay = t.split(/ngày\s+\d/i)[0];
+    if (chuoiTruocNgay !== undefined && chuoiTruocNgay.length > 25 && !chuoiTruocNgay.includes(',')) {
+        return false; 
+    }
+    // Bắt đầu bằng giới từ + ngày -> là câu văn
+    if (/^(vào|từ|đến|ra|ban|nhân|trong)\s+ngày/i.test(t)) {
+        return false;
+    }
+    // Nếu câu rất dài và không có dấu hiệu rõ ràng của địa danh ở đầu
+    if (t.length > 60 && !/^([\p{L}\s.]{2,30},?\s*ngày\s+\d|ngày\s+\d)/iu.test(t)) {
         return false;
     }
 
     return (
-        // Sơn Tây, ngày 26 tháng 06 năm 2024
-        /^[\p{Lu}][\p{L}\s]{1,30},?\s*ngày\s+.*(tháng|năm)/iu.test(t) ||
+        // Sơn Tây, ngày 26 tháng 06 năm 2024 (Hỗ trợ thêm dấu chấm cho TP. Hồ Chí Minh)
+        /^[\p{Lu}][\p{L}\s.]{1,30},?\s*ngày\s+.*(tháng|năm)/iu.test(t) ||
         /^ngày\s+\d{0,2}\s*tháng\s+\d{0,2}\s*năm\s*\d{0,4}/i.test(t) ||
         /^,?\s*ngày\s*\.{2,}/i.test(t) ||
         // Hà Nội, năm 2024
