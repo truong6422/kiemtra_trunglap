@@ -104,13 +104,13 @@ async function chayTienTinhToan() {
                 }
 
                 const soTuGoc =
-                    cau
+                    cleanSentence
                         .trim()
                         .split(/\s+/)
                         .filter(Boolean)
                         .length;
 
-                if (soTuGoc < 5) {
+                if (soTuGoc < 3) {
                     continue;
                 }
 
@@ -222,13 +222,13 @@ async function chayTienTinhToan() {
                 }
 
                 const soTuGoc =
-                    cau
+                    cleanSentence
                         .trim()
                         .split(/\s+/)
                         .filter(Boolean)
                         .length;
 
-                if (soTuGoc < 5) {
+                if (soTuGoc < 3) {
                     continue;
                 }
 

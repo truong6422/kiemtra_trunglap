@@ -190,7 +190,7 @@ async function xuLyBaoCaoUpload(
         const tokenCount =
             tokens.length;
 
-        if (tokenCount < 5) {
+        if (tokenCount < 3) {
             continue;
         }
 

@@ -56,6 +56,17 @@ function laThongTinHoSo(dong) {
         return false;
     }
 
+    // Câu học thuật dài (> 80 ký tự) bắt đầu bằng tên trường/khoa nhưng
+    // có vị ngữ (phấn đấu, hướng đến, được thành lập...) → là nội dung,
+    // không phải thông tin bìa.
+    if (
+        t.length > 80 &&
+        /^(trường\s+)?(đại\s*học|cao\s*đẳng|học\s*viện)\b/i.test(t) &&
+        /\s+(phấn\s*đấu|được\s*thành\s*lập|hướng\s*đến|đào\s*tạo|có\s*mục\s*tiêu|nhằm|với\s*mục)/i.test(t)
+    ) {
+        return false;
+    }
+
     return (
         /^(trường\s+)?(đại\s*học|cao\s*đẳng|học\s*viện)\b/i.test(t) ||
         /^khoa\s+/i.test(t) ||
@@ -74,6 +85,14 @@ function laDongNgayThangChuKy(dong) {
     const t = chuanHoaKhoangTrang(dong);
 
     if (!t) {
+        return false;
+    }
+
+    // Câu kể sự kiện lịch sử: có nội dung trước "ngày ... tháng ... năm"
+    // (không bắt đầu bằng địa danh + dấu phẩy) → không phải dòng chữ ký.
+    const coNgayThangGiuaCau =
+        /^.{10,}\sngày\s+\d{1,2}\s*tháng\s+\d{1,2}\s*năm\s+\d{4}/i.test(t);
+    if (coNgayThangGiuaCau) {
         return false;
     }
 
