@@ -250,7 +250,14 @@ function bocVungPhuTro(cacDong) {
             dangTrongMucLuc =
                 vungMoi === VUNG.BO_QUA && DE_MUC_TOAN_TEN_MUC.test(t);
             soDongDaBoTrongVung = 0;
-            // Bản thân dòng đề mục không được tính vào nội dung
+
+            // Đề mục mở ra phần nội dung thì phải giữ lại, vì bước sau còn dựa
+            // vào chính dòng này để biết thân bài bắt đầu từ đâu. Nó không lọt
+            // vào kết quả chấm: bước tách câu loại mọi dòng tiêu đề.
+            if (vungMoi === VUNG.NOI_DUNG) {
+                ketQua.push(dong);
+            }
+
             continue;
         }
 
