@@ -67,11 +67,14 @@ const DE_MUC_TOAN_TEN_MUC = /^(MỤC LỤC|DANH MỤC)/iu;
  * lục với chính đề mục đó khi nó xuất hiện lại ở thân bài.
  */
 function tenDeMuc(dong) {
-    return chuanHoaKhoangTrang(dong)
+    const ten = chuanHoaKhoangTrang(dong)
         .replace(/[.·…]{2,}\s*\d*\s*$/, '')
         .replace(/\s+\d{1,3}\s*$/, '')
         .replace(/[\s:.\-–)]+$/, '')
-        .toLowerCase();
+        .toLowerCase()
+        .replace(/[^\p{L}\p{N}]/gu, '');
+        
+    return ten || dong.trim().toLowerCase();
 }
 
 // Đề mục mở ra vùng nội dung.
