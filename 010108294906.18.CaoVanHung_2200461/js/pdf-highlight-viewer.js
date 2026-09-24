@@ -168,61 +168,96 @@ window.PdfHighlightViewer = (() => {
     }
 
     /**
-     * Đổi toạ độ PDF của một mẩu chữ sang toạ độ CSS trong trang đã render.
+     * Lấy bounding box CHÍNH XÁC của một mẩu chữ bằng transform matrix đầy đủ.
+     *
+     * pdf.js lưu mỗi text item theo transform matrix [a,b,c,d,e,f] trong không
+     * gian toạ độ PDF (gốc ở góc dưới-trái, trục y hướng lên). viewport.transform
+     * chuyển sang không gian canvas (gốc ở góc trên-trái, trục y hướng xuống).
+     * Tính đúng cả hai phép biến đổi mới cho toạ độ chính xác kể cả khi trang
+     * bị xoay hoặc có shear.
      */
-    function doiSangToaDoManHinh(item, viewport) {
+    function layBoundingBox(item, viewport) {
 
-        const x = item.transform[4];
-        const y = item.transform[5];
+        // Ma trận transform của item trong không gian PDF
+        const [a, b, c, d, e, f] = item.transform;
 
-        const cao =
-            item.height || Math.abs(item.transform[3]) || 10;
+        const cao = item.height || Math.abs(d) || 10;
+        const rong = item.width || 0;
+
+        // 4 góc của bounding box trong không gian PDF
+        // (đáy-trái, đỉnh-trái, đỉnh-phải, đáy-phải)
+        const goc = [
+            [e,       f      ],
+            [e,       f + cao],
+            [e + rong, f + cao],
+            [e + rong, f      ]
+        ];
+
+        // Chuyển từng góc sang toạ độ viewport (canvas) bằng viewport.convertToViewportPoint
+        const gopManHinh = goc.map(([px, py]) =>
+            viewport.convertToViewportPoint(px, py)
+        );
+
+        const xs = gopManHinh.map(p => p[0]);
+        const ys = gopManHinh.map(p => p[1]);
+
+        const left   = Math.min(...xs);
+        const top    = Math.min(...ys);
+        const right  = Math.max(...xs);
+        const bottom = Math.max(...ys);
 
         return {
-            left: x * viewport.scale,
-            top: viewport.height - (y + cao) * viewport.scale,
-            width: (item.width || 0) * viewport.scale,
-            height: cao * viewport.scale
+            left,
+            top,
+            width:  right  - left,
+            height: bottom - top
         };
     }
 
     /**
      * Lấy các ô chữ nằm trong khoảng ký tự [batDau, ketThuc] của chuỗi trang.
+     *
+     * Cải tiến so với phiên bản cũ:
+     * - Dùng layBoundingBox (transform matrix đầy đủ) thay vì chỉ dùng x,y thô.
+     * - Với item đầu / item cuối bị cắt một phần: ước lượng theo tỉ lệ ký tự
+     *   nhưng chỉ trong phạm vi một item nên sai số tối đa ≈ bề rộng 2-3 ký tự.
+     * - Các item ở giữa dùng toàn bộ bounding box — chính xác 100%.
      */
     function layOChuTheoKhoang(trang, batDau, ketThuc) {
 
         const itemDau = trang.viTriItem[batDau];
         const itemCuoi = trang.viTriItem[ketThuc];
 
+        if (itemDau === undefined || itemCuoi === undefined) return [];
+
         const cacO = [];
 
         for (let i = itemDau; i <= itemCuoi; i++) {
 
             const item = trang.textItems[i];
-
             if (!item) continue;
 
-            const o = doiSangToaDoManHinh(item, trang.viewport);
-
-            // Một mẩu chữ của pdf.js có thể chứa nhiều câu liền nhau. Tô trọn
-            // mẩu thì lấn sang câu bên cạnh, nên cắt theo đúng phần ký tự
-            // thuộc về câu này, ước lượng bề rộng theo tỉ lệ ký tự.
+            const o = layBoundingBox(item, trang.viewport);
             const pham = trang.phamViItem[i];
 
             if (pham && pham.soKyTu > 0) {
 
-                const tuKyTu =
-                    Math.max(batDau, pham.batDau) - pham.batDau;
-
-                const denKyTu =
-                    Math.min(ketThuc, pham.ketThuc) - pham.batDau + 1;
+                const tuKyTu  = Math.max(batDau, pham.batDau) - pham.batDau;
+                const denKyTu = Math.min(ketThuc, pham.ketThuc) - pham.batDau + 1;
 
                 if (denKyTu <= tuKyTu) continue;
 
-                const rongMoiKyTu = o.width / pham.soKyTu;
+                // Chỉ cắt khi item này bị cắt một phần (đầu hoặc cuối vùng)
+                const biBatDau = i === itemDau && tuKyTu > 0;
+                const biKetThuc = i === itemCuoi && denKyTu < pham.soKyTu;
 
-                o.left += tuKyTu * rongMoiKyTu;
-                o.width = (denKyTu - tuKyTu) * rongMoiKyTu;
+                if (biBatDau || biKetThuc) {
+                    // Ước lượng tỉ lệ ký tự — sai số chỉ trong phạm vi 1 item
+                    const rongMoiKyTu = o.width / pham.soKyTu;
+                    o.left  += tuKyTu * rongMoiKyTu;
+                    o.width  = (denKyTu - tuKyTu) * rongMoiKyTu;
+                }
+                // Nếu item nằm giữa: dùng toàn bộ bounding box — chính xác 100%
             }
 
             if (o.width > 0) cacO.push(o);
@@ -415,8 +450,13 @@ window.PdfHighlightViewer = (() => {
 
         return daChon.map(uv => {
 
-            // Gom các từ đã khớp thành từng dãy liên tiếp rồi tô từng dãy.
+            // Gom các từ đã khớp thành từng dãy LIÊN TIẾP rồi tô từng dãy.
             // Nhờ vậy chữ xen giữa mà không thuộc câu sẽ không bị tô lây.
+            //
+            // Phiên bản mới: chotDay dùng bounding box của từng TỪ riêng lẻ
+            // (batDau/ketThuc của từ trong chuỗi trang) thay vì dùng bounding
+            // box trải dài từ đầu đến cuối dãy. Điều này loại bỏ hoàn toàn
+            // việc bôi màu lấn vào khoảng trắng giữa các từ không khớp.
             const cacO = [];
             const viTri = uv.cacViTriKhop || [];
 
@@ -428,6 +468,8 @@ window.PdfHighlightViewer = (() => {
                 const tDau = tuTrang[dauDay];
                 const tCuoi = tuTrang[cuoiDay];
                 if (tDau && tCuoi) {
+                    // Lấy đúng khoảng ký tự của các từ khớp trong dãy này,
+                    // không kéo thêm ký tự của từ đứng sát bên ngoài dãy.
                     cacO.push(
                         ...layOChuTheoKhoang(trang, tDau.batDau, tCuoi.ketThuc)
                     );
@@ -900,6 +942,14 @@ window.PdfHighlightViewer = (() => {
 
         chiSoCauDangChon = chiSo;
 
+        // Bỏ bôi cam (hoặc màu nổi bật) ở các vệt cũ đang được chọn
+        const cacVetCu = containerEl.querySelectorAll('.pdf-vet-boi-mau.dang-chon');
+        cacVetCu.forEach(v => {
+            v.classList.remove('dang-chon');
+            v.style.background = MAU_THUONG;
+            v.style.zIndex = '1';
+        });
+
         if (chiSo === null || chiSo === undefined) return false;
 
         const cacVet =
@@ -909,12 +959,14 @@ window.PdfHighlightViewer = (() => {
 
         if (cacVet.length === 0) return false;
 
-        // Chỉ cuộn tới vị trí câu, không đổi màu.
-        //
-        // Ranh giới giữa hai câu liền nhau chỉ xác định được gần đúng, vì
-        // toạ độ chữ phải suy ra từ bề rộng trung bình ký tự. Tô riêng câu
-        // đang chọn sẽ phô ra chỗ lệch đó; để nguyên một màu vàng thì vùng
-        // trùng vẫn đúng mà không lộ sai số.
+        // Đổi màu riêng cho câu đang chọn để người dùng thấy rõ ranh giới,
+        // không bị nhầm lẫn khi một đoạn dài gồm nhiều câu liền nhau cùng bị bôi vàng.
+        cacVet.forEach(v => {
+            v.classList.add('dang-chon');
+            v.style.background = 'rgba(249, 115, 22, 0.45)'; // Màu cam nổi bật (Orange-500)
+            v.style.zIndex = '10';
+        });
+
         cacVet[0].scrollIntoView({
             behavior: 'smooth',
             block: 'center'

@@ -77,79 +77,48 @@ function convertDocToDocx(
     );
 
 }
-function readPdfWithPdf2Json(duongDanFile) {
-    return new Promise((resolve) => {
-        // Lưu lại luồng ghi chuẩn ban đầu của Node.js
-        const originalStdoutWrite = process.stdout.write;
-        const originalStderrWrite = process.stderr.write;
-
-        let isCleanedUp = false;
-
-        // Hàm dọn dẹp và khôi phục luồng chuẩn, đảm bảo không bị kẹt luồng log
-        const cleanup = () => {
-            if (!isCleanedUp) {
-                process.stdout.write = originalStdoutWrite;
-                process.stderr.write = originalStderrWrite;
-                isCleanedUp = true;
-            }
-        };
-
-        // Bộ lọc chặn các thông báo lỗi/cảnh báo nội bộ của pdf2json không làm bẩn console
-        const filterWarning = (bufferOrString, encoding, cb) => {
-            const str = bufferOrString ? bufferOrString.toString() : '';
-            if (
-                str.includes('Warning:') ||
-                str.includes('Unsupported:') ||
-                str.includes('NOT valid form element')
-            ) {
-                if (typeof cb === 'function') cb();
-                return true;
-            }
-            return false;
-        };
-
-        // Ghi đè tạm thời process.stdout
-        process.stdout.write = function (string, encoding, fd) {
-            if (filterWarning(string, encoding, fd)) return true;
-            return originalStdoutWrite.apply(process.stdout, arguments);
-        };
-
-        // Ghi đè tạm thời process.stderr
-        process.stderr.write = function (string, encoding, fd) {
-            if (filterWarning(string, encoding, fd)) return true;
-            return originalStderrWrite.apply(process.stderr, arguments);
-        };
-
+/**
+ * [HÀM DỰ PHÒNG] Thử lại parsePdfBuffer tối đa maxRetry lần khi gặp lỗi bộ nhớ tạm thời.
+ *
+ * pdf-parse đôi khi fail do server quá tải RAM chứ không phải do file hỏng.
+ * Thử lại cùng thư viện để đảm bảo kết quả luôn nhất quán — khác với cách
+ * cũ là fallback sang pdf2json (thư viện khác nhau → text khác nhau → tỷ lệ
+ * trùng lặp dao động dù nộp cùng 1 file).
+ *
+ * @param {Buffer}  dataBuffer
+ * @param {number}  maxRetry   Số lần thử lại (mặc định 2)
+ * @param {number}  delayMs    Thời gian chờ giữa các lần thử (ms)
+ * @returns {Promise<string>}  Văn bản đã bóc tách, hoặc '' nếu thật sự lỗi
+ */
+async function parsePdfVoiThuLai(dataBuffer, maxRetry = 2, delayMs = 500) {
+    let lanCuoi = null;
+    for (let lan = 0; lan <= maxRetry; lan++) {
         try {
-            const pdfParser = new PDFParser();
-            pdfParser.Verbosity = 0; // Tắt chế độ log chi tiết của parser
-
-            // Xử lý khi dữ liệu bị lỗi
-            pdfParser.on("pdfParser_dataError", () => {
-                cleanup();
-                resolve("");
-            });
-
-            // Xử lý khi đọc dữ liệu thành công
-            pdfParser.on("pdfParser_dataReady", () => {
-                cleanup();
-                try {
-                    let rawText = pdfParser.getRawTextContent() || "";
-                    try {
-
-                    } catch (e) { }
-                    resolve(rawText.trim());
-                } catch (e) {
-                    resolve("");
-                }
-            });
-
-            pdfParser.loadPDF(duongDanFile);
+            const data = await parsePdfBuffer(dataBuffer);
+            if (data && data.text && data.text.trim().length > 0) {
+                return data.text.trim();
+            }
+            // pdf-parse thành công nhưng không trích được chữ
+            // (PDF scan ảnh hoặc bị mã hoá) → không cần retry
+            return '';
         } catch (err) {
-            cleanup();
-            resolve("");
+            lanCuoi = err;
+            if (lan < maxRetry) {
+                console.warn(
+                    `⚠️ pdf-parse lần ${lan + 1} thất bại (${err.message}), `
+                    + `thử lại sau ${delayMs}ms…`
+                );
+                await new Promise(r => setTimeout(r, delayMs));
+            }
         }
-    });
+    }
+    // Thất bại sau đủ số lần retry — log lỗi cuối và trả về chuỗi rỗng
+    const tenLoi = lanCuoi ? lanCuoi.message : 'unknown';
+    console.warn(
+        `⚠️ pdf-parse thất bại sau ${maxRetry + 1} lần thử: ${tenLoi}. `
+        + `Trả về văn bản rỗng để hệ thống báo lỗi rõ ràng.`
+    );
+    return '';
 }
 
 /**
@@ -333,59 +302,13 @@ async function trichXuatVanBan(duongDanFile) {
                     duongDanFile
                 );
 
-            try {
-
-                const data =
-                    await parsePdfBuffer(
-                        dataBuffer
-                    );
-
-                vanBanTho =
-                    data.text
-                        ? data.text.trim()
-                        : '';
-
-            }
-            catch (err1) {
-
-                // Tệp đặt mật khẩu thì không thư viện nào đọc được. Nói thẳng
-                // nguyên nhân, đừng để người nộp bài chỉ thấy "tệp rỗng" rồi
-                // loay hoay tải lên lại mãi.
-                if (
-                    /password/i.test(err1.message || '') ||
-                    /encrypt/i.test(err1.message || '')
-                ) {
-                    console.warn(
-                        `⚠️ Tệp "${path.basename(duongDanFile)}" đang đặt mật `
-                        + `khẩu bảo vệ nên không đọc được nội dung.`
-                    );
-
-                    return '';
-                }
-
-                console.warn(
-                    `⚠️ pdf-parse lỗi: ${err1.message}`
-                );
-
-                try {
-
-                    vanBanTho =
-                        await readPdfWithPdf2Json(
-                            duongDanFile
-                        );
-
-                }
-                catch (err2) {
-
-                    console.warn(
-                        `⚠️ pdf2json lỗi: ${err2.message}`
-                    );
-
-                    vanBanTho = '';
-
-                }
-
-            }
+            // Luôn dùng cùng một thư viện (pdf-parse) cho mọi lần trích xuất.
+            // Trước đây khi pdf-parse lỗi hệ thống fallback sang pdf2json —
+            // hai thư viện này tách ngắt dòng khác nhau nên cùng 1 file PDF
+            // nộp hai lần có thể cho ra tỷ lệ trùng lặp khác nhau.
+            // Giờ thay bằng cơ chế thử lại chính pdf-parse (retry) để đảm bảo
+            // kết quả luôn nhất quán.
+            vanBanTho = await parsePdfVoiThuLai(dataBuffer);
 
             // PDF lưu chữ theo từng dòng in ra giấy chứ không theo đoạn văn.
             // Phải dựng lại ranh giới đoạn, bỏ số trang và tiêu đề chạy trang

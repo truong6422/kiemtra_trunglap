@@ -24,3 +24,7 @@ output.json
 # Tệp tạm của hệ điều hành và trình soạn thảo
 .DS_Store
 Thumbs.db
+
+# File Word/Excel sinh ra lúc export — không đẩy lên git
+*.docx
+*.xlsx
