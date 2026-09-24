@@ -14,6 +14,9 @@ const PDFParser = require('pdf2json');
 
 const { execFile } =
     require('child_process');
+
+const { docDocxTheoXml } = require('./doc_docx_theo_xml');
+const { chuanHoaVanBanPdf } = require('./chuan_hoa_van_ban_pdf');
 /**
  * [HÀM DỰ PHÒNG 1] Đọc PDF bằng thư viện 'pdf2json' khi 'pdf-parse' gặp sự cố.
  * Tích hợp cơ chế chặn và lọc các cảnh báo rác từ luồng hệ thống (stdout/stderr).
@@ -298,36 +301,30 @@ async function trichXuatVanBan(duongDanFile) {
 
                 fileWord = fileDocx;
             }
-            const options = {
-                convertImage:
-                    mammoth.images.imgElement(
-                        function (image) {
+            // Đọc thẳng cấu trúc XML của tệp Word để biết đoạn nào là tiêu đề,
+            // mục lục, chú thích hình hay nằm trong bảng, và để bỏ hẳn phần chữ
+            // vẽ bằng Shapes/textbox. mammoth chỉ trả về chữ trơn nên không
+            // phân biệt được những thứ đó, chỉ dùng làm đường lùi khi tệp hỏng.
+            try {
+                vanBanTho = docDocxTheoXml(fileWord);
+            }
+            catch (loiXml) {
 
-                            return image
-                                .read('base64')
-                                .then(
-                                    function () {
-
-                                        return {
-                                            data: ''
-                                        };
-
-                                    }
-                                );
-
-                        }
-                    )
-            };
-            const result =
-                await mammoth.extractRawText(
-                    {
-                        path: fileWord
-                    },
-                    options
+                console.warn(
+                    `⚠️ Không đọc được cấu trúc DOCX (${loiXml.message}), `
+                    + `chuyển sang mammoth.`
                 );
 
-            vanBanTho =
-                result.value || '';
+                const result =
+                    await mammoth.extractRawText(
+                        {
+                            path: fileWord
+                        }
+                    );
+
+                vanBanTho =
+                    result.value || '';
+            }
         }
         else if (ext === '.pdf') {
 
@@ -374,6 +371,11 @@ async function trichXuatVanBan(duongDanFile) {
                 }
 
             }
+
+            // PDF lưu chữ theo từng dòng in ra giấy chứ không theo đoạn văn.
+            // Phải dựng lại ranh giới đoạn, bỏ số trang và tiêu đề chạy trang
+            // thì bản PDF mới cho ra cùng kết quả với bản Word cùng nội dung.
+            vanBanTho = chuanHoaVanBanPdf(vanBanTho);
         }
         else if (ext === '.txt') {
             // Bổ sung hỗ trợ đọc file văn bản thuần túy dạng .txt với chuẩn mã hóa UTF-8
