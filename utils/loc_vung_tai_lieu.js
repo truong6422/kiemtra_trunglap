@@ -5,13 +5,14 @@
  * Một báo cáo gồm nhiều vùng: bìa, lời cảm ơn, mục lục, danh mục viết tắt, nội
  * dung, tài liệu tham khảo, phụ lục. Chỉ vùng nội dung mới đáng đem đi so trùng.
  *
- * Cách làm cũ là đi tìm một "điểm bắt đầu" (MỞ ĐẦU hoặc CHƯƠNG 1) rồi giữ tất
- * cả từ đó về sau. Cách đó hỏng theo hai hướng ngược nhau, đúng như giáo viên
- * phản ánh: bài không có hai mốc ấy thì giữ cả bìa lẫn lời cảm ơn (lấy thừa),
- * còn bài có mốc nằm muộn thì mất luôn phần nội dung phía trước (bỏ sót).
+ * Giáo viên đã chốt cách lấy nội dung: bắt đầu từ phần có tiêu đề "Mở đầu";
+ * bài nào không có phần Mở đầu thì chuyển sang "Chương" hoặc "Phần", rồi lấy
+ * đến hết nội dung. Mọi thứ nằm trước mốc đó — trang bìa, phiếu giao đề tài,
+ * lời cảm ơn, mục lục — đều không tính.
  *
- * Ở đây ta đi theo vùng: mỗi đề mục lớn mở ra một vùng mới, vùng nào không phải
- * nội dung thì bỏ cả khối.
+ * Bài không có mốc nào trong ba mốc ấy thì mới đi theo vùng: mỗi đề mục lớn mở
+ * ra một vùng mới, vùng nào không phải nội dung thì bỏ cả khối. Cách này giữ
+ * cho những bài trình bày không theo khuôn vẫn chấm được thay vì ra bài rỗng.
  * ============================================================================
  */
 
@@ -35,11 +36,12 @@ const VUNG = {
 // đó chính là lý do các vùng này vẫn lọt vào nội dung đem đi so trùng.
 const HET_TEN_DE_MUC = '(?![\\p{L}\\p{N}])';
 
-// Đề mục mở ra một vùng phải bỏ trọn khối.
+// Đề mục mở ra một vùng phải bỏ trọn khối. Các mục này hay được gọi là "phiếu"
+// hoặc "bản" nên cho phép tiền tố đó đứng trước tên mục.
 const DE_MUC_BO_KHOI = new RegExp(
-    '^(' +
+    '^(PHIẾU|BẢN|GIẤY|TỜ)?\\s*(' +
     'LỜI CẢM ƠN|CẢM ƠN|LỜI CAM ĐOAN|CAM ĐOAN|MỤC LỤC|DANH MỤC|' +
-    'NHẬT KÝ|NHẬN XÉT|ĐÁNH GIÁ CỦA|Ý KIẾN CỦA|XÁC NHẬN CỦA|' +
+    'NHẬT KÝ|NHẬN XÉT|ĐÁNH GIÁ|Ý KIẾN|XÁC NHẬN|THEO DÕI TIẾN ĐỘ|' +
     'TÀI LIỆU THAM KHẢO|PHỤ LỤC|TÓM TẮT ĐỀ TÀI|LỜI KẾT' +
     ')' + HET_TEN_DE_MUC,
     'iu'
@@ -61,6 +63,44 @@ const DE_MUC_MO_NOI_DUNG = new RegExp(
     ')' + HET_TEN_DE_MUC,
     'iu'
 );
+
+// Mốc mở đầu phần nội dung, xếp theo đúng thứ tự ưu tiên giáo viên đưa ra.
+const MOC_MO_DAU = new RegExp(
+    '^(LỜI MỞ ĐẦU|PHẦN MỞ ĐẦU|MỞ ĐẦU|LỜI NÓI ĐẦU)' + HET_TEN_DE_MUC,
+    'iu'
+);
+
+const MOC_CHUONG_PHAN = /^(CHƯƠNG|CHUONG|PHẦN|PHAN|CHAPTER|PART)\s*[:\-–]?\s*(1|I)(?![\dIVXLCDM])/iu;
+
+/**
+ * Tìm dòng mở đầu phần nội dung.
+ *
+ * Ưu tiên "Mở đầu"; không có thì lấy "Chương 1" hoặc "Phần 1". Dòng nằm trong
+ * mục lục không tính, vì ở đó tên mục nào cũng có mặt.
+ *
+ * @returns {number} chỉ số dòng của mốc, -1 nếu không tìm thấy
+ */
+function timMocMoDauNoiDung(cacDong) {
+    let viTriChuongPhan = -1;
+
+    for (let i = 0; i < cacDong.length; i++) {
+        const t = chuanHoaKhoangTrang(boNhan(cacDong[i]));
+
+        if (!t || laDongMucLuc(t)) {
+            continue;
+        }
+
+        if (MOC_MO_DAU.test(t)) {
+            return i;
+        }
+
+        if (viTriChuongPhan < 0 && MOC_CHUONG_PHAN.test(t)) {
+            viTriChuongPhan = i;
+        }
+    }
+
+    return viTriChuongPhan;
+}
 
 /**
  * Đoạn văn đủ dài và có dấu kết câu thì chắc chắn là nội dung viết ra, không
@@ -112,10 +152,21 @@ function locVungNoiDung(vanBan) {
         return '';
     }
 
-    const cacDong = vanBan.split(/\r?\n/);
+    const cacDongGoc = vanBan.split(/\r?\n/);
+
+    // Giáo viên chốt: lấy nội dung từ phần "Mở đầu", không có thì từ "Chương"
+    // hoặc "Phần". Cắt thẳng tại đó, mọi thứ phía trước không tính.
+    const viTriMoc = timMocMoDauNoiDung(cacDongGoc);
+
+    const cacDong = viTriMoc >= 0
+        ? cacDongGoc.slice(viTriMoc + 1)
+        : cacDongGoc;
+
     const ketQua = [];
 
-    let vungHienTai = VUNG.BIA;
+    // Đã cắt đúng mốc thì phần còn lại là nội dung; chưa tìm được mốc nào thì
+    // mới phải dò theo vùng, bắt đầu từ trang bìa.
+    let vungHienTai = viTriMoc >= 0 ? VUNG.NOI_DUNG : VUNG.BIA;
     let vungKeoDaiDenHet = false;
     let soDongDaBoTrongVung = 0;
 
@@ -178,6 +229,7 @@ function locVungNoiDung(vanBan) {
 
 module.exports = {
     locVungNoiDung,
+    timMocMoDauNoiDung,
     laDoanVanThucSu,
     VUNG
 };

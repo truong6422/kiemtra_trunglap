@@ -37,6 +37,21 @@ function laThongTinHoSo(dong) {
         return false;
     }
 
+    // Dòng khai theo mẫu "<nhãn>: <giá trị>" thì nhãn đã đủ để kết luận, không
+    // cần xét độ dài — phần giá trị có khi kéo dài cả tên công ty lẫn địa chỉ.
+    const laDongKhaiTheoNhan = (
+        /^(bộ\s*môn|ngành|chuyên\s*ngành|khoá|khóa|niên\s*khoá|niên\s*khóa)\s*[:：]/i.test(t) ||
+        /^(họ\s*(và\s*)?tên|họ\s*tên\s*sinh\s*viên|mã\s*(số\s*)?sinh\s*viên|msv|mssv|lớp|sđt|số\s*điện\s*thoại|điện\s*thoại|email|e-mail)\s*[:：]/i.test(t) ||
+        /^(tên\s*)?(đơn\s*vị|cơ\s*quan|nơi|địa\s*điểm)\s*thực\s*tập\s*[:：]/i.test(t) ||
+        /^(vị\s*trí|thời\s*gian)\s*thực\s*tập\s*[:：]/i.test(t) ||
+        /^người\s*hướng\s*dẫn\s*(tại\s*nơi\s*thực\s*tập)?\s*[:：]/i.test(t) ||
+        /^(giảng\s*viên|giáo\s*viên|gvhd|cán\s*bộ\s*hướng\s*dẫn)\s*[:：]/i.test(t)
+    );
+
+    if (laDongKhaiTheoNhan) {
+        return true;
+    }
+
     if (t.length > 160) {
         return false;
     }
@@ -44,13 +59,7 @@ function laThongTinHoSo(dong) {
     return (
         /^(trường\s+)?(đại\s*học|cao\s*đẳng|học\s*viện)\b/i.test(t) ||
         /^khoa\s+/i.test(t) ||
-        /^(bộ\s*môn|ngành|chuyên\s*ngành|khoá|khóa|niên\s*khoá|niên\s*khóa)\s*[:：]/i.test(t) ||
-        /^(họ\s*(và\s*)?tên|họ\s*tên\s*sinh\s*viên|mã\s*(số\s*)?sinh\s*viên|msv|mssv|lớp|sđt|số\s*điện\s*thoại|điện\s*thoại|email|e-mail)\s*[:：]/i.test(t) ||
         /^(giảng\s*viên|giáo\s*viên|người\s*hướng\s*dẫn|gvhd|cán\s*bộ\s*hướng\s*dẫn|sinh\s*viên\s*thực\s*hiện|người\s*thực\s*hiện)/i.test(t) ||
-        // Trang khai thông tin kỳ thực tập — cùng một khuôn với trang bìa
-        /^(tên\s*)?(đơn\s*vị|cơ\s*quan|nơi)\s*thực\s*tập\s*[:：]/i.test(t) ||
-        /^(vị\s*trí|thời\s*gian)\s*thực\s*tập\s*[:：]/i.test(t) ||
-        /^người\s*hướng\s*dẫn\s*(tại\s*nơi\s*thực\s*tập)?\s*[:：]/i.test(t) ||
         /^(đồ\s*án|khoá\s*luận|khóa\s*luận|báo\s*cáo)\s+(học\s*phần|tốt\s*nghiệp|thực\s*tập|môn\s*học)/i.test(t) ||
         /^-{3,}o0o-{3,}$/i.test(t) ||
         /^[-=*_~.•]{3,}$/.test(t)

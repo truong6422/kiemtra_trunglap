@@ -283,6 +283,88 @@ kiemTra('bỏ được dòng mục lục', conLai.includes('.....'), false);
 kiemTra('giữ được nội dung', conLai.includes('nội dung thật sự của báo cáo'), true);
 
 // ============================================================================
+nhom('Mốc lấy nội dung: từ "Mở đầu", không có thì từ "Chương" hoặc "Phần"');
+
+// Giáo viên chốt: lấy nội dung từ phần có tiêu đề Mở đầu; không có phần Mở đầu
+// thì chuyển sang Chương hoặc Phần, lấy đến hết nội dung.
+{
+    const bai = [
+        'TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP VIỆT – HUNG',
+        'PHÂN TÍCH THIẾT KẾ HỆ THỐNG VÀ XÂY DỰNG CSDL CHO HỆ THỐNG QUẢN LÝ CÔNG TY HÀNG KHÔNG',
+        'Giáo viên hướng dẫn : Ths. Đặng Thị Huệ',
+        'Yêu cầu về kiến thức, kỹ năng:',
+        'Phân tích hệ thống và chuyển đổi mô hình E-R sang lược đồ quan hệ.',
+        'MỞ ĐẦU',
+        'I. Đặt vấn đề',
+        'Phân tích, thiết kế hệ thống và xây dựng cơ sở dữ liệu cho hệ thống quản lý công ty '
+        + 'hàng không là một nhiệm vụ phức tạp và quan trọng.'
+    ].join('\n');
+
+    const cacCau = tachCau(locNoiDungHocThuat(bai));
+
+    kiemTra(
+        'bỏ hết phần trước "MỞ ĐẦU"',
+        cacCau.some(c => c.includes('Yêu cầu về kiến thức') || c.includes('Đặng Thị Huệ')),
+        false
+    );
+    kiemTra(
+        'giữ nội dung ngay sau "MỞ ĐẦU"',
+        cacCau.some(c => c.includes('nhiệm vụ phức tạp và quan trọng')),
+        true
+    );
+}
+
+{
+    const bai = [
+        'TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP VIỆT – HUNG',
+        'Mã sinh viên: 2200606',
+        'LỜI CẢM ƠN',
+        'Em xin gửi lời cảm ơn chân thành đến các thầy cô trong khoa đã tận tình giúp đỡ.',
+        'CHƯƠNG 1',
+        'TỔNG QUAN VỀ ĐỀ TÀI',
+        'Nội dung chương này trình bày toàn bộ cơ sở lý thuyết của đề tài đang thực hiện.'
+    ].join('\n');
+
+    const cacCau = tachCau(locNoiDungHocThuat(bai));
+
+    kiemTra(
+        'không có Mở đầu thì lấy từ "CHƯƠNG 1"',
+        cacCau.some(c => c.includes('cơ sở lý thuyết của đề tài')),
+        true
+    );
+    kiemTra(
+        'bỏ phần trước "CHƯƠNG 1"',
+        cacCau.some(c => c.includes('lời cảm ơn chân thành')),
+        false
+    );
+}
+
+{
+    // "MỞ ĐẦU" nằm trong mục lục thì không được coi là mốc, nếu không cả khối
+    // mục lục phía sau lại bị tính thành nội dung.
+    const bai = [
+        'MỤC LỤC',
+        'MỞ ĐẦU.........................................................1',
+        'CHƯƠNG 1.......................................................5',
+        'MỞ ĐẦU',
+        'Đây mới là phần nội dung thật sự của bài viết cần đem đi so trùng.'
+    ].join('\n');
+
+    const cacCau = tachCau(locNoiDungHocThuat(bai));
+
+    kiemTra(
+        'dòng "MỞ ĐẦU" trong mục lục không được tính làm mốc',
+        cacCau.some(c => c.includes('.....')),
+        false
+    );
+    kiemTra(
+        'lấy đúng từ "MỞ ĐẦU" thật trong thân bài',
+        cacCau.some(c => c.includes('phần nội dung thật sự')),
+        true
+    );
+}
+
+// ============================================================================
 console.log('\n' + '='.repeat(70));
 
 if (soHong) {
