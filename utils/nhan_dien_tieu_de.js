@@ -23,6 +23,11 @@ function chuanHoaKhoangTrang(text) {
     return text
         .replace(/[\t  -   　]/g, ' ')
         .replace(/\s+/g, ' ')
+        .trim()
+        // Ký tự trang trí quanh đề mục: "__MỤC LỤC__", "***KẾT LUẬN***".
+        // Không đụng dấu gạch ngang vì đó là dấu đầu dòng, xử lý ở chỗ khác.
+        .replace(/^[_*~=]+\s*/, '')
+        .replace(/\s*[_*~=]+$/, '')
         .trim();
 }
 

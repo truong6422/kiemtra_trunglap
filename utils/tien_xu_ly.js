@@ -166,8 +166,10 @@ function bamChuoi(chuoi) {
  * Bỏ các dòng mà chính tệp Word đã khai là mục lục, chú thích hình hoặc ô
  * trong bảng.
  *
- * Nhãn tiêu đề được giữ nguyên: nó vừa cho biết dòng này không phải nội dung,
- * vừa là mốc phân chia các vùng của báo cáo ở bước sau.
+ * Nhãn tiêu đề và nhãn mục lục được giữ nguyên: chúng vừa cho biết dòng này
+ * không phải nội dung, vừa là mốc phân chia các vùng của báo cáo ở bước sau.
+ * Riêng mục lục còn cho biết bài có những đề mục nào, thông tin đó dùng để nhận
+ * ra chỗ thân bài bắt đầu.
  */
 function xuLyNhanCauTruc(vanBan) {
     if (!vanBan || typeof vanBan !== 'string') {
@@ -178,7 +180,6 @@ function xuLyNhanCauTruc(vanBan) {
         .split(/\r?\n/)
         .filter(dong => !coNhan(
             dong,
-            NHAN.MUC_LUC,
             NHAN.CHU_THICH,
             NHAN.BANG,
             NHAN.HOP_VAN_BAN
@@ -211,7 +212,7 @@ function locNoiDungHocThuat(vanBan) {
  * @returns {string} nội dung giữ lại của dòng, chuỗi rỗng nghĩa là bỏ dòng.
  */
 function locMotDong(dongGoc) {
-    if (coNhan(dongGoc, NHAN.TIEU_DE)) {
+    if (coNhan(dongGoc, NHAN.TIEU_DE, NHAN.MUC_LUC)) {
         return '';
     }
 

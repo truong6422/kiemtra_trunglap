@@ -20,10 +20,12 @@ const {
     chuanHoaKhoangTrang,
     laTieuDeLon,
     laDongMucLuc,
-    laSoTrang
+    laSoTrang,
+    CHUONG_HOAC_PHAN
 } = require('./nhan_dien_tieu_de');
 
-const { boNhan } = require('./danh_dau_cau_truc');
+const { boNhan, coNhan, NHAN } = require('./danh_dau_cau_truc');
+const { laThongTinHoSo } = require('./nhan_dien_phan_phu');
 
 const VUNG = {
     BIA: 'BIA',
@@ -55,6 +57,23 @@ const SO_DONG_TOI_DA_CUA_VUNG_BO = 40;
 // Vùng tài liệu tham khảo và phụ lục thì kéo dài tới hết bài là đúng.
 const DE_MUC_BO_DEN_HET = /^(TÀI LIỆU THAM KHẢO|PHỤ LỤC)/iu;
 
+// Mục lục và các danh mục chỉ gồm toàn tên đề mục. Đang ở trong đó mà gặp một
+// dòng trông như tiêu đề thì đó vẫn là mục lục, không phải đã sang phần nội
+// dung — có bài in mục lục không kèm số trang nên không còn dấu hiệu nào khác.
+const DE_MUC_TOAN_TEN_MUC = /^(MỤC LỤC|DANH MỤC)/iu;
+
+/**
+ * Tên của một đề mục, bỏ dấu chấm nối và số trang, để so được dòng trong mục
+ * lục với chính đề mục đó khi nó xuất hiện lại ở thân bài.
+ */
+function tenDeMuc(dong) {
+    return chuanHoaKhoangTrang(dong)
+        .replace(/[.·…]{2,}\s*\d*\s*$/, '')
+        .replace(/\s+\d{1,3}\s*$/, '')
+        .replace(/[\s:.\-–)]+$/, '')
+        .toLowerCase();
+}
+
 // Đề mục mở ra vùng nội dung.
 const DE_MUC_MO_NOI_DUNG = new RegExp(
     '^(' +
@@ -64,9 +83,13 @@ const DE_MUC_MO_NOI_DUNG = new RegExp(
     'iu'
 );
 
+// Đề mục hay được đánh số trước tên: "A: MỞ ĐẦU", "I. Mở đầu", "1. Mở đầu".
+const SO_THU_TU_TRUOC_TEN = '(?:[A-Z]|[IVXLCDM]+|\\d+)\\s*[.:)\\-]\\s*';
+
 // Mốc mở đầu phần nội dung, xếp theo đúng thứ tự ưu tiên giáo viên đưa ra.
 const MOC_MO_DAU = new RegExp(
-    '^(LỜI MỞ ĐẦU|PHẦN MỞ ĐẦU|MỞ ĐẦU|LỜI NÓI ĐẦU)' + HET_TEN_DE_MUC,
+    '^(?:' + SO_THU_TU_TRUOC_TEN + ')?' +
+    '(LỜI MỞ ĐẦU|PHẦN MỞ ĐẦU|MỞ ĐẦU|LỜI NÓI ĐẦU)' + HET_TEN_DE_MUC,
     'iu'
 );
 
@@ -110,7 +133,15 @@ function timMocMoDauNoiDung(cacDong) {
 function laDoanVanThucSu(dong) {
     const t = chuanHoaKhoangTrang(dong);
 
-    return t.length >= 150 && /[.!?]/.test(t);
+    if (t.length < 150) {
+        return false;
+    }
+
+    // Phải kết thúc bằng dấu chấm câu. Trang khai thông tin thực tập cũng có
+    // dòng dài — "Địa chỉ : Khu công nghiệp cao Hoà Lạc, xã Hạ Bằng, huyện
+    // Thạch Thất, Hà Nội Người hướng dẫn tại nơi thực tập:" — nhưng nó kết thúc
+    // bằng dấu hai chấm của một nhãn còn bỏ ngỏ, không phải một câu viết ra.
+    return /[.!?]["'”’)\]]?$/.test(t);
 }
 
 /**
@@ -124,6 +155,13 @@ function vungMoBoiDeMuc(dongCoNhan) {
     // TẬP......7"). Nếu nhận nhầm nó là đề mục thật thì cả khối mục lục phía
     // sau bị tính vào nội dung.
     if (laDongMucLuc(t)) {
+        return null;
+    }
+
+    // Dòng khai hồ sơ viết tắt nhiều chữ hoa nên trông giống tiêu đề
+    // ("Lớp: 4628CNTT"). Nó không bao giờ mở ra phần nội dung; nhận nhầm thì
+    // cả trang thông tin sinh viên bị tính là nội dung.
+    if (laThongTinHoSo(t)) {
         return null;
     }
 
@@ -142,33 +180,22 @@ function vungMoBoiDeMuc(dongCoNhan) {
 }
 
 /**
- * Giữ lại phần nội dung của báo cáo, bỏ các vùng phụ trợ.
+ * Bóc đi các vùng phụ trợ: trang bìa, lời cảm ơn, mục lục, danh mục, nhật ký,
+ * tài liệu tham khảo, phụ lục.
  *
- * @param {string} vanBan - văn bản đã tách dòng theo đoạn
- * @returns {string}
+ * @param {string[]} cacDong
+ * @returns {string[]} các dòng còn lại
  */
-function locVungNoiDung(vanBan) {
-    if (!vanBan || typeof vanBan !== 'string') {
-        return '';
-    }
-
-    const cacDongGoc = vanBan.split(/\r?\n/);
-
-    // Giáo viên chốt: lấy nội dung từ phần "Mở đầu", không có thì từ "Chương"
-    // hoặc "Phần". Cắt thẳng tại đó, mọi thứ phía trước không tính.
-    const viTriMoc = timMocMoDauNoiDung(cacDongGoc);
-
-    const cacDong = viTriMoc >= 0
-        ? cacDongGoc.slice(viTriMoc + 1)
-        : cacDongGoc;
-
+function bocVungPhuTro(cacDong) {
     const ketQua = [];
 
-    // Đã cắt đúng mốc thì phần còn lại là nội dung; chưa tìm được mốc nào thì
-    // mới phải dò theo vùng, bắt đầu từ trang bìa.
-    let vungHienTai = viTriMoc >= 0 ? VUNG.NOI_DUNG : VUNG.BIA;
+    let vungHienTai = VUNG.BIA;
     let vungKeoDaiDenHet = false;
+    let dangTrongMucLuc = false;
     let soDongDaBoTrongVung = 0;
+
+    // Tên các đề mục đã thấy trong mục lục, để nhận ra lần xuất hiện thứ hai
+    const tenDaLietKe = new Set();
 
     for (const dongGoc of cacDong) {
         const dong = dongGoc.replace(/\s+$/, '');
@@ -178,12 +205,50 @@ function locVungNoiDung(vanBan) {
             continue;
         }
 
+        // Dòng do Word khai là mục lục: bỏ đi, nhưng ghi lại tên đề mục vì lát
+        // nữa chính tên đó xuất hiện lại chỗ thân bài bắt đầu.
+        if (coNhan(dong, NHAN.MUC_LUC)) {
+            tenDaLietKe.add(tenDeMuc(t));
+            dangTrongMucLuc = true;
+            soDongDaBoTrongVung++;
+            continue;
+        }
+
         const vungMoi = vungMoBoiDeMuc(dong);
 
         if (vungMoi) {
+            // Trang bìa đầy dòng in hoa — tên trường, tên đề tài, tên sinh
+            // viên — dòng nào cũng có dáng tiêu đề. Chỉ một đề mục gọi đúng tên
+            // (Mở đầu, Chương, Phần...) mới đưa được bài ra khỏi trang bìa.
+            if (
+                vungHienTai === VUNG.BIA &&
+                vungMoi === VUNG.NOI_DUNG &&
+                !CHUONG_HOAC_PHAN.test(t) &&
+                !DE_MUC_MO_NOI_DUNG.test(t)
+            ) {
+                continue;
+            }
+
+            // Đang trong mục lục thì mọi tên đề mục vẫn là một dòng của mục
+            // lục. Chỉ khi một tên đã liệt kê xuất hiện lần nữa thì mới là thân
+            // bài — đó là cách duy nhất phân biệt với mục lục không có số trang.
+            if (dangTrongMucLuc && vungMoi === VUNG.NOI_DUNG) {
+                const ten = tenDeMuc(t);
+
+                if (!tenDaLietKe.has(ten)) {
+                    tenDaLietKe.add(ten);
+                    soDongDaBoTrongVung++;
+                    continue;
+                }
+
+                dangTrongMucLuc = false;
+            }
+
             vungHienTai = vungMoi;
             vungKeoDaiDenHet =
                 vungMoi === VUNG.BO_QUA && DE_MUC_BO_DEN_HET.test(t);
+            dangTrongMucLuc =
+                vungMoi === VUNG.BO_QUA && DE_MUC_TOAN_TEN_MUC.test(t);
             soDongDaBoTrongVung = 0;
             // Bản thân dòng đề mục không được tính vào nội dung
             continue;
@@ -192,6 +257,12 @@ function locVungNoiDung(vanBan) {
         // Ở vùng bìa, một đoạn văn thực sự đánh dấu bài đã vào phần nội dung.
         if (vungHienTai === VUNG.BIA && laDoanVanThucSu(t)) {
             vungHienTai = VUNG.NOI_DUNG;
+        }
+
+        // Mục lục chỉ kết thúc khi gặp một đoạn văn thật sự
+        if (dangTrongMucLuc && laDoanVanThucSu(t)) {
+            vungHienTai = VUNG.NOI_DUNG;
+            dangTrongMucLuc = false;
         }
 
         // Vùng phụ trợ đã dài quá mức một lời cảm ơn hay một mục lục thì coi
@@ -206,6 +277,10 @@ function locVungNoiDung(vanBan) {
         }
 
         if (vungHienTai !== VUNG.NOI_DUNG) {
+            if (dangTrongMucLuc) {
+                tenDaLietKe.add(tenDeMuc(t));
+            }
+
             soDongDaBoTrongVung++;
             continue;
         }
@@ -218,13 +293,42 @@ function locVungNoiDung(vanBan) {
         ketQua.push(dong);
     }
 
-    // Không nhận ra vùng nội dung nào thì trả lại nguyên văn bản để bước sau còn
-    // có cái mà lọc, thà thừa còn hơn chấm một bài rỗng.
-    if (!ketQua.length) {
+    return ketQua;
+}
+
+/**
+ * Giữ lại phần nội dung của báo cáo.
+ *
+ * @param {string} vanBan - văn bản đã tách dòng theo đoạn
+ * @returns {string}
+ */
+function locVungNoiDung(vanBan) {
+    if (!vanBan || typeof vanBan !== 'string') {
+        return '';
+    }
+
+    const cacDongGoc = vanBan.split(/\r?\n/);
+
+    // Bóc vùng phụ trợ trước, rồi mới đi tìm mốc mở đầu trong phần còn lại. Làm
+    // ngược lại thì mốc rơi đúng vào dòng "PHẦN 1: CƠ SỞ LÝ LUẬN" nằm trong mục
+    // lục, và cả khối mục lục phía sau bị tính thành nội dung.
+    const conLai = bocVungPhuTro(cacDongGoc);
+
+    if (!conLai.length) {
+        // Không nhận ra vùng nội dung nào thì trả lại nguyên văn bản để bước sau
+        // còn có cái mà lọc, thà thừa còn hơn chấm một bài rỗng.
         return vanBan;
     }
 
-    return ketQua.join('\n');
+    // Giáo viên chốt: lấy nội dung từ phần "Mở đầu", không có thì từ "Chương"
+    // hoặc "Phần". Cắt thẳng tại đó, mọi thứ phía trước không tính.
+    const viTriMoc = timMocMoDauNoiDung(conLai);
+
+    const noiDung = viTriMoc >= 0
+        ? conLai.slice(viTriMoc + 1)
+        : conLai;
+
+    return (noiDung.length ? noiDung : conLai).join('\n');
 }
 
 module.exports = {
