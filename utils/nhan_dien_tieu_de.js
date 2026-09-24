@@ -236,7 +236,18 @@ function laDongMucLuc(dong) {
         DE_MUC_CO_DINH.test(khongCoSoTrang);
 
     if (!laDeMuc) {
-        return false;
+        // Mục lục còn có loại không đánh số, chỉ là tên mục do sinh viên tự đặt
+        // rồi tới số trang: "Dự án và vị trí công việc 17". Dấu hiệu nhận ra là
+        // dòng ngắn, mở đầu bằng chữ hoa và không có dấu kết câu — hệt một tiêu
+        // đề, chỉ khác là bị dính thêm số trang ở cuối.
+        return (
+            khongCoSoTrang.length <= 70 &&
+            /^[\p{Lu}]/u.test(khongCoSoTrang) &&
+            !/[.!?,;:]$/.test(khongCoSoTrang) &&
+            khongCoSoTrang.split(/\s+/).length >= 2 &&
+            // Loại trừ câu văn kết thúc bằng con số thật ("... chia làm 2")
+            !/\b(là|có|gồm|làm|đạt|tới|đến|khoảng|hơn|dưới|trên)\s+\d{1,3}$/i.test(t)
+        );
     }
 
     // Phải còn tên mục sau khi gỡ phần đánh số, nếu không thì "CHƯƠNG 1" đứng
