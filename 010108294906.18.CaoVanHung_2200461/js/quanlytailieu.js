@@ -492,6 +492,12 @@ async function submitCheckDoc() {
                     console.error(`Lỗi khi upload file ${file.name}:`, result.message);
                     canhBao.push(`${file.name}: ${result.message || 'không tải lên được.'}`);
                 }
+
+                // ── MỚI: Hiện modal chi tiết lỗi nếu có (YÊU CẦU 2) ──
+                if (result.chi_tiet_loi && typeof moModalChiTietLoi === 'function') {
+                    setTimeout(() => moModalChiTietLoi(result.chi_tiet_loi), 400);
+                }
+
             } catch (err) {
                 console.error("Lỗi kết nối:", err);
                 canhBao.push(`${file.name}: không gửi được lên máy chủ.`);

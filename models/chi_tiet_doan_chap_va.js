@@ -103,10 +103,8 @@ chiTietDoanChapVaSchema.index({
     den_cau_kiem_tra: 1
 });
 
-chiTietDoanChapVaSchema.pre("save", function (next) {
-
+chiTietDoanChapVaSchema.pre("save", function () {
     this.updated_at = new Date();
-
     if (
         this.tu_cau_kiem_tra !== undefined &&
         this.den_cau_kiem_tra !== undefined
@@ -116,11 +114,8 @@ chiTietDoanChapVaSchema.pre("save", function (next) {
             this.tu_cau_kiem_tra +
             1;
     }
-
     this.so_nguon =
         this.danh_sach_id_bao_cao_nguon.length;
-
-    next();
 });
 
 module.exports = mongoose.model(

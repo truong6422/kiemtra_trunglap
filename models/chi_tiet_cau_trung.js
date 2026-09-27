@@ -62,6 +62,11 @@ const chiTietCauTrungSchema = new mongoose.Schema(
             required: true
         },
 
+        doan_id: {
+            type: String,
+            default: ""
+        },
+
         cau_kiem_tra: {
             type: String,
             required: true
@@ -108,14 +113,9 @@ chiTietCauTrungSchema.index({
     id_bao_cao: 1
 });
 
-chiTietCauTrungSchema.pre("save", function (next) {
-
+chiTietCauTrungSchema.pre("save", function () {
     this.updated_at = new Date();
-
-    this.so_nguon_trung =
-        this.danh_sach_nguon.length;
-
-    next();
+    this.so_nguon_trung = this.danh_sach_nguon.length;
 });
 
 module.exports = mongoose.model(

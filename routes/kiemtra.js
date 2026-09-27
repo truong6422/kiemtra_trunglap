@@ -78,7 +78,23 @@ router.post('/upload-and-check', upload.single('fileBaoCao'), apDungGioiHanTep, 
         const ext = path.extname(req.file.originalname).toLowerCase();
         if (ext !== '.pdf' && ext !== '.doc' && ext !== '.docx') {
             if (fs.existsSync(duongDanFile)) fs.unlinkSync(duongDanFile);
-            return res.status(400).json({ success: false, message: 'Chỉ hỗ trợ file .doc, .docx hoặc .pdf!' });
+            return res.status(400).json({
+                success: false,
+                message: 'Chỉ hỗ trợ file .doc, .docx hoặc .pdf!',
+                dinh_dang_khong_ho_tro: true,
+                chi_tiet_loi: {
+                    loai_loi: 'DINH_DANG_KHONG_HO_TRO',
+                    ten_tep: req.file.originalname,
+                    dinh_dang_nhan_duoc: ext || '(không xác định)',
+                    dinh_dang_ho_tro: ['.pdf', '.doc', '.docx'],
+                    dung_luong_mb: (req.file.size / 1024 / 1024).toFixed(2),
+                    ly_do: `Định dạng tệp "${ext}" không được hỗ trợ. Hệ thống chỉ nhận .pdf, .doc, .docx.`,
+                    goi_y: [
+                        'Chứa tệp sang định dạng .docx hoặc .pdf',
+                        'Không tải lên file hình ảnh (.jpg, .png, ...) hay file nén (.zip, .rar)'
+                    ]
+                }
+            });
         }
 
         const tieuDeBaoCao = req.body.tieuDe || path.basename(req.file.originalname, ext);
@@ -148,9 +164,26 @@ router.post('/upload-and-check', upload.single('fileBaoCao'), apDungGioiHanTep, 
                 fs.unlinkSync(duongDanFile);
             }
 
+            const soMBTep = (req.file.size / 1024 / 1024).toFixed(2);
+
             return res.status(400).json({
                 success: false,
-                message: 'File rỗng hoặc không đọc được văn bản!'
+                message: 'File rỗng hoặc không đọc được văn bản!',
+                khong_doc_duoc_chu: true,
+                chi_tiet_loi: {
+                    loai_loi: 'KHONG_DOC_DUOC_CHU',
+                    ten_tep: req.file.originalname,
+                    dinh_dang: path.extname(req.file.originalname).toLowerCase(),
+                    dung_luong_mb: soMBTep,
+                    ly_do: 'Hệ thống không trích xuất được văn bản từ tệp này. '
+                        + 'Tệp có thể rỗng hoặc được tạo hoàn toàn từ hình ảnh chụp/scan, '
+                        + 'không có lớp văn bản có thể đọc máy.',
+                    goi_y: [
+                        'Sử dụng tệp có lớp văn bản gốc (không phải ảnh scan)',
+                        'Nếu là PDF scan, hãy dùng phần mềm OCR để chuyển sang văn bản trước',
+                        'Kiểm tra lại tệp có nội dung không'
+                    ]
+                }
             });
         }
 

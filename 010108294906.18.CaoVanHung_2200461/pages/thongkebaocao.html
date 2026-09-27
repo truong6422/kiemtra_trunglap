@@ -147,6 +147,16 @@
                     <div class="tk-the__phu">Chưa có kết quả — bấm để xem</div>
                 </div>
             </article>
+
+            <!-- THẺ ĐÁNH GIÁ (YÊU CẦU 3) -->
+            <article class="tk-the tk-the--vang tk-the--bam-duoc" id="theDanhGia">
+                <div class="tk-the__bieu-tuong"><i class="fa-solid fa-star"></i></div>
+                <div class="tk-the__noi-dung">
+                    <div class="tk-the__nhan">Đánh giá phần mềm</div>
+                    <div class="tk-the__so" id="soDanhGia">--</div>
+                    <div class="tk-the__phu" id="phuDanhGia">Bấm để xem chi tiết</div>
+                </div>
+            </article>
         </section>
 
         <!-- ================= KHUNG TỔNG QUAN (mặc định) ================= -->
@@ -300,6 +310,45 @@
 
             <div id="tkNoiDungKetQua"></div>
         </div>
+
+        <!-- ================= KHUNG ĐÁNH GIÁ PHẦN MỀM ================= -->
+        <div id="khungDanhGia" class="tk-khung-phu" hidden>
+
+            <div class="tk-duong-dan">
+                <button type="button" class="tk-nut-quay-lai" data-ve="tong-quan">
+                    <i class="fa-solid fa-arrow-left"></i> Quay lại tổng quan
+                </button>
+                <h3>Đánh giá phần mềm</h3>
+
+                <button type="button" class="upload-btn tk-nut-xuat" id="btnXuatDanhGia">
+                    <i class="fa-solid fa-file-excel"></i> Xuất Excel
+                </button>
+            </div>
+
+            <!-- Thời gian lọc -->
+            <div class="filter-section" style="margin-bottom:16px;">
+                <label for="dgLocSao">Số sao</label>
+                <select id="dgLocSao">
+                    <option value="">Tất cả</option>
+                    <option value="5">⭐⭐⭐⭐⭐ (5 sao)</option>
+                    <option value="4">⭐⭐⭐⭐ (4 sao)</option>
+                    <option value="3">⭐⭐⭐ (3 sao)</option>
+                    <option value="2">⭐⭐ (2 sao)</option>
+                    <option value="1">⭐ (1 sao)</option>
+                </select>
+
+                <label for="dgLocTuNgay">Từ ngày</label>
+                <input type="date" id="dgLocTuNgay">
+
+                <label for="dgLocDenNgay">Đến ngày</label>
+                <input type="date" id="dgLocDenNgay">
+
+                <button type="button" class="clear-btn" id="dgBtnXoaLoc">Xóa bộ lọc</button>
+            </div>
+
+            <!-- Nội dung do thongke-danh-gia.js sinh ra -->
+            <div id="tkNoiDungDanhGia"></div>
+        </div>
     </main>
 
     <script src="../js/menu-theo-vai-tro.js"></script>
@@ -308,6 +357,8 @@
     <script src="../js/thongke-tai-khoan.js"></script>
     <script src="../js/thongke-lop-hoc.js"></script>
     <script src="../js/thongke-ket-qua.js"></script>
+    <script src="../js/thongke-danh-gia.js"></script>
+    <script src="../js/tinh-nang-moi.js"></script>
     <script src="../js/thongkebaocao.js"></script>
 
     <!-- Ảnh đại diện người dùng dùng chung cho mọi trang -->

@@ -377,6 +377,34 @@
         </div>
         <div class="header-right">
             <span style="font-size: 14px; color: #64748b;" id="totalSourcesCount">0 nguồn trùng lặp</span>
+
+            <!-- Nút Xuất Excel (YÊU CẦU 1) -->
+            <button id="btnXuatExcelChiTiet"
+                onclick="xuatExcelChiTiet()"
+                style="
+                    display:flex;align-items:center;gap:6px;
+                    padding:7px 14px;border-radius:7px;border:none;
+                    background:#16a34a;color:#fff;font-size:13px;
+                    font-weight:600;cursor:pointer;transition:opacity .15s;
+                "
+                title="Xuất kết quả ra file Excel"
+            >
+                <i class="fa-solid fa-file-excel"></i> Xuất Excel
+            </button>
+
+            <!-- Nút Đánh giá (YÊU CẦU 3) -->
+            <button id="btnDanhGia"
+                onclick="moModalDanhGia('', window.__reportId__ || '')"
+                style="
+                    display:flex;align-items:center;gap:6px;
+                    padding:7px 14px;border-radius:7px;border:none;
+                    background:#f59e0b;color:#fff;font-size:13px;
+                    font-weight:600;cursor:pointer;transition:opacity .15s;
+                "
+                title="Đánh giá phần mềm"
+            >
+                <i class="fa-solid fa-star"></i> Đánh giá
+            </button>
         </div>
     </div>
 
@@ -510,6 +538,26 @@
     <!-- Thư viện docx-preview để hiển thị file Word giữ nguyên 100% định dạng, căn lề -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/docx-preview@0.1.20/dist/docx-preview.min.js"></script>
+
+    <!-- Tính năng mới: Xuất Excel, Modal lỗi, Đánh giá -->
+    <script src="../js/tinh-nang-moi.js"></script>
+
+    <script>
+        // Lấy reportId từ URL và lưu vào biến toàn cục để nút Đánh giá dùng
+        (function () {
+            const p = new URLSearchParams(window.location.search);
+            window.__reportId__ = p.get('id') || '';
+        })();
+
+        // Hàm gọi khi bấm nút Xuất Excel (dùng reportId toàn cục)
+        function xuatExcelChiTiet() {
+            if (!window.__reportId__) {
+                if (typeof thongBao === 'function') thongBao('Chưa xác định được mã báo cáo!');
+                return;
+            }
+            window.xuatExcelKetQua(window.__reportId__);
+        }
+    </script>
 </head>
 </head>
 </body>

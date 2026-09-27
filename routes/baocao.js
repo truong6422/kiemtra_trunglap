@@ -258,12 +258,28 @@ router.post('/upload', upload.single('file'), apDungGioiHanTep, async (req, res)
                 + `lặp 0%.`
             );
 
+            const soMBTep = (file.size / 1024 / 1024).toFixed(2);
+
             return res.status(200).json({
                 success: true,
                 khong_doc_duoc_chu: true,
                 message: 'Không đọc được chữ nào trong tệp — tài liệu nhiều khả '
                     + 'năng chỉ gồm ảnh. Đã ghi nhận với trạng thái "Lỗi" và độ '
                     + 'trùng lặp 0%.',
+                chi_tiet_loi: {
+                    loai_loi: 'KHONG_DOC_DUOC_CHU',
+                    ten_tep: originalName,
+                    dinh_dang: path.extname(originalName).toLowerCase(),
+                    dung_luong_mb: soMBTep,
+                    ly_do: 'Hệ thống không trích xuất được văn bản từ tệp này. '
+                        + 'Tệp nhiều khả năng được tạo từ hình ảnh chụp/scan, '
+                        + 'không có lớp văn bản có thể đọc máy.',
+                    goi_y: [
+                        'Sử dụng tệp có lớp văn bản gốc (không phải ảnh scan)',
+                        'Nếu là PDF scan, hãy dùng phần mềm OCR để chuyển sang văn bản trước',
+                        'Chuyển đổi sang định dạng .docx nếu có thể'
+                    ]
+                },
                 data: savedBaoCao
             });
         }

@@ -54,12 +54,15 @@
 .tk-the--luc  { border-top-color: #059669; }
 .tk-the--do   { border-top-color: #dc2626; }
 .tk-the--xam  { border-top-color: #94a3b8; }
+.tk-the--vang { border-top-color: #f59e0b; }
 
 .tk-the--xanh .tk-the__bieu-tuong { background: #e0f2fe; color: #0284c7; }
 .tk-the--tim .tk-the__bieu-tuong  { background: #f3e8ff; color: #7c3aed; }
 .tk-the--luc .tk-the__bieu-tuong  { background: #dcfce7; color: #059669; }
 .tk-the--do .tk-the__bieu-tuong   { background: #fee2e2; color: #dc2626; }
 .tk-the--xam .tk-the__bieu-tuong  { background: #f1f5f9; color: #64748b; }
+.tk-the--vang .tk-the__bieu-tuong { background: #fef9c3; color: #ca8a04; }
+
 
 .tk-the__nhan {
     font-size: 12.5px;

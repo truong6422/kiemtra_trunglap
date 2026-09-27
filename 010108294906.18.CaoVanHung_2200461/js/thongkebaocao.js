@@ -158,7 +158,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "tong-quan": "khungTongQuan",
         "tai-khoan": "khungTaiKhoan",
         "lop-hoc": "khungLopHoc",
-        "ket-qua": "khungKetQua"
+        "ket-qua": "khungKetQua",
+        "danh-gia": "khungDanhGia"
     };
 
     function moKhung(ten) {
@@ -530,6 +531,12 @@ document.addEventListener("DOMContentLoaded", () => {
         window.TkKetQua.mo();
     });
 
+    // ThẺ Đánh giá phần mềm
+    $("theDanhGia").addEventListener("click", () => {
+        moKhung("danh-gia");
+        window.TkDanhGia.mo();
+    });
+
     // Thẻ tài khoản có hai nút riêng cho hai vai trò
     document.querySelectorAll("#theTaiKhoan .tk-lien-ket-nho").forEach(nut => {
         nut.addEventListener("click", () => {
@@ -551,6 +558,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     $("btnXuatTaiKhoan").addEventListener("click", () => window.TkTaiKhoan.xuat());
     $("btnXuatKetQua").addEventListener("click", () => window.TkKetQua.xuat());
+    $("btnXuatDanhGia")?.addEventListener("click", () => window.TkDanhGia.xuat());
 
     // Xuất danh sách sinh viên đã nộp và chưa nộp của một bài tập
     $("btnXuatNopBai").addEventListener("click", () => {

@@ -92,10 +92,8 @@ chiTietDoanTrungSchema.index({
     den_cau_kiem_tra: 1
 });
 
-chiTietDoanTrungSchema.pre("save", function (next) {
-
+chiTietDoanTrungSchema.pre("save", function () {
     this.updated_at = new Date();
-
     if (
         this.tu_cau_kiem_tra !== undefined &&
         this.den_cau_kiem_tra !== undefined
@@ -105,8 +103,6 @@ chiTietDoanTrungSchema.pre("save", function (next) {
             this.tu_cau_kiem_tra +
             1;
     }
-
-    next();
 });
 
 module.exports = mongoose.model(
