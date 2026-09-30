@@ -9,6 +9,7 @@ const { trichXuatVanBan } = require('./trich_xuat_text');
 
 const {
     tachCau,
+    tachDoanVaCau,
     lamSachVanBan,
     locNoiDungHocThuat
 } = require('./tien_xu_ly');
@@ -113,23 +114,18 @@ async function xuLyBaoCaoUpload(
     // =====================================================
     // TÁCH CÂU
     // =====================================================
-    const noiDungHocThuat =
-        locNoiDungHocThuat(
-            noiDungXuLy
-        );
-
-    if (noiDungHocThuat.trim()) {
-        noiDungXuLy =
-            noiDungHocThuat;
-    }
-
-    const danhSachCau =
-        tachCau(
+    // =====================================================
+    // TÁCH ĐOẠN VÀ CÂU (Phần 3 fix)
+    // =====================================================
+    // Dùng tachDoanVaCau để có thông tin dỎan_id, doan_index đúng theo
+    // cấu trúc thực tế của tài liệu (Báo cáo -> Đoạn -> Câu).
+    const danhSachCauCoInfo =
+        tachDoanVaCau(
             noiDungXuLy
         );
 
     const tongSoCau =
-        danhSachCau.length;
+        danhSachCauCoInfo.length;
 
     console.log(
         `[UPLOAD] ${id_bao_cao} - Bat dau xu ly ${tongSoCau} cau`
@@ -165,12 +161,18 @@ async function xuLyBaoCaoUpload(
 
     for (
         let i = 0;
-        i < danhSachCau.length;
+        i < danhSachCauCoInfo.length;
         i++
     ) {
 
+        const cauInfo =
+            danhSachCauCoInfo[i];
+
         const content =
-            danhSachCau[i];
+            cauInfo.content;
+
+        const doanId    = cauInfo.doan_id    || '';
+        const doanIndex = cauInfo.doan_index || 0;
 
         const cleanContent =
             lamSachVanBan(content);
@@ -267,6 +269,10 @@ async function xuLyBaoCaoUpload(
                 baoCaoMongoId,
 
             id_bao_cao,
+
+            // Phần 3 fix: lưu mã đoạn văn thực tế
+            doan_id:    doanId,
+            doan_index: doanIndex,
 
             mau_kiem_tra:
                 !!mau_kiem_tra,

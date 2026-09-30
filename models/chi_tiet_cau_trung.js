@@ -67,6 +67,12 @@ const chiTietCauTrungSchema = new mongoose.Schema(
             default: ""
         },
 
+        // Số thứ tự đoạn văn trong báo cáo (1-based)
+        doan_index: {
+            type: Number,
+            default: 0
+        },
+
         cau_kiem_tra: {
             type: String,
             required: true

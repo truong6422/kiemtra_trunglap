@@ -291,12 +291,92 @@ function tachCau(vanBan) {
 }
 
 // ============================================================================
+// TÁCH ĐOẠN RỒI MỚI TÁCH CÂU (Phần 3 fix)
+// ----------------------------------------------------------------------------
+// Thay vì tách phẳng toàn bộ văn bản thành câu, hàm này:
+//   1. Phân chia văn bản thành đoạn (paragraphs) dựa vào dòng trống.
+//   2. Gán mã đoạn DOAN_001, DOAN_002, … cho từng đoạn.
+//   3. Tách mỗi đoạn thành câu, mỗi câu mang thông tin doan_id + doan_index.
+//
+// Kết quả: mảng { content, doan_id, doan_index }
+// ============================================================================
+function tachDoanVaCau(vanBan) {
+    if (!vanBan || typeof vanBan !== 'string') {
+        return [];
+    }
+
+    // Bước 1: Chỉ xử lý nhãn cấu trúc (giữ nguyên dòng trống — ranh giới đoạn)
+    const daBoPhanPhu = xuLyNhanCauTruc(vanBan);
+
+    // Bước 2: Phân đoạn DỰA TRÊN DÒNG TRỐNG ngay sau bước xuử ly nhãn.
+    // Phải làm TRƯỚC noiTieuDeBiNgatDong vì hàm đó bỏ qua dòng trống (continue)
+    // khi lấy cacDong, làm mất hoàn toàn ranh giới đoạn.
+    const tatCaDong = daBoPhanPhu.split(/\r?\n/);
+    const cacChuoiDoan = [];      // mỗi phần tử là chuỗi text của một đoạn
+    let doanHienTai = [];
+
+    for (const dong of tatCaDong) {
+        if (!dong.trim()) {
+            // Dòng trống = ranh giới đoạn
+            if (doanHienTai.length > 0) {
+                cacChuoiDoan.push(doanHienTai.join('\n'));
+                doanHienTai = [];
+            }
+        } else {
+            doanHienTai.push(dong);
+        }
+    }
+    if (doanHienTai.length > 0) {
+        cacChuoiDoan.push(doanHienTai.join('\n'));
+    }
+
+    // Bước 3: Với mỗi đoạn, nối câu bị ngắt rồi tách câu, gán doan_id
+    const ketQua = [];
+    let doanIndex = 0;
+
+    for (const chuoiDoan of cacChuoiDoan) {
+        // Mỗi đoạn chạy đầy đủ đường ống xử lý tiêu đề + câu riêng biệt
+        const daNoiTieuDe2 = noiTieuDeBiNgatDong(chuoiDoan);
+        const daNoiCau = noiDongBiNgatGiuaCau(daNoiTieuDe2);
+        const cacCauTrongDoan = [];
+
+        for (const dong of daNoiCau.split(/\r?\n/)) {
+            const noiDung = locMotDong(dong);
+            if (!noiDung) continue;
+
+            for (const cau of tachCauTrongDoan(noiDung)) {
+                const sach = chuanHoaKhoangTrang(boKyHieuLietKe(cau));
+                if (sach) {
+                    cacCauTrongDoan.push(sach);
+                }
+            }
+        }
+
+        if (cacCauTrongDoan.length === 0) continue;
+
+        doanIndex++;
+        const doanId = `DOAN_${String(doanIndex).padStart(3, '0')}`;
+
+        for (const cau of cacCauTrongDoan) {
+            ketQua.push({
+                content:    cau,
+                doan_id:    doanId,
+                doan_index: doanIndex
+            });
+        }
+    }
+
+    return ketQua;
+}
+
+// ============================================================================
 // XUẤT CÁC HÀM RA NGOÀI
 // ============================================================================
 module.exports = {
     lamSachVanBan,
     tachTuTiengViet,
     tachCau,
+    tachDoanVaCau,
     bamChuoi,
     locNoiDungHocThuat,
     xuLyNhanCauTruc,

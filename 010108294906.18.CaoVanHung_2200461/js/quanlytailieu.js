@@ -289,13 +289,16 @@ function renderTablePage() {
             <td id="trung-lap-${rowId}">
                 ${chuaCoKetQua ? '<div class="loading-spinner"></div>' : `
                     <span style="color: ${laLoi ? '#94a3b8' : '#10b981'}; font-weight: 600;">${item.do_trung_lap}%</span>
-                    ${laLoi ? '' : `
                     <span class="detail-action-container">
-                        <button class="detail-link-btn" onclick="xemChiTietChiTiet('${rowId}')">
-                            <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i> chi tiết
-                        </button>
+                        ${laLoi
+                            ? `<button class="detail-link-btn" style="color:#dc2626;" onclick="xemChiTietLoiTaiLieu('${rowId}')">
+                                <i class="fa-solid fa-circle-info" style="font-size: 11px;"></i> chi tiết lỗi
+                               </button>`
+                            : `<button class="detail-link-btn" onclick="xemChiTietChiTiet('${rowId}')">
+                                <i class="fa-solid fa-arrow-right" style="font-size: 11px;"></i> chi tiết
+                               </button>`
+                        }
                     </span>
-                    `}
                 `}
             </td>
             <td style="color: #475569; white-space: nowrap;">${dateStr}</td>
@@ -493,9 +496,14 @@ async function submitCheckDoc() {
                     canhBao.push(`${file.name}: ${result.message || 'không tải lên được.'}`);
                 }
 
-                // ── MỚI: Hiện modal chi tiết lỗi nếu có (YÊU CẦU 2) ──
-                if (result.chi_tiet_loi && typeof moModalChiTietLoi === 'function') {
-                    setTimeout(() => moModalChiTietLoi(result.chi_tiet_loi), 400);
+                // ── Sửa Phần 2: Không tự động nổ modal sau upload.
+                // Lưu chi_tiet_loi vào __chiTietLoiMap để hiển thị khi người dùng
+                // chủ động bấm nút "chi tiết lỗi" trên bảng tài liệu.
+                if (result.chi_tiet_loi) {
+                    window.__chiTietLoiMap = window.__chiTietLoiMap || {};
+                    if (result.data && result.data.id_bao_cao) {
+                        window.__chiTietLoiMap[result.data.id_bao_cao] = result.chi_tiet_loi;
+                    }
                 }
 
             } catch (err) {
@@ -790,4 +798,39 @@ function xemChiTietChiTiet(rowId) {
     }
 
     window.location.href = `chitiet.html?id=${rowId}`;
+}
+
+/**
+ * Hiển thị modal chi tiết lỗi khi người dùng bấm nút "chi tiết lỗi"
+ * trên một tài liệu có trạng thái "Lỗi" (file ảnh, file rỗng, ...).
+ * Modal chỉ hiện khi người dùng chủ động bấm, KHÔNG tự hiện sau upload.
+ */
+function xemChiTietLoiTaiLieu(rowId) {
+    if (!rowId) return;
+
+    // Ưu tiên lấy từ map đã lưu sau khi upload trong phiên làm việc
+    const chiTietLoi = (window.__chiTietLoiMap || {})[rowId];
+    if (chiTietLoi && typeof moModalChiTietLoi === 'function') {
+        moModalChiTietLoi(chiTietLoi);
+        return;
+    }
+
+    // Fallback: Dùng thông tin từ allBaoCaoData để hiện thông báo chung
+    const doc = allBaoCaoData.find(item => (item.id_bao_cao === rowId || item._id === rowId));
+    const chiTietFallback = {
+        loai_loi: 'KHONG_DOC_DUOC_CHU',
+        ten_tep: doc ? (doc.tieu_de || rowId) : rowId,
+        ly_do: 'Tệp nhiều khả năng được tạo từ hình ảnh chụp/scan, không có lớp văn bản có thể đọc máy.',
+        goi_y: [
+            'Sử dụng tệp có lớp văn bản gốc (không phải ảnh scan)',
+            'Nếu là PDF scan, hãy dùng phần mềm OCR để chuyển sang văn bản trước',
+            'Chuyển đổi sang định dạng .docx nếu có thể'
+        ]
+    };
+
+    if (typeof moModalChiTietLoi === 'function') {
+        moModalChiTietLoi(chiTietFallback);
+    } else {
+        alert('Tài liệu không đọc được chữ (nhiều khả năng là ảnh scan). Vui lòng tải lên file có văn bản thật.');
+    }
 }

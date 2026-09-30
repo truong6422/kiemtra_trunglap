@@ -15,6 +15,20 @@ const ChiSoCauSchema = new mongoose.Schema(
             index: true
         },
 
+        // ── Phần 3 fix: Mã đoạn văn chứa câu (DOAN_001, DOAN_002, …)
+        // Được gán lúc tiền xử lý file theo cấu trúc thực tế của tài liệu.
+        doan_id: {
+            type: String,
+            default: '',
+            index: true
+        },
+
+        // Số thứ tự đoạn trong báo cáo (1-based)
+        doan_index: {
+            type: Number,
+            default: 0
+        },
+
         // Báo cáo mẫu hay báo cáo kiểm tra
         mau_kiem_tra: {
             type: Boolean,

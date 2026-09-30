@@ -81,9 +81,29 @@ router.post('/', async (req, res) => {
 
         const maDanhGia = await taoMaDanhGia();
 
+        // ----------------------------------------------------------------
+        // Fix Phần 5: client gửi giá trị lấy từ localStorage là id_nguoi_dung
+        // (ND001, ND002, …) chứ không phải id_sinh_vien thực sự.
+        // Tra ngược collection sinh_vien để lấy mã sinh viên đúng.
+        // Nếu không tìm thấy (giảng viên/admin) thì giữ nguyên giá trị gửi lên.
+        // ----------------------------------------------------------------
+        let maSinhVienThucSu = id_sinh_vien || '';
+        if (maSinhVienThucSu) {
+            const svRecord = await SinhVien.findOne({
+                $or: [
+                    { id_sinh_vien: maSinhVienThucSu },
+                    { id_nguoi_dung: maSinhVienThucSu }
+                ]
+            }).select('id_sinh_vien').lean();
+
+            if (svRecord && svRecord.id_sinh_vien) {
+                maSinhVienThucSu = svRecord.id_sinh_vien;
+            }
+        }
+
         const danhGia = await DanhGia.create({
             id_danh_gia: maDanhGia,
-            id_sinh_vien: id_sinh_vien || '',
+            id_sinh_vien: maSinhVienThucSu,
             id_kiem_tra: id_kiem_tra || '',
             id_bao_cao: id_bao_cao || '',
             so_sao: saoSo,

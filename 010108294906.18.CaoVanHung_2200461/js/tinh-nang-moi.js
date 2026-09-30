@@ -378,7 +378,7 @@ async function guiDanhGia(idKiemTra, idBaoCao, idSinhVien) {
             <div class="dg-thanh-cong">
               <div class="dg-icon"><i class="fa-solid fa-circle-check"></i></div>
               <h4>Cảm ơn bạn đã đánh giá!</h4>
-              <p>Phản hồi của bạn giúp chúng tôi cải thiện phần mềm tốt hơn.</p>
+              <p style="word-break:keep-all;overflow-wrap:normal;">Phản hồi của bạn giúp chúng tôi cải thiện phần mềm tốt&nbsp;hơn.</p>
             </div>`;
         }
         if (chan) chan.innerHTML = `

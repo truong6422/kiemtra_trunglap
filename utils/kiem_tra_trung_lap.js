@@ -595,6 +595,10 @@ async function checkPlagiarism(
                 chi_so_cau_kiem_tra:
                     sentenceIndex,
 
+                // Phần 3 fix: kế thừa mã đoạn văn từ ChiSoCau
+                doan_id:    cauMoi.doan_id    || '',
+                doan_index: cauMoi.doan_index || 0,
+
                 cau_kiem_tra:
                     cauMoi.content,
 

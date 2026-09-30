@@ -186,7 +186,10 @@ router.get('/:id_bao_cao', async (req, res) => {
             for (const nguon of (cauTrung.danh_sach_nguon || [])) {
                 const row = sheetCau.addRow({
                     stt:              cauTrung.chi_so_cau_kiem_tra,
-                    doan_id:          cauTrung.doan_id || `DOAN_${Math.ceil(cauTrung.chi_so_cau_kiem_tra / 5)}`,
+                    doan_id:          cauTrung.doan_id
+                                        || (cauTrung.doan_index
+                                            ? `DOAN_${String(cauTrung.doan_index).padStart(3, '0')}`
+                                            : `DOAN_${Math.ceil(cauTrung.chi_so_cau_kiem_tra / 5)}`),
                     cau_kiem_tra:     cauTrung.cau_kiem_tra || '',
                     so_tu:            cauTrung.so_tu || 0,
                     id_bao_cao_nguon: nguon.id_bao_cao || '',
