@@ -33,8 +33,20 @@ const {
 // nhau, dù vùng bôi giống nhau.
 const DO_MO = 0.30;
 
+// Lỗi 7: 3 màu riêng biệt theo loại trùng
+const MAU_CAU    = rgb(1,          213 / 255, 79  / 255); // Vàng
+const MAU_DOAN   = rgb(1,          150 / 255, 50  / 255); // Cam
+const MAU_CHAP_VA = rgb(1,         100 / 255, 100 / 255); // Đỏ nhạt
+
 function getSentenceColor() {
-    return rgb(1, 213 / 255, 79 / 255);
+    return MAU_CAU;
+}
+
+// Lỗi 7: tra màu theo loại vệt
+function getColorByLoai(loai) {
+    if (loai === 'doan')   return MAU_DOAN;
+    if (loai === 'chap_va') return MAU_CHAP_VA;
+    return MAU_CAU;
 }
 
 /**
@@ -66,8 +78,7 @@ function gomTheoDong(cacO) {
             continue;
         }
 
-        const nguong =
-            Math.max(o.height, 1) * 0.6;
+    const nguong = Math.max(o.height, 1) * 0.6;
 
         const dongCu =
             cacDong.find(
@@ -313,7 +324,29 @@ async function processAndHighlightReport(
     fileExt,
 
     chiTietCauTrung = [],
+    chiTietCauTrungHighlight = [],
+    chiTietDoanTrung = [],
+    chiTietDoanChapVa = []
 ) {
+
+    // Lỗi 7: gắn loai_vet vào từng item trước khi xử lý highlight
+    // - câu nằm trong đoạn trùng → 'doan'
+    // - câu nằm trong chắp vá → 'chap_va'
+    // - câu đơn lẻ → 'cau'
+    const chisoDoan = new Set();
+    for (const d of (chiTietDoanTrung || [])) {
+        for (let i = d.tu_cau_kiem_tra; i <= d.den_cau_kiem_tra; i++) chisoDoan.add(i);
+    }
+    const chisoChapVa = new Set();
+    for (const d of (chiTietDoanChapVa || [])) {
+        for (let i = d.tu_cau_kiem_tra; i <= d.den_cau_kiem_tra; i++) chisoChapVa.add(i);
+    }
+    for (const item of chiTietCauTrung) {
+        const idx = item.chi_so_cau_kiem_tra;
+        if (chisoDoan.has(idx)) item.loai_vet = 'doan';
+        else if (chisoChapVa.has(idx)) item.loai_vet = 'chap_va';
+        else item.loai_vet = 'cau';
+    }
 
     try {
 
@@ -426,6 +459,27 @@ async function processAndHighlightReport(
         // Vẽ ngay từng câu một thì hai câu nằm đè lên nhau cho ra hai lớp màu
         // chồng lên, chỗ giao đậm hơn hẳn phần còn lại. Gom trước rồi hợp nhất
         // thì mỗi chỗ chỉ được tô đúng một lần, màu đều như trang chi tiết.
+        // Lỗi 7: nhận thêm danh sách đoạn và chắp vá để xác định loại vật khi vẽ
+        // --- gần được hết bằng cách gặn loai_vet ngầm định vào từng item ---
+        // Câu kiểm tra thuần thì loai_vet = 'cau',
+        // item thuộc đoạn trùng thì 'doan', chắp vá thì 'chap_va'.
+        //
+        // Chiến lược: gây chi_so_cau_kiem_tra -> loai nhờ Map truyền vào
+        const loaiTheoChiSo = new Map();
+        for (const item of chiTietCauTrung) {
+            loaiTheoChiSo.set(item.chi_so_cau_kiem_tra, item.loai_vet || 'cau');
+        }
+
+        // Lỗi 6: lấy chiều cao ước tính của mỗi trang từ pdfPages
+        const pageHeightMap = new Map();
+        for (const pageData of pdfPages) {
+            if (!pageData.items || pageData.items.length === 0) continue;
+            const ys = pageData.items.map(it => it.y);
+            const h = Math.max(...ys) - Math.min(...ys) + 20;
+            const yMin = Math.min(...ys);
+            pageHeightMap.set(pageData.page, { h, yMin });
+        }
+
         const oTheoTrang = new Map();
 
         for (
@@ -453,31 +507,35 @@ async function processAndHighlightReport(
                 continue;
             }
 
-            // Một câu có thể xuất hiện ở nhiều chỗ trong tài liệu. Trang chi
-            // tiết bôi màu mọi chỗ, nên bản PDF cũng phải bôi hết thì hai bên
-            // mới giống nhau — trước đây chỉ lấy matches[0] nên các lần xuất
-            // hiện sau không được bôi.
             for (const found of matches) {
 
                 if (!oTheoTrang.has(found.page)) {
                     oTheoTrang.set(found.page, []);
                 }
 
-                // Nối liền phần câu trên từng dòng trước khi gộp chung với các
-                // câu khác, để không còn khoảng hở giữa các chữ trong một câu.
-                // Ghi theo chi_so_cau_kiem_tra — khoá ổn định của câu — chứ
-                // không theo vị trí trong mảng, để trang chi tiết ghép lại
-                // đúng câu kể cả khi thứ tự đọc ra từ CSDL có khác.
                 const khoaCau =
                     item.chi_so_cau_kiem_tra !== undefined
                         ? Number(item.chi_so_cau_kiem_tra)
                         : chiSoCau;
 
+                // Lỗi 6: lọc vị trí nằm ở header/footer
+                const phInf = pageHeightMap.get(found.page);
+                const cacViTriLoc = phInf
+                    ? found.positions.filter(p => {
+                        const rel = p.y - phInf.yMin;
+                        return phInf.h <= 0 || (rel >= phInf.h * 0.03 && rel <= phInf.h * 0.97);
+                    })
+                    : found.positions;
+
+                if (cacViTriLoc.length === 0) continue;
+
+                const noiLien = noiLienCauTheoDong(cacViTriLoc, khoaCau);
+                // Gắn loại vật vào từng ô chữ để lúc vẽ biết màu
+                for (const o of noiLien) o.loai_vet = item.loai_vet || 'cau';
+
                 oTheoTrang
                     .get(found.page)
-                    .push(
-                        ...noiLienCauTheoDong(found.positions, khoaCau)
-                    );
+                    .push(...noiLien);
             }
         }
 
@@ -485,10 +543,7 @@ async function processAndHighlightReport(
         // VẼ HIGHLIGHT
         // ====================================
 
-        const color =
-            getSentenceColor();
-
-        // Danh sách vệt cuối cùng, vừa dùng để vẽ vào PDF vừa lưu lại cho trang
+        // Danh sách vật cuối cùng, vừa dùng để vẽ vào PDF vừa lưu lại cho trang
         // chi tiết vẽ y hệt. Đây là nơi duy nhất tính vùng bôi màu.
         const vetDeLuu = [];
 
@@ -506,15 +561,16 @@ async function processAndHighlightReport(
                     continue;
                 }
 
-                // Vẽ đúng chiều cao đã tính. Nở thêm cho "đẹp" sẽ làm vệt dòng
-                // này thò sang dòng bên cạnh, thành vạch đậm chạy ngang giữa
-                // các dòng — trang chi tiết cũng cố tình không nở.
+                // Lỗi 7: xác định màu theo loại vật
+                const loaiVet = vet.loai_vet || 'cau';
+                const mau = getColorByLoai(loaiVet);
+
                 page.drawRectangle({
                     x: vet.x,
                     y: vet.y,
                     width: vet.width,
                     height: vet.height,
-                    color,
+                    color: mau,
                     opacity: DO_MO
                 });
 
@@ -524,6 +580,7 @@ async function processAndHighlightReport(
                     y: vet.y,
                     rong: vet.width,
                     cao: vet.height,
+                    loai_vet: loaiVet,
                     cac_cau: [...(vet.cacCau || [])]
                 });
             }

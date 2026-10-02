@@ -50,13 +50,16 @@ function buildPatchworkMatches(
             sorted[i];
 
         const isContinuous =
-
             cur.chi_so_cau_kiem_tra ===
             prev.chi_so_cau_kiem_tra + 1;
 
-        if (
-            isContinuous
-        ) {
+        // Bug 3 fix: chỉ gom khi cùng đoạn văn
+        const sameDoan =
+            !cur.doan_id ||
+            !prev.doan_id ||
+            cur.doan_id === prev.doan_id;
+
+        if (isContinuous && sameDoan) {
 
             currentGroup.push(cur);
 

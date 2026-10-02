@@ -51,7 +51,11 @@ function buildPassageMatches(
                     source.cau_nguon,
 
                 similarity:
-                    source.do_tuong_dong || 0
+                    source.do_tuong_dong || 0,
+
+                // Bug 3 fix: giữ doan_id để chỉ gom câu cùng đoạn
+                doan_id_kiem_tra: item.doan_id || '',
+                doan_id_nguon:    source.doan_id_nguon || ''
             });
         }
     }
@@ -144,10 +148,23 @@ function buildPassageMatches(
             cur.sourceSentenceIndex ===
             prev.sourceSentenceIndex + 1;
 
+        // Bug 3 fix: không ghép qua đoạn văn khác nhau
+        const sameDoanKiemTra =
+            !cur.doan_id_kiem_tra ||
+            !prev.doan_id_kiem_tra ||
+            cur.doan_id_kiem_tra === prev.doan_id_kiem_tra;
+
+        const sameDoanNguon =
+            !cur.doan_id_nguon ||
+            !prev.doan_id_nguon ||
+            cur.doan_id_nguon === prev.doan_id_nguon;
+
         if (
             sameReport &&
             targetContinuous &&
-            sourceContinuous
+            sourceContinuous &&
+            sameDoanKiemTra &&
+            sameDoanNguon
         ) {
 
             current.den_cau_kiem_tra =

@@ -9,8 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 const mammoth = require('mammoth');
-const pdfParseModule = require('pdf-parse');
-const PDFParser = require('pdf2json');
+const { moPdf } = require('./mo_pdf');
 
 const { execFile } =
     require('child_process');
@@ -77,118 +76,32 @@ function convertDocToDocx(
     );
 
 }
-/**
- * [HÀM DỰ PHÒNG] Thử lại parsePdfBuffer tối đa maxRetry lần khi gặp lỗi bộ nhớ tạm thời.
- *
- * pdf-parse đôi khi fail do server quá tải RAM chứ không phải do file hỏng.
- * Thử lại cùng thư viện để đảm bảo kết quả luôn nhất quán — khác với cách
- * cũ là fallback sang pdf2json (thư viện khác nhau → text khác nhau → tỷ lệ
- * trùng lặp dao động dù nộp cùng 1 file).
- *
- * @param {Buffer}  dataBuffer
- * @param {number}  maxRetry   Số lần thử lại (mặc định 2)
- * @param {number}  delayMs    Thời gian chờ giữa các lần thử (ms)
- * @returns {Promise<string>}  Văn bản đã bóc tách, hoặc '' nếu thật sự lỗi
- */
-async function parsePdfVoiThuLai(dataBuffer, maxRetry = 2, delayMs = 500) {
-    let lanCuoi = null;
-    for (let lan = 0; lan <= maxRetry; lan++) {
-        try {
-            const data = await parsePdfBuffer(dataBuffer);
-            if (data && data.text && data.text.trim().length > 0) {
-                return data.text.trim();
-            }
-            // pdf-parse thành công nhưng không trích được chữ
-            // (PDF scan ảnh hoặc bị mã hoá) → không cần retry
-            return '';
-        } catch (err) {
-            lanCuoi = err;
-            if (lan < maxRetry) {
-                console.warn(
-                    `⚠️ pdf-parse lần ${lan + 1} thất bại (${err.message}), `
-                    + `thử lại sau ${delayMs}ms…`
-                );
-                await new Promise(r => setTimeout(r, delayMs));
-            }
-        }
-    }
-    // Thất bại sau đủ số lần retry — log lỗi cuối và trả về chuỗi rỗng
-    const tenLoi = lanCuoi ? lanCuoi.message : 'unknown';
-    console.warn(
-        `⚠️ pdf-parse thất bại sau ${maxRetry + 1} lần thử: ${tenLoi}. `
-        + `Trả về văn bản rỗng để hệ thống báo lỗi rõ ràng.`
-    );
-    return '';
-}
-
-/**
- * [HÀM BỔ TRỢ] Gọi hàm pdf-parse an toàn tương thích với nhiều kiểu export module khác nhau.
- */
-async function invokePdfParser(fn, dataBuffer) {
+async function parsePdfVoiThuLai(dataBuffer) {
     try {
-        return await fn(dataBuffer);
-    } catch (err) {
-        if (err.message && err.message.includes("cannot be invoked without 'new'")) {
-            return await new fn(dataBuffer);
-        }
-        throw err;
-    }
-}
-
-/**
- * [HÀM BỔ TRỢ] Định tuyến và phân giải module pdf-parse linh hoạt.
- */
-async function parsePdfBuffer(dataBuffer) {
-
-    if (typeof pdfParseModule === 'function') {
-
-        const result =
-            await invokePdfParser(
-                pdfParseModule,
-                dataBuffer
-            );
-
-        if (
-            result &&
-            result.text &&
-            result.text.trim().length > 0
-        ) {
-            return result;
-        }
-    }
-    if (
-        pdfParseModule &&
-        typeof pdfParseModule.default === 'function'
-    ) {
-
-        const result =
-            await invokePdfParser(
-                pdfParseModule.default,
-                dataBuffer
-            );
-
-        if (
-            result &&
-            result.text &&
-            result.text.trim().length > 0
-        ) {
-            return result;
-        }
-    }
-    if (typeof pdfParseModule === 'object' && pdfParseModule !== null) {
-        const keys = Object.keys(pdfParseModule);
-        for (const key of keys) {
-            if (typeof pdfParseModule[key] === 'function') {
-                try {
-                    return await invokePdfParser(pdfParseModule[key], dataBuffer);
-                } catch (e) {
-                    continue;
+        const pdf = await moPdf(new Uint8Array(dataBuffer));
+        const pages = [];
+        for (let i = 1; i <= pdf.numPages; i++) {
+            const page = await pdf.getPage(i);
+            const content = await page.getTextContent();
+            let lastY = -1;
+            let text = '';
+            for (const item of content.items) {
+                if (lastY !== -1 && Math.abs(lastY - item.transform[5]) > 5) {
+                    text += '\n';
                 }
+                text += item.str;
+                lastY = item.transform[5];
             }
+            pages.push(text);
         }
+        return pages.join('\n');
+    } catch (err) {
+        console.error("⚠️ Lỗi moPdf khi trích xuất:", err.message);
+        return '';
     }
-    throw new Error('Không tìm thấy hàm đọc PDF hợp lệ.');
 }
+
+
 
 /**
  * [HÀM BỔ TRỢ] Chuyển đổi bảng mã tiếng Việt cũ TCVN3 (ABC) sang Unicode chuẩn.

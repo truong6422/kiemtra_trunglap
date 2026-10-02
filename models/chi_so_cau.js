@@ -23,11 +23,7 @@ const ChiSoCauSchema = new mongoose.Schema(
             index: true
         },
 
-        // Số thứ tự đoạn trong báo cáo (1-based)
-        doan_index: {
-            type: Number,
-            default: 0
-        },
+
 
         // Báo cáo mẫu hay báo cáo kiểm tra
         mau_kiem_tra: {

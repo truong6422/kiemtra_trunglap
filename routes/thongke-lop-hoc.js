@@ -145,7 +145,26 @@ router.get('/lop-hoc', async (req, res) => {
             });
         }
 
-        return res.json({ success: true, data: ketQua });
+        const groupedKetQua = {};
+        for (const k of ketQua) {
+            const nam = new Date(k.ngay_tao).getFullYear();
+            const khoa = `Khóa ${nam}`;
+            if (!groupedKetQua[khoa]) {
+                groupedKetQua[khoa] = {
+                    khoa: khoa,
+                    danh_sach_lop: []
+                };
+            }
+            groupedKetQua[khoa].danh_sach_lop.push(k);
+        }
+
+        const finalData = Object.values(groupedKetQua).sort((a, b) => {
+            const yearA = parseInt(a.khoa.replace('Khóa ', ''));
+            const yearB = parseInt(b.khoa.replace('Khóa ', ''));
+            return yearB - yearA;
+        });
+
+        return res.json({ success: true, data: finalData });
 
     } catch (error) {
         console.error("Lỗi API thống kê lớp học:", error);

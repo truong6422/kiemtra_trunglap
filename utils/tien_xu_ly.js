@@ -298,7 +298,7 @@ function tachCau(vanBan) {
 //   2. Gán mã đoạn DOAN_001, DOAN_002, … cho từng đoạn.
 //   3. Tách mỗi đoạn thành câu, mỗi câu mang thông tin doan_id + doan_index.
 //
-// Kết quả: mảng { content, doan_id, doan_index }
+// Kết quả: mảng { content, doan_id }
 // ============================================================================
 function tachDoanVaCau(vanBan) {
     if (!vanBan || typeof vanBan !== 'string') {
@@ -360,8 +360,7 @@ function tachDoanVaCau(vanBan) {
         for (const cau of cacCauTrongDoan) {
             ketQua.push({
                 content:    cau,
-                doan_id:    doanId,
-                doan_index: doanIndex
+                doan_id:    doanId
             });
         }
     }

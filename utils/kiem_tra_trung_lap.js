@@ -294,7 +294,8 @@ async function checkPlagiarism(
                 sentence_hash: 1,
                 id_bao_cao: 1,
                 sentenceIndex: 1,
-                content: 1
+                content: 1,
+                doan_id: 1
             })
             .lean();
 
@@ -372,6 +373,8 @@ async function checkPlagiarism(
                 cau_nguon:
                     exact.content,
 
+                doan_id_nguon: exact.doan_id || '',
+
                 do_tuong_dong: 1,
 
                 cosine: 1,
@@ -433,7 +436,8 @@ async function checkPlagiarism(
                         clean_content: 1,
                         vector_tf_idf: 1,
                         fingerprints: 1,
-                        fingerprint_count: 1
+                        fingerprint_count: 1,
+                        doan_id: 1
                     })
                     .limit(300)
                     .lean();
@@ -542,6 +546,8 @@ async function checkPlagiarism(
                         cau_nguon:
                             candidate.content,
 
+                        doan_id_nguon: candidate.doan_id || '',
+
                         do_tuong_dong:
                             similarity,
 
@@ -597,7 +603,6 @@ async function checkPlagiarism(
 
                 // Phần 3 fix: kế thừa mã đoạn văn từ ChiSoCau
                 doan_id:    cauMoi.doan_id    || '',
-                doan_index: cauMoi.doan_index || 0,
 
                 cau_kiem_tra:
                     cauMoi.content,

@@ -67,10 +67,7 @@ async function loadPdfItems(pdfPath) {
             textContent.items
                 .filter(item => {
 
-                    const text =
-                        item.str
-                            ? item.str.trim()
-                            : "";
+                    const text = item.str || "";
 
                     if (!text)
                         return false;
@@ -85,8 +82,7 @@ async function loadPdfItems(pdfPath) {
                 .map(
                     item => ({
 
-                        text:
-                            item.str.trim(),
+                        text: item.str,
 
                         // Gắn sẵn số trang để khi quét gộp hai trang liền nhau
                         // vẫn biết từng cụm chữ nằm ở trang nào
@@ -263,10 +259,7 @@ function quetTrang(
                 const item =
                     page.items[end];
 
-                const itemText =
-                    item.text
-                        .replace(/\s+/g, " ")
-                        .trim();
+                const itemText = item.text;
 
                 // Bỏ số trang đơn lẻ
                 if (
@@ -278,15 +271,17 @@ function quetTrang(
                 // Ghi lại cụm chữ này nằm ở khoảng ký tự nào trong chuỗi đang
                 // dựng. Nhờ vậy khi tìm ra câu, biết được cụm nào thực sự
                 // thuộc câu và cụm nào chỉ là phần đứng trước.
-                const batDau =
-                    buffer.length
-                        ? buffer.length + 1
-                        : 0;
-
-                buffer =
-                    buffer
-                        ? buffer + " " + itemText
-                        : itemText;
+                let gapSpace = "";
+                if (buffer.length > 0) {
+                    const lastItem = positions[positions.length - 1];
+                    const sameLine = Math.abs(item.y - lastItem.y) < 5;
+                    const gap = item.x - (lastItem.x + lastItem.width);
+                    if (!sameLine || gap > 2) {
+                        gapSpace = " ";
+                    }
+                }
+                const batDau = buffer.length ? buffer.length + gapSpace.length : 0;
+                buffer = buffer ? buffer + gapSpace + itemText : itemText;
 
                 positions.push({
                     trang: item.trang || page.page,

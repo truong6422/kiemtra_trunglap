@@ -101,10 +101,19 @@ router.post('/', async (req, res) => {
             }
         }
 
+        let maKiemTraThucSu = id_kiem_tra || '';
+        if (!maKiemTraThucSu && id_bao_cao) {
+            const ThongKe = require('../models/thong_ke');
+            const tk = await ThongKe.findOne({ id_bao_cao }).sort({ ngay_kiem_tra: -1 }).select('id_kiem_tra').lean();
+            if (tk && tk.id_kiem_tra) {
+                maKiemTraThucSu = tk.id_kiem_tra;
+            }
+        }
+
         const danhGia = await DanhGia.create({
             id_danh_gia: maDanhGia,
             id_sinh_vien: maSinhVienThucSu,
-            id_kiem_tra: id_kiem_tra || '',
+            id_kiem_tra: maKiemTraThucSu,
             id_bao_cao: id_bao_cao || '',
             so_sao: saoSo,
             binh_luan: (binh_luan || '').trim(),

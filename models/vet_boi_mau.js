@@ -24,6 +24,10 @@ const vetSchema = new mongoose.Schema(
         rong: { type: Number, required: true },
         cao: { type: Number, required: true },
 
+        // Loại vệt: 'cau' | 'doan' | 'chap_va'
+        // Dùng để frontend và PDF vẽ đúng màu theo từng loại trùng.
+        loai_vet: { type: String, default: 'cau' },
+
         // Các câu trùng đã góp phần vào vệt này, dùng cho thao tác bấm vào vệt
         // để xem câu tương ứng ở trang chi tiết.
         cac_cau: { type: [Number], default: [] }

@@ -117,7 +117,6 @@ async function xuLyBaoCaoUpload(
     // =====================================================
     // TÁCH ĐOẠN VÀ CÂU (Phần 3 fix)
     // =====================================================
-    // Dùng tachDoanVaCau để có thông tin dỎan_id, doan_index đúng theo
     // cấu trúc thực tế của tài liệu (Báo cáo -> Đoạn -> Câu).
     const danhSachCauCoInfo =
         tachDoanVaCau(
@@ -172,7 +171,6 @@ async function xuLyBaoCaoUpload(
             cauInfo.content;
 
         const doanId    = cauInfo.doan_id    || '';
-        const doanIndex = cauInfo.doan_index || 0;
 
         const cleanContent =
             lamSachVanBan(content);
@@ -272,7 +270,6 @@ async function xuLyBaoCaoUpload(
 
             // Phần 3 fix: lưu mã đoạn văn thực tế
             doan_id:    doanId,
-            doan_index: doanIndex,
 
             mau_kiem_tra:
                 !!mau_kiem_tra,
