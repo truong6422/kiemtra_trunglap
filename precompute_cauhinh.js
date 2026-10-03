@@ -20,6 +20,7 @@ const CauHinhHeThong = require('./models/cau_hinh_he_thong');
 
 const {
     tachCau,
+    tachDoanVaCau,
     lamSachVanBan
 } = require('./utils/tien_xu_ly');
 
@@ -202,17 +203,20 @@ async function chayTienTinhToan() {
             const noiDung =
                 mau.noi_dung_tien_xu_ly || '';
 
-            const danhSachCau =
-                tachCau(noiDung);
+            // Dùng tachDoanVaCau để có doan_id cho từng câu
+            const danhSachCauInfo =
+                tachDoanVaCau(noiDung);
             console.log(
-`[CAU_GOC] ${mau.id_bao_cao} -> ${danhSachCau.length} câu`
+`[CAU_GOC] ${mau.id_bao_cao} -> ${danhSachCauInfo.length} câu`
 );
 
             const danhSachChiSoCau = [];
 
             let sentenceIndex = 1;
 
-            for (const cau of danhSachCau) {
+            for (const cauInfo of danhSachCauInfo) {
+
+                const cau = cauInfo.content;
 
                 const cleanSentence =
                     lamSachVanBan(cau);
@@ -317,6 +321,8 @@ async function chayTienTinhToan() {
                     sentenceIndex:
                         sentenceIndex++,
 
+                    doan_id:
+                        cauInfo.doan_id || '',
 
                     content:
                         cau,
