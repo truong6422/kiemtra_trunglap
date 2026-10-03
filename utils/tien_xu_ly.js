@@ -322,6 +322,13 @@ function tachDoanVaCau(vanBan) {
                 cacChuoiDoan.push(doanHienTai.join('\n'));
                 doanHienTai = [];
             }
+        } else if (laTieuDeLon(dong) || laTieuDeCon(dong)) {
+            // Dòng tiêu đề cũng tạo ranh giới đoạn —
+            // kết thúc đoạn hiện tại, bỏ qua bản thân dòng tiêu đề
+            if (doanHienTai.length > 0) {
+                cacChuoiDoan.push(doanHienTai.join('\n'));
+                doanHienTai = [];
+            }
         } else {
             doanHienTai.push(dong);
         }
