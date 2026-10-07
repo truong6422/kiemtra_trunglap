@@ -439,7 +439,7 @@ async function checkPlagiarism(
                         fingerprint_count: 1,
                         doan_id: 1
                     })
-                    .limit(300)
+                    .limit(2000)
                     .lean();
 
             const minOverlap =

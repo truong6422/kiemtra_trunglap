@@ -62,7 +62,9 @@ window.TkLopHoc = (() => {
             const kq = await (await fetch(`${API}/thong-ke/lop-hoc${thamSo}`)).json();
             if (!kq.success) throw new Error(kq.message);
 
-            if (kq.data.length === 0) {
+            const danhSachTatCaLop = kq.data.flatMap(nhom => nhom.danh_sach_lop || []);
+
+            if (danhSachTatCaLop.length === 0) {
                 $("tkNoiDungLopHoc").innerHTML =
                     '<div class="tk-khoi"><p class="no-data">Chưa có lớp học nào</p></div>';
                 return;
@@ -78,7 +80,7 @@ window.TkLopHoc = (() => {
                         </tr>
                     </thead>
                     <tbody>
-                        ${kq.data.map(l => `
+                        ${danhSachTatCaLop.map(l => `
                             <tr>
                                 <td class="tk-ma">${T().thoat(l.ma_lop)}</td>
                                 <td style="text-align:left">${T().thoat(l.tieu_de)}</td>

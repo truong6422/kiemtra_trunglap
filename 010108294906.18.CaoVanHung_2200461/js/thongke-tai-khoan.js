@@ -50,9 +50,16 @@ window.TkTaiKhoan = (() => {
             ? `Danh sách ${ten} trong lớp của tôi`
             : `Danh sách tài khoản ${ten}`;
 
-        // Cột thứ năm đổi nghĩa theo vai trò
-        $("tkCotRieng").textContent =
-            vaiTro === "giang_vien" ? "Bộ môn" : "Lớp";
+        const cotMa = $("tkCotMa");
+        if (cotMa) cotMa.textContent = vaiTro === "giang_vien" ? "Mã giảng viên" : "Mã sinh viên";
+        
+        $("tkCotRieng").textContent = vaiTro === "giang_vien" ? "Bộ môn" : "Lớp";
+
+        const cotLopHP = $("tkCotLopHocPhan");
+        if (cotLopHP) cotLopHP.hidden = !(laGiangVien && vaiTro === "sinh_vien");
+        
+        const cotKhoa = $("tkCotKhoaHoc");
+        if (cotKhoa) cotKhoa.hidden = (vaiTro !== "sinh_vien");
 
         document.querySelectorAll("#khungTaiKhoan .tk-tab__nut").forEach(n => {
             n.classList.toggle("tk-tab__nut--chon", n.dataset.vaiTro === vaiTro);
@@ -93,12 +100,12 @@ window.TkTaiKhoan = (() => {
 
         $("tkBangTaiKhoan").innerHTML = dangHien.map(u => `
             <tr>
-                <td class="tk-ma">${T.thoat(u.id_nguoi_dung)}</td>
                 <td style="text-align:left">${T.thoat(u.ho_ten)}</td>
                 <td style="text-align:left">${T.thoat(u.email)}</td>
-                <td>${T.thoat(u.ma_ho_so) || '<span class="tk-so--trong">--</span>'}</td>
-                <td>${T.thoat(vaiTro === "giang_vien" ? u.bo_mon : u.lop)
-                || '<span class="tk-so--trong">--</span>'}</td>
+                <td>${T.thoat(vaiTro === "giang_vien" ? u.ma_giang_vien : u.ma_sinh_vien) || '<span class="tk-so--trong">--</span>'}</td>
+                ${(laGiangVien && vaiTro === "sinh_vien") ? `<td>${T.thoat(u.lop) || '<span class="tk-so--trong">--</span>'}</td>` : ''}
+                <td>${T.thoat(vaiTro === "giang_vien" ? u.bo_mon : (laGiangVien && vaiTro === "sinh_vien" ? u.lop_chinh_thuc : u.lop)) || '<span class="tk-so--trong">--</span>'}</td>
+                ${vaiTro === "sinh_vien" ? `<td>${T.thoat(u.khoa_hoc) || '<span class="tk-so--trong">--</span>'}</td>` : ''}
                 <td><strong>${u.so_bai_da_nop}</strong></td>
                 <td>
                     <span class="tk-nhan ${u.trang_thai ? "tk-nhan--xong" : "tk-nhan--cho"}">

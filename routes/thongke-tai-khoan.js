@@ -118,11 +118,10 @@ router.get('/tai-khoan', async (req, res) => {
                 trang_thai: nd.trang_thai,
                 ngay_tao: nd.ngay_tao,
 
-                // Hồ sơ giờ chỉ còn một mã duy nhất nên hai trường này cùng
-                // lấy từ một chỗ. Vẫn giữ cả hai tên vì giao diện đang đọc
-                // ma_dinh_danh để in ra cột mã.
-                ma_ho_so: sv ? sv.id_sinh_vien : (gv ? gv.id_giang_vien : ""),
-                ma_dinh_danh: sv ? sv.id_sinh_vien : (gv ? gv.id_giang_vien : ""),
+                ma_sinh_vien: sv ? sv.id_sinh_vien : "",
+                ma_giang_vien: gv ? gv.id_giang_vien : "",
+                khoa_hoc: sv ? sv.khoa_hoc : "",
+                lop_chinh_thuc: sv ? sv.lop : "",
 
                 // Lớp lấy từ hồ sơ sinh viên; nếu đang xem theo phạm vi một
                 // giảng viên thì ưu tiên mã lớp mà người đó đang theo học.

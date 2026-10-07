@@ -39,6 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
             '<tr><td colspan="9" class="no-data">Đang tải dữ liệu...</td></tr>';
 
         try {
+            await fetch(`${API}/bao-cao/dong-bo-loi`, { method: 'PATCH' }).catch(() => {});
+            
             // Giảng viên chỉ xem bài của lớp mình, quản trị viên xem tất cả
             const thamSo = (vaiTro === "giang_vien" && idNguoiDung)
                 ? `?giang_vien=${encodeURIComponent(idNguoiDung)}` : "";
