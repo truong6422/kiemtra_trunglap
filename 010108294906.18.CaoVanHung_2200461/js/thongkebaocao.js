@@ -39,8 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
             '<tr><td colspan="9" class="no-data">Đang tải dữ liệu...</td></tr>';
 
         try {
-            await fetch(`${API}/bao-cao/dong-bo-loi`, { method: 'PATCH' }).catch(() => {});
-            
             // Giảng viên chỉ xem bài của lớp mình, quản trị viên xem tất cả
             const thamSo = (vaiTro === "giang_vien" && idNguoiDung)
                 ? `?giang_vien=${encodeURIComponent(idNguoiDung)}` : "";
@@ -79,7 +77,10 @@ document.addEventListener("DOMContentLoaded", () => {
     async function veTheSo() {
 
         const daCham = toanBo.filter(b => T.layTiLe(b) !== null);
-        const chuaCham = toanBo.length - daCham.length;
+        // Bài lỗi (tệp toàn hình ảnh, chấm hỏng) đếm riêng ở thẻ Thống kê lỗi,
+        // không còn bị tính lẫn vào Đang xử lý.
+        const biLoi = toanBo.filter(b => b.trang_thai === "Lỗi").length;
+        const chuaCham = toanBo.length - daCham.length - biLoi;
 
         const vuotNguong =
             daCham.filter(b => T.layTiLe(b) >= T.NGUONG_CAO).length;
@@ -92,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         $("soVuotNguong").textContent = vuotNguong;
         $("soDangXuLy").textContent = chuaCham;
+        $("soLoi").textContent = biLoi;
 
         demLopHoc();
         demTaiKhoan();
@@ -125,9 +127,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const kq = await (await fetch(`${API}/thong-ke/lop-hoc${thamSo}`)).json();
             if (!kq.success) return;
 
-            const tongBaiTap = kq.data.reduce((s, l) => s + l.so_bai_tap, 0);
+            // API trả lớp nhóm theo khóa: [{ khoa, danh_sach_lop: [...] }].
+            // Đếm trên mảng nhóm thì ra số khóa và cộng so_bai_tap của nhóm
+            // (không có) ra NaN — đúng chỗ thẻ hiện "1" và "NaN bài tập".
+            const dsLop = kq.data.flatMap(nhom => nhom.danh_sach_lop || []);
+            const tongBaiTap = dsLop.reduce((s, l) => s + (Number(l.so_bai_tap) || 0), 0);
 
-            $("soLopHoc").textContent = kq.data.length;
+            $("soLopHoc").textContent = dsLop.length;
             $("phuLopHoc").textContent = `${tongBaiTap} bài tập — bấm để xem`;
 
         } catch (err) {
@@ -410,7 +416,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td>${oTiLe(T.tiLeCau(b), phanSoCau)}</td>
                     <td>${oTiLe(T.tiLeTu(b), phanSoTu)}</td>
                     <td>
-                        <span class="tk-nhan ${daXong ? "tk-nhan--xong" : "tk-nhan--cho"}">
+                        <span class="tk-nhan ${daXong ? "tk-nhan--xong"
+                            : b.trang_thai === "Lỗi" ? "tk-nhan--loi" : "tk-nhan--cho"}">
                             ${T.thoat(b.trang_thai)}
                         </span>
                     </td>
@@ -521,6 +528,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Đang xử lý: chỉ những bài chưa có kết quả
     $("theDangXuLy").addEventListener("click", () => {
         locTheoThe({ trangThai: "Đang xử lý", nhan: "Báo cáo đang xử lý" });
+    });
+
+    // Thống kê lỗi: bài không đọc được chữ (toàn hình ảnh) hoặc chấm hỏng
+    $("theLoi").addEventListener("click", () => {
+        locTheoThe({ trangThai: "Lỗi", nhan: "Báo cáo lỗi (không đọc được nội dung)" });
     });
 
     $("theLopHoc").addEventListener("click", () => {

@@ -598,8 +598,13 @@ async function checkPlagiarism(
 
             chiTietCauTrung.push({
 
+                // Lấy đúng thứ tự câu đã lưu trong chi_so_cau. Trước đây dùng
+                // biến đếm của vòng lặp, mà các lệnh `continue` phía trên (câu
+                // rỗng, câu ngắn không có fingerprint) bỏ qua bước tăng biến
+                // đếm, nên càng về cuối bài chỉ số càng lệch: gom đoạn trùng /
+                // chắp vá coi hai câu cách nhau là liền nhau, bôi màu lệch câu.
                 chi_so_cau_kiem_tra:
-                    sentenceIndex,
+                    cauMoi.sentenceIndex ?? sentenceIndex,
 
                 // Phần 3 fix: kế thừa mã đoạn văn từ ChiSoCau
                 doan_id:    cauMoi.doan_id    || '',

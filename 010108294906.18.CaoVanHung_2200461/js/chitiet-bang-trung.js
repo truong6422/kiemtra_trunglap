@@ -88,6 +88,11 @@
         </div>`;
     }
 
+    /** Khóa nối một câu trùng với vệt bôi màu của nó (xem chitiet.js). */
+    function khoaCau(c, viTriMang) {
+        return window.khoaBoiMau ? window.khoaBoiMau(c, viTriMang) : viTriMang;
+    }
+
     function tieuDeMuc(chu, mau) {
         return `<h3 style="margin-top:18px;margin-bottom:10px;color:${mau};">`
             + `${thoat(chu)}</h3>`;
@@ -140,7 +145,8 @@
 
         cau.forEach((c, i) => {
             if (c.chi_so_cau_kiem_tra !== undefined) {
-                viTriTheoChiSoCau.set(Number(c.chi_so_cau_kiem_tra), i);
+                viTriTheoChiSoCau.set(
+                    Number(c.chi_so_cau_kiem_tra), khoaCau(c, i));
             }
         });
 
@@ -176,9 +182,10 @@
 
             noiDung += khoi({
                 lop: "khoi-cau-trung",
-                // Vị trí trong mảng cũng chính là chỉ số câu mà lớp bôi màu
-                // đang đánh dấu, nên truyền thẳng i
-                chiSoCau: i,
+                // Vệt bôi màu đánh dấu theo thứ tự câu trong tài liệu, không
+                // theo vị trí trong danh sách đã lọc theo nguồn. Truyền i như
+                // trước thì bấm "Câu trùng 3" lại sáng câu trùng đầu tiên.
+                chiSoCau: khoaCau(c, i),
                 tieuDe: `Câu trùng ${i + 1}`,
                 mauDauKhoi: "#f1f5f9",
                 mauChu: "#0f172a",

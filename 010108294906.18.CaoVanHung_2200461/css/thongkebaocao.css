@@ -433,6 +433,7 @@ button.tk-lien-ket {
 
 .tk-nhan--xong { background: #e0f2fe; color: #0284c7; }
 .tk-nhan--cho  { background: #fff3cd; color: #856404; }
+.tk-nhan--loi  { background: #fee2e2; color: #dc2626; }
 
 .tk-lien-ket {
     color: #0284c7;

@@ -73,6 +73,24 @@ document.addEventListener("DOMContentLoaded", async function () {
      * Giữ lại những vệt có dính tới ít nhất một câu trong danh sách chỉ định.
      * Dùng khi người dùng chọn xem riêng một tài liệu nguồn.
      */
+    /**
+     * Khoá nối một câu trùng với vệt bôi màu của nó: vị trí của câu trong mảng
+     * câu trùng TOÀN BÀI. Vệt của máy chủ đã được đổi sang đơn vị này ở
+     * doiKhoaCauSangChiSoMang, nên bảng bên phải và lớp xem PDF cũng phải dùng
+     * đúng nó. Trước đây bảng truyền vị trí trong danh sách ĐÃ LỌC theo nguồn,
+     * nên chọn một nguồn rồi bấm "Câu trùng 3" lại sáng câu trùng khác.
+     */
+    let viTriCauTrungToanBai = new Map();
+    function khoaBoiMau(cau, viTriMang) {
+        // Dựng lại bảng tra khi danh sách câu trùng vừa được nạp (từ API hoặc
+        // từ bản lưu tạm trong localStorage)
+        if (viTriCauTrungToanBai.size !== chiTietCauTrung.length) {
+        }
+        const k = viTriCauTrungToanBai.get(cau);
+        return k === undefined ? viTriMang : k;
+    }
+    window.khoaBoiMau = khoaBoiMau;
+
     function locVetTheoCau(duLieuVet, cacChiSoCau) {
 
         if (!duLieuVet || !Array.isArray(duLieuVet.cac_vet)) return null;
@@ -172,6 +190,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 result.data.vetBoiMau || null,
                 chiTietCauTrung
             );
+            viTriCauTrungToanBai = new Map(chiTietCauTrung.map((c, i) => [c, i]));
             console.log(
                 "✅ Đã lấy dữ liệu từ API."
             );

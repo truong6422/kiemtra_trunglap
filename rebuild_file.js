@@ -6,7 +6,7 @@ const BaoCao = require('./models/bao_cao');
 const { trichXuatVanBan } = require('./utils/trich_xuat_text');
 
 const {
-    locNoiDungHocThuat
+    chuanBiNoiDungDoiSanh
 } = require('./utils/tien_xu_ly');
 
 async function rebuildFile() {
@@ -49,19 +49,6 @@ async function rebuildFile() {
                         report.tep_tin
                     );
 
-                text =
-                    (text || '')
-                        .replace(/\r/g, '')
-                        .replace(/\t/g, ' ')
-                        .replace(/\u00A0/g, ' ')
-                        .replace(/[ ]{2,}/g, ' ')
-                        .trim();
-
-                // -------------------------------------------------
-                // PDF -> chuẩn hóa
-                // WORD -> giữ nguyên
-                // -------------------------------------------------
-
                 const ext =
                     path.extname(
                         report.tep_tin
@@ -83,16 +70,8 @@ async function rebuildFile() {
                     );
                 }
 
-                // -------------------------------------------------
-                // Lọc phần học thuật
-                // -------------------------------------------------
-
-                const hocThuat =
-                    locNoiDungHocThuat(text);
-
-                if (hocThuat.trim()) {
-                    text = hocThuat;
-                }
+                // Cùng một bước chuẩn bị với bài tải lên (xem tien_xu_ly.js)
+                text = chuanBiNoiDungDoiSanh(text);
 
                 fs.writeFileSync(
                     path.join(

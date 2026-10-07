@@ -178,6 +178,13 @@ async function luuVetBoiMau(reportId, pdfDoc, cacVet) {
     }
 }
 
+/** Hai cụm chữ có thuộc đúng cùng một tập câu hay không. */
+function laCungTapCau(tapCau, dsCau) {
+    const ds = dsCau || [];
+    if (tapCau.size !== new Set(ds).size) return false;
+    return ds.every(c => tapCau.has(c));
+}
+
 function gomViTriTheoDong(cacO) {
 
     if (
@@ -189,7 +196,10 @@ function gomViTriTheoDong(cacO) {
 
     const cacDong = gomTheoDong(cacO);
 
-    // Trong từng dòng, nối các cụm chồng nhau hoặc sát nhau
+    // Trong từng dòng, nối các cụm của CÙNG một câu khi chồng nhau hoặc sát
+    // nhau. Cụm của hai câu khác nhau thì giữ thành hai vệt riêng: trước đây
+    // chúng bị nối chung thành một vệt mang cả hai chỉ số câu, nên chọn câu
+    // này thì phần đầu câu bên cạnh trên cùng dòng cũng đổi màu theo.
     const cacVet = [];
 
     for (const dong of cacDong) {
@@ -202,10 +212,28 @@ function gomViTriTheoDong(cacO) {
 
         let dangGom = null;
 
-        for (const o of sapXep) {
+        for (const oGoc of sapXep) {
+
+            let o = oGoc;
+
+            const cungCau =
+                !!dangGom && laCungTapCau(dangGom.cacCau, o.cacCau);
+
+            // Câu sau đè lên đuôi câu trước: cắt phần đè để chỗ giao chỉ
+            // được tô một lần (không bị đậm màu) mà vẫn tách đúng ranh giới.
+            if (dangGom && !cungCau) {
+                const phaiTruoc = dangGom.x + dangGom.width;
+                if (o.x < phaiTruoc) {
+                    const phaiSau = o.x + o.width;
+                    if (phaiSau <= phaiTruoc) {
+                        continue;
+                    }
+                    o = { ...o, x: phaiTruoc, width: phaiSau - phaiTruoc };
+                }
+            }
 
             if (
-                dangGom &&
+                cungCau &&
                 o.x <= dangGom.x + dangGom.width + nguongNoi
             ) {
 
@@ -220,10 +248,6 @@ function gomViTriTheoDong(cacO) {
                 dangGom.height =
                     Math.max(dangGom.height, o.height);
 
-                for (const c of (o.cacCau || [])) {
-                    dangGom.cacCau.add(c);
-                }
-
             } else {
 
                 if (dangGom) cacVet.push(dangGom);
@@ -233,7 +257,11 @@ function gomViTriTheoDong(cacO) {
                     x: o.x,
                     width: o.width,
                     height: o.height,
-                    cacCau: new Set(o.cacCau || [])
+                    cacCau: new Set(o.cacCau || []),
+                    // Giữ loại vệt (câu / đoạn / chắp vá) để vẽ đúng màu;
+                    // trước đây vệt sau khi gộp mất trường này nên mọi vệt
+                    // đều bị tô màu của câu.
+                    loai_vet: o.loai_vet
                 };
             }
         }

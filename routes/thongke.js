@@ -98,7 +98,7 @@ router.get('/danh-sach', async (req, res) => {
         }
 
         const danhSachBaoCao = await BaoCao.find(dieuKien)
-            .select('id_bao_cao tieu_de ngay_tai_len id_sinh_vien')
+            .select('id_bao_cao tieu_de ngay_tai_len id_sinh_vien trang_thai')
             .sort({ ngay_tai_len: -1 })
             .lean();
 
@@ -158,7 +158,12 @@ router.get('/danh-sach', async (req, res) => {
                 so_nguon_phat_hien: tk ? tk.so_nguon_phat_hien : null,
                 ngay_kiem_tra: tk ? tk.ngay_kiem_tra : null,
 
-                trang_thai: tk ? "Đã xử lý" : "Đang xử lý"
+                // Bài không đọc được chữ (tệp toàn hình ảnh) hoặc chấm hỏng được
+                // ghi "Lỗi" trong bao_cao. Trước đây chỗ này chỉ xét có kết quả
+                // hay chưa, nên bài lỗi bị trả về "Đang xử lý" và nằm mãi ở thẻ
+                // Đang xử lý của trang thống kê.
+                trang_thai: tk ? "Đã xử lý"
+                    : (bc.trang_thai === "Lỗi" ? "Lỗi" : "Đang xử lý")
             };
         });
 

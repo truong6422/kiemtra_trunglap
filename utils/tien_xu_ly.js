@@ -141,6 +141,30 @@ function lamSachVanBan(vanBan) {
 }
 
 // ============================================================================
+// SỐ TIẾNG TỐI THIỂU ĐỂ MỘT CÂU ĐƯỢC ĐƯA VÀO ĐỐI SÁNH
+// ----------------------------------------------------------------------------
+// Phải đếm trên câu gốc, không đếm sau khi tách từ. Tách từ gộp từ ghép lại
+// nên "Đơn giá vé" (3 tiếng) chỉ còn 2 token "đơn_giá vé", "Nước khởi hành"
+// còn "nước khởi_hành": trước đây hai dòng này bị loại oan khỏi kho mẫu, làm
+// các gạch đầu dòng ngắn trong báo cáo bị lấy thiếu. Kho mẫu (precompute) và
+// báo cáo tải lên phải dùng chung một quy tắc, lệch nhau là câu giống hệt vẫn
+// không khớp được.
+// ============================================================================
+const SO_TIENG_TOI_THIEU = 2;
+
+function demSoTieng(cau) {
+    if (!cau || typeof cau !== 'string') {
+        return 0;
+    }
+    // Chỉ đếm tiếng có chữ cái: "1.2." hay "2024" không phải nội dung để so.
+    return (cau.match(/[\p{L}\p{N}]*\p{L}[\p{L}\p{N}]*/gu) || []).length;
+}
+
+function duSoTieng(cau) {
+    return demSoTieng(cau) >= SO_TIENG_TOI_THIEU;
+}
+
+// ============================================================================
 // HÀM BĂM CHUỖI (DÙNG CHO N-GRAM)
 // ============================================================================
 function bamChuoi(chuoi) {
@@ -211,6 +235,32 @@ function locNoiDungHocThuat(vanBan) {
 /**
  * @returns {string} nội dung giữ lại của dòng, chuỗi rỗng nghĩa là bỏ dòng.
  */
+
+// ============================================================================
+// CHUẨN BỊ NỘI DUNG TRƯỚC KHI TÁCH CÂU — DÙNG CHUNG CHO KHO MẪU VÀ BÀI TẢI LÊN
+// ----------------------------------------------------------------------------
+// Kho mẫu (rebuild_file.js) và bài tải lên (xu_ly_bao_cao_upload.js) phải đi
+// qua đúng cùng một bước này. Commit 7f5c502 đổi bài tải lên sang
+// tachDoanVaCau nhưng bỏ quên bước lọc nội dung học thuật, nên bìa, phiếu
+// giao đề, lời cảm ơn, tài liệu tham khảo của bài tải lên vẫn bị tính vào mẫu
+// số trong khi kho mẫu đã lọc bỏ: kiểm tra lại chính một báo cáo mẫu chỉ còn
+// ~93-95% thay vì 100%.
+// ============================================================================
+function chuanBiNoiDungDoiSanh(vanBan) {
+    let text = (vanBan || '')
+        .replace(/\r/g, '')
+        .replace(/\t/g, ' ')
+        .replace(/\u00A0/g, ' ')
+        .replace(/[ ]{2,}/g, ' ')
+        .trim();
+
+    const hocThuat = locNoiDungHocThuat(text);
+    if (hocThuat.trim()) {
+        text = hocThuat;
+    }
+    return text;
+}
+
 function locMotDong(dongGoc) {
     if (coNhan(dongGoc, NHAN.TIEU_DE, NHAN.MUC_LUC)) {
         return '';
@@ -380,11 +430,14 @@ function tachDoanVaCau(vanBan) {
 // ============================================================================
 module.exports = {
     lamSachVanBan,
+    demSoTieng,
+    duSoTieng,
     tachTuTiengViet,
     tachCau,
     tachDoanVaCau,
     bamChuoi,
     locNoiDungHocThuat,
+    chuanBiNoiDungDoiSanh,
     xuLyNhanCauTruc,
     locMotDong,
     laTieuDeCon,

@@ -11,7 +11,8 @@ const {
     tachCau,
     tachDoanVaCau,
     lamSachVanBan,
-    locNoiDungHocThuat
+    chuanBiNoiDungDoiSanh,
+    duSoTieng
 } = require('./tien_xu_ly');
 
 
@@ -118,9 +119,11 @@ async function xuLyBaoCaoUpload(
     // TÁCH ĐOẠN VÀ CÂU (Phần 3 fix)
     // =====================================================
     // cấu trúc thực tế của tài liệu (Báo cáo -> Đoạn -> Câu).
+    // Lọc đúng như kho mẫu: chỉ giữ nội dung học thuật (từ Mở đầu tới hết
+    // Kết luận), bỏ bìa, phiếu giao đề, lời cảm ơn, tài liệu tham khảo.
     const danhSachCauCoInfo =
         tachDoanVaCau(
-            noiDungXuLy
+            chuanBiNoiDungDoiSanh(noiDungXuLy)
         );
 
     const tongSoCau =
@@ -190,7 +193,7 @@ async function xuLyBaoCaoUpload(
         const tokenCount =
             tokens.length;
 
-        if (tokenCount < 3) {
+        if (!duSoTieng(content)) {
             continue;
         }
 

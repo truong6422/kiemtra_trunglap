@@ -24,6 +24,7 @@ window.TkTaiKhoan = (() => {
 
     let dangHien = [];
     let vaiTroDangXem = "";
+    let dsCot = [];
 
     /** Giảng viên không được xem danh sách giảng viên nên khoá nút đó lại. */
     function apDungQuyen() {
@@ -50,23 +51,17 @@ window.TkTaiKhoan = (() => {
             ? `Danh sách ${ten} trong lớp của tôi`
             : `Danh sách tài khoản ${ten}`;
 
-        const cotMa = $("tkCotMa");
-        if (cotMa) cotMa.textContent = vaiTro === "giang_vien" ? "Mã giảng viên" : "Mã sinh viên";
-        
-        $("tkCotRieng").textContent = vaiTro === "giang_vien" ? "Bộ môn" : "Lớp";
-
-        const cotLopHP = $("tkCotLopHocPhan");
-        if (cotLopHP) cotLopHP.hidden = !(laGiangVien && vaiTro === "sinh_vien");
-        
-        const cotKhoa = $("tkCotKhoaHoc");
-        if (cotKhoa) cotKhoa.hidden = (vaiTro !== "sinh_vien");
+        // Dựng tiêu đề cột từ đúng bộ cột dùng để vẽ dòng, hai bên luôn khớp
+        dsCot = cotTheoVaiTro(vaiTro);
+        $("tkDauBangTaiKhoan").innerHTML =
+            dsCot.map(c => `<th>${window.TkTienIch.thoat(c.ten)}</th>`).join("");
 
         document.querySelectorAll("#khungTaiKhoan .tk-tab__nut").forEach(n => {
             n.classList.toggle("tk-tab__nut--chon", n.dataset.vaiTro === vaiTro);
         });
 
         $("tkBangTaiKhoan").innerHTML =
-            '<tr><td colspan="8" class="no-data">Đang tải dữ liệu...</td></tr>';
+            `<tr><td colspan="${dsCot.length}" class="no-data">Đang tải dữ liệu...</td></tr>`;
 
         try {
             // Giảng viên chỉ lấy thành viên các lớp mình phụ trách
@@ -84,7 +79,7 @@ window.TkTaiKhoan = (() => {
 
         } catch (err) {
             $("tkBangTaiKhoan").innerHTML =
-                `<tr><td colspan="8" class="no-data">Không tải được: ${err.message}</td></tr>`;
+                `<tr><td colspan="${dsCot.length}" class="no-data">Không tải được: ${err.message}</td></tr>`;
         }
     }
 
@@ -94,31 +89,68 @@ window.TkTaiKhoan = (() => {
 
         if (dangHien.length === 0) {
             $("tkBangTaiKhoan").innerHTML =
-                '<tr><td colspan="8" class="no-data">Chưa có tài khoản nào</td></tr>';
+                `<tr><td colspan="${dsCot.length}" class="no-data">Chưa có tài khoản nào</td></tr>`;
             return;
         }
 
         $("tkBangTaiKhoan").innerHTML = dangHien.map(u => `
-            <tr>
-                <td style="text-align:left">${T.thoat(u.ho_ten)}</td>
-                <td style="text-align:left">${T.thoat(u.email)}</td>
-                <td>${T.thoat(vaiTro === "giang_vien" ? u.ma_giang_vien : u.ma_sinh_vien) || '<span class="tk-so--trong">--</span>'}</td>
-                ${(laGiangVien && vaiTro === "sinh_vien") ? `<td>${T.thoat(u.lop) || '<span class="tk-so--trong">--</span>'}</td>` : ''}
-                <td>${T.thoat(vaiTro === "giang_vien" ? u.bo_mon : (laGiangVien && vaiTro === "sinh_vien" ? u.lop_chinh_thuc : u.lop)) || '<span class="tk-so--trong">--</span>'}</td>
-                ${vaiTro === "sinh_vien" ? `<td>${T.thoat(u.khoa_hoc) || '<span class="tk-so--trong">--</span>'}</td>` : ''}
-                <td><strong>${u.so_bai_da_nop}</strong></td>
-                <td>
-                    <span class="tk-nhan ${u.trang_thai ? "tk-nhan--xong" : "tk-nhan--cho"}">
-                        ${u.trang_thai ? "Đang hoạt động" : "Đã khoá"}
-                    </span>
-                </td>
-                <td style="white-space:nowrap">${T.dinhDangNgay(u.ngay_tao)}</td>
+            <tr>${dsCot.map(c => c.veO
+                ? `<td>${c.veO(u)}</td>`
+                : `<td${c.trai ? ' style="text-align:left"' : ""}${c.ma ? ' class="tk-ma"' : ""}>`
+                    + (T.thoat(c.lay(u)) || '<span class="tk-so--trong">--</span>')
+                    + `</td>`).join("")}
             </tr>`).join("");
     }
 
-    /** Tải danh sách đang xem về máy dưới dạng bảng tính. */
+    /**
+     * Bộ cột theo vai trò, dùng chung cho tiêu đề, dòng dữ liệu và bản Excel.
+     *
+     * Theo yêu cầu của khách: bỏ cột Mã người dùng; mã hồ sơ lên đầu với tên
+     * Mã sinh viên / Mã giảng viên. Quản trị viên xem sinh viên có thêm cột
+     * Khóa học ngay sau Lớp. Giảng viên xem sinh viên thì cột lớp trên hệ thống
+     * đổi tên thành Lớp học phần, thêm Lớp (lớp chính thức ở collection
+     * sinh_vien) và Khóa để biết sinh viên thuộc khóa nào, lớp nào.
+     */
+    function cotTheoVaiTro(vaiTro) {
+        const laSinhVien = vaiTro !== "giang_vien";
+        const T = window.TkTienIch;
+
+        const cot = [
+            laSinhVien
+                ? { ten: "Mã sinh viên", lay: u => u.ma_sinh_vien, ma: true, rong: 100 }
+                : { ten: "Mã giảng viên", lay: u => u.ma_giang_vien, ma: true, rong: 100 },
+            { ten: "Họ tên", lay: u => u.ho_ten, trai: true, rong: 180 },
+            { ten: "Email", lay: u => u.email, trai: true, rong: 210 }
+        ];
+
+        if (!laSinhVien) {
+            cot.push({ ten: "Bộ môn", lay: u => u.bo_mon, rong: 130 });
+        } else if (laGiangVien) {
+            cot.push(
+                { ten: "Lớp học phần", lay: u => u.lop_hoc_phan, rong: 200 },
+                { ten: "Lớp", lay: u => u.lop, rong: 120 },
+                { ten: "Khóa", lay: u => u.khoa_hoc, rong: 100 });
+        } else {
+            cot.push(
+                { ten: "Lớp", lay: u => u.lop, rong: 120 },
+                { ten: "Khóa học", lay: u => u.khoa_hoc, rong: 100 });
+        }
+
+        cot.push(
+            { ten: "Số bài đã nộp", lay: u => u.so_bai_da_nop, so: true, rong: 100,
+                veO: u => `<strong>${Number(u.so_bai_da_nop) || 0}</strong>` },
+            { ten: "Trạng thái", lay: u => u.trang_thai ? "Đang hoạt động" : "Đã khoá", rong: 120,
+                veO: u => `<span class="tk-nhan ${u.trang_thai ? "tk-nhan--xong" : "tk-nhan--cho"}">`
+                    + `${u.trang_thai ? "Đang hoạt động" : "Đã khoá"}</span>` },
+            { ten: "Ngày tạo", lay: u => T.dinhDangNgay(u.ngay_tao), rong: 130,
+                veO: u => `<span style="white-space:nowrap">${T.dinhDangNgay(u.ngay_tao)}</span>` });
+
+        return cot;
+    }
+
+    /** Tải danh sách đang xem về máy, kèm các trang thống kê. */
     function xuat() {
-        window.TkTienIch.xuatTaiKhoanExcel(dangHien, vaiTroDangXem);
+        window.TkTienIch.xuatTaiKhoanExcel(dangHien, vaiTroDangXem, dsCot);
     }
 
     return { mo, xuat, apDungQuyen, laGiangVien };

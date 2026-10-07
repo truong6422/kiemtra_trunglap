@@ -148,6 +148,16 @@
                 </div>
             </article>
 
+            <!-- THẺ THỐNG KÊ LỖI: tệp toàn hình ảnh / chấm hỏng -->
+            <article class="tk-the tk-the--do tk-the--bam-duoc" id="theLoi">
+                <div class="tk-the__bieu-tuong"><i class="fa-solid fa-circle-exclamation"></i></div>
+                <div class="tk-the__noi-dung">
+                    <div class="tk-the__nhan">Thống kê lỗi</div>
+                    <div class="tk-the__so" id="soLoi">--</div>
+                    <div class="tk-the__phu">Không đọc được nội dung — bấm để xem</div>
+                </div>
+            </article>
+
             <!-- THẺ ĐÁNH GIÁ (YÊU CẦU 3) -->
             <article class="tk-the tk-the--vang tk-the--bam-duoc" id="theDanhGia">
                 <div class="tk-the__bieu-tuong"><i class="fa-solid fa-star"></i></div>
@@ -259,20 +269,11 @@
 
             <table class="data-table">
                 <thead>
-                    <tr>
-                        <th>Họ tên</th>
-                        <th>Email</th>
-                        <th id="tkCotMa">Mã sinh viên</th>
-                        <th id="tkCotLopHocPhan" hidden>Lớp học phần</th>
-                        <th id="tkCotRieng">Lớp</th>
-                        <th id="tkCotKhoaHoc" hidden>Khóa học</th>
-                        <th>Số bài đã nộp</th>
-                        <th>Trạng thái</th>
-                        <th>Ngày tạo</th>
-                    </tr>
+                    <!-- Tiêu đề cột do thongke-tai-khoan.js dựng theo vai trò -->
+                    <tr id="tkDauBangTaiKhoan"></tr>
                 </thead>
                 <tbody id="tkBangTaiKhoan">
-                    <tr><td colspan="8" class="no-data">Chọn vai trò để xem</td></tr>
+                    <tr><td colspan="9" class="no-data">Chọn vai trò để xem</td></tr>
                 </tbody>
             </table>
         </div>

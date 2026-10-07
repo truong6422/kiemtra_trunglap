@@ -93,9 +93,14 @@ window.TkTienIch = (() => {
      *            Ô ghi thẳng giá trị thì để nguyên; cần đánh dấu kiểu số hoặc
      *            tô màu thì truyền {v, so: true, kieu: "muc_cao"}.
      */
-    function xuatBangExcel({ tenTep, tenTrang, cot, dong }) {
+    function xuatBangExcel({ tenTep, tenTrang, cot, dong, trang }) {
 
-        if (!dong || dong.length === 0) return false;
+        // Nhiều trang tính trong cùng một tệp: truyền trang = [{tenTrang, cot,
+        // dong}]. Cách gọi cũ (một bảng) vẫn dùng được như trước.
+        const cacTrang = (trang || [{ tenTrang, cot, dong }])
+            .filter(t => t.dong && t.dong.length > 0);
+
+        if (cacTrang.length === 0) return false;
 
         const xmlThoat = v => String(v ?? "")
             .replace(/&/g, "&amp;").replace(/</g, "&lt;")
@@ -118,15 +123,23 @@ window.TkTienIch = (() => {
                 + (so ? Number(v) : xmlThoat(v)) + `</Data></Cell>`;
         }
 
-        const dongTieuDe = `<Row ss:StyleID="dau">` +
-            cot.map(c => veO(c.ten, "dau")).join("") + `</Row>`;
-
-        const cacDong = dong
-            .map(d => `<Row>` + d.map(o => veO(o, null)).join("") + `</Row>`)
-            .join("");
-
-        const khaiBaoCot = cot
-            .map(c => `<Column ss:Width="${c.rong || 120}"/>`).join("");
+        const veTrang = ({ tenTrang: ten, cot: dsCot, dong: dsDong }) => {
+            const dongTieuDe = `<Row ss:StyleID="dau">` +
+                dsCot.map(c => veO(c.ten, "dau")).join("") + `</Row>`;
+            const cacDong = dsDong
+                .map(d => `<Row>` + d.map(o => veO(o, null)).join("") + `</Row>`)
+                .join("");
+            const khaiBaoCot = dsCot
+                .map(c => `<Column ss:Width="${c.rong || 120}"/>`).join("");
+            return ` <Worksheet ss:Name="${xmlThoat(String(ten).slice(0, 31))}">
+  <Table>${khaiBaoCot}${dongTieuDe}${cacDong}</Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <FreezePanes/><FrozenNoSplit/>
+   <SplitHorizontal>1</SplitHorizontal><TopRowBottomPane>1</TopRowBottomPane>
+   <ActivePane>2</ActivePane>
+  </WorksheetOptions>
+ </Worksheet>`;
+        };
 
         const noiDung =
             `<?xml version="1.0" encoding="UTF-8"?>
@@ -143,14 +156,7 @@ window.TkTienIch = (() => {
   <Style ss:ID="muc_thap"><Font ss:Bold="1" ss:Color="#16A34A"/></Style>
   <Style ss:ID="muc_trong"><Font ss:Color="#94A3B8"/></Style>
  </Styles>
- <Worksheet ss:Name="${xmlThoat(tenTrang)}">
-  <Table>${khaiBaoCot}${dongTieuDe}${cacDong}</Table>
-  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
-   <FreezePanes/><FrozenNoSplit/>
-   <SplitHorizontal>1</SplitHorizontal><TopRowBottomPane>1</TopRowBottomPane>
-   <ActivePane>2</ActivePane>
-  </WorksheetOptions>
- </Worksheet>
+${cacTrang.map(veTrang).join("\n")}
 </Workbook>`;
 
         const blob = new Blob([noiDung], {
@@ -216,33 +222,77 @@ window.TkTienIch = (() => {
     }
 
     /** Danh sách tài khoản — dùng cho cả giảng viên lẫn sinh viên. */
-    function xuatTaiKhoanExcel(danhSach, vaiTro) {
+    /**
+     * Xuất danh sách tài khoản đang xem.
+     *
+     * Trang đầu là đúng bảng trên màn hình (cùng bộ cột). Với sinh viên có
+     * thêm ba trang thống kê theo yêu cầu của khách: theo khóa, theo lớp chính
+     * thức (collection sinh_vien) và theo lớp học phần (lớp giảng viên tạo).
+     *
+     * @param {Array} danhSach  dữ liệu đang hiển thị
+     * @param {string} vaiTro   "sinh_vien" | "giang_vien"
+     * @param {Array} dsCot     [{ten, rong, lay(u), so}] — bộ cột của bảng
+     */
+    function xuatTaiKhoanExcel(danhSach, vaiTro, dsCot) {
 
-        const laGiangVien = vaiTro === "giang_vien";
+        const laSinhVien = vaiTro !== "giang_vien";
+        const trang = [{
+            tenTrang: laSinhVien ? "Danh sach sinh vien" : "Danh sach giang vien",
+            cot: dsCot.map(c => ({ ten: c.ten, rong: c.rong })),
+            dong: danhSach.map(u => dsCot.map(c =>
+                c.so ? { v: c.lay(u), so: true } : c.lay(u)))
+        }];
+
+        if (laSinhVien) {
+            const CHUA = "(Chưa cập nhật)";
+            const tenSv = u => [u.ma_sinh_vien, u.ho_ten].filter(Boolean).join(" - ");
+
+            /** Gom sinh viên theo khoá trả về từ hàm layKhoa (có thể nhiều khoá). */
+            const thongKe = (layKhoa) => {
+                const nhom = new Map();
+                for (const u of danhSach) {
+                    const cacKhoa = layKhoa(u);
+                    for (const k of (cacKhoa.length ? cacKhoa : [CHUA])) {
+                        const g = nhom.get(k) || { sv: [], bai: 0, mau: u };
+                        g.sv.push(tenSv(u));
+                        g.bai += Number(u.so_bai_da_nop) || 0;
+                        nhom.set(k, g);
+                    }
+                }
+                return [...nhom.entries()]
+                    .sort((a, b) => a[0] === CHUA ? 1 : b[0] === CHUA ? -1
+                        : a[0].localeCompare(b[0], "vi"));
+            };
+            const tach = v => String(v || "").split(",").map(x => x.trim()).filter(Boolean);
+            const cotChung = [
+                { ten: "Số sinh viên", rong: 90 },
+                { ten: "Tổng số bài đã nộp", rong: 120 },
+                { ten: "Danh sách sinh viên", rong: 420 }
+            ];
+            const dongChung = g => [
+                { v: g.sv.length, so: true }, { v: g.bai, so: true }, g.sv.join("; ")];
+
+            trang.push({
+                tenTrang: "Theo khoa",
+                cot: [{ ten: "Khóa", rong: 110 }, ...cotChung],
+                dong: thongKe(u => tach(u.khoa_hoc)).map(([k, g]) => [k, ...dongChung(g)])
+            });
+            trang.push({
+                tenTrang: "Theo lop",
+                cot: [{ ten: "Lớp", rong: 130 }, { ten: "Khóa", rong: 110 }, ...cotChung],
+                dong: thongKe(u => tach(u.lop)).map(([k, g]) =>
+                    [k, k === CHUA ? "" : (g.mau.khoa_hoc || ""), ...dongChung(g)])
+            });
+            trang.push({
+                tenTrang: "Theo lop hoc phan",
+                cot: [{ ten: "Lớp học phần", rong: 220 }, ...cotChung],
+                dong: thongKe(u => tach(u.lop_hoc_phan)).map(([k, g]) => [k, ...dongChung(g)])
+            });
+        }
 
         return xuatBangExcel({
-            tenTep: laGiangVien ? "danh-sach-giang-vien" : "danh-sach-sinh-vien",
-            tenTrang: laGiangVien ? "Giang vien" : "Sinh vien",
-            cot: [
-                { ten: "Mã người dùng", rong: 110 },
-                { ten: "Họ tên", rong: 180 },
-                { ten: "Email", rong: 200 },
-                { ten: "Mã hồ sơ", rong: 100 },
-                { ten: laGiangVien ? "Bộ môn" : "Lớp", rong: 150 },
-                { ten: "Số bài đã nộp", rong: 110 },
-                { ten: "Trạng thái", rong: 120 },
-                { ten: "Ngày tạo", rong: 130 }
-            ],
-            dong: danhSach.map(u => [
-                u.id_nguoi_dung,
-                u.ho_ten,
-                u.email,
-                u.ma_ho_so,
-                laGiangVien ? u.bo_mon : u.lop,
-                { v: u.so_bai_da_nop, so: true },
-                u.trang_thai ? "Đang hoạt động" : "Đã khoá",
-                dinhDangNgay(u.ngay_tao)
-            ])
+            tenTep: laSinhVien ? "danh-sach-sinh-vien" : "danh-sach-giang-vien",
+            trang
         });
     }
 

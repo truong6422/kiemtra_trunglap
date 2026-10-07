@@ -30,35 +30,30 @@ router.get('/tai-khoan', async (req, res) => {
                 : vaiTro;
         }
 
-        // Giới hạn trong phạm vi lớp của một giảng viên
-        let tenLopTheoNguoiDung = null;
+        // Lớp học phần (lớp do giảng viên tạo trên hệ thống) của từng tài khoản.
+        // Quản trị viên xem mọi lớp, giảng viên chỉ xem lớp mình phụ trách.
+        // Luôn tính để bảng và bản xuất Excel thống kê được theo lớp học phần.
+        const dsLop = await LopHoc.find(
+            giangVienPhuTrach ? { id_nguoi_dung: giangVienPhuTrach } : {})
+            .select('ma_lop tieu_de danh_sach_thanh_vien').lean();
+        const lopHocPhanTheoNguoiDung = new Map();
+        // Danh sách thành viên trong bản ghi lớp chỉ có id_sinh_vien, phải tra
+        // thêm mã tài khoản trước khi dựng bảng.
+        for (const lop of dsLop) {
+            const thanhVien = await boSungMaTaiKhoan(lop.danh_sach_thanh_vien || []);
+            const tenLop = lop.tieu_de ? `${lop.tieu_de} (${lop.ma_lop})` : lop.ma_lop;
+            for (const tv of thanhVien) {
+                if (!tv.id_nguoi_dung) continue;
+                const cu = lopHocPhanTheoNguoiDung.get(tv.id_nguoi_dung) || [];
+                cu.push(tenLop);
+                lopHocPhanTheoNguoiDung.set(tv.id_nguoi_dung, cu);
+            }
+        }
 
         if (giangVienPhuTrach) {
-
-            const dsLop = await LopHoc.find({ id_nguoi_dung: giangVienPhuTrach })
-                .select('ma_lop tieu_de danh_sach_thanh_vien').lean();
-
-            tenLopTheoNguoiDung = new Map();
-
-            // Danh sách thành viên trong bản ghi lớp chỉ có id_sinh_vien. Đoạn
-            // cũ đọc thẳng tv.id_nguoi_dung nên khoá của bảng tra toàn undefined
-            // và giảng viên không thấy tài khoản nào. Tra thêm mã tài khoản
-            // trước khi dựng bảng.
-            for (const lop of dsLop) {
-                const thanhVien = await boSungMaTaiKhoan(lop.danh_sach_thanh_vien || []);
-
-                for (const tv of thanhVien) {
-                    if (!tv.id_nguoi_dung) continue;
-
-                    const cu = tenLopTheoNguoiDung.get(tv.id_nguoi_dung) || [];
-                    cu.push(lop.ma_lop);
-                    tenLopTheoNguoiDung.set(tv.id_nguoi_dung, cu);
-                }
-            }
-
-            // Chính giảng viên đó không nằm trong danh sách thành viên mình dạy
+            // Giảng viên chỉ thấy thành viên các lớp mình dạy, trừ chính mình
             dieuKien.id_nguoi_dung = {
-                $in: [...tenLopTheoNguoiDung.keys()]
+                $in: [...lopHocPhanTheoNguoiDung.keys()]
                     .filter(id => id !== giangVienPhuTrach)
             };
         }
@@ -123,11 +118,10 @@ router.get('/tai-khoan', async (req, res) => {
                 khoa_hoc: sv ? sv.khoa_hoc : "",
                 lop_chinh_thuc: sv ? sv.lop : "",
 
-                // Lớp lấy từ hồ sơ sinh viên; nếu đang xem theo phạm vi một
-                // giảng viên thì ưu tiên mã lớp mà người đó đang theo học.
-                lop: tenLopTheoNguoiDung
-                    ? (tenLopTheoNguoiDung.get(nd.id_nguoi_dung) || []).join(", ")
-                    : (sv ? sv.lop : ""),
+                // Lớp chính thức lấy ở collection sinh_vien; lớp học phần là
+                // các lớp trên hệ thống mà sinh viên đang tham gia.
+                lop: sv ? sv.lop : "",
+                lop_hoc_phan: (lopHocPhanTheoNguoiDung.get(nd.id_nguoi_dung) || []).join(", "),
 
                 bo_mon: gv ? gv.bo_mon : "",
 

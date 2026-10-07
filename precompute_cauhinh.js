@@ -21,7 +21,8 @@ const CauHinhHeThong = require('./models/cau_hinh_he_thong');
 const {
     tachCau,
     tachDoanVaCau,
-    lamSachVanBan
+    lamSachVanBan,
+    duSoTieng
 } = require('./utils/tien_xu_ly');
 
 const {
@@ -104,14 +105,7 @@ async function chayTienTinhToan() {
                     continue;
                 }
 
-                const soTuGoc =
-                    cleanSentence
-                        .trim()
-                        .split(/\s+/)
-                        .filter(Boolean)
-                        .length;
-
-                if (soTuGoc < 3) {
+                if (!duSoTieng(cau)) {
                     continue;
                 }
 
@@ -225,14 +219,7 @@ async function chayTienTinhToan() {
                     continue;
                 }
 
-                const soTuGoc =
-                    cleanSentence
-                        .trim()
-                        .split(/\s+/)
-                        .filter(Boolean)
-                        .length;
-
-                if (soTuGoc < 3) {
+                if (!duSoTieng(cau)) {
                     continue;
                 }
 

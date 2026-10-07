@@ -613,16 +613,4 @@ router.put('/:id_bao_cao', async (req, res) => {
     }
 });
 
-router.patch('/dong-bo-loi', async (req, res) => {
-    try {
-        const result = await BaoCao.updateMany(
-            { trang_thai: 'Đang xử lý', noi_dung_tien_xu_ly: '' },
-            { $set: { trang_thai: 'Lỗi' } }
-        );
-        return res.json({ success: true, modifiedCount: result.modifiedCount });
-    } catch (error) {
-        return res.status(500).json({ success: false, message: error.message });
-    }
-});
-
 module.exports = router;

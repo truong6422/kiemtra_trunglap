@@ -705,6 +705,12 @@ window.PdfHighlightViewer = (() => {
 
         thongKePhu = [];
 
+        // Danh sách truyền vào có thể đã lọc theo nguồn. Đánh dấu vệt theo vị
+        // trí của câu trong mảng câu trùng toàn bài (khoá chung với bảng bên
+        // phải, xem chitiet.js) để bấm vào là trúng đúng câu ở cả hai cách vẽ.
+        const khoaCau = i => window.khoaBoiMau
+            ? window.khoaBoiMau(cauDangBoiMau[i], i) : i;
+
         for (let chiSoCau = 0; chiSoCau < cacCau.length; chiSoCau++) {
 
             const tuCau = cacCau[chiSoCau];
@@ -744,7 +750,7 @@ window.PdfHighlightViewer = (() => {
                 gomVaoDanhSachDong(
                     vetTheoTrang[iTrang],
                     lan.cacO,
-                    chiSoCau
+                    khoaCau(chiSoCau)
                 );
 
                 // Câu dài thường vắt sang trang sau. Nếu mới khớp được một
@@ -765,7 +771,7 @@ window.PdfHighlightViewer = (() => {
                         gomVaoDanhSachDong(
                             vetTheoTrang[iTrang + 1],
                             tiepTheo[0].cacO,
-                            chiSoCau
+                            khoaCau(chiSoCau)
                         );
 
                         thongKePhu[chiSoCau].tuKhop +=
