@@ -20,6 +20,22 @@ const {
     laSoTrang
 } = require('./nhan_dien_tieu_de');
 
+// Dòng mở ra một mục mới dù dòng trên chưa có dấu chấm: chú thích hình/bảng
+// ("Hình 3.11 – …") hoặc đề mục đánh số ("2.5.4 Luồng xử lý"). Dán vào thì
+// chú thích, đề mục nằm luôn trong câu phía trên.
+//
+// Phải chặt: câu bị ngắt dòng ngay trước "Hình 3.1 cho thấy…" hay "3.5 GHz…"
+// vẫn là một câu, tách ra thì nửa sau bị lọc mất như chú thích.
+const CHU_THICH_CO_PHAN_CACH =
+    /^(hình(\s*ảnh)?|bảng|biểu\s*đồ|sơ\s*đồ|đồ\s*thị|figure|fig|table)\s*\d+(\s*[.,]\s*\d+)*\s*[.:–—-]\s/i;
+const DE_MUC_DANH_SO = /^\d+(\.\d+)+\.?\s+\p{Lu}\p{Ll}/u;
+
+function laDongMoMucMoi(dong) {
+    const t = (dong || '').trim();
+    return CHU_THICH_CO_PHAN_CACH.test(t)
+        || (DE_MUC_DANH_SO.test(t) && t.length <= 80 && !/[.!?;]$/.test(t));
+}
+
 // Ký hiệu liệt kê ở đầu dòng. Giáo viên yêu cầu loại bỏ các dấu này; phần chữ
 // phía sau vẫn là nội dung nên được giữ nguyên.
 //
@@ -211,6 +227,7 @@ function noiDongBiNgatGiuaCau(vanBan) {
             !sauLaTieuDe &&
             !sauLaLietKe &&
             !laDongMucLuc(dong) &&
+            !laDongMoMucMoi(dong) &&
             (sauBatDauThuong || truocDaiNhuMotDongDay)
         ) {
             ketQua[ketQua.length - 1] = truoc + ' ' + dong;
@@ -224,6 +241,7 @@ function noiDongBiNgatGiuaCau(vanBan) {
 }
 
 module.exports = {
+    laDongMoMucMoi,
     noiTieuDeBiNgatDong,
     noiDongBiNgatGiuaCau,
     boKyHieuLietKe,

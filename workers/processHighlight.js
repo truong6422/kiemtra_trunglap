@@ -33,6 +33,10 @@ const {
 // nhau, dù vùng bôi giống nhau.
 const DO_MO = 0.30;
 
+// Phần lề trên/lề dưới của trang (theo chiều cao trang) coi là header/footer.
+// 5% trang A4 ≈ 42pt, thân bài Word mặc định cách mép ≥ 2cm nên không chạm tới.
+const TI_LE_LE_TRANG = 0.05;
+
 // Lỗi 7: 3 màu riêng biệt theo loại trùng
 const MAU_CAU    = rgb(1,          213 / 255, 79  / 255); // Vàng
 const MAU_DOAN   = rgb(1,          150 / 255, 50  / 255); // Cam
@@ -226,6 +230,12 @@ function gomViTriTheoDong(cacO) {
                 if (o.x < phaiTruoc) {
                     const phaiSau = o.x + o.width;
                     if (phaiSau <= phaiTruoc) {
+                        // Nằm gọn trong vệt trước: thường là câu lặp lại
+                        // nguyên văn ("Use case kết thúc.") nên dò ra đúng
+                        // cùng chỗ. Bỏ hẳn như trước thì câu đó không còn vệt
+                        // nào, bấm "Xem trong bài" không nhảy được — gắn
+                        // thêm câu vào vệt đang có thay vì bỏ.
+                        for (const c of o.cacCau || []) dangGom.cacCau.add(c);
                         continue;
                     }
                     o = { ...o, x: phaiTruoc, width: phaiSau - phaiTruoc };
@@ -498,15 +508,16 @@ async function processAndHighlightReport(
             loaiTheoChiSo.set(item.chi_so_cau_kiem_tra, item.loai_vet || 'cau');
         }
 
-        // Lỗi 6: lấy chiều cao ước tính của mỗi trang từ pdfPages
-        const pageHeightMap = new Map();
-        for (const pageData of pdfPages) {
-            if (!pageData.items || pageData.items.length === 0) continue;
-            const ys = pageData.items.map(it => it.y);
-            const h = Math.max(...ys) - Math.min(...ys) + 20;
-            const yMin = Math.min(...ys);
-            pageHeightMap.set(pageData.page, { h, yMin });
-        }
+        // Lỗi 6: bỏ vị trí nằm ở lề trên/lề dưới (header, footer).
+        //
+        // Lấy chiều cao THẬT của trang trong PDF. Trước đây ước lượng bằng chữ
+        // thấp nhất và cao nhất trên trang — số trang đã bị loại từ lúc đọc
+        // PDF nên dòng đầu và dòng cuối của thân bài chính là hai mép đó, và
+        // bị coi nhầm là header/footer: câu nằm ở đầu/cuối trang mất vệt bôi
+        // màu, bấm "Xem trong bài" không nhảy tới được.
+        const chieuCaoTrang = new Map(
+            pdfDoc.getPages().map((p, i) => [i + 1, p.getHeight()])
+        );
 
         const oTheoTrang = new Map();
 
@@ -547,12 +558,11 @@ async function processAndHighlightReport(
                         : chiSoCau;
 
                 // Lỗi 6: lọc vị trí nằm ở header/footer
-                const phInf = pageHeightMap.get(found.page);
-                const cacViTriLoc = phInf
-                    ? found.positions.filter(p => {
-                        const rel = p.y - phInf.yMin;
-                        return phInf.h <= 0 || (rel >= phInf.h * 0.03 && rel <= phInf.h * 0.97);
-                    })
+                const h = chieuCaoTrang.get(found.page) || 0;
+                const cacViTriLoc = h > 0
+                    ? found.positions.filter(p =>
+                        p.y >= h * TI_LE_LE_TRANG &&
+                        p.y <= h * (1 - TI_LE_LE_TRANG))
                     : found.positions;
 
                 if (cacViTriLoc.length === 0) continue;
@@ -672,4 +682,4 @@ module.exports = {
 
     // Xuất thêm để đối chiếu vùng bôi màu với trang chi tiết khi cần kiểm tra
     __gomViTriTheoDong: gomViTriTheoDong
-};
+};

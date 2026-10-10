@@ -418,10 +418,13 @@ function quetTrang(
 
                 }
 
-                // chặn vòng lặp vô tận
+                // chặn vòng lặp vô tận. Cộng thêm độ dài cụm chữ mở đầu: câu
+                // hay bắt đầu ở giữa một dòng dài, phần chữ đứng trước câu đã
+                // chiếm gần hết hạn mức nên chưa kịp nối sang dòng sau đã bị
+                // dừng — câu vắt dòng kiểu đó không bao giờ dò ra được.
                 if (
                     normalized.length >
-                    target.length * 1.5
+                    target.length * 1.5 + page.items[start].text.length
                 ) {
                     break;
                 }

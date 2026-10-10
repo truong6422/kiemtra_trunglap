@@ -340,12 +340,24 @@ function buildPassageMatches(
         }
     );
 
-    const occupied =
-        new Set();
+    // Chống chồng lấn RIÊNG cho từng báo cáo nguồn. Trước đây dùng một tập
+    // chung cho mọi nguồn: cùng một đoạn của bài nộp khớp cả bản Word lẫn
+    // bản PDF của một bài mẫu thì chỉ nguồn nào xếp trước mới giữ được đoạn,
+    // nguồn kia mất hẳn — chọn xem bản Word thấy "Đoạn 1" nằm ở câu 70, các
+    // đoạn trùng phía trước đã bị bản PDF lấy mất.
+    const occupiedTheoNguon =
+        new Map();
 
     const finalPassages = [];
 
     for (const passage of passages) {
+        if (!occupiedTheoNguon.has(passage.id_bao_cao_nguon)) {
+            occupiedTheoNguon.set(passage.id_bao_cao_nguon, new Set());
+        }
+
+        const occupied =
+            occupiedTheoNguon.get(passage.id_bao_cao_nguon);
+
         let conflict = false;
 
         for (
@@ -376,9 +388,43 @@ function buildPassageMatches(
         }
     }
 
+    // Trả về theo thứ tự xuất hiện trong bài nộp
+    finalPassages.sort(
+        (a, b) =>
+            a.tu_cau_kiem_tra - b.tu_cau_kiem_tra ||
+            a.id_bao_cao_nguon.localeCompare(b.id_bao_cao_nguon)
+    );
+
     return finalPassages;
 }
 
+/**
+ * Số đoạn trùng của bài nộp (không kể nguồn): các đoạn của mọi nguồn trải ra
+ * trên bài nộp, chồng nhau thì tính là một, ưu tiên đoạn dài.
+ */
+function demDoanTrungCuaBai(passages = []) {
+    const daChiem = new Set();
+    let dem = 0;
+
+    const sapXep = [...passages].sort((a, b) => b.so_cau - a.so_cau);
+
+    for (const p of sapXep) {
+        let chongLan = false;
+        for (let i = p.tu_cau_kiem_tra; i <= p.den_cau_kiem_tra; i++) {
+            if (daChiem.has(i)) { chongLan = true; break; }
+        }
+        if (chongLan) continue;
+
+        dem++;
+        for (let i = p.tu_cau_kiem_tra; i <= p.den_cau_kiem_tra; i++) {
+            daChiem.add(i);
+        }
+    }
+
+    return dem;
+}
+
 module.exports = {
-    buildPassageMatches
-};
+    buildPassageMatches,
+    demDoanTrungCuaBai
+};

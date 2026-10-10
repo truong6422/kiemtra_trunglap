@@ -14,7 +14,8 @@ const CauHinhHeThong = require('../models/cau_hinh_he_thong');
 const ChiSoCau = require('../models/chi_so_cau');
 const BaoCao = require('../models/bao_cao');
 const {
-    buildPassageMatches
+    buildPassageMatches,
+    demDoanTrungCuaBai
 } = require('./passage_match');
 const {
     buildPatchworkMatches
@@ -961,8 +962,9 @@ async function checkPlagiarism(
         tong_so_tu_trung:
             tongSoTuTrung,
 
+        // Đếm theo bài nộp: cùng một đoạn khớp nhiều nguồn chỉ tính một lần
         tong_so_doan_trung:
-            chiTietDoanTrungFinal.length,
+            demDoanTrungCuaBai(chiTietDoanTrungFinal),
 
         tong_so_doan_chap_va:
             chiTietDoanChapVaFinal.length,
@@ -1002,4 +1004,4 @@ async function checkPlagiarism(
 }
 module.exports = {
     checkPlagiarism
-};
+};

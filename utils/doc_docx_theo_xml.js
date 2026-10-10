@@ -43,6 +43,68 @@ function layKieuDoan(nodeDoan) {
     return danhSachStyle[0].getAttribute('w:val') || '';
 }
 
+/** Con trực tiếp đầu tiên mang tên cho trước (không lặn vào w:pPrChange). */
+function conTrucTiep(node, ten) {
+    for (let c = node && node.firstChild; c; c = c.nextSibling) {
+        if (c.nodeName === ten) return c;
+    }
+    return null;
+}
+
+/**
+ * Đọc word/numbering.xml: numId → (ilvl → kiểu đánh số, vd "bullet", "decimal").
+ */
+function docKieuDanhSo(zip, docXml) {
+    const muc = zip.getEntry('word/numbering.xml');
+    const bang = new Map();
+    if (!muc) return bang;
+
+    const goc = docXml(zip.readAsText(muc));
+    const kieuTheoAbstract = new Map();
+
+    const cacAbstract = goc.getElementsByTagName('w:abstractNum');
+    for (let i = 0; i < cacAbstract.length; i++) {
+        const theoCap = new Map();
+        const cacCap = cacAbstract[i].getElementsByTagName('w:lvl');
+        for (let j = 0; j < cacCap.length; j++) {
+            const fmt = conTrucTiep(cacCap[j], 'w:numFmt');
+            theoCap.set(cacCap[j].getAttribute('w:ilvl'),
+                fmt ? fmt.getAttribute('w:val') : '');
+        }
+        kieuTheoAbstract.set(cacAbstract[i].getAttribute('w:abstractNumId'), theoCap);
+    }
+
+    const cacNum = goc.getElementsByTagName('w:num');
+    for (let i = 0; i < cacNum.length; i++) {
+        const abs = conTrucTiep(cacNum[i], 'w:abstractNumId');
+        if (abs) {
+            bang.set(cacNum[i].getAttribute('w:numId'),
+                kieuTheoAbstract.get(abs.getAttribute('w:val')) || new Map());
+        }
+    }
+    return bang;
+}
+
+/**
+ * Ký hiệu Word tự vẽ ở đầu đoạn (w:numPr) nhưng không nằm trong chữ. Gắn lại
+ * để đoạn ra giống bản PDF in từ chính tệp đó:
+ *   - dấu đầu dòng → "- " (ý liệt kê, không dán vào đoạn trên)
+ *   - đánh số      → "1. " (đề mục "1. Lý do chọn đề tài" được nhận ra như
+ *                    bên PDF; số cụ thể không quan trọng vì bị bỏ khi lọc)
+ * numId = 0 nghĩa là đã tắt đánh số.
+ */
+function kyHieuDanhSach(nodeDoan, kieuDanhSo) {
+    const numPr = conTrucTiep(conTrucTiep(nodeDoan, 'w:pPr'), 'w:numPr');
+    if (!numPr) return '';
+    const numId = conTrucTiep(numPr, 'w:numId');
+    const id = numId ? numId.getAttribute('w:val') : '';
+    if (id === '0') return '';
+    const ilvl = conTrucTiep(numPr, 'w:ilvl');
+    const fmt = (kieuDanhSo.get(id) || new Map())
+        .get(ilvl ? ilvl.getAttribute('w:val') : '0');
+    return !fmt || fmt === 'bullet' || fmt === 'none' ? '- ' : '1. ';
+}
+
 /**
  * Kiểm tra một nút có nằm bên trong thẻ cha mang tên nào đó hay không.
  * Dùng để biết đoạn văn có nằm trong bảng hoặc trong hộp văn bản không.
@@ -166,13 +228,16 @@ function docDocxTheoXml(duongDanFile) {
     // ảnh hưởng tới chữ đọc được nên chặn lại cho sạch màn hình.
     const boQuaCanhBao = () => { };
 
-    const tai_lieu = new DOMParser({
+    const docXml = (chuoi) => new DOMParser({
         errorHandler: {
             warning: boQuaCanhBao,
             error: boQuaCanhBao,
             fatalError: (e) => { throw new Error(e); }
         }
-    }).parseFromString(xml, 'text/xml');
+    }).parseFromString(chuoi, 'text/xml');
+
+    const tai_lieu = docXml(xml);
+    const kieuDanhSo = docKieuDanhSo(zip, docXml);
 
     const than = tai_lieu.getElementsByTagName('w:body')[0];
 
@@ -226,7 +291,11 @@ function docDocxTheoXml(duongDanFile) {
             continue;
         }
 
-        cacDong.push(chu);
+        // Đoạn có số thứ tự / dấu đầu dòng tự động của Word: ký hiệu không
+        // nằm trong chữ nên phải gắn lại "- ", nếu không ý liệt kê ("Mục tiêu")
+        // bị dán vào cuối đoạn phía trên. Bản PDF cũng giữ dấu đầu dòng dưới
+        // dạng "- " (dung_doan_van_pdf.js) nên hai định dạng ra cùng một câu.
+        cacDong.push(kyHieuDanhSach(doan, kieuDanhSo) + chu);
     }
 
     return cacDong.join('\n');

@@ -114,8 +114,8 @@
 
         const cacCho = chiTiet.map(n =>
             n.tu_cau_nguon === n.den_cau_nguon
-                ? `câu ${n.tu_cau_nguon + 1}`
-                : `câu ${n.tu_cau_nguon + 1}–${n.den_cau_nguon + 1}`);
+                ? `câu ${n.tu_cau_nguon}`
+                : `câu ${n.tu_cau_nguon}–${n.den_cau_nguon}`);
 
         return `Ghép từ ${cacCho.join(", ")} của bài mẫu.`;
     }
@@ -133,8 +133,13 @@
         if (!panel) return;
 
         const cau = dsCauTrung || [];
-        const doan = dsDoanTrung || [];
-        const chapVa = dsDoanChapVa || [];
+        // Đánh số "Đoạn 1, 2, …" theo đúng thứ tự xuất hiện trong bài nộp.
+        // Máy chủ lưu theo độ dài đoạn nên "Đoạn 1" từng là đoạn dài nhất ở
+        // câu 70, người xem tưởng các đoạn trùng phía trước bị bỏ qua.
+        const theoViTri = (a, b) =>
+            (Number(a.tu_cau_kiem_tra) || 0) - (Number(b.tu_cau_kiem_tra) || 0);
+        const doan = [...(dsDoanTrung || [])].sort(theoViTri);
+        const chapVa = [...(dsDoanChapVa || [])].sort(theoViTri);
 
         // Lớp bôi màu đánh số các câu theo vị trí trong chính danh sách câu
         // trùng đã lọc, còn đoạn lại ghi chỉ số câu tính trên toàn bài. Hai
@@ -211,7 +216,8 @@
                     tieuDe: `Đoạn ${i + 1}`,
                     mauDauKhoi: "#fef2f2",
                     mauChu: "#dc2626",
-                    ghiChu: `Câu ${tu + 1} đến ${den + 1} trong bài nộp.`,
+                    // Chỉ số câu đã đếm từ 1 (sentenceIndex), không cộng thêm
+                    ghiChu: `Câu ${tu} đến ${den} trong bài nộp.`,
                     benNop: d.doan_kiem_tra,
                     benNguon: d.doan_nguon
                 });
@@ -246,7 +252,7 @@
                     tieuDe: `Đoạn chắp vá ${i + 1}`,
                     mauDauKhoi: "#fffbeb",
                     mauChu: "#b45309",
-                    ghiChu: `Câu ${tu + 1} đến ${den + 1} trong bài nộp`
+                    ghiChu: `Câu ${tu} đến ${den} trong bài nộp`
                         + (soNguonKhac > 0
                             ? ` · còn khớp với ${soNguonKhac} bài mẫu khác`
                             : ""),

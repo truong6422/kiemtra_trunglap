@@ -16,6 +16,7 @@ const { execFile } =
 
 const { docDocxTheoXml } = require('./doc_docx_theo_xml');
 const { chuanHoaVanBanPdf } = require('./chuan_hoa_van_ban_pdf');
+const { dungDoanVanPdf } = require('./dung_doan_van_pdf');
 /**
  * [HÀM DỰ PHÒNG 1] Đọc PDF bằng thư viện 'pdf2json' khi 'pdf-parse' gặp sự cố.
  * Tích hợp cơ chế chặn và lọc các cảnh báo rác từ luồng hệ thống (stdout/stderr).
@@ -79,30 +80,21 @@ function convertDocToDocx(
 async function parsePdfVoiThuLai(dataBuffer) {
     try {
         const pdf = await moPdf(new Uint8Array(dataBuffer));
-        const pages = [];
+        const cacTrang = [];
         for (let i = 1; i <= pdf.numPages; i++) {
             const page = await pdf.getPage(i);
             const content = await page.getTextContent();
-            let lastY = -1;
-            let text = '';
-            for (const item of content.items) {
-                if (lastY !== -1 && Math.abs(lastY - item.transform[5]) > 5) {
-                    text += '\n';
-                }
-                text += item.str;
-                lastY = item.transform[5];
-            }
-            pages.push(text);
+            const [, y0, , y1] = page.view || [0, 0, 0, 0];
+            cacTrang.push({ items: content.items, chieuCao: y1 - y0 });
         }
-        return pages.join('\n');
+        // Dựng đoạn theo vị trí chữ trên trang (thụt lề, mép phải, dấu đầu
+        // dòng) để bản PDF ra cùng đoạn, cùng câu với bản Word.
+        return dungDoanVanPdf(cacTrang);
     } catch (err) {
         console.error("⚠️ Lỗi moPdf khi trích xuất:", err.message);
         return '';
     }
 }
-
-
-
 /**
  * [HÀM BỔ TRỢ] Chuyển đổi bảng mã tiếng Việt cũ TCVN3 (ABC) sang Unicode chuẩn.
  * Giúp hệ thống đọc được các tài liệu hành chính hoặc văn bản cũ viết bằng font .VNTime.
