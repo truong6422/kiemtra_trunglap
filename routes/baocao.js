@@ -4,7 +4,7 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const Counter = require('../models/counter');
+const { taoMaBaoCaoMoi } = require('../utils/tao_ma_bao_cao');
 
 const BaoCao = require('../models/bao_cao');
 const KetQuaKiemTra = require('../models/ket_qua_kiem_tra');
@@ -35,26 +35,6 @@ const upload = multer({ storage: storage });
 const upload2Dir = path.resolve(__dirname, '../upload2');
 if (!fs.existsSync(upload2Dir)) {
     fs.mkdirSync(upload2Dir, { recursive: true });
-}
-async function taoMaBaoCaoMoi() {
-
-    const counter =
-        await Counter.findOneAndUpdate(
-            {
-                _id: 'bao_cao'
-            },
-            {
-                $inc: {
-                    seq: 1
-                }
-            },
-            {
-                returnDocument: 'after',
-                upsert: true
-            }
-        );
-
-    return `BC${counter.seq}`;
 }
 
 // Trạng thái ghi trong bảng bao_cao khi không đọc được chữ hoặc lượt chấm hỏng

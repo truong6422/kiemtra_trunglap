@@ -6,6 +6,7 @@ const fs = require('fs');
 const libre = require('libreoffice-convert');
 const PizZip = require('pizzip');
 const { capNhatSoBaoCao } = require('../utils/cap_nhat_so_bao_cao');
+const { taoMaBaoCaoMoi } = require('../utils/tao_ma_bao_cao');
 const ThongKe =
     require('../models/thong_ke');
 const ChiTietCauTrung =
@@ -101,58 +102,7 @@ router.post('/upload-and-check', upload.single('fileBaoCao'), apDungGioiHanTep, 
         const loaiBaoCao = req.body.loaiBaoCao || 'Đồ án';
         const idSinhVien = req.body.idSinhVien || req.user?.id_sinh_vien || '';
 
-        const latestBaoCao =
-            await BaoCao
-                .findOne({
-                    id_bao_cao: /^BC/
-                })
-                .sort({
-                    _id: -1
-                })
-                .lean();
-
-        let nextNumber = 1;
-
-        if (
-            latestBaoCao &&
-            latestBaoCao.id_bao_cao
-        ) {
-            const currentNumber =
-                parseInt(
-                    latestBaoCao.id_bao_cao.replace(
-                        'BC',
-                        ''
-                    ),
-                    10
-                );
-
-            if (!isNaN(currentNumber)) {
-                nextNumber =
-                    currentNumber + 1;
-            }
-        }
-
-        let idBaoCaoMoi;
-
-        while (true) {
-
-            idBaoCaoMoi =
-                'BC' +
-                String(nextNumber)
-                    .padStart(3, '0');
-
-            const existed =
-                await BaoCao.exists({
-                    id_bao_cao:
-                        idBaoCaoMoi
-                });
-
-            if (!existed) {
-                break;
-            }
-
-            nextNumber++;
-        }
+        const idBaoCaoMoi = await taoMaBaoCaoMoi();
 
         const vanBanTho = await trichXuatVanBan(duongDanFile);
         console.log("ĐỘ DÀI VĂN BẢN:", vanBanTho.length);
@@ -369,4 +319,4 @@ router.get('/chi-tiet/:id/document', async (req, res) => {
         return res.status(500).json({ success: false, message: error.message });
     }
 });
-module.exports = router;
+module.exports = router;
