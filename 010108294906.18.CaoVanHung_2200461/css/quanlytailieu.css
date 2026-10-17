@@ -1078,3 +1078,21 @@ tr:hover .detail-action-container {
 }
 
 .tl-nut--phu:hover { background: #f1f5f9; }
+
+/* --- Bổ sung báo cáo mẫu (chỉ quản trị viên) --- */
+.khu-mau-bo-sung { border-top: 1px solid #e2e8f0; }
+.mbs-mo-ta { color: #475569; margin: -10px 0 18px; line-height: 1.6; }
+.mbs-mo-ta code { background: #eef2ff; padding: 1px 6px; border-radius: 4px; }
+.mbs-nut { font-size: 14px; padding: 8px 14px; }
+#mbsLoai { width: 200px; }
+#mbsTim { width: 360px; }
+.mbs-khoi { margin-bottom: 20px; }
+.mbs-cuon { max-height: 340px; overflow-y: auto; }
+.mbs-tieu-de { margin: 24px 0 10px; color: #1e293b; font-size: 18px; }
+.mbs-hang-nut { display: flex; align-items: center; gap: 14px; margin-top: 14px; }
+.mbs-tien-do { color: #475569; }
+.mbs-trong { text-align: center !important; color: #94a3b8; }
+.mbs-xoa { background: none; border: none; color: #dc2626; cursor: pointer; font-size: 16px; }
+.mbs-nhan { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 13px; }
+.mbs-nhan--cho { background: #fef3c7; color: #b45309; }
+.mbs-nhan--xong { background: #dcfce7; color: #15803d; }

@@ -20,6 +20,10 @@ const ChiTietDoanChapVa =
 
 // Import hàm đẩy task vào hàng đợi Redis (đường dẫn trỏ đến file queue.js trong thư mục workers)
 const VetBoiMau = require('../models/vet_boi_mau');
+const {
+    boiMauBaoCaoNguon,
+    duongDanPdfSachNguon
+} = require('../utils/boi_mau_bao_cao_nguon');
 const { addPlagiarismTask } = require('../workers/queue');
 
 const uploadsDir = path.resolve(__dirname, '../uploads');
@@ -319,4 +323,53 @@ router.get('/chi-tiet/:id/document', async (req, res) => {
         return res.status(500).json({ success: false, message: error.message });
     }
 });
-module.exports = router;
+
+// ============================================================================
+// XEM BÁO CÁO NGUỒN CÓ BÔI MÀU
+// Trang xemnguon.html hiển thị chính tệp nguồn, tô những câu đã trùng với bài
+// nộp, để giảng viên đối chiếu tận mắt thay vì chỉ đọc câu trích.
+// ============================================================================
+router.get('/chi-tiet/:id/nguon/:idNguon', async (req, res) => {
+    try {
+        const { nguon, cacCau, vetBoiMau } =
+            await boiMauBaoCaoNguon(req.params.id, req.params.idNguon);
+
+        return res.json({
+            success: true,
+            data: {
+                nguon: {
+                    id_bao_cao: nguon.id_bao_cao,
+                    tieu_de: nguon.tieu_de,
+                    loai_bao_cao: nguon.loai_bao_cao
+                },
+                cacCau,
+                vetBoiMau
+            }
+        });
+    } catch (error) {
+        console.error('Lỗi bôi màu báo cáo nguồn:', error);
+        return res.status(error.ma || 500).json({ success: false, message: error.message });
+    }
+});
+
+// Bản PDF chưa bôi màu của nguồn — trang xem nguồn tự vẽ vệt lên trên
+router.get('/chi-tiet/:id/nguon/:idNguon/document', async (req, res) => {
+    try {
+        const nguon = await BaoCao.findOne({ id_bao_cao: req.params.idNguon, mau_kiem_tra: true }).lean();
+        const tep = nguon && duongDanPdfSachNguon(nguon);
+
+        if (!tep || !fs.existsSync(tep)) {
+            return res.status(404).json({
+                success: false,
+                message: 'Bản PDF của báo cáo nguồn chưa được tạo.'
+            });
+        }
+
+        res.setHeader('Content-Type', 'application/pdf');
+        return res.sendFile(tep);
+    } catch (error) {
+        return res.status(500).json({ success: false, message: error.message });
+    }
+});
+
+module.exports = router;

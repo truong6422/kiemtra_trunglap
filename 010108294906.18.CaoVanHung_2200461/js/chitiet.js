@@ -834,8 +834,27 @@ document.addEventListener("DOMContentLoaded", async function () {
                             "source-card-title";
 
 
-                        title.textContent =
-                            tenTaiLieuMau;
+                        // Bấm vào số thứ tự – tên tài liệu thì mở trang xem
+                        // chính báo cáo nguồn, đã tô sẵn những câu trùng với
+                        // bài này. Bấm chỗ khác của thẻ vẫn lọc vệt như cũ.
+                        const lienKetNguon =
+                            document.createElement("a");
+
+                        lienKetNguon.className = "lien-ket-nguon";
+                        lienKetNguon.href =
+                            `xemnguon.html?id=${encodeURIComponent((dataBaoCao && dataBaoCao.id_bao_cao) || reportId)}`
+                            + `&nguon=${encodeURIComponent(item.id_bao_cao)}`;
+                        lienKetNguon.target = "_blank";
+                        lienKetNguon.rel = "noopener";
+                        lienKetNguon.title =
+                            "Mở báo cáo nguồn, tô màu các câu trùng";
+                        lienKetNguon.textContent = tenTaiLieuMau;
+                        lienKetNguon.addEventListener(
+                            "click", e => e.stopPropagation());
+
+                        title.appendChild(lienKetNguon);
+                        title.insertAdjacentHTML("beforeend",
+                            ' <i class="fa-solid fa-arrow-up-right-from-square lien-ket-nguon__icon"></i>');
 
                         card.style.cursor = "pointer";
                         card.addEventListener("click", function () {

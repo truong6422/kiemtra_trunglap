@@ -20,17 +20,7 @@
 const NguoiDung = require('../models/nguoi_dung');
 const SinhVien = require('../models/sinh_vien');
 const GiangVien = require('../models/giang_vien');
-
-/** Sinh mã kế tiếp theo kiểu SV001 / GV001, giống cách làm lúc đăng ký. */
-async function maKeTiep(Model, truong, tienTo) {
-    const cuoi = await Model.findOne().sort({ [truong]: -1 });
-    if (!cuoi || !cuoi[truong]) return tienTo + '001';
-
-    const so = parseInt(String(cuoi[truong]).replace(tienTo, ''), 10);
-    if (Number.isNaN(so)) return tienTo + '001';
-
-    return tienTo + String(so + 1).padStart(3, '0');
-}
+const { maKeTiep } = require('./ma_ke_tiep');
 
 /**
  * Đưa hồ sơ của một người về đúng collection theo vai_tro hiện tại.
@@ -106,9 +96,14 @@ async function dongBoVaiTroTatCa() {
     const ketQua = [];
 
     for (const nd of ds) {
-        const r = await dongBoVaiTro(nd.id_nguoi_dung);
-        if (r && (r.daTao || r.daXoa)) {
-            ketQua.push({ id: nd.id_nguoi_dung, ...r });
+        // Một tài khoản lỗi không được chặn việc đồng bộ các tài khoản còn lại
+        try {
+            const r = await dongBoVaiTro(nd.id_nguoi_dung);
+            if (r && (r.daTao || r.daXoa)) {
+                ketQua.push({ id: nd.id_nguoi_dung, ...r });
+            }
+        } catch (e) {
+            console.error(`Không đồng bộ được vai trò của ${nd.id_nguoi_dung}: ${e.message}`);
         }
     }
 

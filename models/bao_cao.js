@@ -53,6 +53,19 @@ const baoCaoSchema = new mongoose.Schema(
         pham_vi_trang: {
             type: String,
             default: ""
+        },
+
+        // Báo cáo mẫu do quản trị viên bổ sung từ trang Quản lý tài liệu.
+        // Nguồn: "tep_may_tinh" hoặc mã báo cáo đã kiểm tra được lấy làm mẫu.
+        // Báo cáo mẫu cũ không có hai trường này.
+        nguon_bo_sung: {
+            type: String
+        },
+
+        // false = mới thêm, chưa tiền xử lý / tính chỉ số câu. Không đặt
+        // mặc định để báo cáo cũ không bị coi là đang chờ tính toán.
+        da_tinh_toan: {
+            type: Boolean
         }
     },
     {

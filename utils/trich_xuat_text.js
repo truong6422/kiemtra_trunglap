@@ -17,6 +17,7 @@ const { execFile } =
 const { docDocxTheoXml } = require('./doc_docx_theo_xml');
 const { chuanHoaVanBanPdf } = require('./chuan_hoa_van_ban_pdf');
 const { dungDoanVanPdf } = require('./dung_doan_van_pdf');
+const { timVungBang } = require('./nhan_dien_bang_pdf');
 /**
  * [HÀM DỰ PHÒNG 1] Đọc PDF bằng thư viện 'pdf2json' khi 'pdf-parse' gặp sự cố.
  * Tích hợp cơ chế chặn và lọc các cảnh báo rác từ luồng hệ thống (stdout/stderr).
@@ -85,7 +86,15 @@ async function parsePdfVoiThuLai(dataBuffer) {
             const page = await pdf.getPage(i);
             const content = await page.getTextContent();
             const [, y0, , y1] = page.view || [0, 0, 0, 0];
-            cacTrang.push({ items: content.items, chieuCao: y1 - y0 });
+            // Vùng bảng trên trang: chữ trong đó bị loại như ô bảng của Word.
+            // Lỗi đọc nét vẽ chỉ làm mất phần nhận diện bảng, không mất chữ.
+            let vungBang = [];
+            try {
+                vungBang = await timVungBang(page);
+            } catch (e) {
+                console.warn(`⚠️ Không đọc được nét kẻ trang ${i}: ${e.message}`);
+            }
+            cacTrang.push({ items: content.items, chieuCao: y1 - y0, vungBang });
         }
         // Dựng đoạn theo vị trí chữ trên trang (thụt lề, mép phải, dấu đầu
         // dòng) để bản PDF ra cùng đoạn, cùng câu với bản Word.

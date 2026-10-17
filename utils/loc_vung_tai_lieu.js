@@ -21,7 +21,8 @@ const {
     laTieuDeLon,
     laDongMucLuc,
     laSoTrang,
-    CHUONG_HOAC_PHAN
+    CHUONG_HOAC_PHAN,
+    TU_CHUONG_PHAN
 } = require('./nhan_dien_tieu_de');
 
 const { boNhan, coNhan, NHAN } = require('./danh_dau_cau_truc');
@@ -96,7 +97,9 @@ const MOC_MO_DAU = new RegExp(
     'iu'
 );
 
-const MOC_CHUONG_PHAN = /^(CHƯƠNG|CHUONG|PHẦN|PHAN|CHAPTER|PART)\s*[:\-–]?\s*(1|I)(?![\dIVXLCDM])/iu;
+// "I" chỉ nhận chữ in hoa: cờ /i từng khiến "Phần in ấn…" thành mốc PHẦN I
+const MOC_CHUONG_PHAN = new RegExp(
+    `^${TU_CHUONG_PHAN}\\s*[:\\-–]?\\s*(1|I)(?![\\p{L}\\p{N}])`, 'u');
 
 /**
  * Tìm dòng mở đầu phần nội dung.

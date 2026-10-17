@@ -461,6 +461,42 @@ const CAC_BUOC = [
             ghiLog(`Đã bỏ trường so_lan_kiem_tra khỏi `
                 + `${ketQua.modifiedCount} hồ sơ giảng viên.`);
         }
+    },
+
+    {
+        ma: '2026-10-17-danh-gia-gan-tai-khoan',
+        mo_ta: 'danh_gia: gắn id_nguoi_dung để bảng đánh giá hiện đúng mã '
+            + 'sinh viên / mã giảng viên hiện tại của người đánh giá',
+
+        async chay(db, ghiLog) {
+            // Trường id_sinh_vien cũ lúc thì là mã tài khoản ND…, lúc là mã
+            // sinh viên, lúc là mã giảng viên. Tra cả ba nơi để ra tài khoản.
+            // Ghi sau thì thắng: mã tài khoản ND… khớp chắc chắn nhất nên ghi cuối
+            const bang = new Map();
+            (await db.collection('giang_vien').find({}).toArray())
+                .forEach(x => bang.set(x.id_giang_vien, x.id_nguoi_dung));
+            (await db.collection('sinh_vien').find({}).toArray())
+                .forEach(x => bang.set(x.id_sinh_vien, x.id_nguoi_dung));
+            (await db.collection('nguoi_dung').find({}).toArray())
+                .forEach(x => bang.set(x.id_nguoi_dung, x.id_nguoi_dung));
+
+            const ds = await db.collection('danh_gia').find({
+                id_sinh_vien: { $nin: ['', null] },
+                $or: [{ id_nguoi_dung: { $exists: false } }, { id_nguoi_dung: '' }]
+            }).toArray();
+
+            let daGan = 0;
+            for (const dg of ds) {
+                const idNguoiDung = bang.get(dg.id_sinh_vien);
+                if (!idNguoiDung) continue;
+
+                await db.collection('danh_gia').updateOne(
+                    { _id: dg._id }, { $set: { id_nguoi_dung: idNguoiDung } });
+                daGan++;
+            }
+
+            ghiLog(`Đã gắn tài khoản cho ${daGan}/${ds.length} đánh giá.`);
+        }
     }
 ];
 

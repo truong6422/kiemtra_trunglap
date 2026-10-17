@@ -43,7 +43,15 @@ const DE_MUC_CO_DINH = new RegExp(
     'iu'
 );
 
-const CHUONG_HOAC_PHAN = /^(CHƯƠNG|CHUONG|PHẦN|PHAN|CHAPTER|PART)\s*[:\-]?\s*(\d+|[IVXLCDM]+)\b/iu;
+// Số La Mã chỉ nhận chữ IN HOA và phải đứng riêng (sau nó không còn chữ cái).
+// Trước đây cờ /i khiến "Phần mềm…" bị đọc thành "PHẦN M" (M = 1000 La Mã):
+// cả câu bị coi là đề mục và loại khỏi so trùng, nên bài nộp có câu không
+// bao giờ được bôi màu. Từ khoá thì vẫn chấp nhận mọi kiểu viết hoa/thường.
+const TU_CHUONG_PHAN = '(?:[Cc][Hh][Ưư][Ơơ][Nn][Gg]|[Cc][Hh][Uu][Oo][Nn][Gg]|[Pp][Hh][Ầầ][Nn]'
+    + '|[Pp][Hh][Aa][Nn]|[Cc][Hh][Aa][Pp][Tt][Ee][Rr]|[Pp][Aa][Rr][Tt])';
+
+const CHUONG_HOAC_PHAN = new RegExp(
+    `^${TU_CHUONG_PHAN}\\s*[:\\-]?\\s*(\\d+|[IVXLCDM]+)(?![\\p{L}\\p{N}#+])`, 'u');
 
 /**
  * Tiêu đề nhận ra qua cách trình bày chứ không qua tên gọi.
@@ -282,5 +290,6 @@ module.exports = {
     laSoTrang,
     tachKyHieuDeMuc,
     CHUONG_HOAC_PHAN,
+    TU_CHUONG_PHAN,
     DE_MUC_CO_DINH
 };

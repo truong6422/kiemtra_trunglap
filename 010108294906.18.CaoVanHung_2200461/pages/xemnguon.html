@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xem báo cáo nguồn</title>
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Dùng chung giao diện với trang chi tiết kiểm tra -->
+    <link rel="stylesheet" href="../css/chitiet.css">
+    <style>
+        .xn-phu { font-size: 13px; color: #64748b; margin-left: 4px; }
+        .xn-cap { border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 10px; cursor: pointer; overflow: hidden; }
+        .xn-cap:hover, .xn-cap.dang-chon { border-color: #f97316; box-shadow: 0 1px 6px rgba(0,0,0,.08); }
+        .xn-cap__dau { display: flex; justify-content: space-between; padding: 8px 10px; background: #f8fafc; font-size: 13px; font-weight: 600; }
+        .xn-cap__nguon { padding: 8px 10px; background: #fef9c3; font-size: 13px; line-height: 1.5; }
+        .xn-cap__bai { padding: 8px 10px; background: #dbeafe; font-size: 13px; line-height: 1.5; }
+        .xn-nhan { display: block; font-weight: 700; margin-bottom: 2px; }
+        #xnDanhSach { flex: 1; overflow-y: auto; padding: 12px; }
+    </style>
+    <script src="../js/hop-thoai.js"></script>
+</head>
+<body>
+
+    <div class="viewer-header">
+        <div class="header-left">
+            <button class="back-btn" onclick="window.history.length > 1 ? history.back() : window.close()"
+                title="Quay lại"><i class="fa-solid fa-chevron-left"></i></button>
+            <span class="file-title-display" id="xnTieuDe">Đang tải báo cáo nguồn...</span>
+            <span class="xn-phu" id="xnPhuDe"></span>
+        </div>
+        <div class="header-right">
+            <span style="font-size: 14px; color: #64748b;" id="xnSoCau"></span>
+        </div>
+    </div>
+
+    <div class="viewer-body">
+        <!-- Cột trái: chính tệp báo cáo nguồn, phủ màu những câu đã trùng -->
+        <div class="doc-preview-pane">
+            <div class="pdf-khung">
+                <div id="pdfToolbar" class="pdf-toolbar">
+                    <button type="button" id="pdfToggleThumbs" class="pdf-nut pdf-nut--bat"
+                        title="Ẩn/hiện danh sách trang">&#9776;</button>
+                    <span id="pdfTitle" class="pdf-toolbar__ten"></span>
+                    <div class="pdf-toolbar__nhom">
+                        <button type="button" id="pdfPrevPage" class="pdf-nut" title="Trang trước">&#8249;</button>
+                        <input type="number" id="pdfPageInput" min="1" value="1" class="pdf-o-trang" title="Nhảy tới trang">
+                        <span id="pdfPageTotal" style="color:#9aa0a6;">/ --</span>
+                        <button type="button" id="pdfNextPage" class="pdf-nut" title="Trang sau">&#8250;</button>
+                    </div>
+                    <div class="pdf-toolbar__vach"></div>
+                    <div class="pdf-toolbar__nhom">
+                        <button type="button" id="pdfZoomOut" class="pdf-nut" title="Thu nhỏ">&minus;</button>
+                        <span id="pdfZoomLevel" class="pdf-muc-zoom">100%</span>
+                        <button type="button" id="pdfZoomIn" class="pdf-nut" title="Phóng to">+</button>
+                    </div>
+                </div>
+                <div id="pdfMatchInfo" class="pdf-thongbao"></div>
+                <div class="pdf-than">
+                    <div id="pdfThumbnails" class="pdf-thumbs"></div>
+                    <div id="pdfViewer" class="pdf-vung-trang"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cột phải: từng câu nguồn đã trùng, kèm câu tương ứng của bài nộp -->
+        <div class="similarity-sidebar">
+            <div class="sidebar-top-card">
+                <span style="font-weight: 600; color: #0f172a; font-size: 14px;">Câu trùng trong báo cáo nguồn</span>
+                <span class="total-similarity-badge" id="xnSoCauBadge">0 câu</span>
+            </div>
+            <div id="xnDanhSach">Đang tải...</div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        if (window.pdfjsLib) {
+            pdfjsLib.GlobalWorkerOptions.workerSrc =
+                "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+        }
+    </script>
+    <script src="../js/pdf-highlight-viewer.js"></script>
+    <script src="../js/xemnguon.js"></script>
+</body>
+</html>

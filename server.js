@@ -13,6 +13,7 @@ const chiTietNopBaiRoutes = require('./routes/chitietnopbai');
 const thongKeRoutes = require('./routes/thongke');
 const xuatExcelRoutes = require('./routes/xuat_excel');
 const danhGiaRoutes = require('./routes/danh_gia');
+const mauBoSungRoutes = require('./routes/mau_bo_sung');
 const { batLichDon } = require('./utils/don_bao_cao_qua_han');
 const { chayChuyenDoi } = require('./utils/chuyen_doi_du_lieu');
 const { dongBoVaiTroTatCa } = require('./utils/dong_bo_vai_tro');
@@ -53,6 +54,7 @@ app.use('/api/chi-tiet-nop-bai', chiTietNopBaiRoutes);
 app.use('/api/thong-ke', thongKeRoutes);
 app.use('/api/xuat-excel', xuatExcelRoutes);
 app.use('/api/danh-gia', danhGiaRoutes);
+app.use('/api/mau-bo-sung', mauBoSungRoutes);
 
 const path = require('path');
 app.use('/upload2', express.static(path.join(__dirname, 'upload2')));

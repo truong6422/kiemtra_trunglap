@@ -6,6 +6,7 @@ const NguoiDung = require('../models/nguoi_dung');
 const SinhVien = require("../models/sinh_vien");
 const GiangVien = require("../models/giang_vien");
 const { dongBoVaiTro } = require('../utils/dong_bo_vai_tro');
+const { maKeTiep } = require('../utils/ma_ke_tiep');
 const {
   doiMaSinhVien,
   doiMaGiangVien,
@@ -91,14 +92,7 @@ router.post('/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // 9. Tạo tài khoản với id_nguoi_dung tự động
-    const lastUser = await NguoiDung.findOne().sort({ id_nguoi_dung: -1 });
-
-    let nextId = "ND001";
-    if (lastUser && lastUser.id_nguoi_dung) {
-      const number = parseInt(lastUser.id_nguoi_dung.replace("ND", ""), 10);
-      const newNumber = (number + 1).toString().padStart(3, "0");
-      nextId = "ND" + newNumber;
-    }
+    const nextId = await maKeTiep(NguoiDung, 'id_nguoi_dung', 'ND');
 
     const user = await NguoiDung.create({
       id_nguoi_dung: nextId,
@@ -119,13 +113,7 @@ router.post('/register', async (req, res) => {
 
     // Tạo bản ghi cho Sinh Viên
     if (user.vai_tro === "sinh_vien") {
-      const lastSV = await SinhVien.findOne().sort({ id_sinh_vien: -1 });
-      let nextSVId = "SV001";
-      if (lastSV && lastSV.id_sinh_vien) {
-        const number = parseInt(lastSV.id_sinh_vien.replace("SV", ""), 10);
-        const newNumber = (number + 1).toString().padStart(3, "0");
-        nextSVId = "SV" + newNumber;
-      }
+      const nextSVId = await maKeTiep(SinhVien, 'id_sinh_vien', 'SV');
 
       await SinhVien.create({
         id_sinh_vien: nextSVId,
@@ -140,13 +128,7 @@ router.post('/register', async (req, res) => {
 
     // Tạo bản ghi cho Giảng Viên
     if (user.vai_tro === "giang_vien") {
-      const lastGV = await GiangVien.findOne().sort({ id_giang_vien: -1 });
-      let nextGVId = "GV001";
-      if (lastGV && lastGV.id_giang_vien) {
-        const number = parseInt(lastGV.id_giang_vien.replace("GV", ""), 10);
-        const newNumber = (number + 1).toString().padStart(3, "0");
-        nextGVId = "GV" + newNumber;
-      }
+      const nextGVId = await maKeTiep(GiangVien, 'id_giang_vien', 'GV');
 
       await GiangVien.create({
         id_giang_vien: nextGVId,
@@ -194,14 +176,7 @@ router.post('/register/google', async (req, res) => {
       });
     }
 
-    const lastUser = await NguoiDung.findOne().sort({ id_nguoi_dung: -1 });
-
-    let nextId = "ND001";
-    if (lastUser && lastUser.id_nguoi_dung) {
-      const number = parseInt(lastUser.id_nguoi_dung.replace("ND", ""), 10);
-      const newNumber = (number + 1).toString().padStart(3, "0");
-      nextId = "ND" + newNumber;
-    }
+    const nextId = await maKeTiep(NguoiDung, 'id_nguoi_dung', 'ND');
 
     const randomPassword = Math.random().toString(36).slice(-8);
     const hashedPassword = await bcrypt.hash(randomPassword, 10);
@@ -224,13 +199,7 @@ router.post('/register/google', async (req, res) => {
     });
 
     if (user.vai_tro === "sinh_vien") {
-      const lastSV = await SinhVien.findOne().sort({ id_sinh_vien: -1 });
-      let nextSVId = "SV001";
-      if (lastSV && lastSV.id_sinh_vien) {
-        const number = parseInt(lastSV.id_sinh_vien.replace("SV", ""), 10);
-        const newNumber = (number + 1).toString().padStart(3, "0");
-        nextSVId = "SV" + newNumber;
-      }
+      const nextSVId = await maKeTiep(SinhVien, 'id_sinh_vien', 'SV');
 
       await SinhVien.create({
         id_sinh_vien: nextSVId,
@@ -244,13 +213,7 @@ router.post('/register/google', async (req, res) => {
     }
 
     if (user.vai_tro === "giang_vien") {
-      const lastGV = await GiangVien.findOne().sort({ id_giang_vien: -1 });
-      let nextGVId = "GV001";
-      if (lastGV && lastGV.id_giang_vien) {
-        const number = parseInt(lastGV.id_giang_vien.replace("GV", ""), 10);
-        const newNumber = (number + 1).toString().padStart(3, "0");
-        nextGVId = "GV" + newNumber;
-      }
+      const nextGVId = await maKeTiep(GiangVien, 'id_giang_vien', 'GV');
 
       await GiangVien.create({
         id_giang_vien: nextGVId,

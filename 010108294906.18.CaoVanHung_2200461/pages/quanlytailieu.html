@@ -434,6 +434,79 @@
         </div>
     </main>
 
+    <!-- Bổ sung báo cáo mẫu: chỉ hiện với quản trị viên (quanlytailieu-mau-bo-sung.js) -->
+    <section class="main-content khu-mau-bo-sung" id="khuMauBoSung" hidden>
+        <div class="page-header">
+            <h2>Bổ sung báo cáo mẫu</h2>
+        </div>
+        <p class="mbs-mo-ta">
+            Chọn báo cáo đưa vào kho dữ liệu nguồn để so sánh với các bài nộp sau. Tệp được lưu trong
+            thư mục <code>nguon_moi_bo_sung</code>. Sau khi thêm, bấm <b>Tiền xử lý &amp; tính toán</b> —
+            chỉ những báo cáo mới thêm được tính, các báo cáo mẫu cũ giữ nguyên.
+        </p>
+
+        <div class="filter-section">
+            <label for="mbsLoai">Loại báo cáo</label>
+            <input type="text" id="mbsLoai" list="mbsDsLoai" placeholder="VD: DATN_KS">
+            <datalist id="mbsDsLoai"></datalist>
+
+            <button type="button" class="upload-btn mbs-nut" id="mbsNutTep">
+                <i class="fa-solid fa-file-arrow-up"></i> Chọn tệp từ máy tính
+            </button>
+            <button type="button" class="upload-btn mbs-nut" id="mbsNutThuMuc">
+                <i class="fa-solid fa-folder-open"></i> Chọn cả thư mục
+            </button>
+            <button type="button" class="clear-btn" id="mbsNutBaoCao">
+                <i class="fa-solid fa-list-check"></i> Chọn từ báo cáo đã kiểm tra
+            </button>
+            <input type="file" id="mbsTep" accept=".docx,.pdf" multiple hidden>
+            <input type="file" id="mbsThuMuc" webkitdirectory multiple hidden>
+        </div>
+
+        <!-- Báo cáo người dùng đã tải lên và có kết quả tỉ lệ -->
+        <div id="mbsKhuBaoCao" class="mbs-khoi" hidden>
+            <div class="filter-section">
+                <label for="mbsTim">Tìm</label>
+                <input type="text" id="mbsTim" placeholder="Mã hoặc tiêu đề báo cáo">
+            </div>
+            <div class="mbs-cuon">
+                <table class="data-table">
+                    <thead><tr>
+                        <th style="width:44px"></th><th>ID</th><th>Tiêu đề</th>
+                        <th>Độ trùng lặp</th><th>Ngày tải lên</th>
+                    </tr></thead>
+                    <tbody id="mbsBangBaoCao"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <h3 class="mbs-tieu-de">Danh sách chờ thêm (<span id="mbsSoCho">0</span>)</h3>
+        <table class="data-table">
+            <thead><tr><th>Tên tài liệu</th><th>Lấy từ</th><th style="width:70px">Bỏ</th></tr></thead>
+            <tbody id="mbsBangCho"></tbody>
+        </table>
+        <div class="mbs-hang-nut">
+            <button type="button" class="upload-btn" id="mbsNutThem">
+                <i class="fa-solid fa-plus"></i> Thêm vào dữ liệu mẫu
+            </button>
+        </div>
+
+        <h3 class="mbs-tieu-de">Báo cáo mẫu đã bổ sung</h3>
+        <table class="data-table">
+            <thead><tr>
+                <th>ID</th><th>Tiêu đề</th><th>Loại</th><th>Lấy từ</th>
+                <th>Ngày thêm</th><th>Trạng thái</th><th style="width:70px">Gỡ</th>
+            </tr></thead>
+            <tbody id="mbsBangDaThem"></tbody>
+        </table>
+        <div class="mbs-hang-nut">
+            <button type="button" class="upload-btn" id="mbsNutTinhToan">
+                <i class="fa-solid fa-gears"></i> Tiền xử lý &amp; tính toán báo cáo mới
+            </button>
+            <span id="mbsTienDo" class="mbs-tien-do"></span>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-left">
             <p>Copyright © 2016 Trường Đại học Công nghiệp Việt-Hung. All Rights Reserved.</p>
@@ -768,6 +841,7 @@
     <script src="../js/menu-theo-vai-tro.js"></script>
     <script src="../js/quanlytailieu-hanh-dong.js"></script>
     <script src="../js/quanlytailieu.js"></script>
+    <script src="../js/quanlytailieu-mau-bo-sung.js"></script>
     <script src="../js/trangchu_saudn.js"></script>
     <style>
         /* Hiệu ứng in đậm và đổi màu nền cho hàng khi được chọn */

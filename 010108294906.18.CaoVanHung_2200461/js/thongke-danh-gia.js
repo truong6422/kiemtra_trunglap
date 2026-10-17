@@ -83,6 +83,10 @@ window.TkDanhGia = (() => {
         </div>`;
     }
 
+    // Họ tên, mã, bình luận do người dùng tự nhập: phải thoát HTML trước khi chèn
+    const thoatHtml = s => String(s ?? '').replace(/[&<>"']/g,
+        c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
     // ── Render bảng danh sách ──
     function renderBang() {
         const soTrang = Math.max(1, Math.ceil(danhSach.length / soDong));
@@ -100,7 +104,7 @@ window.TkDanhGia = (() => {
                 : '--';
             return `<tr>
                 <td>${dg.id_danh_gia || ''}</td>
-                <td>${dg.id_sinh_vien || '<em style="color:#94a3b8">Ẩn danh</em>'}</td>
+                <td title="${thoatHtml(dg.ho_ten_nguoi_danh_gia)}">${thoatHtml(dg.ma_nguoi_danh_gia || dg.id_sinh_vien) || '<em style="color:#94a3b8">Ẩn danh</em>'}</td>
                 <td>${dg.id_bao_cao || '--'}</td>
                 <td>
                     <span style="font-size:15px;">${veSao(dg.so_sao)}</span>
@@ -110,8 +114,8 @@ window.TkDanhGia = (() => {
                     <span style="max-width:280px;display:inline-block;overflow:hidden;
                         text-overflow:ellipsis;white-space:nowrap;vertical-align:middle;
                         font-size:13px;color:#475569;"
-                        title="${(dg.binh_luan || '').replace(/"/g, '&quot;')}">
-                        ${dg.binh_luan || '<em style="color:#94a3b8">–</em>'}
+                        title="${thoatHtml(dg.binh_luan)}">
+                        ${thoatHtml(dg.binh_luan) || '<em style="color:#94a3b8">–</em>'}
                     </span>
                 </td>
                 <td style="white-space:nowrap;font-size:13px;">${ngay}</td>

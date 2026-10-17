@@ -23,6 +23,8 @@
 
 const { laDongMoMucMoi } = require('./chuan_hoa_dong_van_ban');
 const { laSoTrang } = require('./nhan_dien_tieu_de');
+const { namTrongBang } = require('./nhan_dien_bang_pdf');
+const { NHAN, ganNhan } = require('./danh_dau_cau_truc');
 
 // Ký tự đứng một mình ở đầu dòng được coi là dấu đầu dòng. Vùng U+E000–U+F8FF
 // là ký tự riêng của phông Symbol/Wingdings mà Word dùng để vẽ dấu đầu dòng.
@@ -106,7 +108,7 @@ function dungDoanVanPdf(cacTrang) {
             const k = cacDong[i - 1].y - cacDong[i].y;
             if (k > 0) cacKhoang.push(k);
         }
-        return { cacDong, chieuCao: t.chieuCao || 0 };
+        return { cacDong, chieuCao: t.chieuCao || 0, vungBang: t.vungBang || [] };
     });
     const khoangDong = phanVi(cacKhoang, 0.5) || 20;
 
@@ -125,7 +127,7 @@ function dungDoanVanPdf(cacTrang) {
         doan = null;
     };
 
-    for (const [soTrang, { cacDong, chieuCao }] of trangDaGom.entries()) {
+    for (const [soTrang, { cacDong, chieuCao, vungBang }] of trangDaGom.entries()) {
         // Mép trái/phải của thân bài trên trang này, tính trên các dòng dài
         const dongDai = cacDong.filter(d => d.text.length >= 40);
         const mepTrai = phanVi((dongDai.length ? dongDai : cacDong).map(d => d.x0), 0.1);
@@ -142,6 +144,14 @@ function dungDoanVanPdf(cacTrang) {
             if ((oLe && d.x1 - d.x0 < beRong * 0.6) || laSoTrang(d.text)) {
                 if (doan) dongLeChoIn.push(d.text);
                 else cacDoan.push(d.text);
+                continue;
+            }
+
+            // Dòng nằm trong khung bảng: gắn nhãn BẢNG như ô bảng của Word để
+            // bước lọc loại khỏi so trùng, không nối với đoạn văn nào.
+            if (namTrongBang((d.x0 + d.x1) / 2, d.y, vungBang)) {
+                ketThucDoan();
+                cacDoan.push(ganNhan(NHAN.BANG, d.text));
                 continue;
             }
 

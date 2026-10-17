@@ -56,6 +56,14 @@ nhom('Ảnh 3, 6, 8, 12, 15, 21, 23, 24, 28: tiêu đề lớn không tính trù
 ].forEach(dong => kiemTra(`tiêu đề lớn: "${dong}"`, laTieuDeLon(dong), true));
 
 // Tiêu đề gõ bằng phím Tab hoặc nhiều dấu cách vẫn phải nhận ra
+// "Phần mềm…" từng bị đọc thành "PHẦN M" (số La Mã) và loại như đề mục
+[
+    'Phần mềm đem đến sự thuận tiện cho người sử dụng cũng như cho các chủ cửa hàng.',
+    'Phần mềm phải mang lại lợi ích kinh tế khi là giải pháp giúp việc quản lý trở nên dễ dàng hơn.',
+    'Phần lớn người dùng chọn giao diện đơn giản.',
+    'Chương trình được viết bằng C#.'
+].forEach(dong => kiemTra(`câu thường không phải tiêu đề: "${dong}"`, laTieuDeLon(dong), false));
+kiemTra('tiêu đề "PHẦN II" vẫn nhận ra', laTieuDeLon('PHẦN II'), true);
 kiemTra('tiêu đề có tab', laTieuDeLon('CHƯƠNG\t1'), true);
 kiemTra('tiêu đề nhiều dấu cách', laTieuDeLon('CHƯƠNG     2'), true);
 kiemTra('tiêu đề có dấu cách cứng', laTieuDeLon('MỤC LỤC'), true);

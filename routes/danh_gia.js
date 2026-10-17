@@ -4,6 +4,7 @@ const ExcelJS = require('exceljs');
 
 const DanhGia = require('../models/danh_gia');
 const SinhVien = require('../models/sinh_vien');
+const GiangVien = require('../models/giang_vien');
 const NguoiDung = require('../models/nguoi_dung');
 
 // ============================================================
@@ -44,21 +45,49 @@ async function taoMaDanhGia() {
 }
 
 /**
- * Tra tên người dùng từ id_sinh_vien / id_nguoi_dung.
+ * Tìm tài khoản (id_nguoi_dung) ứng với một mã bất kỳ: mã tài khoản ND…,
+ * mã sinh viên hoặc mã giảng viên. Không tìm thấy thì trả về ''.
  */
-async function layTenNguoiDung(id) {
-    if (!id) return '';
+async function timIdNguoiDung(ma) {
+    if (!ma) return '';
 
-    const sv = await SinhVien.findOne({
-        $or: [{ id_sinh_vien: id }, { id_nguoi_dung: id }]
-    }).select('ho_ten').lean();
-    if (sv) return sv.ho_ten || '';
+    if (await NguoiDung.exists({ id_nguoi_dung: ma })) return ma;
 
-    const nd = await NguoiDung.findOne({ id_nguoi_dung: id })
-        .select('ho_ten ten_dang_nhap').lean();
-    if (nd) return nd.ho_ten || nd.ten_dang_nhap || '';
+    const sv = await SinhVien.findOne({ id_sinh_vien: ma }).select('id_nguoi_dung').lean();
+    if (sv) return sv.id_nguoi_dung;
+
+    const gv = await GiangVien.findOne({ id_giang_vien: ma }).select('id_nguoi_dung').lean();
+    if (gv) return gv.id_nguoi_dung;
 
     return '';
+}
+
+/**
+ * Gắn mã và họ tên HIỆN TẠI của người đánh giá vào từng đánh giá.
+ *
+ * Mã hiển thị là mã sinh viên với sinh viên, mã giảng viên với giảng viên;
+ * quản trị viên không có hai mã đó nên giữ mã tài khoản. Tra theo
+ * id_nguoi_dung nên người dùng đổi mã sau khi đánh giá thì bảng vẫn hiện mã mới.
+ */
+async function ganNguoiDanhGia(danhSach) {
+    const dsId = [...new Set(danhSach.map(d => d.id_nguoi_dung).filter(Boolean))];
+
+    const [dsSV, dsGV, dsND] = await Promise.all([
+        SinhVien.find({ id_nguoi_dung: { $in: dsId } }).select('id_nguoi_dung id_sinh_vien').lean(),
+        GiangVien.find({ id_nguoi_dung: { $in: dsId } }).select('id_nguoi_dung id_giang_vien').lean(),
+        NguoiDung.find({ id_nguoi_dung: { $in: dsId } }).select('id_nguoi_dung ho_ten ten_dang_nhap').lean()
+    ]);
+
+    const ma = new Map(dsId.map(id => [id, id]));
+    dsSV.forEach(x => ma.set(x.id_nguoi_dung, x.id_sinh_vien));
+    dsGV.forEach(x => ma.set(x.id_nguoi_dung, x.id_giang_vien));
+    const ten = new Map(dsND.map(x => [x.id_nguoi_dung, x.ho_ten || x.ten_dang_nhap || '']));
+
+    return danhSach.map(d => ({
+        ...d,
+        ma_nguoi_danh_gia: d.id_nguoi_dung ? ma.get(d.id_nguoi_dung) : (d.id_sinh_vien || ''),
+        ho_ten_nguoi_danh_gia: d.id_nguoi_dung ? (ten.get(d.id_nguoi_dung) || '') : ''
+    }));
 }
 
 // ============================================================
@@ -81,25 +110,11 @@ router.post('/', async (req, res) => {
 
         const maDanhGia = await taoMaDanhGia();
 
-        // ----------------------------------------------------------------
-        // Fix Phần 5: client gửi giá trị lấy từ localStorage là id_nguoi_dung
-        // (ND001, ND002, …) chứ không phải id_sinh_vien thực sự.
-        // Tra ngược collection sinh_vien để lấy mã sinh viên đúng.
-        // Nếu không tìm thấy (giảng viên/admin) thì giữ nguyên giá trị gửi lên.
-        // ----------------------------------------------------------------
-        let maSinhVienThucSu = id_sinh_vien || '';
-        if (maSinhVienThucSu) {
-            const svRecord = await SinhVien.findOne({
-                $or: [
-                    { id_sinh_vien: maSinhVienThucSu },
-                    { id_nguoi_dung: maSinhVienThucSu }
-                ]
-            }).select('id_sinh_vien').lean();
-
-            if (svRecord && svRecord.id_sinh_vien) {
-                maSinhVienThucSu = svRecord.id_sinh_vien;
-            }
-        }
+        // Client gửi id_nguoi_dung (ND…) lấy từ localStorage. Lưu khoá tài
+        // khoản để lúc hiển thị luôn tra ra mã hiện tại của người đánh giá.
+        const idNguoiDung = await timIdNguoiDung(id_sinh_vien || '');
+        const [{ ma_nguoi_danh_gia: maHienTai }] =
+            await ganNguoiDanhGia([{ id_nguoi_dung: idNguoiDung, id_sinh_vien }]);
 
         let maKiemTraThucSu = id_kiem_tra || '';
         if (!maKiemTraThucSu && id_bao_cao) {
@@ -112,7 +127,8 @@ router.post('/', async (req, res) => {
 
         const danhGia = await DanhGia.create({
             id_danh_gia: maDanhGia,
-            id_sinh_vien: maSinhVienThucSu,
+            id_nguoi_dung: idNguoiDung,
+            id_sinh_vien: maHienTai || '',
             id_kiem_tra: maKiemTraThucSu,
             id_bao_cao: id_bao_cao || '',
             so_sao: saoSo,
@@ -153,7 +169,9 @@ router.get('/', async (req, res) => {
             dieuKien.so_sao = Number(so_sao);
         }
         if (id_sinh_vien) {
-            dieuKien.id_sinh_vien = id_sinh_vien;
+            const idNguoiDung = await timIdNguoiDung(id_sinh_vien);
+            dieuKien.$or = [{ id_sinh_vien }];
+            if (idNguoiDung) dieuKien.$or.push({ id_nguoi_dung: idNguoiDung });
         }
         if (tu_ngay || den_ngay) {
             dieuKien.ngay_danh_gia = {};
@@ -188,7 +206,7 @@ router.get('/', async (req, res) => {
             trang_hien_tai: trang,
             tong_trang: Math.ceil(tongSo / soTrang),
             trung_binh_sao: trungBinhSao,
-            data: danhSach
+            data: await ganNguoiDanhGia(danhSach)
         });
 
     } catch (error) {
@@ -257,17 +275,8 @@ router.get('/xuat-excel', async (req, res) => {
             if (den_ngay) dieuKien.ngay_danh_gia.$lte = new Date(den_ngay);
         }
 
-        const danhSach = await DanhGia.find(dieuKien)
-            .sort({ ngay_danh_gia: -1 })
-            .lean();
-
-        // Tra tên người dùng hàng loạt
-        const dsMa = [...new Set(danhSach.map(d => d.id_sinh_vien).filter(Boolean))];
-        const bangTen = new Map();
-        await Promise.all(dsMa.map(async (ma) => {
-            const ten = await layTenNguoiDung(ma);
-            bangTen.set(ma, ten);
-        }));
+        const danhSach = await ganNguoiDanhGia(
+            await DanhGia.find(dieuKien).sort({ ngay_danh_gia: -1 }).lean());
 
         // Tạo workbook
         const workbook = new ExcelJS.Workbook();
@@ -286,7 +295,7 @@ router.get('/xuat-excel', async (req, res) => {
 
         sheetDanhSach.columns = [
             { header: 'Mã đánh giá', key: 'id_danh_gia', width: 14 },
-            { header: 'Người đánh giá (ID)', key: 'id_sinh_vien', width: 20 },
+            { header: 'Người đánh giá', key: 'ma_nguoi_danh_gia', width: 20 },
             { header: 'Họ tên', key: 'ho_ten', width: 25 },
             { header: 'Mã kiểm tra', key: 'id_kiem_tra', width: 16 },
             { header: 'Mã báo cáo', key: 'id_bao_cao', width: 14 },
@@ -311,8 +320,8 @@ router.get('/xuat-excel', async (req, res) => {
         for (const dg of danhSach) {
             const row = sheetDanhSach.addRow({
                 id_danh_gia: dg.id_danh_gia || '',
-                id_sinh_vien: dg.id_sinh_vien || '',
-                ho_ten: bangTen.get(dg.id_sinh_vien) || '',
+                ma_nguoi_danh_gia: dg.ma_nguoi_danh_gia || '',
+                ho_ten: dg.ho_ten_nguoi_danh_gia || '',
                 id_kiem_tra: dg.id_kiem_tra || '',
                 id_bao_cao: dg.id_bao_cao || '',
                 so_sao: dg.so_sao,

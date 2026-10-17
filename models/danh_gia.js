@@ -11,7 +11,16 @@ const danhGiaSchema = new mongoose.Schema(
             index: true
         },
 
-        // Người đánh giá (có thể để trống nếu không yêu cầu đăng nhập)
+        // Tài khoản người đánh giá. Đây là khoá cố định để tra ra mã hiện tại
+        // (mã sinh viên / mã giảng viên) lúc hiển thị, vì mã đó có thể bị đổi
+        // trong trang Tài khoản sau khi đã đánh giá.
+        id_nguoi_dung: {
+            type: String,
+            default: '',
+            index: true
+        },
+
+        // Mã người đánh giá tại thời điểm gửi (giữ lại để tương thích)
         id_sinh_vien: {
             type: String,
             default: '',

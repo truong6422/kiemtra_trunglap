@@ -23,6 +23,7 @@ const {
 } = require('./nhan_dien_tieu_de');
 
 const { laChuThichHinhBang } = require('./nhan_dien_phan_phu');
+const { docNhan } = require('./danh_dau_cau_truc');
 
 /**
  * Ký tự nằm trong vùng dành riêng của Unicode (U+E000–U+F8FF) là dấu đầu dòng
@@ -121,7 +122,11 @@ function noiDongTheoBeRongTrang(cacDong) {
         // dòng — và không được dán vào dòng sau.
         const truocBiBeTheoBeRong = truoc.length >= DO_DAI_DONG_BI_BE;
 
+        // Dòng mang nhãn cấu trúc (ô bảng) đứng riêng, không nối với dòng nào
+        const coNhanCauTruc = docNhan(truoc) !== null || docNhan(dong) !== null;
+
         if (
+            !coNhanCauTruc &&
             !truocDaKetThuc &&
             !sauMoMucMoi &&
             !truocLaDongMucLuc &&

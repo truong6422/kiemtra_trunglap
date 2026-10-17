@@ -28,3 +28,6 @@ Thumbs.db
 # File Word/Excel sinh ra lúc export — không đẩy lên git
 *.docx
 *.xlsx
+
+# Báo cáo mẫu do quản trị viên bổ sung qua trang Quản lý tài liệu
+nguon_moi_bo_sung/
