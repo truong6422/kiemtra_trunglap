@@ -11,7 +11,7 @@
 
 (async function () {
 
-    const API = 'http://localhost:5000/api/kiem-tra';
+    const API = `${window.API}/api/kiem-tra`;
     const thamSo = new URLSearchParams(window.location.search);
     const idBaiNop = thamSo.get('id') || '';
     const idNguon = thamSo.get('nguon') || '';

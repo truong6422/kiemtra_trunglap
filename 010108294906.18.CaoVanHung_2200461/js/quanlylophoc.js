@@ -39,7 +39,7 @@ async function syncMembersToServer(classData, userId) {
             email: m.email
         }));
 
-        const response = await fetch(`http://localhost:5000/api/lop-hoc/${classData.id}/thanh-vien`, {
+        const response = await fetch(`${API}/api/lop-hoc/${classData.id}/thanh-vien`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ danh_sach_thanh_vien: membersPayload })
@@ -57,7 +57,7 @@ async function handleJoinClass(enteredCode) {
     const userId = getCurrentUserId();
 
     try {
-        const response = await fetch('http://localhost:5000/api/lop-hoc/tham-gia', {
+        const response = await fetch(`${API}/api/lop-hoc/tham-gia`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ma_lop: enteredCode, id_nguoi_dung: userId })
@@ -396,7 +396,7 @@ function renderClassDetail(classData, userId, currentHoTen, activeTabName = 'des
                             let isSystemRegistered = false;
 
                             try {
-                                const resCheck = await fetch(`http://localhost:5000/api/lop-hoc/kiem-tra-email?email=${encodeURIComponent(email)}`);
+                                const resCheck = await fetch(`${API}/api/lop-hoc/kiem-tra-email?email=${encodeURIComponent(email)}`);
                                 const resultCheck = await resCheck.json();
                                 if (resultCheck.exists) {
                                     isSystemRegistered = true;
@@ -482,7 +482,7 @@ function renderClassDetail(classData, userId, currentHoTen, activeTabName = 'des
                         // Lấy từ máy chủ, không dùng đường dẫn tương đối leo ra
                         // ngoài thư mục giao diện — đường dẫn đó phụ thuộc vào
                         // cách bày thư mục nên đổi gốc một cái là tải hỏng.
-                        link.href = 'http://localhost:5000/api/lop-hoc/file-excel-mau';
+                        link.href = `${API}/api/lop-hoc/file-excel-mau`;
                         link.download = 'file_excel_mau.xlsx';
                         document.body.appendChild(link);
                         link.click();
@@ -568,7 +568,7 @@ function renderClassDetail(classData, userId, currentHoTen, activeTabName = 'des
 
                                         if (isFormatValid) {
                                             try {
-                                                const resCheck = await fetch(`http://localhost:5000/api/lop-hoc/kiem-tra-email?email=${encodeURIComponent(email)}`);
+                                                const resCheck = await fetch(`${API}/api/lop-hoc/kiem-tra-email?email=${encodeURIComponent(email)}`);
                                                 const resultCheck = await resCheck.json();
                                                 if (resultCheck.exists || resultCheck.success) {
                                                     isSystemRegistered = true;
@@ -783,7 +783,7 @@ function renderClassDetail(classData, userId, currentHoTen, activeTabName = 'des
             }
 
             try {
-                const response = await fetch(`http://localhost:5000/api/lop-hoc/${idLopHoc}`, {
+                const response = await fetch(`${API}/api/lop-hoc/${idLopHoc}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ tieu_de: newName, mo_ta: newDesc })
@@ -881,7 +881,7 @@ function ganLuuCapNhatLopTuDanhSach(classData, userId, storageKey, classList) {
 
         try {
             const response = await fetch(
-                `http://localhost:5000/api/lop-hoc/${classData.id}`,
+                `${API}/api/lop-hoc/${classData.id}`,
                 {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
@@ -1051,7 +1051,7 @@ function renderMainContent() {
                     const classData = classList[idx];
 
                     try {
-                        const response = await fetch(`http://localhost:5000/api/lop-hoc/${classData.id}`, {
+                        const response = await fetch(`${API}/api/lop-hoc/${classData.id}`, {
                             method: 'DELETE'
                         });
 
@@ -1163,7 +1163,7 @@ if (submitCreateBtn) {
         };
 
         try {
-            const response = await fetch('http://localhost:5000/api/lop-hoc', {
+            const response = await fetch(`${API}/api/lop-hoc`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
@@ -1244,7 +1244,7 @@ if (confirmJoinBtn) {
         const userId = getCurrentUserId();
 
         try {
-            const response = await fetch('http://localhost:5000/api/lop-hoc/tham-gia', {
+            const response = await fetch(`${API}/api/lop-hoc/tham-gia`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -1327,7 +1327,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const storageKey = `user_classes_${userId}`;
 
     try {
-        const response = await fetch(`http://localhost:5000/api/lop-hoc/nguoi-dung/${userId}`);
+        const response = await fetch(`${API}/api/lop-hoc/nguoi-dung/${userId}`);
         const result = await response.json();
 
         if (response.ok && result.success) {
@@ -1401,7 +1401,7 @@ if (submitUpdateBtn) {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/api/lop-hoc/${idLopHoc}`, {
+            const response = await fetch(`${API}/api/lop-hoc/${idLopHoc}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ tieu_de: newTitle, mo_ta: newDesc })

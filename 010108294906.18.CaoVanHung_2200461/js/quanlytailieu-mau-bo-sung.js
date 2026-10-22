@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!khu || !['quan_tri_vien', 'admin'].includes(vaiTro)) return;
     khu.hidden = false;
 
-    const API = 'http://localhost:5000/api/mau-bo-sung';
+    const API = `${window.API}/api/mau-bo-sung`;
     const HEADER = { 'x-id-nguoi-dung': localStorage.getItem('id_nguoi_dung') || localStorage.getItem('userId') || '' };
     const $ = id => document.getElementById(id);
     const thoat = s => String(s ?? '').replace(/[&<>"]/g,

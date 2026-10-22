@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 🔹 Gửi yêu cầu đăng nhập
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch(`${API}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 🔹 Bước 3: Email hợp lệ -> Gửi API Quên mật khẩu
       try {
-        const res = await fetch("http://localhost:5000/api/auth/forgot-password", {
+        const res = await fetch(`${API}/api/auth/forgot-password`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email })
@@ -143,7 +143,7 @@ function handleGoogleResponse(response) {
 // Gọi API Đăng nhập với Google lên server
 async function loginWithGoogle(googleId, fullName, email) {
   try {
-    const res = await fetch("http://localhost:5000/api/auth/login/google", {
+    const res = await fetch(`${API}/api/auth/login/google`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ googleId, fullName, email })

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sơ đồ luồng xử lý hệ thống</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f7f6; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        .container { background-color: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 30px; margin-bottom: 30px; width: 100%; max-width: 1000px; }
+        h2 { color: #2c3e50; text-align: center; border-bottom: 2px solid #3498db; padding-bottom: 10px; margin-bottom: 30px; }
+        .mermaid { display: flex; justify-content: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>1. SƠ ĐỒ HOẠT ĐỘNG (Activity Diagram)</h2>
+        <div class="mermaid">
+flowchart TD
+    A([👤 Người dùng nộp file\nDOCX / PDF]) --> B[API tiếp nhận file\nroutes/chitietnopbai.js]
+    B --> C[Lưu bản ghi vào DB\ntrạng thái: DANG_XU_LY]
+    C --> D[Đưa tác vụ vào hàng đợi\nBullMQ Queue]
+    D --> E([✅ Trả về ngay:\nĐang xử lý...])
+    D --> F
+    subgraph GD2["⚙️ GIAI ĐOẠN 2 - TRÍCH XUẤT VĂN BẢN (worker.js)"]
+        F{Định dạng file?}
+        F -->|DOCX / DOC| G[docDocxTheoXml\nĐọc cấu trúc XML gốc\ngiữ nguyên format heading/table]
+        G -->|Lỗi XML| G2[Fallback: mammoth\ntrích text thuần]
+        F -->|PDF| H[parsePdfVoiThuLai\npdf-parse với retry tối đa 2 lần\ncùng thư viện → nhất quán]
+        H --> H2[chuanHoaVanBanPdf\nNối dòng bị bẻ\nGỡ số trang / header]
+        F -->|TXT| I[fs.readFileSync UTF-8]
+    end
+    G --> J
+    G2 --> J
+    H2 --> J
+    I --> J
+    subgraph GD3["🔍 GIAI ĐOẠN 3 - LỌC VÀ TIỀN XỬ LÝ"]
+        J[xuLyNhanCauTruc\nPhân tích cấu trúc:\nTiêu đề / Đoạn văn / Ký hiệu]
+        J --> K[locVungNoiDungHocThuat\nCẮT BỎ: Mục lục, Lời cảm ơn,\nTài liệu tham khảo]
+        K --> L[noiTieuDe & noiDong\nNối câu bị gãy dòng]
+        L --> M[tachCau\nCắt thành từng câu độc lập]
+        M --> N[Làm sạch câu\nbỏ stop-words, chữ thường]
+    end
+    subgraph GD4["🔢 GIAI ĐOẠN 4 - TRÍCH XUẤT ĐẶC TRƯNG"]
+        N --> O[Hash MD5\ncho Exact Match]
+        N --> P[Winnowing\ntạo mảng fingerprints]
+        N --> Q[Tính Vector TF-IDF]
+        O --> R[Lưu ChiSoCau vào MongoDB]
+        P --> R
+        Q --> R
+    end
+    subgraph GD5["⚖️ GIAI ĐOẠN 5 - ĐỐI SÁNH (kiem_tra_trung_lap.js)"]
+        R --> S{Exact Match?\nHash MD5 trùng 100%}
+        S -->|CÓ| T[Ghi nhận: trùng tuyệt đối\ndo_tuong_dong = 1.0]
+        S -->|KHÔNG| U[Lọc nhám qua Fingerprints\ncandidates có ≥ 2 fp chung]
+        U --> V[Tính 3 thuật toán\nCosine × 40%\nWinnowing × 40%\nJaccard × 20%]
+        V --> W{Tổng điểm ≥\nNgưỡng cấu hình?}
+        W -->|CÓ| T
+        W -->|KHÔNG| X[Bỏ qua]
+    end
+    subgraph GD6["📊 GIAI ĐOẠN 6 - TỔNG HỢP KẾT QUẢ"]
+        T --> Y[buildPassageMatches\nGom câu trùng liền kề\n→ Đoạn trùng]
+        Y --> Z[buildPatchworkMatches\nPhát hiện chắp vá câu\ntừ các vị trí rời nhau]
+        Z --> AA[Tính % trùng lặp toàn bài\n= Tổng từ trùng / Tổng từ bài nộp]
+    end
+    subgraph GD7["💾 GIAI ĐOẠN 7 - LƯU & THÔNG BÁO"]
+        AA --> AB[Lưu kết quả vào DB\nChiTietCauTrungHighlight\nBaoCao trạng thái: DA_XU_LY]
+        AB --> AC[Phát Socket.IO\nnotification tới client]
+        AC --> AD([🖥️ Frontend cập nhật\nGiao diện PDF Viewer\nBôi màu câu trùng])
+    end
+        </div>
+    </div>
+    <div class="container">
+        <h2>2. SƠ ĐỒ TUẦN TỰ (Sequence Diagram)</h2>
+        <div class="mermaid">
+sequenceDiagram
+    actor User as 👤 Người dùng
+    participant FE as 🖥️ Frontend
+    participant API as 🔌 API Server
+    participant Queue as 📋 BullMQ Queue
+    participant Worker as ⚙️ Worker Process
+    participant DB as 🗄️ MongoDB
+    User->>FE: Chọn file và bấm Nộp bài
+    FE->>API: POST /api/chi-tiet-nop-bai (file)
+    API->>DB: Lưu ChiTietNopBai (DANG_XU_LY)
+    API->>Queue: Đẩy job kiểm tra
+    API-->>FE: 202 - Đang xử lý...
+    FE-->>User: Hiển thị "Đang kiểm tra..."
+    Queue->>Worker: Nhận job
+    Worker->>Worker: trichXuatVanBan() - pdf-parse retry
+    Worker->>Worker: xuLyNhanCauTruc()
+    Worker->>Worker: locVungNoiDungHocThuat()
+    Worker->>Worker: tachCau() + TF-IDF + Fingerprint
+    Worker->>DB: Lưu ChiSoCau (câu + đặc trưng)
+    Worker->>Worker: checkPlagiarism() - đối sánh 3 thuật toán
+    Worker->>Worker: buildPassageMatches() + buildPatchworkMatches()
+    Worker->>DB: Lưu ChiTietCauTrungHighlight + cập nhật BaoCao (DA_XU_LY)
+    Worker->>FE: Socket.IO: Kiểm tra hoàn tất!
+    FE->>API: GET /api/chi-tiet-nop-bai/:id (lấy kết quả)
+    API->>DB: Query kết quả
+    DB-->>API: Dữ liệu câu trùng + tọa độ highlight
+    API-->>FE: Kết quả đầy đủ
+    FE->>User: Hiển thị tỷ lệ % + PDF Viewer với bôi màu
+        </div>
+    </div>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    </script>
+</body>
+</html>

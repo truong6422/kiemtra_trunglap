@@ -12,7 +12,7 @@
 
 window.TkTaiKhoan = (() => {
 
-    const API = "http://localhost:5000/api";
+    const API = `${window.API}/api`;
     const $ = id => document.getElementById(id);
 
     const vaiTroNguoiXem = (localStorage.getItem("vai_tro") ||

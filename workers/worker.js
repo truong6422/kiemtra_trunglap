@@ -4,7 +4,10 @@
  * Chịu trách nhiệm bốc task từ BullMQ, thực thi thuật toán kiểm tra và sinh file highlight.
  * ============================================================================
  */
+const dns = require('dns');
+dns.setServers(['8.8.8.8', '8.8.4.4']);
 
+require('dotenv').config();
 const { Worker } = require('bullmq');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -33,11 +36,19 @@ const {
 } = require('../utils/generateIdKiemTra');
 
 
-const connection = { host: 'localhost', port: 6379 };
+// const connection = { host: 'localhost', port: 6379 };
+
+const connection = {
+    host: process.env.REDIS_HOST || '127.0.0.1',
+    port: Number(process.env.REDIS_PORT) || 6379
+};
 
 async function startWorker() {
     // Kết nối cơ sở dữ liệu MongoDB
-    await mongoose.connect('mongodb://localhost:27017/KiemTraTrungLap');
+    await mongoose.connect(process.env.MONGO_URI);
+     console.log(
+        `✅ Worker đã kết nối MongoDB - ${mongoose.connection.name}`
+    );
     console.log('👷 Worker ngầm đa luồng đã sẵn sàng bốc task từ Redis...');
 
     const worker = new Worker('plagiarismQueueV2', async (job) => {

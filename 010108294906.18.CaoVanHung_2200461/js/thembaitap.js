@@ -1,4 +1,4 @@
-const BACKEND_URL = 'http://localhost:5000';
+const BACKEND_URL = window.API;
 
 /**
  * Tải tệp của một bài nộp về máy.
@@ -1969,7 +1969,7 @@ async function loadDocumentsForModal(idSinhVien, idBaiTap, currentIdBaoCao) {
     
     try {
         // Đảm bảo BACKEND_URL có giá trị (nếu chưa khai báo toàn cục thì dùng dự phòng)
-        const baseUrl = typeof BACKEND_URL !== 'undefined' ? BACKEND_URL : 'http://localhost:3000';
+        const baseUrl = window.API;
 
         const response = await fetch(`${baseUrl}/api/bao-cao/tai-lieu-nop/${userId}`);
         const result = await response.json();
@@ -2054,7 +2054,7 @@ function showDeleteConfirmModal(idBaiTap, idSinhVien) {
     confirmBtn.onclick = async (e) => {
         e.preventDefault();
         try {
-            const baseUrl = typeof BACKEND_URL !== 'undefined' ? BACKEND_URL : 'http://localhost:3000';
+            const baseUrl = window.API;
             const deleteRes = await fetch(`${baseUrl}/api/chi-tiet-nop-bai/submissions?id_bai_tap=${idBaiTap}&id_sinh_vien=${idSinhVien}`, {
                 method: 'DELETE'
             });

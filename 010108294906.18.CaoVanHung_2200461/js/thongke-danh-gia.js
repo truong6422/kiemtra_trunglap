@@ -11,7 +11,7 @@
 
 window.TkDanhGia = (() => {
 
-    const API = 'http://localhost:5000/api';
+    const API = `${window.API}/api`;
 
     let danhSach = [];
     let trang    = 1;

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Lấy thông tin người dùng từ LocalStorage
     const userId = localStorage.getItem('id_nguoi_dung') || 'ND001';
-    const API_BASE_URL = 'http://localhost:5000/api/auth';
+    const API_BASE_URL = `${window.API}/api/auth`;
 
     let originalData = {};
 

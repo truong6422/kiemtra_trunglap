@@ -42,7 +42,7 @@ async function openDocModal() {
     const userId = localStorage.getItem("id_nguoi_dung") || localStorage.getItem("userId") || "ND001";
 
     try {
-        const res = await fetch(`http://localhost:5000/api/auth/profile/${userId}`);
+        const res = await fetch(`${API}/api/auth/profile/${userId}`);
         const result = await res.json();
 
         if (result.success && result.data) {
@@ -210,8 +210,8 @@ async function loadBaoCaoTable() {
         const userId = localStorage.getItem("id_nguoi_dung") || localStorage.getItem("userId") || "";
 
         const url = userId
-            ? `http://localhost:5000/api/bao-cao/tai-lieu-nop/${userId}`
-            : 'http://localhost:5000/api/bao-cao';
+            ? `${API}/api/bao-cao/tai-lieu-nop/${userId}`
+            : `${API}/api/bao-cao`;
 
         const response = await fetch(url);
         const result = await response.json();
@@ -403,8 +403,8 @@ function theoDoiTrangThaiXuLy() {
                     || "";
 
                 const url = userId
-                    ? `http://localhost:5000/api/bao-cao/tai-lieu-nop/${userId}`
-                    : 'http://localhost:5000/api/bao-cao';
+                    ? `${API}/api/bao-cao/tai-lieu-nop/${userId}`
+                    : `${API}/api/bao-cao`;
 
                 const response = await fetch(url);
                 const result = await response.json();
@@ -476,7 +476,7 @@ async function submitCheckDoc() {
             formData.append('pageRange', pageRange);
 
             try {
-                const res = await fetch('http://localhost:5000/api/bao-cao/upload', {
+                const res = await fetch(`${API}/api/bao-cao/upload`, {
                     method: 'POST',
                     body: formData
                 });
@@ -604,7 +604,7 @@ async function deleteDocRow(btnElement) {
 
     showConfirmModal("Bạn có chắc chắn muốn xóa tài liệu này?", async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/bao-cao/${rowId}`, {
+            const response = await fetch(`${API}/api/bao-cao/${rowId}`, {
                 method: 'DELETE'
             });
 

@@ -11,7 +11,7 @@
 
 window.TkKetQua = (() => {
 
-    const API = "http://localhost:5000/api";
+    const API = `${window.API}/api`;
     const $ = id => document.getElementById(id);
     const T = () => window.TkTienIch;
 

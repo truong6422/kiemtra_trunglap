@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         // 7. Tất cả đều hợp lệ → gửi dữ liệu lên backend
-        fetch('http://localhost:5000/api/auth/register', {
+        fetch(`${API}/api/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -163,7 +163,7 @@ function initGoogle() {
 // Hàm gọi API đăng ký Google
 async function registerWithGoogle(googleId, fullName, email) {
   try {
-    const response = await fetch('http://localhost:5000/api/auth/register/google', {
+    const response = await fetch(`${API}/api/auth/register/google`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ googleId, fullName, email })

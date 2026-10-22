@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // 🔹 Bước 3: Gọi API kiểm tra email trong CSDL
       try {
-        const checkRes = await fetch("http://localhost:5000/api/auth/check-email", {
+        const checkRes = await fetch(`${API}/api/auth/check-email`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email })
@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         // Gửi dữ liệu về Backend
-        const res = await fetch("http://localhost:5000/api/auth/resend-activation", {
+        const res = await fetch(`${API}/api/auth/resend-activation`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password, confirmPassword })

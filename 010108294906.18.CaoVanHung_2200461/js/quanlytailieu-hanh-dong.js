@@ -12,7 +12,7 @@
 
 window.TaiLieuHanhDong = (() => {
 
-    const API = "http://localhost:5000/api/bao-cao";
+    const API = `${window.API}/api/bao-cao`;
 
     const thoat = t => {
         const o = document.createElement("div");

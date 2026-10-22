@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // Gọi API lấy dữ liệu mới nhất trực tiếp từ CSDL MongoDB
-      const res = await fetch(`http://localhost:5000/api/auth/profile/${userId}`);
+      const res = await fetch(`${window.API}/api/auth/profile/${userId}`);
       const result = await res.json();
 
       if (result.success && result.data) {

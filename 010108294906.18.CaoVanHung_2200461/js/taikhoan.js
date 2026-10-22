@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 1. Lấy thông tin ID người dùng từ LocalStorage
     const userId = localStorage.getItem('id_nguoi_dung') || 'ND001';
-    const API_BASE_URL = 'http://localhost:5000/api/auth';
+    const API_BASE_URL = `${window.API}/api/auth`;
 
     let originalData = {};
 
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!o || !userId) return;
 
         // API_BASE_URL đã trỏ sẵn vào nhánh /api/auth nên ở đây phải dùng gốc /api
-        fetch(`http://localhost:5000/api/bao-cao/tai-lieu-nop/${encodeURIComponent(userId)}`)
+        fetch(`${window.API}/api/bao-cao/tai-lieu-nop/${encodeURIComponent(userId)}`)
             .then(r => r.json())
             .then(kq => {
                 o.value = (kq.success && Array.isArray(kq.data)) ? kq.data.length : 0;

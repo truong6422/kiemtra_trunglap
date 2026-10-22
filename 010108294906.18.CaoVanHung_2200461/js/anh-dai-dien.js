@@ -17,7 +17,7 @@
 
 (() => {
 
-    const GOC_API = "http://localhost:5000";
+    const GOC_API = window.API || "";
     const ANH_MAC_DINH = "../images/default-avatar.png";
 
     const maNguoiDung = () =>

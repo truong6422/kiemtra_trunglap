@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         // 3. LẤY THÔNG TIN BÁO CÁO
         // =====================================================================
         console.log("📡 Đang lấy thông tin báo cáo...");
-        const reportApiUrl = `http://localhost:5000/api/kiem-tra/chi-tiet/${encodeURIComponent(reportId)}`;
+        const reportApiUrl = `${API}/api/kiem-tra/chi-tiet/${encodeURIComponent(reportId)}`;
         console.log("📡 API báo cáo:");
         console.log(reportApiUrl);
         const response =
@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 // không phải bản sạch đang dùng để render
                 capNhatThanhCongCu(
                     soTrang,
-                    `http://localhost:5000/api/kiem-tra/chi-tiet/${encodeURIComponent(reportId)}/document`
+                    `${API}/api/kiem-tra/chi-tiet/${encodeURIComponent(reportId)}/document`
                 );
 
                 // Dải ảnh thu nhỏ dựng sau cùng để không làm chậm nội dung chính
@@ -344,7 +344,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                         : tenFile.replace(/\.[^.]+$/, "") + "_temp.pdf";
 
                 const urlSach =
-                    `http://localhost:5000/uploads/${encodeURIComponent(tenPdfSach)}`;
+    `${API}/uploads/${encodeURIComponent(tenPdfSach)}`;
 
                 try {
                     const res = await fetch(urlSach);
@@ -369,10 +369,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
 
             // Dự phòng: bản trong upload2 (đã có sẵn highlight của worker)
-            const res =
-                await fetch(
-                    `http://localhost:5000/api/kiem-tra/chi-tiet/${encodeURIComponent(reportId)}/document`
-                );
+            const res = await fetch(`${API}/api/kiem-tra/chi-tiet/${encodeURIComponent(reportId)}/document`);
 
             if (!res.ok) {
                 throw new Error(`Máy chủ trả về ${res.status}`);

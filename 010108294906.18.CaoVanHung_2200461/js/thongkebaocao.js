@@ -12,7 +12,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const API = "http://localhost:5000/api";
+    const API = `${window.API}/api`;
     const T = window.TkTienIch;
 
     const vaiTro = (localStorage.getItem("vai_tro") ||
