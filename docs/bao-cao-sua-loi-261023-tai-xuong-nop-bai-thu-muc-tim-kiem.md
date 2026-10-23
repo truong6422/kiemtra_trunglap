@@ -200,15 +200,29 @@ MONGO_URI=mongodb://127.0.0.1:27017/KiemTraTrungLap_V2
 
 Giữ nguyên `JWT_SECRET`, `EMAIL_USER`, `EMAIL_PASS`.
 
-**Bước 4: chuyển pm2 sang thư mục mới.**
+**Không chép `.env` từ máy em lên server.** Máy em nối CSDL qua đường hầm ở cổng 27018 (mục B5). Trên server không có cổng đó, nên chép sang sẽ báo `ECONNREFUSED 127.0.0.1:27018`. Mỗi máy giữ một bản `.env` riêng:
+
+| Máy | `MONGO_URI` | `PORT` |
+|---|---|---|
+| Server | `mongodb://127.0.0.1:27017/KiemTraTrungLap_V2` | `20109` |
+| Máy em (đã bật đường hầm) | `mongodb://127.0.0.1:27018/KiemTraTrungLap_V2` | `5000` |
+
+**Bước 4: chuyển pm2 sang thư mục mới, chỉ rõ chạy bằng Node 22.**
+
+pm2 chạy ứng dụng bằng Node của chính nó, không phải Node trong `PATH`. Node đó cũ (dưới 20), trong khi thư viện `mongodb` bản 7 cần Node 20 trở lên. Nếu không chỉ rõ, log sẽ báo `ReferenceError: crypto is not defined` và pm2 khởi động lại liên tục (cột ↺ tăng dần). Vì vậy phải thêm `--interpreter`:
 
 ```
+NODE22=$HOME/kiemtra-moi/node-v22.22.0-linux-x64/bin/node
+$NODE22 -v                     # phải ra v22.x
 pm2 delete plagiarism-server plagiarism-worker
-pm2 start server.js --name plagiarism-server
-pm2 start workers/worker.js --name plagiarism-worker
+pm2 start server.js --name plagiarism-server --interpreter $NODE22
+pm2 start workers/worker.js --name plagiarism-worker --interpreter $NODE22
 pm2 save
+pm2 describe plagiarism-server | grep -i "interpreter\|node.js version"
 pm2 logs plagiarism-server --lines 20
 ```
+
+Dòng `describe` phải ra `node.js version │ 22.x`. Nếu `ls $NODE22` báo không có tệp, chép thư mục Node từ bản cũ sang: `cp -r ~/kiem-tra-trung-lap-v2/node-v22.22.0-linux-x64 .`
 
 Log phải có `Kết nối MongoDB thành công — cơ sở dữ liệu: KiemTraTrungLap_V2` và `Server đang chạy tại cổng 20109`. Lần đầu sẽ có thêm dòng chuyển đổi dữ liệu: nâng bộ đếm báo cáo và trả "Lỗi" cho BC75, BC683. Mở `http://itf.viu.edu.vn:20109/pages/trangchu.html` để kiểm tra.
 
