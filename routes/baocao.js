@@ -5,6 +5,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const { taoMaBaoCaoMoi } = require('../utils/tao_ma_bao_cao');
+const { timPdfBoiMau } = require('../utils/tep_boi_mau');
 
 const BaoCao = require('../models/bao_cao');
 const KetQuaKiemTra = require('../models/ket_qua_kiem_tra');
@@ -513,21 +514,11 @@ router.get('/chi-tiet/:id/document', async (req, res) => {
             baoCao = await BaoCao.findById(reportId);
         }
 
-        const actualId = baoCao ? baoCao.id_bao_cao : reportId;
+        // Chỉ nhận tệp bôi màu ghi ra sau lúc báo cáo này tải lên, tránh trả
+        // nhầm tệp của báo cáo cũ cùng mã — xem utils/tep_boi_mau.js
+        const filePath = timPdfBoiMau(baoCao);
 
-        // Ưu tiên 1: Tìm file PDF bôi màu trong thư mục upload2 theo mã chuẩn id_bao_cao
-        let filePath = path.join(upload2Dir, `${actualId}.pdf`);
-
-        // Nếu không thấy, thử tìm theo reportId trực tiếp trên URL
-        if (!fs.existsSync(filePath)) {
-            const altPath = path.join(upload2Dir, `${reportId}.pdf`);
-            if (fs.existsSync(altPath)) {
-                filePath = altPath;
-            }
-        }
-
-        // Nếu vẫn không có file bôi màu trong upload2, kiểm tra xem worker đã hoàn tất chưa hay trả về 404
-        if (!fs.existsSync(filePath)) {
+        if (!filePath) {
             return res.status(404).json({
                 success: false,
                 message: `File PDF bôi màu cho báo cáo ${reportId} chưa được khởi tạo hoặc đang trong tiến trình xử lý!`

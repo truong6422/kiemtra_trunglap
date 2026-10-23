@@ -497,6 +497,66 @@ const CAC_BUOC = [
 
             ghiLog(`Đã gắn tài khoản cho ${daGan}/${ds.length} đánh giá.`);
         }
+    },
+
+    {
+        ma: '2026-10-23-bo-dem-bao-cao-vuot-ma-lon-nhat',
+        mo_ta: 'counter bao_cao: nâng bộ đếm lên mã BC lớn nhất đang có để '
+            + 'không cấp lại mã của báo cáo đã xoá',
+
+        async chay(db, ghiLog) {
+            // Bộ đếm thấp hơn mã đang có thì taoMaBaoCaoMoi lấp vào các chỗ
+            // trống, tức là cấp lại mã của báo cáo đã xoá. Báo cáo mới khi đó
+            // dính tệp bôi màu và kết quả cũ còn sót của mã ấy.
+            let lonNhat = 0;
+            const ds = await db.collection('bao_cao')
+                .find({ id_bao_cao: /^BC\d+$/ }, { projection: { id_bao_cao: 1 } })
+                .toArray();
+            for (const b of ds) lonNhat = Math.max(lonNhat, Number(b.id_bao_cao.slice(2)));
+
+            const dem = await db.collection('counter').findOne({ _id: 'bao_cao' });
+            const hienTai = dem ? Number(dem.seq) || 0 : 0;
+
+            if (lonNhat <= hienTai) {
+                ghiLog(`Bộ đếm (${hienTai}) đã vượt mã lớn nhất (BC${lonNhat}).`);
+                return;
+            }
+
+            await db.collection('counter').updateOne(
+                { _id: 'bao_cao' }, { $set: { seq: lonNhat } }, { upsert: true });
+            ghiLog(`Nâng bộ đếm báo cáo từ ${hienTai} lên ${lonNhat}.`);
+        }
+    },
+
+    {
+        ma: '2026-10-23-tra-trang-thai-loi-bi-nop-bai-ghi-de',
+        mo_ta: 'bao_cao: trả lại "Lỗi" cho báo cáo không đọc được chữ đã bị '
+            + 'API nộp bài ghi đè thành "Đã xử lý"',
+
+        async chay(db, ghiLog) {
+            // Chỉ nhận đúng loại bị hỏng: không có chữ và chưa từng có kết quả
+            // chấm, tức là bị từ chối ngay lúc tải lên vì toàn ảnh. Worker chỉ
+            // ghi "Đã xử lý" sau khi có kết quả, nên báo cáo đúng không lọt vào.
+            // Không đòi đang được nộp: nộp rồi đổi sang tài liệu khác thì bản
+            // ghi nộp mất nhưng trạng thái bị ghi đè vẫn còn (BC75 trên server).
+            const coKetQua = new Set(
+                await db.collection('ket_qua_kiem_tra').distinct('id_bao_cao'));
+
+            const ds = await db.collection('bao_cao').find({
+                trang_thai: 'Đã xử lý',
+                mau_kiem_tra: { $ne: true },
+                noi_dung_tien_xu_ly: { $in: ['', null] }
+            }, { projection: { id_bao_cao: 1 } }).toArray();
+
+            const canSua = ds.map(b => b.id_bao_cao).filter(ma => !coKetQua.has(ma));
+            if (canSua.length) {
+                await db.collection('bao_cao').updateMany(
+                    { id_bao_cao: { $in: canSua } }, { $set: { trang_thai: 'Lỗi' } });
+            }
+
+            ghiLog(`Trả lại trạng thái "Lỗi" cho ${canSua.length} báo cáo`
+                + (canSua.length ? `: ${canSua.join(', ')}.` : '.'));
+        }
     }
 ];
 

@@ -7,6 +7,7 @@ const libre = require('libreoffice-convert');
 const PizZip = require('pizzip');
 const { capNhatSoBaoCao } = require('../utils/cap_nhat_so_bao_cao');
 const { taoMaBaoCaoMoi } = require('../utils/tao_ma_bao_cao');
+const { timPdfBoiMau } = require('../utils/tep_boi_mau');
 const ThongKe =
     require('../models/thong_ke');
 const ChiTietCauTrung =
@@ -286,28 +287,17 @@ router.get('/chi-tiet/:idBaoCao', async (req, res) => {
     }
 
 });
-// Thêm route này vào cuối file routes/kiemtra.js
+// Bản PDF đã bôi màu của bài nộp (upload2/<mã>.pdf)
 router.get('/chi-tiet/:id/document', async (req, res) => {
     try {
-        const reportId = req.params.id; // VD: BC675 hoặc BC674
-
-        // Dùng hàm timBaoCao đã có sẵn trong file để tìm thông tin báo cáo trong MongoDB
+        const reportId = req.params.id;
         const baoCao = await timBaoCao(reportId);
 
-        // Xác định tên file PDF trong thư mục upload2:
-        // Ưu tiên lấy theo id_bao_cao (ví dụ BC675.pdf), nếu không có thì lấy theo tham số truyền vào
-        const fileName = baoCao && baoCao.id_bao_cao ? `${baoCao.id_bao_cao}.pdf` : `${reportId}.pdf`;
-        const filePath = path.join(upload2Dir, fileName);
+        // Không lấy tệp chỉ vì trùng tên: tệp có thể là của báo cáo cũ cùng mã
+        // đã bị xoá — xem utils/tep_boi_mau.js
+        const filePath = timPdfBoiMau(baoCao);
 
-        // Kiểm tra xem file PDF đã tồn tại trong upload2 chưa
-        if (!fs.existsSync(filePath)) {
-            // Thử tìm theo định dạng gốc hoặc _id nếu có
-            const altFilePath = path.join(upload2Dir, `${reportId}.pdf`);
-            if (fs.existsSync(altFilePath)) {
-                res.setHeader('Content-Type', 'application/pdf');
-                return res.sendFile(altFilePath);
-            }
-
+        if (!filePath) {
             return res.status(404).json({
                 success: false,
                 message: `File PDF bôi màu cho báo cáo ${reportId} chưa được tạo!`

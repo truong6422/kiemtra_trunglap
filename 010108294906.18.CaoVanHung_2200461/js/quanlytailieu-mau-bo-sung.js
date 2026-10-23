@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
         c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
     const ngay = d => (d ? new Date(d).toLocaleString('vi-VN') : '--');
     const bao = (m, t) => (window.thongBao ? thongBao(m, t) : alert(m));
+    // Tệp kéo thả không có webkitRelativePath nên đường dẫn lưu riêng ở duongDanTha
+    const duongDanTep = f => f.webkitRelativePath || f.duongDanTha || f.name;
 
     async function goi(duongDan, tuyChon = {}) {
         const res = await fetch(API + duongDan, { ...tuyChon, headers: { ...HEADER, ...(tuyChon.headers || {}) } });
@@ -39,27 +41,96 @@ document.addEventListener('DOMContentLoaded', () => {
     function veDsCho() {
         $('mbsSoCho').textContent = dsCho.length;
         $('mbsBangCho').innerHTML = dsCho.length ? dsCho.map((x, i) => `<tr>
-                <td>${thoat(x.loai === 'tep' ? (x.tep.webkitRelativePath || x.tep.name) : x.tieu_de)}</td>
+                <td>${thoat(x.loai === 'tep' ? duongDanTep(x.tep) : x.tieu_de)}</td>
                 <td>${x.loai === 'tep' ? 'Tệp trên máy tính' : 'Báo cáo đã kiểm tra ' + thoat(x.ma)}</td>
                 <td><button class="mbs-xoa" data-bo="${i}" title="Bỏ khỏi danh sách"><i class="fa-solid fa-xmark"></i></button></td>
             </tr>`).join('')
             : '<tr><td colspan="3" class="mbs-trong">Chưa chọn báo cáo nào</td></tr>';
     }
 
+    /** Thêm tệp vào danh sách chờ, trả về số tệp thực sự được thêm. */
     function themTep(cacTep) {
         const hopLe = [...cacTep].filter(f => /\.(docx|pdf)$/i.test(f.name) && !f.name.startsWith('~$'));
+        let soMoi = 0;
         for (const f of hopLe) {
-            const khoa = (f.webkitRelativePath || f.name) + f.size;
-            if (!dsCho.some(x => x.loai === 'tep' && (x.tep.webkitRelativePath || x.tep.name) + x.tep.size === khoa)) {
+            const khoa = duongDanTep(f) + f.size;
+            if (!dsCho.some(x => x.loai === 'tep' && duongDanTep(x.tep) + x.tep.size === khoa)) {
                 dsCho.push({ loai: 'tep', tep: f });
+                soMoi++;
             }
         }
         if (cacTep.length && !hopLe.length) bao('Chỉ nhận tệp .docx hoặc .pdf.');
         veDsCho();
+        return soMoi;
+    }
+
+    /** Đọc hết một mục kéo thả (tệp hoặc thư mục, kể cả thư mục con). */
+    async function docMuc(muc, ketQua) {
+        if (muc.isFile) {
+            const f = await new Promise((ok, loi) => muc.file(ok, loi));
+            f.duongDanTha = muc.fullPath.replace(/^\//, '');
+            ketQua.push(f);
+            return;
+        }
+        if (!muc.isDirectory) return;
+        const docTep = muc.createReader();
+        // readEntries trả từng đợt (tối đa 100 mục), phải gọi tới khi rỗng mới đủ
+        for (;;) {
+            const dot = await new Promise((ok, loi) => docTep.readEntries(ok, loi));
+            if (!dot.length) break;
+            for (const con of dot) await docMuc(con, ketQua);
+        }
+    }
+
+    /**
+     * Form "Chọn cả thư mục" giữa màn hình, cùng kiểu hộp Thông báo hệ thống.
+     *
+     * Hộp "Upload N files to this site?" là của trình duyệt (Chrome/Edge luôn
+     * hỏi khi chọn thư mục bằng hộp chọn tệp), trang web không đổi được giao
+     * diện hay vị trí của nó. Kéo thả thư mục vào form này thì không đi qua hộp
+     * chọn tệp nên trình duyệt không hỏi nữa.
+     */
+    function moFormThuMuc() {
+        const vung = document.createElement('div');
+        vung.className = 'mbs-vung-tha';
+        vung.innerHTML = `<i class="fa-solid fa-folder-open"></i>
+            <b>Kéo thả thư mục vào đây</b>
+            <span>Nhận tệp .docx, .pdf, gồm cả thư mục con</span>`;
+
+        moHopThoai({
+            tieuDe: 'Thêm cả thư mục',
+            noiDung: 'Kéo thả thư mục vào khung dưới, hoặc bấm "Chọn thư mục" để mở hộp chọn của máy.',
+            phanTu: vung,
+            nutChinh: 'Chọn thư mục',
+            nutPhu: 'Huỷ',
+            khiMo(dong) {
+                // Nhận thả trên cả lớp nền, lỡ tay thả lệch khung cũng không
+                // bị trình duyệt mở tệp ra tab mới
+                const nen = vung.closest('.ht-nen');
+                nen.ondragover = e => { e.preventDefault(); vung.classList.add('dang-keo'); };
+                nen.ondragleave = e => { if (!nen.contains(e.relatedTarget)) vung.classList.remove('dang-keo'); };
+                nen.ondrop = async e => {
+                    e.preventDefault();
+                    vung.classList.remove('dang-keo');
+                    // Lấy hết mục ngay: sau lần await đầu trình duyệt xoá dataTransfer
+                    const cacMuc = [...e.dataTransfer.items]
+                        .map(it => it.webkitGetAsEntry && it.webkitGetAsEntry()).filter(Boolean);
+                    const cacTep = [];
+                    if (cacMuc.length) {
+                        for (const m of cacMuc) await docMuc(m, cacTep);
+                    } else {
+                        cacTep.push(...e.dataTransfer.files);
+                    }
+                    dong(false);
+                    const soMoi = themTep(cacTep);
+                    if (soMoi) bao(`Đã thêm ${soMoi} tệp vào danh sách chờ.`);
+                };
+            }
+        }).then(chon => { if (chon) $('mbsThuMuc').click(); });
     }
 
     $('mbsNutTep').onclick = () => $('mbsTep').click();
-    $('mbsNutThuMuc').onclick = () => $('mbsThuMuc').click();
+    $('mbsNutThuMuc').onclick = moFormThuMuc;
     $('mbsTep').onchange = e => { themTep(e.target.files); e.target.value = ''; };
     $('mbsThuMuc').onchange = e => { themTep(e.target.files); e.target.value = ''; };
     $('mbsBangCho').onclick = e => {
@@ -71,20 +142,35 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ------------------------------------------------- báo cáo đã kiểm tra
+    /** Thoát HTML rồi tô vàng chỗ khớp từ khoá (thoát từng đoạn, không thoát xong mới tô). */
+    function toTuKhoa(chuoi, tu) {
+        const goc = String(chuoi ?? '');
+        if (!tu) return thoat(goc);
+        const thuong = goc.toLowerCase();
+        let kq = '', dau = 0, vt;
+        while ((vt = thuong.indexOf(tu, dau)) !== -1) {
+            kq += thoat(goc.slice(dau, vt)) + `<span class="mbs-to">${thoat(goc.slice(vt, vt + tu.length))}</span>`;
+            dau = vt + tu.length;
+        }
+        return kq + thoat(goc.slice(dau));
+    }
+
+    // Tìm theo ID, tiêu đề và ngày tải lên — giống ô tìm ở hộp "Gửi tài liệu"
     function veBaoCao() {
         const tu = $('mbsTim').value.trim().toLowerCase();
         const daChon = new Set(dsCho.filter(x => x.loai === 'bao_cao').map(x => x.ma));
-        const ds = dsBaoCao.filter(b => !tu || `${b.id_bao_cao} ${b.tieu_de}`.toLowerCase().includes(tu));
+        const ds = dsBaoCao.filter(b => !tu || [b.id_bao_cao, b.tieu_de, ngay(b.ngay_tai_len)]
+            .some(x => String(x ?? '').toLowerCase().includes(tu)));
 
         $('mbsBangBaoCao').innerHTML = ds.length ? ds.map(b => {
             const khoa = b.da_lay_lam_mau || !b.con_tep;
             const ghiChu = b.da_lay_lam_mau ? ' (đã là mẫu)' : (!b.con_tep ? ' (mất tệp gốc)' : '');
             return `<tr>
                 <td><input type="checkbox" data-ma="${thoat(b.id_bao_cao)}" ${daChon.has(b.id_bao_cao) ? 'checked' : ''} ${khoa ? 'disabled' : ''}></td>
-                <td>${thoat(b.id_bao_cao)}</td>
-                <td>${thoat(b.tieu_de)}${ghiChu}</td>
+                <td>${toTuKhoa(b.id_bao_cao, tu)}</td>
+                <td>${toTuKhoa(b.tieu_de, tu)}${ghiChu}</td>
                 <td>${b.ti_le_trung_lap === null ? '--' : thoat(b.ti_le_trung_lap) + '%'}</td>
-                <td>${ngay(b.ngay_tai_len)}</td>
+                <td>${toTuKhoa(ngay(b.ngay_tai_len), tu)}</td>
             </tr>`;
         }).join('') : '<tr><td colspan="5" class="mbs-trong">Không có báo cáo phù hợp</td></tr>';
     }
@@ -102,6 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     $('mbsTim').oninput = veBaoCao;
+    $('mbsTim').onkeyup = e => { if (e.key === 'Enter') veBaoCao(); };
+    $('mbsNutTim').onclick = veBaoCao;
     $('mbsBangBaoCao').onchange = e => {
         const o = e.target.closest('[data-ma]');
         if (!o) return;

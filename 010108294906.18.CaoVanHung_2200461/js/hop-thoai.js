@@ -14,6 +14,10 @@
  *     thongBao('Lưu thành công!');                  // một nút Đồng ý
  *     await thongBao('Đã xoá.');                    // chờ người dùng bấm
  *     if (await xacNhan('Xoá lớp này?')) { ... }    // hai nút
+ *
+ * Cần đặt thêm nội dung riêng (vùng kéo thả, ô nhập...) thì gọi thẳng
+ * moHopThoai({ phanTu, khiMo }) — phanTu là phần tử chèn dưới nội dung chữ,
+ * khiMo(dong) nhận hàm đóng hộp để tự đóng khi xong việc.
  * ============================================================================
  */
 
@@ -110,6 +114,7 @@
         var noiDung = o.noiDung == null ? '' : String(o.noiDung);
         var tenNutChinh = o.nutChinh || 'Đồng ý';
         var tenNutPhu = o.nutPhu || null;
+        var phanTu = o.phanTu || null;
 
         napCss();
 
@@ -174,7 +179,8 @@
             }
 
             hop.appendChild(h);
-            hop.appendChild(p);
+            if (noiDung || !phanTu) hop.appendChild(p);
+            if (phanTu) hop.appendChild(phanTu);
             hop.appendChild(day);
             nen.appendChild(hop);
             document.body.appendChild(nen);
@@ -183,6 +189,8 @@
                 nen.classList.add('ht-hien');
                 nutChinh.focus();
             });
+
+            if (typeof o.khiMo === 'function') o.khiMo(dong);
         });
     }
 

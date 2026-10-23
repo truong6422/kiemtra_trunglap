@@ -947,6 +947,11 @@ function openExerciseDetailOrSubmitView(targetEx, classData, userId, initialTab 
                     if (typeof openExerciseDetailOrSubmitView === 'function' && classData) {
                         openExerciseDetailOrSubmitView(currentEx, classData, currentUserId, 'submit');
                     }
+                    // Khung vừa vẽ lại chưa có mã bài nộp, bấm Tải xuống ngay
+                    // sau khi nộp sẽ không làm gì. Nạp lại bài nộp từ máy chủ.
+                    if (typeof fetchAndRenderSubmission === 'function') {
+                        await fetchAndRenderSubmission(currentEx.id_bai_tap, currentUserId);
+                    }
                 } else {
                     alert('Lỗi từ hệ thống khi lưu bài nộp: ' + (result.message || 'Không thành công'));
                 }

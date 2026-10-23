@@ -142,11 +142,9 @@ router.post('/nop-bai', async (req, res) => {
             await baiNop.save();
         }
 
-        // Cập nhật trạng thái trong bảng BaoCao thành "Đã xử lý"
-        await BaoCao.updateOne(
-            { id_bao_cao: id_bao_cao },
-            { $set: { trang_thai: "Đã xử lý" } }
-        );
+        // Không đụng tới trang_thai của báo cáo: đó là trạng thái chấm do worker
+        // ghi. Trước đây chỗ này ghi đè "Đã xử lý", nên báo cáo "Lỗi" sau khi
+        // nộp lại hiện vòng quay "Đang xử lý" như thể bị quét lại.
 
         // Ghi luôn sang danh sách nộp bài của bài tập để hai nơi không lệch nhau
         const hoSoSinhVien = await SinhVien
