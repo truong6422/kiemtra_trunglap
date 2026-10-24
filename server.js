@@ -58,10 +58,12 @@ app.use('/api/mau-bo-sung', mauBoSungRoutes);
 
 const path = require('path');
 app.use('/upload2', express.static(path.join(__dirname, 'upload2')));
+// Phục vụ luôn giao diện để chỉ cần một cổng (server chỉ mở 20109)
+app.use(express.static(path.join(__dirname, '010108294906.18.CaoVanHung_2200461')));
 
-// Route kiểm tra nhanh
+// Gõ địa chỉ gốc thì vào thẳng trang chủ
 app.get('/', (req, res) => {
-  res.send('Server đã kết nối MongoDB thành công!');
+  res.redirect('/pages/trangchu.html');
 });
 
 io.on('connection', (socket) => {

@@ -48,6 +48,11 @@ function timTepBaoCao(tepTin) {
         cacNoiThu.push(path.resolve(chuan));
     }
 
+    // Đường dẫn của máy khác nhưng nằm trong kho mẫu ("D:/.../restructuring_data/du_lieu_mau/bc1.docx"):
+    // bỏ phần ổ đĩa, giữ từ restructuring_data trở đi rồi ghép vào dự án
+    const viTriKho = chuan.indexOf('restructuring_data/');
+    if (viTriKho > 0) cacNoiThu.push(path.join(THU_MUC_GOC, chuan.slice(viTriKho)));
+
     // Đường dẫn của máy khác: chỉ giữ lại tên tệp rồi tìm trong uploads
     const tenTep = chuan.split('/').pop();
 
